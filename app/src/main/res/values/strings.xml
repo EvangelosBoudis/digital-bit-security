@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Couchbase Lite Android Dao</string>
+    <string name="passwords">Passwords</string>
 </resources>

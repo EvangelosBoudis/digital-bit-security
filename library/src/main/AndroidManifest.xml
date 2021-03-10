@@ -1,5 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nativeboys.couchbase.lite.android.dao">
-
-    /
-</manifest>
+<manifest package="com.nativeboys.couchbase.lite.android.dao" />
