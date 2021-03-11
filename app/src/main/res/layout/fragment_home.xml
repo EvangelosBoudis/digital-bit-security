@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/settings_icon"
-        app:tint="@color/white"
+        app:tint="@android:color/white"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -28,9 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/passwords"
-        android:fontFamily="@font/breeze_sans_medium"
-        android:textColor="@android:color/white"
-        android:textSize="18sp" />
+        style="@style/mainHeadlineStyle" />
 
     <ImageView
         android:id="@+id/plus_btn"
@@ -39,7 +37,7 @@
         android:layout_marginEnd="20dp"
         app:layout_constraintTop_toTopOf="@id/settings_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/plus_icon"
+        android:src="@drawable/plus_icon_2"
         app:tint="@android:color/white"
         tools:ignore="ContentDescription" />
 
@@ -51,5 +49,15 @@
         app:layout_constraintTop_toBottomOf="@id/settings_btn"
         app:layout_constraintStart_toStartOf="@id/settings_btn"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/passwords_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/tags_recycler_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

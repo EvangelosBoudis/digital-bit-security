@@ -9,7 +9,40 @@
 
     <style name="thumbnailStyle">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
+        <item name="cornerSize">10%</item>
+    </style>
+
+    <style name="mainHeadlineStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/breeze_sans_medium</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="editTextHeadlineStyle">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:fontFamily">@font/breeze_sans_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingStart">2.5dp</item>
+        <item name="android:paddingEnd">2.5dp</item>
+    </style>
+
+    <style name="editTextStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/breeze_sans_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="backgroundTint">@color/gray</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">20dp</item>
+    </style>
+
+    <style name="removeTextImageStyle">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:src">@drawable/remove_icon_2</item>
+        <item name="tint">@color/gray</item>
     </style>
 
 </resources>

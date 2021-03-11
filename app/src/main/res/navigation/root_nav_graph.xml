@@ -9,5 +9,14 @@
         android:id="@+id/homeFragment"
         android:name="com.nativeboys.couchbase.lite.android.dao.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_passwordDetails"
+            app:destination="@id/passwordDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/passwordDetailsFragment"
+        android:name="com.nativeboys.couchbase.lite.android.dao.ui.passwordDetails.PasswordDetailsFragment"
+        android:label="fragment_password_details"
+        tools:layout="@layout/fragment_password_details" />
 </navigation>

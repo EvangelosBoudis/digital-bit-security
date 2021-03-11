@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Couchbase Lite Android Dao</string>
     <string name="passwords">Passwords</string>
+    <string name="add_password">Add a Password</string>
+    <string name="website">website</string>
+    <string name="email_username">email/username</string>
+    <string name="password">password</string>
+    <string name="generate_password">Generate a Password</string>
+    <string name="notes">Notes</string>
+    <string name="tags">Tags</string>
 </resources>

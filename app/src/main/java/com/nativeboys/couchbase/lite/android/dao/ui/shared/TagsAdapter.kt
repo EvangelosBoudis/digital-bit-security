@@ -1,4 +1,4 @@
-package com.nativeboys.couchbase.lite.android.dao.ui.home
+package com.nativeboys.couchbase.lite.android.dao.ui.shared
 
 import android.view.View
 import com.nativeboys.couchbase.lite.android.dao.R
