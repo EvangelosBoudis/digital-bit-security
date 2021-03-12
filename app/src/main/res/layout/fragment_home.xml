@@ -37,7 +37,7 @@
         android:layout_marginEnd="20dp"
         app:layout_constraintTop_toTopOf="@id/settings_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/plus_icon_2"
+        android:src="@drawable/plus_icon"
         app:tint="@android:color/white"
         tools:ignore="ContentDescription" />
 

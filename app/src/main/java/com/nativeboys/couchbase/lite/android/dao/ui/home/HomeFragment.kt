@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nativeboys.couchbase.lite.android.dao.R
 import com.nativeboys.couchbase.lite.android.dao.databinding.FragmentHomeBinding
 import com.nativeboys.couchbase.lite.android.dao.data.MockData
-import com.nativeboys.couchbase.lite.android.dao.ui.shared.TagsAdapter
+import com.nativeboys.couchbase.lite.android.dao.ui.adapters.passwords.PasswordsAdapter
+import com.nativeboys.couchbase.lite.android.dao.ui.adapters.tags.TagsAdapter
 
 class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
 
@@ -47,7 +48,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
     }
 
     private fun applyMockData() {
-        tagsAdapter.dataSet = MockData.tags
+        tagsAdapter.dataSet = MockData.adapterTags
         passwordsAdapter.dataSet = MockData.passwords
     }
 

@@ -1,4 +1,4 @@
-package com.nativeboys.couchbase.lite.android.dao.ui.home
+package com.nativeboys.couchbase.lite.android.dao.ui.adapters.passwords
 
 import android.view.View
 import android.widget.ImageView

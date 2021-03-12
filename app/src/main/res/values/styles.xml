@@ -39,7 +39,7 @@
     <style name="removeTextImageStyle">
         <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">20dp</item>
-        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginEnd">5dp</item>
         <item name="android:src">@drawable/remove_icon_2</item>
         <item name="tint">@color/gray</item>
