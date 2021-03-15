@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.view.*
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
+import com.zeustech.zeuskit.R
 
 open class FragmentDialogScreen(
     @LayoutRes private val contentLayoutId: Int,
     private val dStyle: Int = STYLE_NORMAL,
-    private val dTheme: Int,
-    var fullScreenSize: Boolean
+    private val dTheme: Int = R.style.FullScreenDialogTheme,
+    var fullScreenSize: Boolean = true
 ) : DialogFragment() {
 
     var wrapContentHeight = false

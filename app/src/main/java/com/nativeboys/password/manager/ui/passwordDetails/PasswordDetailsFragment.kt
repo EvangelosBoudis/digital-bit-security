@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.*
 import com.nativeboys.password.manager.R
+import com.nativeboys.password.manager.data.AdapterThumbnailModel
 import com.nativeboys.password.manager.data.MockData
 import com.nativeboys.password.manager.databinding.FragmentPasswordDetailsBinding
 import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
 import com.nativeboys.password.manager.ui.adapters.thumbnails.ThumbnailsAdapter
+import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import java.util.*
 
 class PasswordDetailsFragment : Fragment(R.layout.fragment_password_details), View.OnClickListener {
@@ -36,20 +38,10 @@ class PasswordDetailsFragment : Fragment(R.layout.fragment_password_details), Vi
         binding?.tagsRecyclerView?.layoutManager = layoutManager
         binding?.tagsRecyclerView?.adapter = tagsAdapter
 
-        binding?.thumbnailsRecyclerView?.layoutManager = LinearLayoutManager(
-            view.context,
-            RecyclerView.HORIZONTAL,
-            false
-        )
+        binding?.thumbnailsRecyclerView?.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
         binding?.thumbnailsRecyclerView?.adapter = thumbnailsAdapter
 
-        binding?.submitBtn?.setOnClickListener(this)
-        binding?.dismissBtn?.setOnClickListener(this)
-        binding?.clearWebsiteBtn?.setOnClickListener(this)
-        binding?.clearEmailBtn?.setOnClickListener(this)
-        binding?.clearPasswordBtn?.setOnClickListener(this)
-        binding?.generatePasswordBtn?.setOnClickListener(this)
-
+        setUpListeners()
         applyMockData()
     }
 
@@ -83,6 +75,25 @@ class PasswordDetailsFragment : Fragment(R.layout.fragment_password_details), Vi
             }
             R.id.dismiss_btn -> {
                 activity?.onBackPressed()
+            }
+        }
+    }
+
+    private fun setUpListeners() {
+        binding?.submitBtn?.setOnClickListener(this)
+        binding?.dismissBtn?.setOnClickListener(this)
+        binding?.clearWebsiteBtn?.setOnClickListener(this)
+        binding?.clearEmailBtn?.setOnClickListener(this)
+        binding?.clearPasswordBtn?.setOnClickListener(this)
+        binding?.generatePasswordBtn?.setOnClickListener(this)
+        thumbnailsAdapter.adapterClickListener = object : AdapterClickListener<AdapterThumbnailModel> {
+            override fun onClick(view: View, model: AdapterThumbnailModel, position: Int) {
+                if (model.type == 3) {
+                    ThumbnailFactoryFragment().show(
+                        childFragmentManager,
+                        ThumbnailFactoryFragment::class.java.simpleName
+                    )
+                }
             }
         }
     }
