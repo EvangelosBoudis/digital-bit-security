@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Couchbase Lite Android Dao</string>
+    <string name="app_name">Password Manager</string>
     <string name="passwords">Passwords</string>
     <string name="add_password">Add a Password</string>
     <string name="website">website</string>
@@ -9,4 +9,6 @@
     <string name="notes">Notes</string>
     <string name="tags">Tags</string>
     <string name="thumbnail">Thumbnail</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

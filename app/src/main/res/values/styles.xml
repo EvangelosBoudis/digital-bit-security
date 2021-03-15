@@ -18,6 +18,12 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="headerBtnStyle">
+        <item name="android:layout_width">44dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
     <style name="editTextHeadlineStyle">
         <item name="android:textColor">@color/gray</item>
         <item name="android:fontFamily">@font/breeze_sans_medium</item>
@@ -37,10 +43,11 @@
     </style>
 
     <style name="removeTextImageStyle">
-        <item name="android:layout_width">20dp</item>
-        <item name="android:layout_height">20dp</item>
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:layout_width">35dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:padding">8dp</item>
+        <!--<item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginEnd">5dp</item>-->
         <item name="android:src">@drawable/remove_icon_2</item>
         <item name="tint">@color/gray</item>
     </style>

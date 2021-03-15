@@ -1,3 +1,3 @@
-include ':library'
+include ':ZeusKit'
 include ':app'
-rootProject.name = "Couchbase Lite Android Dao"
+rootProject.name = "Password Manager"
