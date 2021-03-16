@@ -51,6 +51,7 @@ dependencies {
     // UI
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.recyclerview:recyclerview:1.2.0-beta02'
+    implementation 'com.google.android.material:material:1.4.0-alpha01'
 
     // IO
     implementation 'com.google.code.gson:gson:2.8.6'

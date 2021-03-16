@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.text.method.TransformationMethod
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.*
 import com.nativeboys.password.manager.R
+import com.nativeboys.password.manager.data.AdapterTagModel
 import com.nativeboys.password.manager.data.AdapterThumbnailModel
 import com.nativeboys.password.manager.data.MockData
 import com.nativeboys.password.manager.databinding.FragmentPasswordDetailsBinding
@@ -54,7 +54,7 @@ class PasswordDetailsFragment : Fragment(R.layout.fragment_password_details), Vi
         val view = v ?: return
         when (view.id) {
             R.id.submit_btn -> {
-                Log.i("Fragment", "onSubmit: ")
+                // TODO: implement
             }
             R.id.clear_website_btn -> {
                 binding?.websiteField?.text = null
@@ -89,9 +89,21 @@ class PasswordDetailsFragment : Fragment(R.layout.fragment_password_details), Vi
         thumbnailsAdapter.adapterClickListener = object : AdapterClickListener<AdapterThumbnailModel> {
             override fun onClick(view: View, model: AdapterThumbnailModel, position: Int) {
                 if (model.type == 3) {
-                    ThumbnailFactoryFragment().show(
-                        childFragmentManager,
-                        ThumbnailFactoryFragment::class.java.simpleName
+                    FactoryBottomFragment.showFragment(
+                        this@PasswordDetailsFragment,
+                        R.string.add_thumbnail,
+                        R.string.url
+                    )
+                }
+            }
+        }
+        tagsAdapter.adapterClickListener = object : AdapterClickListener<AdapterTagModel> {
+            override fun onClick(view: View, model: AdapterTagModel, position: Int) {
+                if (model.type == 3) {
+                    FactoryBottomFragment.showFragment(
+                        this@PasswordDetailsFragment,
+                        R.string.add_tag,
+                        R.string.name
                     )
                 }
             }
