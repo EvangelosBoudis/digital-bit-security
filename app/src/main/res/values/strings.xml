@@ -14,4 +14,7 @@
     <string name="submit">Submit</string>
     <string name="add_tag">Add a Tag</string>
     <string name="name">Name</string>
+    <string name="search_password">Search a Password</string>
+    <string name="choose_these">Or choose from these</string>
+    <string name="search_by">Search by name or tag</string>
 </resources>

@@ -13,21 +13,36 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="thumbnailStyle">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">10%</item>
-    </style>
-
     <style name="mainHeadlineStyle">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:fontFamily">@font/breeze_sans_medium</item>
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="headerBtnStyle">
-        <item name="android:layout_width">44dp</item>
-        <item name="android:layout_height">44dp</item>
+    <style name="headerImageStyle">
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">45dp</item>
         <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="headerShapeableImageStyle">
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_width">45dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="strokeColor">@android:color/white</item>
+        <item name="shapeAppearanceOverlay">@style/circleImageStyle</item>
+    </style>
+
+    <style name="thumbnailStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">15%</item>
+    </style>
+
+    <style name="circleImageStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 
     <style name="editTextHeadlineStyle">
@@ -52,7 +67,7 @@
         <item name="android:layout_width">35dp</item>
         <item name="android:layout_height">35dp</item>
         <item name="android:padding">8dp</item>
-        <item name="android:src">@drawable/remove_icon_2</item>
+        <item name="android:src">@drawable/remove_icon</item>
         <item name="tint">@color/gray</item>
     </style>
 
