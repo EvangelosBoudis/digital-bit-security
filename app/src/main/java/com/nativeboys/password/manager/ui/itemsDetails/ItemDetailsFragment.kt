@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.ui.passwordDetails
+package com.nativeboys.password.manager.ui.itemsDetails
 
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
@@ -13,21 +13,21 @@ import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.AdapterTagModel
 import com.nativeboys.password.manager.data.AdapterThumbnailModel
 import com.nativeboys.password.manager.data.MockData
-import com.nativeboys.password.manager.databinding.FragmentPasswordDetailsBinding
+import com.nativeboys.password.manager.databinding.FragmentItemDetailsBinding
 import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
 import com.nativeboys.password.manager.ui.adapters.thumbnails.ThumbnailsAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import java.util.*
 
-class PasswordDetailsFragment : Fragment(R.layout.fragment_password_details), View.OnClickListener {
+class ItemDetailsFragment : Fragment(R.layout.fragment_item_details), View.OnClickListener {
 
-    private var binding: FragmentPasswordDetailsBinding? = null
+    private var binding: FragmentItemDetailsBinding? = null
     private val tagsAdapter = TagsAdapter()
     private val thumbnailsAdapter = ThumbnailsAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentPasswordDetailsBinding.bind(view)
+        binding = FragmentItemDetailsBinding.bind(view)
 
         val layoutManager = FlexboxLayoutManager(view.context)
         layoutManager.flexWrap = FlexWrap.WRAP
@@ -35,11 +35,13 @@ class PasswordDetailsFragment : Fragment(R.layout.fragment_password_details), Vi
         layoutManager.justifyContent = JustifyContent.FLEX_START
         layoutManager.alignItems = AlignItems.FLEX_START
 
-        binding?.tagsRecyclerView?.layoutManager = layoutManager
-        binding?.tagsRecyclerView?.adapter = tagsAdapter
-
-        binding?.thumbnailsRecyclerView?.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-        binding?.thumbnailsRecyclerView?.adapter = thumbnailsAdapter
+        binding?.let {
+            it.headerContainer.headlineField.setText(R.string.add_item)
+            it.tagsRecyclerView.layoutManager = layoutManager
+            it.tagsRecyclerView.adapter = tagsAdapter
+            it.thumbnailsRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
+            it.thumbnailsRecyclerView.adapter = thumbnailsAdapter
+        }
 
         setUpListeners()
         applyMockData()
@@ -73,41 +75,46 @@ class PasswordDetailsFragment : Fragment(R.layout.fragment_password_details), Vi
             R.id.generate_password_btn -> {
                 binding?.passwordField?.setText(UUID.randomUUID().toString())
             }
-            R.id.dismiss_btn -> {
+            R.id.leading_btn -> {
                 activity?.onBackPressed()
             }
         }
     }
 
     private fun setUpListeners() {
-        binding?.submitBtn?.setOnClickListener(this)
-        binding?.dismissBtn?.setOnClickListener(this)
-        binding?.clearWebsiteBtn?.setOnClickListener(this)
-        binding?.clearEmailBtn?.setOnClickListener(this)
-        binding?.clearPasswordBtn?.setOnClickListener(this)
-        binding?.generatePasswordBtn?.setOnClickListener(this)
+        val binding = binding ?: return
+
+        binding.headerContainer.leadingBtn.setOnClickListener(this)
+        binding.headerContainer.trailignBtn.setOnClickListener(this)
+        binding.clearWebsiteBtn.setOnClickListener(this)
+        binding.clearEmailBtn.setOnClickListener(this)
+        binding.clearPasswordBtn.setOnClickListener(this)
+        binding.generatePasswordBtn.setOnClickListener(this)
+
         thumbnailsAdapter.adapterClickListener = object : AdapterClickListener<AdapterThumbnailModel> {
             override fun onClick(view: View, model: AdapterThumbnailModel, position: Int) {
                 if (model.type == 3) {
                     FactoryBottomFragment.showFragment(
-                        this@PasswordDetailsFragment,
+                        this@ItemDetailsFragment,
                         R.string.add_thumbnail,
                         R.string.url
                     )
                 }
             }
         }
+
         tagsAdapter.adapterClickListener = object : AdapterClickListener<AdapterTagModel> {
             override fun onClick(view: View, model: AdapterTagModel, position: Int) {
                 if (model.type == 3) {
                     FactoryBottomFragment.showFragment(
-                        this@PasswordDetailsFragment,
+                        this@ItemDetailsFragment,
                         R.string.add_tag,
                         R.string.name
                     )
                 }
             }
         }
+
     }
 
     private fun applyMockData() {

@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/settings_icon"
         app:tint="@android:color/white"
-        style="@style/headerImageStyle"
+        style="@style/HeaderImageStyle"
         tools:ignore="ContentDescription" />
 
     <TextView
@@ -26,17 +26,17 @@
         app:layout_constraintBottom_toBottomOf="@id/settings_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/passwords"
-        style="@style/mainHeadlineStyle" />
+        android:text="@string/items"
+        style="@style/MainHeadlineStyle" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/plus_btn"
+        android:id="@+id/search_btn"
         android:layout_marginEnd="12dp"
         app:layout_constraintTop_toTopOf="@id/settings_btn"
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/search_icon_50p"
         android:tint="@color/cyan"
-        style="@style/headerShapeableImageStyle" />
+        style="@style/HeaderShapeableImageStyleP8" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tags_recycler_view"
@@ -52,9 +52,17 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
+        android:clipToPadding="false"
+        android:paddingBottom="75dp"
         app:layout_constraintTop_toBottomOf="@id/tags_recycler_view"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/plus_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        style="@style/PlusButtonStyle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

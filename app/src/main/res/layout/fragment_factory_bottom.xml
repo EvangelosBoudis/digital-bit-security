@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.passwordDetails.FactoryBottomFragment">
+    tools:context=".ui.itemsDetails.FactoryBottomFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                style="@style/mainHeadlineStyle" />
+                style="@style/MainHeadlineStyle" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/field_container"
@@ -50,7 +50,7 @@
                     app:layout_constraintBottom_toTopOf="@id/field"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    style="@style/editTextHeadlineStyle"/>
+                    style="@style/EditTextHeadlineStyle"/>
 
                 <EditText
                     android:id="@+id/field"
@@ -61,14 +61,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:inputType="textUri"
-                    style="@style/editTextStyle"
+                    style="@style/EditTextStyle"
                     tools:ignore="Autofill,LabelFor" />
 
                 <ImageView
                     android:id="@+id/clear_field_btn"
                     app:layout_constraintEnd_toEndOf="@id/field"
                     app:layout_constraintTop_toTopOf="@id/field"
-                    style="@style/removeTextImageStyle"
+                    style="@style/RemoveTextImageStyle"
                     tools:ignore="ContentDescription" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

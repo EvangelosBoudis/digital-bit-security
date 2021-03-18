@@ -1,8 +1,54 @@
 package com.nativeboys.password.manager.data
 
+import java.sql.Timestamp
 import java.util.*
 
-data class PasswordModel(
+data class FieldData(
+    val id: String = UUID.randomUUID().toString(), // PK
+    val name: String,
+    val type: Int,
+    val hidden: Boolean,
+    val categoryId: String // FK (Categories)
+)
+
+data class CategoryData(
+    val id: String = UUID.randomUUID().toString(), // PK
+    val name: String,
+    val thumbnailUrl: String,
+    val ownerId: String, // FK (Users)
+    val defaultCategory: Boolean
+)
+
+data class PasswordData(
+    val id: String = UUID.randomUUID().toString(), // PK
+    val name: String,
+    val notes: String,
+    val tags: List<String>,
+    val thumbnailUrl: String?,
+    val dateModified: Timestamp,
+    val requiresPassword: String,
+    val favorite: Boolean,
+    val categoryId: String, // FK (Categories),
+    val ownerId: String, // FK (Users),
+)
+
+data class PassFieldData(
+    val id: String = UUID.randomUUID().toString(),
+    val fieldId: String,
+    val passwordId: String,
+    val content: String
+)
+
+data class UserData(
+    val id: String = UUID.randomUUID().toString(),
+    val email: String,
+    val masterPassword: String,
+    val avatarUrl: String
+)
+
+////////////////////////////////////////////////////////////////
+
+data class ItemModel(
     val id: String = UUID.randomUUID().toString(),
     val webSite: String,
     val email: String,

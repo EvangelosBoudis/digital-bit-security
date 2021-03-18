@@ -17,7 +17,7 @@
        app:layout_constraintTop_toTopOf="parent"
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:shapeAppearanceOverlay="@style/thumbnailStyle" />
+       app:shapeAppearanceOverlay="@style/ThumbnailStyle" />
 
    <TextView
        android:id="@+id/website_field"

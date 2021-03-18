@@ -2,7 +2,7 @@ package com.nativeboys.password.manager.data
 
 object MockData {
 
-    val passwords: List<PasswordModel>
+    val items: List<ItemModel>
 
     val tags: List<TagModel>
     val adapterTags: List<AdapterTagModel>
@@ -11,6 +11,8 @@ object MockData {
     val thumbnails: List<String>
     val adapterThumbnails: List<AdapterThumbnailModel>
     val adapterThumbnailsWithAdd: List<AdapterThumbnailModel>
+
+    val categories: List<CategoryData>
 
     init {
 
@@ -35,7 +37,7 @@ object MockData {
         val bills =
             TagModel(description = "Biils")
 
-        val appleId = PasswordModel(
+        val appleId = ItemModel(
             webSite = "Apple ID",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
@@ -43,7 +45,7 @@ object MockData {
             tagIds = "${social.id}, ${personal.id}",
             thumbnailUrl = appleThumb
         )
-        val adobe = PasswordModel(
+        val adobe = ItemModel(
             webSite = "Adobe",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
@@ -51,7 +53,7 @@ object MockData {
             tagIds = "${social.id}, ${personal.id}",
             thumbnailUrl = adobeThumb
         )
-        val behance = PasswordModel(
+        val behance = ItemModel(
             webSite = "Behance",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
@@ -59,7 +61,7 @@ object MockData {
             tagIds = "${social.id}, ${personal.id}",
             thumbnailUrl = behanceThumb
         )
-        val dribble = PasswordModel(
+        val dribble = ItemModel(
             webSite = "Dribbble",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
@@ -67,7 +69,7 @@ object MockData {
             tagIds = "${social.id}, ${personal.id}",
             thumbnailUrl = dribbleThumb
         )
-        val facebook = PasswordModel(
+        val facebook = ItemModel(
             webSite = "Facebook",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
@@ -75,7 +77,7 @@ object MockData {
             tagIds = "${social.id}, ${personal.id}",
             thumbnailUrl = facebookThumb
         )
-        val instagram = PasswordModel(
+        val instagram = ItemModel(
             webSite = "Instagram",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
@@ -83,7 +85,7 @@ object MockData {
             tagIds = "${social.id}, ${personal.id}",
             thumbnailUrl = instagramThumb
         )
-        val youtube = PasswordModel(
+        val youtube = ItemModel(
             webSite = "Youtube",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
@@ -92,7 +94,133 @@ object MockData {
             thumbnailUrl = youtubeThumb
         )
 
-        passwords = listOf(appleId, adobe, behance, dribble, facebook, instagram, youtube)
+        val gamingCategory = CategoryData(
+            name = "Games",
+            thumbnailUrl = "GAMEPAD",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val subChannelCategory = CategoryData(
+            name = "Subscription Channels",
+            thumbnailUrl = "NETFLIX",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val bankCategory = CategoryData(
+            name = "Bank",
+            thumbnailUrl = "BANK",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val networkCategory = CategoryData(
+            name = "Networks",
+            thumbnailUrl = "NETWORK",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val alarmsCategory = CategoryData(
+            name = "Alarms",
+            thumbnailUrl = "ALARM",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val homeCategory = CategoryData(
+            name = "Home",
+            thumbnailUrl = "HOME",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val wordPressCategory = CategoryData(
+            name = "Wordpress",
+            thumbnailUrl = "WORDPRESS",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val accessPointsCategory = CategoryData(
+            name = "Access Points",
+            thumbnailUrl = "ACCESS_POINT",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val airportCategory = CategoryData(
+            name = "Airport",
+            thumbnailUrl = "AIRPORT",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val appleCategory = CategoryData(
+            name = "Apple",
+            thumbnailUrl = "APPLE",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val tabletCategory = CategoryData(
+            name = "Tablets",
+            thumbnailUrl = "TABLET",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val phoneCategory = CategoryData(
+            name = "Phones",
+            thumbnailUrl = "PHONE",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val bitcoinCategory = CategoryData(
+            name = "BitCoins",
+            thumbnailUrl = "BITCOIN",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val bitBucketCategory = CategoryData(
+            name = "BitBucket",
+            thumbnailUrl = "BITBUCKET",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val cloudCategory = CategoryData(
+            name = "Cloud",
+            thumbnailUrl = "CLOUD",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val mailCategory = CategoryData(
+            name = "Mail",
+            thumbnailUrl = "MAILBOX",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val desktopCategory = CategoryData(
+            name = "Desktop Mac",
+            thumbnailUrl = "DESKTOP_MAC",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val laptopCategory = CategoryData(
+            name = "Laptop Windows",
+            thumbnailUrl = "LAPTOP_WINDOWS",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val towerCategory = CategoryData(
+            name = "Desktop Tower",
+            thumbnailUrl = "DESKTOP_TOWER",
+            ownerId = "George",
+            defaultCategory = true
+        )
+        val remoteCategory = CategoryData(
+            name = "Remote Desktop",
+            thumbnailUrl = "REMOTE_DESKTOP",
+            ownerId = "George",
+            defaultCategory = true
+        )
+
+        categories = listOf(gamingCategory, subChannelCategory, bankCategory, networkCategory, alarmsCategory,
+            homeCategory, wordPressCategory, accessPointsCategory, airportCategory, appleCategory,
+            tabletCategory, phoneCategory, bitcoinCategory, bitBucketCategory, cloudCategory,
+            mailCategory, desktopCategory, laptopCategory, towerCategory, remoteCategory)
+
+        items = listOf(appleId, adobe, behance, dribble, facebook, instagram, youtube)
 
         tags = listOf(social, masterPass, bank, shopping, personal, bills)
         adapterTags = tags.mapIndexed { index, model ->

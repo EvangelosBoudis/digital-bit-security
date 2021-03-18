@@ -49,7 +49,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // Navigation Component
-    def nav_version = "2.3.3"
+    def nav_version = "2.3.4"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -64,4 +64,6 @@ dependencies {
     def glide_version = "4.12.0"
     implementation "com.github.bumptech.glide:glide:$glide_version"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    implementation 'net.steamcrafted:materialiconlib:1.1.5'
 }

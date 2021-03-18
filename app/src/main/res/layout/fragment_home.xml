@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/passwords_container"
-        layout="@layout/passwords_layout" />
+        layout="@layout/items_layout" />
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"

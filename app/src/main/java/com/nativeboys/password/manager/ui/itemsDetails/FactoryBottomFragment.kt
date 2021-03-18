@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.ui.passwordDetails
+package com.nativeboys.password.manager.ui.itemsDetails
 
 import android.os.Bundle
 import android.view.View

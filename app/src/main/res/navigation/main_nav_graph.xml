@@ -9,22 +9,30 @@
         android:id="@+id/homeFragment"
         android:name="com.nativeboys.password.manager.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/passwords_layout" >
+        tools:layout="@layout/items_layout" >
         <action
             android:id="@+id/action_home_to_passwordDetails"
             app:destination="@id/passwordDetailsFragment" />
         <action
             android:id="@+id/action_home_to_searchEngine"
             app:destination="@id/searchEngineFragment" />
+        <action
+            android:id="@+id/action_home_to_categories"
+            app:destination="@id/categoriesFragment" />
     </fragment>
     <fragment
         android:id="@+id/passwordDetailsFragment"
-        android:name="com.nativeboys.password.manager.ui.passwordDetails.PasswordDetailsFragment"
+        android:name="com.nativeboys.password.manager.ui.itemsDetails.ItemDetailsFragment"
         android:label="fragment_password_details"
-        tools:layout="@layout/fragment_password_details" />
+        tools:layout="@layout/fragment_item_details" />
     <fragment
         android:id="@+id/searchEngineFragment"
         android:name="com.nativeboys.password.manager.ui.searchEngine.SearchEngineFragment"
         android:label="fragment_search_engine"
         tools:layout="@layout/fragment_search_engine" />
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.nativeboys.password.manager.ui.categories.CategoriesFragment"
+        android:label="fragment_categories"
+        tools:layout="@layout/fragment_categories" />
 </navigation>

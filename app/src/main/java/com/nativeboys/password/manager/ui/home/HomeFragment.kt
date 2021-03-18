@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.MockData
-import com.nativeboys.password.manager.data.PasswordModel
+import com.nativeboys.password.manager.data.ItemModel
 import com.nativeboys.password.manager.databinding.FragmentHomeBinding
-import com.nativeboys.password.manager.ui.adapters.passwords.PasswordsAdapter
+import com.nativeboys.password.manager.ui.adapters.items.ItemsAdapter
 import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 
@@ -20,7 +20,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
 
     private lateinit var navController: NavController
     private val tagsAdapter = TagsAdapter()
-    private val passwordsAdapter = PasswordsAdapter()
+    private val passwordsAdapter = ItemsAdapter()
     private var binding: FragmentHomeBinding? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,10 +34,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
         b.passwordsContainer.passwordsRecyclerView.layoutManager = LinearLayoutManager(view.context)
         b.passwordsContainer.passwordsRecyclerView.adapter = passwordsAdapter
 
-        b.passwordsContainer.plusBtn.setOnClickListener(this)
+        b.passwordsContainer.searchBtn.setOnClickListener(this)
         b.passwordsContainer.settingsBtn.setOnClickListener(this)
-        passwordsAdapter.adapterClickListener = object : AdapterClickListener<PasswordModel> {
-            override fun onClick(view: View, model: PasswordModel, position: Int) {
+        b.passwordsContainer.plusBtn.setOnClickListener(this)
+        passwordsAdapter.adapterClickListener = object : AdapterClickListener<ItemModel> {
+            override fun onClick(view: View, model: ItemModel, position: Int) {
                 navController.navigate(R.id.action_home_to_passwordDetails)
             }
         }
@@ -53,18 +54,21 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
     override fun onClick(v: View?) {
         val view = v ?: return
         when (view.id) {
-            R.id.plus_btn -> {
+            R.id.search_btn -> {
                 navController.navigate(R.id.action_home_to_searchEngine)
             }
             R.id.settings_btn -> {
                 binding?.drawerLayout?.openDrawer(GravityCompat.START)
+            }
+            R.id.plus_btn -> {
+                navController.navigate(R.id.action_home_to_categories)
             }
         }
     }
 
     private fun applyMockData() {
         tagsAdapter.dataSet = MockData.adapterTags
-        passwordsAdapter.dataSet = MockData.passwords
+        passwordsAdapter.dataSet = MockData.items
     }
 
 }
