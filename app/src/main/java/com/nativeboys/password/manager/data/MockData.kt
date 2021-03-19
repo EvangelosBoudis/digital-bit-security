@@ -13,6 +13,7 @@ object MockData {
     val adapterThumbnailsWithAdd: List<AdapterThumbnailModel>
 
     val categories: List<CategoryData>
+    val contentFields: List<ContentFieldModel>
 
     init {
 
@@ -214,6 +215,26 @@ object MockData {
             ownerId = "George",
             defaultCategory = true
         )
+
+        val field1 = ContentFieldModel(
+            name = "Username",
+            type = 1,
+            hidden = false,
+            content = "v.boudis1995@gmail.com"
+        )
+        val field2 = ContentFieldModel(
+            name = "Password",
+            type = 1,
+            hidden = true,
+            content = "elamesa@123@"
+        )
+        val field3 = ContentFieldModel(
+            name = "Website",
+            type = 1,
+            hidden = false,
+            content = "https://appleid.apple.com/"
+        )
+        contentFields = listOf(field1, field2, field3)
 
         categories = listOf(gamingCategory, subChannelCategory, bankCategory, networkCategory, alarmsCategory,
             homeCategory, wordPressCategory, accessPointsCategory, airportCategory, appleCategory,

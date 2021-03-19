@@ -27,22 +27,30 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
         navController = Navigation.findNavController(view)
-
-        val b = binding ?: return
-        b.passwordsContainer.tagsRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-        b.passwordsContainer.tagsRecyclerView.adapter = tagsAdapter
-        b.passwordsContainer.passwordsRecyclerView.layoutManager = LinearLayoutManager(view.context)
-        b.passwordsContainer.passwordsRecyclerView.adapter = passwordsAdapter
-
-        b.passwordsContainer.searchBtn.setOnClickListener(this)
-        b.passwordsContainer.settingsBtn.setOnClickListener(this)
-        b.passwordsContainer.plusBtn.setOnClickListener(this)
+        binding?.let {
+            it.passwordsContainer.tagsRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
+            it.passwordsContainer.tagsRecyclerView.adapter = tagsAdapter
+            it.passwordsContainer.passwordsRecyclerView.layoutManager = LinearLayoutManager(view.context)
+            it.passwordsContainer.passwordsRecyclerView.adapter = passwordsAdapter
+            it.passwordsContainer.searchBtn.setOnClickListener(this)
+            it.passwordsContainer.settingsBtn.setOnClickListener(this)
+            it.passwordsContainer.plusBtn.setOnClickListener(this)
+        }
         passwordsAdapter.adapterClickListener = object : AdapterClickListener<ItemModel> {
             override fun onClick(view: View, model: ItemModel, position: Int) {
-                navController.navigate(R.id.action_home_to_passwordDetails)
+                when (view.id) {
+                    R.id.visible_view -> {
+                        navController.navigate(R.id.action_home_to_itemPreview)
+                    }
+                    R.id.edit_btn -> {
+                        navController.navigate(R.id.action_home_to_itemConstructor)
+                    }
+                    R.id.delete_btn -> {
+                        // TODO: implement
+                    }
+                }
             }
         }
-
         applyMockData()
     }
 

@@ -57,30 +57,40 @@
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="EditTextHeadlineStyle">
+    <style name="FieldHeadlineCapsStyle" parent="FieldHeadlineStyle">
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="FieldHeadlineStyle">
         <item name="android:textColor">@color/gray</item>
         <item name="android:fontFamily">@font/breeze_sans_medium</item>
         <item name="android:textSize">12sp</item>
-        <item name="android:textAllCaps">true</item>
         <item name="android:paddingStart">2.5dp</item>
         <item name="android:paddingEnd">2.5dp</item>
     </style>
 
-    <style name="EditTextStyle">
+    <style name="FieldStyle">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:fontFamily">@font/breeze_sans_medium</item>
         <item name="android:textSize">14sp</item>
-        <item name="backgroundTint">@color/gray</item>
+        <item name="backgroundTint">@color/field_background_tint_color</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">20dp</item>
     </style>
 
-    <style name="RemoveTextImageStyle">
+    <style name="FieldDrawableStyle">
         <item name="android:layout_width">35dp</item>
         <item name="android:layout_height">35dp</item>
         <item name="android:padding">8dp</item>
-        <item name="android:src">@drawable/remove_icon</item>
         <item name="tint">@color/gray</item>
+    </style>
+
+    <style name="FieldDeleteDrawableStyle" parent="FieldDrawableStyle">
+        <item name="android:src">@drawable/remove_icon</item>
+    </style>
+
+    <style name="FieldCopyDrawableStyle" parent="FieldDrawableStyle">
+        <item name="android:src">@drawable/copy_icon</item>
     </style>
 
     <style name="ViewLineStyle">
@@ -89,6 +99,46 @@
         <item name="android:background">@color/grayTransparent</item>
         <item name="android:layout_marginStart">10dp</item>
         <item name="android:layout_marginEnd">10dp</item>
+    </style>
+
+    <style name="ButtonStyle" parent="ButtonTextStyle">
+        <item name="android:background">@drawable/btn_shape</item>
+    </style>
+
+    <style name="ButtonTextStyle">
+        <item name="android:fontFamily">@font/breeze_sans_medium</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="NonButtonBackgroundStyle">
+        <item name="android:background">@drawable/btn_shape</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+    </style>
+
+    <style name="NonButtonStyle" parent="NonButtonBackgroundStyle">
+        <!--Same with ButtonTextStyle-->
+        <item name="android:fontFamily">@font/breeze_sans_medium</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="NonButtonDrawableStyle">
+        <item name="android:layout_width">17dp</item>
+        <item name="android:layout_height">17dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+    </style>
+
+    <style name="HeaderContainerStyle">
+        <item name="android:background">@color/black</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
     </style>
 
 </resources>

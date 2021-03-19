@@ -18,7 +18,7 @@ class CategoriesViewHolder(itemView: View) : RecyclerViewHolder<CategoryData>(it
 
     private val thumbnailHolder = itemView.findViewById<MaterialIconView>(R.id.thumbnail_holder)
     private val nameField = itemView.findViewById<TextView>(R.id.name_field)
-    private val clickBtn = itemView.findViewById<ImageView>(R.id.click_btn)
+    private val nextBtn = itemView.findViewById<ImageView>(R.id.next_btn)
 
     override fun bind(model: CategoryData) {
         nameField.text = model.name
@@ -28,8 +28,8 @@ class CategoriesViewHolder(itemView: View) : RecyclerViewHolder<CategoryData>(it
             null
         }
         Glide.with(itemView.context)
-            .load(R.drawable.next_iconn)
-            .into(clickBtn)
+            .load(R.drawable.next_icon)
+            .into(nextBtn)
         if (icon != null) {
             val drawable = MaterialDrawableBuilder.with(itemView.context) // provide a context
                 .setIcon(icon) // provide an icon

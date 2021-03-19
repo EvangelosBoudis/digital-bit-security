@@ -9,30 +9,53 @@
         android:id="@+id/homeFragment"
         android:name="com.nativeboys.password.manager.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/items_layout" >
+        tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_home_to_passwordDetails"
-            app:destination="@id/passwordDetailsFragment" />
+            android:id="@+id/action_home_to_itemConstructor"
+            app:destination="@id/itemConstructorFragment" />
         <action
             android:id="@+id/action_home_to_searchEngine"
             app:destination="@id/searchEngineFragment" />
         <action
             android:id="@+id/action_home_to_categories"
             app:destination="@id/categoriesFragment" />
+        <action
+            android:id="@+id/action_home_to_itemPreview"
+            app:destination="@id/itemPreviewFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/passwordDetailsFragment"
-        android:name="com.nativeboys.password.manager.ui.itemsDetails.ItemDetailsFragment"
-        android:label="fragment_password_details"
-        tools:layout="@layout/fragment_item_details" />
+        android:id="@+id/itemConstructorFragment"
+        android:name="com.nativeboys.password.manager.ui.itemConstructor.ItemConstructorFragment"
+        android:label="fragment_item_constructor"
+        tools:layout="@layout/fragment_item_constructor" />
+
     <fragment
         android:id="@+id/searchEngineFragment"
         android:name="com.nativeboys.password.manager.ui.searchEngine.SearchEngineFragment"
         android:label="fragment_search_engine"
         tools:layout="@layout/fragment_search_engine" />
+
     <fragment
         android:id="@+id/categoriesFragment"
         android:name="com.nativeboys.password.manager.ui.categories.CategoriesFragment"
         android:label="fragment_categories"
-        tools:layout="@layout/fragment_categories" />
+        tools:layout="@layout/fragment_categories" >
+        <action
+            android:id="@+id/action_categories_to_categoryConstructor"
+            app:destination="@id/categoryConstructorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryConstructorFragment"
+        android:name="com.nativeboys.password.manager.ui.categoryConstructor.CategoryConstructorFragment"
+        android:label="fragment_category_constructor"
+        tools:layout="@layout/fragment_category_constructor" />
+
+    <fragment
+        android:id="@+id/itemPreviewFragment"
+        android:name="com.nativeboys.password.manager.ui.itemPreview.ItemPreviewFragment"
+        android:label="fragment_item_preview"
+        tools:layout="@layout/fragment_item_preview" />
+
 </navigation>

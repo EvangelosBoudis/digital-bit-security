@@ -19,23 +19,23 @@ data class CategoryData(
     val defaultCategory: Boolean
 )
 
-data class PasswordData(
+data class ItemData(
     val id: String = UUID.randomUUID().toString(), // PK
     val name: String,
     val notes: String,
     val tags: List<String>,
     val thumbnailUrl: String?,
     val dateModified: Timestamp,
-    val requiresPassword: String,
+    val requiresPassword: Boolean,
     val favorite: Boolean,
     val categoryId: String, // FK (Categories),
     val ownerId: String, // FK (Users),
 )
 
-data class PassFieldData(
+data class ItemFieldData(
     val id: String = UUID.randomUUID().toString(),
     val fieldId: String,
-    val passwordId: String,
+    val itemId: String,
     val content: String
 )
 
@@ -44,6 +44,16 @@ data class UserData(
     val email: String,
     val masterPassword: String,
     val avatarUrl: String
+)
+
+////////////////////////////////////////////////////////////////
+
+data class ContentFieldModel(
+    val id: String = UUID.randomUUID().toString(), // PK
+    val name: String,
+    val type: Int,
+    val hidden: Boolean,
+    val content: String
 )
 
 ////////////////////////////////////////////////////////////////

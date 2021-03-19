@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.ui.itemsDetails
+package com.nativeboys.password.manager.ui.itemConstructor
 
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
@@ -13,21 +13,21 @@ import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.AdapterTagModel
 import com.nativeboys.password.manager.data.AdapterThumbnailModel
 import com.nativeboys.password.manager.data.MockData
-import com.nativeboys.password.manager.databinding.FragmentItemDetailsBinding
+import com.nativeboys.password.manager.databinding.FragmentItemConstructorBinding
 import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
 import com.nativeboys.password.manager.ui.adapters.thumbnails.ThumbnailsAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import java.util.*
 
-class ItemDetailsFragment : Fragment(R.layout.fragment_item_details), View.OnClickListener {
+class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), View.OnClickListener {
 
-    private var binding: FragmentItemDetailsBinding? = null
+    private var binding: FragmentItemConstructorBinding? = null
     private val tagsAdapter = TagsAdapter()
     private val thumbnailsAdapter = ThumbnailsAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentItemDetailsBinding.bind(view)
+        binding = FragmentItemConstructorBinding.bind(view)
 
         val layoutManager = FlexboxLayoutManager(view.context)
         layoutManager.flexWrap = FlexWrap.WRAP
@@ -36,7 +36,7 @@ class ItemDetailsFragment : Fragment(R.layout.fragment_item_details), View.OnCli
         layoutManager.alignItems = AlignItems.FLEX_START
 
         binding?.let {
-            it.headerContainer.headlineField.setText(R.string.add_item)
+            it.headerContainer.headlineField.setText(R.string.create_item)
             it.tagsRecyclerView.layoutManager = layoutManager
             it.tagsRecyclerView.adapter = tagsAdapter
             it.thumbnailsRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
@@ -95,7 +95,7 @@ class ItemDetailsFragment : Fragment(R.layout.fragment_item_details), View.OnCli
             override fun onClick(view: View, model: AdapterThumbnailModel, position: Int) {
                 if (model.type == 3) {
                     FactoryBottomFragment.showFragment(
-                        this@ItemDetailsFragment,
+                        this@ItemConstructorFragment,
                         R.string.add_thumbnail,
                         R.string.url
                     )
@@ -107,7 +107,7 @@ class ItemDetailsFragment : Fragment(R.layout.fragment_item_details), View.OnCli
             override fun onClick(view: View, model: AdapterTagModel, position: Int) {
                 if (model.type == 3) {
                     FactoryBottomFragment.showFragment(
-                        this@ItemDetailsFragment,
+                        this@ItemConstructorFragment,
                         R.string.add_tag,
                         R.string.name
                     )

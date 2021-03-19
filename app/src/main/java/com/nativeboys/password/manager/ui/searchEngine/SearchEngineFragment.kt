@@ -17,7 +17,7 @@ class SearchEngineFragment : Fragment(R.layout.fragment_search_engine), View.OnC
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentSearchEngineBinding.bind(view)
-        binding.headerContainer.headlineField.setText(R.string.search_item)
+        binding.headerContainer.headlineField.setText(R.string.advanced_search)
         binding.headerContainer.trailignBtn.visibility = View.INVISIBLE
         val portrait = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
         binding.passwordsRecyclerView.layoutManager = StaggeredGridLayoutManager(if (portrait) 4 else 7, StaggeredGridLayoutManager.VERTICAL)

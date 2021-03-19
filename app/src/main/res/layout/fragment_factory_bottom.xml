@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.itemsDetails.FactoryBottomFragment">
+    tools:context=".ui.itemConstructor.FactoryBottomFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                     app:layout_constraintBottom_toTopOf="@id/field"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    style="@style/EditTextHeadlineStyle"/>
+                    style="@style/FieldHeadlineStyle"/>
 
                 <EditText
                     android:id="@+id/field"
@@ -61,14 +61,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:inputType="textUri"
-                    style="@style/EditTextStyle"
+                    style="@style/FieldStyle"
                     tools:ignore="Autofill,LabelFor" />
 
                 <ImageView
                     android:id="@+id/clear_field_btn"
                     app:layout_constraintEnd_toEndOf="@id/field"
                     app:layout_constraintTop_toTopOf="@id/field"
-                    style="@style/RemoveTextImageStyle"
+                    style="@style/FieldDeleteDrawableStyle"
                     tools:ignore="ContentDescription" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -81,11 +81,8 @@
                 app:layout_constraintTop_toBottomOf="@id/field_container"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/field_container"
-                android:background="@drawable/btn_shape"
-                android:fontFamily="@font/breeze_sans_medium"
-                android:textColor="@android:color/white"
-                android:textAllCaps="false"
-                android:text="@string/submit"/>
+                android:text="@string/submit"
+                style="@style/ButtonStyle" />
 
         </com.zeustech.zeuskit.ui.views.FocusableConstraintLayout>
 

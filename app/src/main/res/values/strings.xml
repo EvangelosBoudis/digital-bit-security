@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Password Manager</string>
     <string name="items">Items</string>
-    <string name="add_item">Add an Item</string>
+    <string name="create_item">Create Item</string>
     <string name="website">website</string>
     <string name="email_username">email/username</string>
     <string name="password">password</string>
@@ -14,8 +14,11 @@
     <string name="submit">Submit</string>
     <string name="add_tag">Add a Tag</string>
     <string name="name">Name</string>
-    <string name="search_item">Search an Item</string>
-    <string name="choose_these">Or choose from these</string>
+    <string name="advanced_search">Advanced Search</string>
     <string name="search_by">Search by name or tag</string>
     <string name="choose_category">Choose Category</string>
+    <string name="create_category">Create Category</string>
+    <string name="update_item">Update Item</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
 </resources>
