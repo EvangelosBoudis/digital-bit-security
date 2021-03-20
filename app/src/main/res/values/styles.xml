@@ -97,6 +97,9 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/grayTransparent</item>
+    </style>
+
+    <style name="ViewLineStyle.Margin" parent="ViewLineStyle">
         <item name="android:layout_marginStart">10dp</item>
         <item name="android:layout_marginEnd">10dp</item>
     </style>
@@ -114,10 +117,10 @@
     <style name="NonButtonBackgroundStyle">
         <item name="android:background">@drawable/btn_shape</item>
         <item name="android:gravity">center</item>
-        <item name="android:paddingTop">12dp</item>
-        <item name="android:paddingBottom">12dp</item>
-        <item name="android:paddingStart">20dp</item>
-        <item name="android:paddingEnd">20dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingEnd">18dp</item>
     </style>
 
     <style name="NonButtonStyle" parent="NonButtonBackgroundStyle">
@@ -128,8 +131,8 @@
     </style>
 
     <style name="NonButtonDrawableStyle">
-        <item name="android:layout_width">17dp</item>
-        <item name="android:layout_height">17dp</item>
+        <item name="android:layout_width">18dp</item>
+        <item name="android:layout_height">18dp</item>
         <item name="android:layout_marginEnd">10dp</item>
     </style>
 
@@ -139,6 +142,19 @@
         <item name="android:paddingBottom">15dp</item>
         <item name="android:paddingStart">12dp</item>
         <item name="android:paddingEnd">12dp</item>
+    </style>
+
+    <style name="ContainerPadding">
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingStart">19dp</item>
+        <item name="android:paddingEnd">19dp</item>
+    </style>
+
+    <style name="ImageButtonStyle">
+        <item name="android:layout_width">42dp</item>
+        <item name="android:layout_height">42dp</item>
+        <item name="android:padding">8dp</item>
     </style>
 
 </resources>

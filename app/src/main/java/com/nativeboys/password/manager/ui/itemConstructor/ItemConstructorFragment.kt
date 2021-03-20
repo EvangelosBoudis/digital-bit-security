@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.*
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.AdapterTagModel
-import com.nativeboys.password.manager.data.AdapterThumbnailModel
+import com.nativeboys.password.manager.data.ThumbnailModel
 import com.nativeboys.password.manager.data.MockData
+import com.nativeboys.password.manager.data.TagModel
+import com.nativeboys.password.manager.data.wrapCells
 import com.nativeboys.password.manager.databinding.FragmentItemConstructorBinding
 import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
 import com.nativeboys.password.manager.ui.adapters.thumbnails.ThumbnailsAdapter
@@ -30,10 +31,7 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
         binding = FragmentItemConstructorBinding.bind(view)
 
         val layoutManager = FlexboxLayoutManager(view.context)
-        layoutManager.flexWrap = FlexWrap.WRAP
-        layoutManager.flexDirection = FlexDirection.ROW
-        layoutManager.justifyContent = JustifyContent.FLEX_START
-        layoutManager.alignItems = AlignItems.FLEX_START
+        layoutManager.wrapCells()
 
         binding?.let {
             it.headerContainer.headlineField.setText(R.string.create_item)
@@ -91,8 +89,8 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
         binding.clearPasswordBtn.setOnClickListener(this)
         binding.generatePasswordBtn.setOnClickListener(this)
 
-        thumbnailsAdapter.adapterClickListener = object : AdapterClickListener<AdapterThumbnailModel> {
-            override fun onClick(view: View, model: AdapterThumbnailModel, position: Int) {
+        thumbnailsAdapter.adapterClickListener = object : AdapterClickListener<ThumbnailModel> {
+            override fun onClick(view: View, model: ThumbnailModel, position: Int) {
                 if (model.type == 3) {
                     FactoryBottomFragment.showFragment(
                         this@ItemConstructorFragment,
@@ -103,8 +101,8 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
             }
         }
 
-        tagsAdapter.adapterClickListener = object : AdapterClickListener<AdapterTagModel> {
-            override fun onClick(view: View, model: AdapterTagModel, position: Int) {
+        tagsAdapter.adapterClickListener = object : AdapterClickListener<TagModel> {
+            override fun onClick(view: View, model: TagModel, position: Int) {
                 if (model.type == 3) {
                     FactoryBottomFragment.showFragment(
                         this@ItemConstructorFragment,
@@ -118,8 +116,8 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
     }
 
     private fun applyMockData() {
-        tagsAdapter.dataSet = MockData.adapterTagsWithAdd
-        thumbnailsAdapter.dataSet = MockData.adapterThumbnailsWithAdd
+        tagsAdapter.dataSet = MockData.tagsWithAdd
+        thumbnailsAdapter.dataSet = MockData.thumbnailsWithAdds
     }
 
 }

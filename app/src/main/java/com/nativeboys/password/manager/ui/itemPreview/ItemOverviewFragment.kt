@@ -8,30 +8,40 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.ContentFieldModel
+import com.nativeboys.password.manager.data.FieldContentModel
 import com.nativeboys.password.manager.data.MockData
-import com.nativeboys.password.manager.databinding.FragmentItemPreviewBinding
+import com.nativeboys.password.manager.databinding.FragmentItemOverviewBinding
 import com.nativeboys.password.manager.ui.adapters.fields.FieldsAdapter
+import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 
-class ItemPreviewFragment :
-    Fragment(R.layout.fragment_item_preview),
-    AdapterClickListener<ContentFieldModel>,
+class ItemOverviewFragment :
+    Fragment(R.layout.fragment_item_overview),
+    AdapterClickListener<FieldContentModel>,
     View.OnClickListener
 {
-
-    private val fieldsAdapter = FieldsAdapter()
-    private var binding: FragmentItemPreviewBinding? = null
+    private lateinit var fieldsAdapter: FieldsAdapter
+    private lateinit var tagsAdapter: TagsAdapter
+    private var binding: FragmentItemOverviewBinding? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentItemPreviewBinding.bind(view)
+
+        binding = FragmentItemOverviewBinding.bind(view)
+        fieldsAdapter = FieldsAdapter()
+        tagsAdapter = TagsAdapter()
+
         binding?.let {
+            it.headerContainer.headlineField.setText(R.string.item_overview)
+            it.headerContainer.trailignBtn.visibility = View.INVISIBLE
+
             it.fieldsRecyclerView.layoutManager = LinearLayoutManager(view.context)
             it.fieldsRecyclerView.adapter = fieldsAdapter
-            it.leadingBtn.setOnClickListener(this)
+
+            it.headerContainer.leadingBtn.setOnClickListener(this)
         }
         fieldsAdapter.adapterClickListener = this
+
         applyMockData()
     }
 
@@ -50,12 +60,13 @@ class ItemPreviewFragment :
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(binding.thumbnailHolder)
 
-        binding.headlineField.text = item.webSite
-
-        fieldsAdapter.dataSet = MockData.contentFields
+        binding.nameField.text = item.webSite
+        binding.notesField.setText(item.notes)
+        fieldsAdapter.dataSet = MockData.fieldsContent
+        binding.tagsField.setText(MockData.tags.joinToString(", ") { it.name })
     }
 
-    override fun onClick(view: View, model: ContentFieldModel, position: Int) {
+    override fun onClick(view: View, model: FieldContentModel, position: Int) {
         if (view.id == R.id.copy_btn) {
             // TODO: 1. copy, 2. show snack bar
         }

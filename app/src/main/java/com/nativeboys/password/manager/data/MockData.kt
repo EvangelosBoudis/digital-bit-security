@@ -4,16 +4,15 @@ object MockData {
 
     val items: List<ItemModel>
 
-    val tags: List<TagModel>
-    val adapterTags: List<AdapterTagModel>
-    val adapterTagsWithAdd: List<AdapterTagModel>
-
-    val thumbnails: List<String>
-    val adapterThumbnails: List<AdapterThumbnailModel>
-    val adapterThumbnailsWithAdd: List<AdapterThumbnailModel>
+    val thumbnailsUrls: List<String>
+    val thumbnails: List<ThumbnailModel>
+    val thumbnailsWithAdds: List<ThumbnailModel>
 
     val categories: List<CategoryData>
-    val contentFields: List<ContentFieldModel>
+    val fieldsContent: List<FieldContentModel>
+    val filters: List<FilterModel>
+    val tags: List<TagModel>
+    val tagsWithAdd: List<TagModel>
 
     init {
 
@@ -25,25 +24,12 @@ object MockData {
         val instagramThumb = "https://i.pinimg.com/originals/76/00/8b/76008bb9685d410d47fe1fa01dc54f15.jpg"
         val youtubeThumb = "https://i.pinimg.com/originals/83/0e/e1/830ee1e682300a661955fce4011bf9b3.jpg"
 
-        val social =
-            TagModel(description = "Social")
-        val masterPass =
-            TagModel(description = "Master Passwords")
-        val bank =
-            TagModel(description = "Bank")
-        val shopping =
-            TagModel(description = "Shopping")
-        val personal =
-            TagModel(description = "Personal")
-        val bills =
-            TagModel(description = "Biils")
-
         val appleId = ItemModel(
             webSite = "Apple ID",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
             notes = "this is a note bla bla...",
-            tagIds = "${social.id}, ${personal.id}",
+            tagIds = "",
             thumbnailUrl = appleThumb
         )
         val adobe = ItemModel(
@@ -51,7 +37,7 @@ object MockData {
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
             notes = "this is a note bla bla...",
-            tagIds = "${social.id}, ${personal.id}",
+            tagIds = "",
             thumbnailUrl = adobeThumb
         )
         val behance = ItemModel(
@@ -59,7 +45,7 @@ object MockData {
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
             notes = "this is a note bla bla...",
-            tagIds = "${social.id}, ${personal.id}",
+            tagIds = "",
             thumbnailUrl = behanceThumb
         )
         val dribble = ItemModel(
@@ -67,7 +53,7 @@ object MockData {
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
             notes = "this is a note bla bla...",
-            tagIds = "${social.id}, ${personal.id}",
+            tagIds = "",
             thumbnailUrl = dribbleThumb
         )
         val facebook = ItemModel(
@@ -75,7 +61,7 @@ object MockData {
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
             notes = "this is a note bla bla...",
-            tagIds = "${social.id}, ${personal.id}",
+            tagIds = "",
             thumbnailUrl = facebookThumb
         )
         val instagram = ItemModel(
@@ -83,7 +69,7 @@ object MockData {
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
             notes = "this is a note bla bla...",
-            tagIds = "${social.id}, ${personal.id}",
+            tagIds = "",
             thumbnailUrl = instagramThumb
         )
         val youtube = ItemModel(
@@ -91,7 +77,7 @@ object MockData {
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
             notes = "this is a note bla bla...",
-            tagIds = "${social.id}, ${personal.id}",
+            tagIds = "",
             thumbnailUrl = youtubeThumb
         )
 
@@ -216,25 +202,25 @@ object MockData {
             defaultCategory = true
         )
 
-        val field1 = ContentFieldModel(
+        val field1 = FieldContentModel(
             name = "Username",
             type = 1,
             hidden = false,
             content = "v.boudis1995@gmail.com"
         )
-        val field2 = ContentFieldModel(
+        val field2 = FieldContentModel(
             name = "Password",
             type = 1,
             hidden = true,
             content = "elamesa@123@"
         )
-        val field3 = ContentFieldModel(
+        val field3 = FieldContentModel(
             name = "Website",
             type = 1,
             hidden = false,
             content = "https://appleid.apple.com/"
         )
-        contentFields = listOf(field1, field2, field3)
+        fieldsContent = listOf(field1, field2, field3)
 
         categories = listOf(gamingCategory, subChannelCategory, bankCategory, networkCategory, alarmsCategory,
             homeCategory, wordPressCategory, accessPointsCategory, airportCategory, appleCategory,
@@ -243,27 +229,34 @@ object MockData {
 
         items = listOf(appleId, adobe, behance, dribble, facebook, instagram, youtube)
 
-        tags = listOf(social, masterPass, bank, shopping, personal, bills)
-        adapterTags = tags.mapIndexed { index, model ->
-            val type = if (index % 2 == 0) 1 else 2
-            AdapterTagModel(model, type)
-        }
-        val at = adapterTags.toMutableList()
-        at.add(AdapterTagModel(type = 3))
-        adapterTagsWithAdd = at
+        thumbnailsUrls = listOf(appleThumb, adobeThumb, behanceThumb, dribbleThumb, facebookThumb, instagramThumb, youtubeThumb)
 
-        thumbnails = listOf(appleThumb, adobeThumb, behanceThumb, dribbleThumb, facebookThumb, instagramThumb, youtubeThumb)
-        adapterThumbnails = thumbnails.mapIndexed { index, model ->
+        thumbnails = thumbnailsUrls.mapIndexed { index, model ->
             val type = if (index % 2 == 0) 1 else 2
-            AdapterThumbnailModel(
+            ThumbnailModel(
                 model,
                 type
             )
         }
-        val ath = adapterThumbnails.toMutableList()
-        ath.add(AdapterThumbnailModel(type = 3))
-        adapterThumbnailsWithAdd = ath
+        val ath = thumbnails.toMutableList()
+        ath.add(ThumbnailModel(type = 3))
+        thumbnailsWithAdds = ath
 
+        val filters = categories.map {
+            FilterModel(it.id, it.name, false)
+        }.toMutableList()
+        filters.add(0, FilterModel("FAVORITES", "Favorites", true))
+
+        this.filters = filters
+
+        val tags = listOf("Social", "Master Passwords", "Bank", "Shopping", "Personal").map {
+            TagModel(it, 1)
+        }
+        this.tags = tags
+
+        val tagsWithAdd = tags.toMutableList()
+        tagsWithAdd.add(TagModel("", 3))
+        this.tagsWithAdd = tagsWithAdd
     }
 
 }

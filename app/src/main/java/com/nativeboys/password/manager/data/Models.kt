@@ -48,7 +48,18 @@ data class UserData(
 
 ////////////////////////////////////////////////////////////////
 
-data class ContentFieldModel(
+data class FilterModel(
+    val id: String,
+    val description: String,
+    val selected: Boolean
+)
+
+data class TagModel(
+    val name: String,
+    val type: Int
+)
+
+data class FieldContentModel(
     val id: String = UUID.randomUUID().toString(), // PK
     val name: String,
     val type: Int,
@@ -56,8 +67,14 @@ data class ContentFieldModel(
     val content: String
 )
 
+data class ThumbnailModel(
+    val url: String = "",
+    val type: Int // 1: Regular, 2: Selected, 3: Button
+)
+
 ////////////////////////////////////////////////////////////////
 
+// TODO: Remove
 data class ItemModel(
     val id: String = UUID.randomUUID().toString(),
     val webSite: String,
@@ -66,26 +83,4 @@ data class ItemModel(
     val notes: String,
     val tagIds: String,
     val thumbnailUrl: String?
-)
-
-data class TagModel(
-    val id: String = UUID.randomUUID().toString(),
-    val description: String = ""
-)
-
-data class AdapterTagModel(
-    val id: String = UUID.randomUUID().toString(),
-    val description: String = "",
-    val type: Int // 1: Regular, 2: Selected, 3: Button
-) {
-
-    constructor(tag: TagModel, type: Int): this(tag.id, tag.description, type)
-
-    fun asTagModel() = TagModel(id, description)
-
-}
-
-data class AdapterThumbnailModel(
-    val url: String = "",
-    val type: Int // 1: Regular, 2: Selected, 3: Button
 )

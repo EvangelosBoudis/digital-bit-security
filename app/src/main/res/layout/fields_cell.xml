@@ -13,8 +13,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/FieldHeadlineStyle"
-        android:text="Abode"/>
+        style="@style/FieldHeadlineCapsStyle"
+        tools:text="Abode"/>
 
     <EditText
         android:id="@+id/content_field"
@@ -28,12 +28,13 @@
         style="@style/FieldStyle"
         android:enabled="false"
         tools:ignore="Autofill,LabelFor"
-        android:text="yasirbugra@gmail.com"/>
+        tools:text="yasirbugra@gmail.com"/>
 
     <ImageView
         android:id="@+id/copy_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/content_field"
-        app:layout_constraintTop_toTopOf="@id/content_field"
         style="@style/FieldCopyDrawableStyle"
         tools:ignore="ContentDescription" />
 

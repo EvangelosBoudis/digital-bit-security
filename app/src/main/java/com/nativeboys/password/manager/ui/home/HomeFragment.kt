@@ -12,14 +12,14 @@ import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.MockData
 import com.nativeboys.password.manager.data.ItemModel
 import com.nativeboys.password.manager.databinding.FragmentHomeBinding
+import com.nativeboys.password.manager.ui.adapters.filters.FiltersAdapter
 import com.nativeboys.password.manager.ui.adapters.items.ItemsAdapter
-import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 
 class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
 
     private lateinit var navController: NavController
-    private val tagsAdapter = TagsAdapter()
+    private val filtersAdapter = FiltersAdapter()
     private val passwordsAdapter = ItemsAdapter()
     private var binding: FragmentHomeBinding? = null
 
@@ -28,8 +28,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
         binding = FragmentHomeBinding.bind(view)
         navController = Navigation.findNavController(view)
         binding?.let {
-            it.passwordsContainer.tagsRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-            it.passwordsContainer.tagsRecyclerView.adapter = tagsAdapter
+            it.passwordsContainer.filtersRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
+            it.passwordsContainer.filtersRecyclerView.adapter = filtersAdapter
             it.passwordsContainer.passwordsRecyclerView.layoutManager = LinearLayoutManager(view.context)
             it.passwordsContainer.passwordsRecyclerView.adapter = passwordsAdapter
             it.passwordsContainer.searchBtn.setOnClickListener(this)
@@ -75,7 +75,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
     }
 
     private fun applyMockData() {
-        tagsAdapter.dataSet = MockData.adapterTags
+        filtersAdapter.dataSet = MockData.filters
         passwordsAdapter.dataSet = MockData.items
     }
 

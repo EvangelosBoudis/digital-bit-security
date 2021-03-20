@@ -54,8 +54,8 @@
 
     <fragment
         android:id="@+id/itemPreviewFragment"
-        android:name="com.nativeboys.password.manager.ui.itemPreview.ItemPreviewFragment"
+        android:name="com.nativeboys.password.manager.ui.itemPreview.ItemOverviewFragment"
         android:label="fragment_item_preview"
-        tools:layout="@layout/fragment_item_preview" />
+        tools:layout="@layout/fragment_item_overview" />
 
 </navigation>

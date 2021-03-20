@@ -18,18 +18,14 @@
 
         <ImageView
             android:id="@+id/edit_btn"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:padding="8dp"
             app:tint="@color/cyan"
+            style="@style/ImageButtonStyle"
             tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/delete_btn"
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:padding="8dp"
             app:tint="@color/red"
+            style="@style/ImageButtonStyle"
             tools:ignore="ContentDescription" />
 
     </LinearLayout>

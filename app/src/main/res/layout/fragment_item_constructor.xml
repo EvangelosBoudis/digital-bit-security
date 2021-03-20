@@ -23,10 +23,7 @@
         <com.zeustech.zeuskit.ui.views.FocusableConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="0dp"
-            android:paddingBottom="20dp"
-            android:paddingStart="19dp"
-            android:paddingEnd="19dp">
+            style="@style/ContainerPadding">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/website_container"
@@ -186,7 +183,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:text="@string/notes"
-                    style="@style/FieldHeadlineStyle"/>
+                    style="@style/FieldHeadlineCapsStyle"/>
 
                 <EditText
                     android:id="@+id/notes_field"
@@ -212,7 +209,7 @@
                 app:layout_constraintStart_toStartOf="@id/website_container"
                 app:layout_constraintEnd_toEndOf="@id/website_container"
                 android:text="@string/thumbnail"
-                style="@style/FieldHeadlineStyle"/>
+                style="@style/FieldHeadlineCapsStyle"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/thumbnails_recycler_view"
@@ -233,7 +230,7 @@
                 app:layout_constraintStart_toStartOf="@id/website_container"
                 app:layout_constraintEnd_toEndOf="@id/website_container"
                 android:text="@string/tags"
-                style="@style/FieldHeadlineStyle"/>
+                style="@style/FieldHeadlineCapsStyle"/>
 
             <RelativeLayout
                 android:id="@+id/tags_container"
