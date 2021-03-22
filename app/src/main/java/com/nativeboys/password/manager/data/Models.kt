@@ -3,6 +3,10 @@ package com.nativeboys.password.manager.data
 import java.sql.Timestamp
 import java.util.*
 
+data class ThumbnailData(
+    val url: String // PK
+)
+
 data class FieldData(
     val id: String = UUID.randomUUID().toString(), // PK
     val name: String,
@@ -22,15 +26,21 @@ data class CategoryData(
 data class ItemData(
     val id: String = UUID.randomUUID().toString(), // PK
     val name: String,
-    val notes: String,
-    val tags: List<String>,
-    val thumbnailUrl: String?,
+    val description: String,
+    val notes: String?,
+    val tags: String?,
+    val thumbnailUrl: String,
     val dateModified: Timestamp,
     val requiresPassword: Boolean,
     val favorite: Boolean,
     val categoryId: String, // FK (Categories),
     val ownerId: String, // FK (Users),
-)
+) {
+
+    val tagsAsList: List<String>
+        get() = tags?.split(",") ?: emptyList()
+
+}
 
 data class ItemFieldData(
     val id: String = UUID.randomUUID().toString(),
@@ -70,17 +80,4 @@ data class FieldContentModel(
 data class ThumbnailModel(
     val url: String = "",
     val type: Int // 1: Regular, 2: Selected, 3: Button
-)
-
-////////////////////////////////////////////////////////////////
-
-// TODO: Remove
-data class ItemModel(
-    val id: String = UUID.randomUUID().toString(),
-    val webSite: String,
-    val email: String,
-    val password: String,
-    val notes: String,
-    val tagIds: String,
-    val thumbnailUrl: String?
 )

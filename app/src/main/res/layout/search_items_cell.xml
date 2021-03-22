@@ -16,7 +16,7 @@
         app:shapeAppearanceOverlay="@style/ThumbnailStyle" />
 
     <TextView
-        android:id="@+id/website_field"
+        android:id="@+id/name_field"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/thumbnail_holder"

@@ -21,7 +21,7 @@
             app:destination="@id/categoriesFragment" />
         <action
             android:id="@+id/action_home_to_itemPreview"
-            app:destination="@id/itemPreviewFragment" />
+            app:destination="@id/itemOverviewFragment" />
     </fragment>
 
     <fragment
@@ -53,9 +53,13 @@
         tools:layout="@layout/fragment_category_constructor" />
 
     <fragment
-        android:id="@+id/itemPreviewFragment"
+        android:id="@+id/itemOverviewFragment"
         android:name="com.nativeboys.password.manager.ui.itemPreview.ItemOverviewFragment"
-        android:label="fragment_item_preview"
-        tools:layout="@layout/fragment_item_overview" />
+        android:label="fragment_item_overview"
+        tools:layout="@layout/fragment_item_overview" >
+        <action
+            android:id="@+id/action_itemOverview_to_itemConstructor"
+            app:destination="@id/itemConstructorFragment" />
+    </fragment>
 
 </navigation>
