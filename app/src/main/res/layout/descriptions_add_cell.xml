@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:padding="15dp"
+        android:padding="16dp"
         app:tint="@android:color/white"
         android:background="@drawable/add_btn_shape"
         tools:ignore="ContentDescription" />

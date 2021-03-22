@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.text.method.TransformationMethod
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -109,6 +110,8 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
                         R.string.add_tag,
                         R.string.name
                     )
+                } else if (view.id == R.id.remove_btn){
+                    Log.i("Remove", model.name)
                 }
             }
         }

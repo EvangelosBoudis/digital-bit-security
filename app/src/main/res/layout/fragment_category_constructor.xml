@@ -10,16 +10,23 @@
     <include android:id="@+id/header_container"
         layout="@layout/header_layout" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/header_container"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:scrollbars="none"
+        android:fillViewport="true">
 
+        <com.zeustech.zeuskit.ui.views.FocusableConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ContainerPadding">
 
+        </com.zeustech.zeuskit.ui.views.FocusableConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

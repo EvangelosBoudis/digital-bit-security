@@ -28,7 +28,7 @@ object MockData {
             webSite = "Apple ID",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
-            notes = "this is a note bla bla...",
+            notes = "This is a note bla bla...",
             tagIds = "",
             thumbnailUrl = appleThumb
         )
@@ -36,7 +36,7 @@ object MockData {
             webSite = "Adobe",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
-            notes = "this is a note bla bla...",
+            notes = "This is a note bla bla...",
             tagIds = "",
             thumbnailUrl = adobeThumb
         )
@@ -44,7 +44,7 @@ object MockData {
             webSite = "Behance",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
-            notes = "this is a note bla bla...",
+            notes = "This is a note bla bla...",
             tagIds = "",
             thumbnailUrl = behanceThumb
         )
@@ -52,7 +52,7 @@ object MockData {
             webSite = "Dribbble",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
-            notes = "this is a note bla bla...",
+            notes = "This is a note bla bla...",
             tagIds = "",
             thumbnailUrl = dribbleThumb
         )
@@ -60,7 +60,7 @@ object MockData {
             webSite = "Facebook",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
-            notes = "this is a note bla bla...",
+            notes = "This is a note bla bla...",
             tagIds = "",
             thumbnailUrl = facebookThumb
         )
@@ -68,7 +68,7 @@ object MockData {
             webSite = "Instagram",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
-            notes = "this is a note bla bla...",
+            notes = "This is a note bla bla...",
             tagIds = "",
             thumbnailUrl = instagramThumb
         )
@@ -76,7 +76,7 @@ object MockData {
             webSite = "Youtube",
             email = "yasirbugra@gmail.com",
             password = "Yasir123%'/PzhL921",
-            notes = "this is a note bla bla...",
+            notes = "This is a note bla bla...",
             tagIds = "",
             thumbnailUrl = youtubeThumb
         )
