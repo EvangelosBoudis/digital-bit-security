@@ -111,7 +111,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/notes"
-                style="@style/FieldHeadlineCapsStyle"/>
+                style="@style/Widget.App.TextView"/>
 
             <EditText
                 android:id="@+id/notes_field"
@@ -133,7 +133,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/tags"
-                style="@style/FieldHeadlineCapsStyle"/>
+                style="@style/Widget.App.TextView"/>
 
             <EditText
                 android:id="@+id/tags_field"

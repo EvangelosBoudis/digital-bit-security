@@ -23,4 +23,6 @@
     <string name="item_overview">Item Overview</string>
     <string name="copied">Copied to clipboard</string>
     <string name="field_name">Field Name</string>
+    <string name="password_type">Password Type</string>
+    <string name="visible">Visible</string>
 </resources>

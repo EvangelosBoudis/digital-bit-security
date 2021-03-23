@@ -50,7 +50,7 @@
                     app:layout_constraintBottom_toTopOf="@id/field"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    style="@style/FieldHeadlineStyle"/>
+                    style="@style/Widget.App.TextView"/>
 
                 <EditText
                     android:id="@+id/field"

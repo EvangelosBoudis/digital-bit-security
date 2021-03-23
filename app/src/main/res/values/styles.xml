@@ -57,18 +57,6 @@
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="FieldHeadlineCapsStyle" parent="FieldHeadlineStyle">
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="FieldHeadlineStyle">
-        <item name="android:textColor">@color/gray</item>
-        <item name="android:fontFamily">@font/breeze_sans_medium</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:paddingStart">2.5dp</item>
-        <item name="android:paddingEnd">2.5dp</item>
-    </style>
-
     <style name="FieldDrawableStyle">
         <item name="android:layout_width">35dp</item>
         <item name="android:layout_height">35dp</item>
@@ -171,9 +159,17 @@
         <item name="android:paddingBottom">20dp</item>
     </style>
 
-<!--    <style name="Widget.App.EditText.15p" parent="Widget.App.EditText">
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">15dp</item>
-    </style>-->
+    <style name="Widget.App.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:fontFamily">@font/breeze_sans_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingStart">2.5dp</item>
+        <item name="android:paddingEnd">2.5dp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Widget.App.TextView.TextCenter" parent="Widget.App.TextView">
+        <item name="android:textAlignment">center</item>
+    </style>
 
 </resources>
