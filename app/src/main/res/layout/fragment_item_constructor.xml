@@ -81,7 +81,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:inputType="textMultiLine"
-                    style="@style/FieldStyle"
+                    style="@style/Widget.App.EditText.20p"
                     tools:ignore="Autofill,LabelFor" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

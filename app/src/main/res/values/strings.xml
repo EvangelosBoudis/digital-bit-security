@@ -22,4 +22,5 @@
     <string name="edit">Edit</string>
     <string name="item_overview">Item Overview</string>
     <string name="copied">Copied to clipboard</string>
+    <string name="field_name">Field Name</string>
 </resources>

@@ -10,7 +10,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/remove_icon_35p"
+        android:src="@drawable/back_icon_40p"
         app:tint="@android:color/white"
         style="@style/HeaderShapeableImageStyleP8" />
 

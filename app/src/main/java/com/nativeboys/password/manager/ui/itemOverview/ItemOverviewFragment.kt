@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.ui.itemPreview
+package com.nativeboys.password.manager.ui.itemOverview
 
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -112,7 +112,7 @@ class ItemOverviewFragment :
         BottomBar(
             requireView() as ViewGroup,
             layout,
-            Snackbar.LENGTH_LONG
+            Snackbar.LENGTH_SHORT
         ).show()
     }
 

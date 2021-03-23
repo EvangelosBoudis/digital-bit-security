@@ -7,6 +7,7 @@ object MockData {
 
     val thumbnails: List<ThumbnailData>
     val categories: List<CategoryData>
+    val fields: List<FieldData>
     val fieldsContent: List<FieldContentModel>
     val items: List<ItemData>
 
@@ -76,6 +77,12 @@ object MockData {
         val field1 = FieldContentModel(name = "Website", type = 1, hidden = false, content = "Instagram")
         val field2 = FieldContentModel(name = "Email/Username", type = 1, hidden = false, content = "yasirbugra@gmail.com")
         val field3 = FieldContentModel(name = "Password", type = 1, hidden = true, content = "Yasir123%'/PzhL921")
+
+        val f1 = FieldData(name = "WebSite", type = 1, hidden = true, categoryId = desktopCategory.id)
+        val f2 = FieldData(name = "Email/Username", type = 2, hidden = false, categoryId = desktopCategory.id)
+        val f3 = FieldData(name = "Password", type = 2, hidden = true, categoryId = desktopCategory.id)
+
+        fields = listOf(f1, f2, f3)
 
         thumbnails = listOf(appleThumb, adobeThumb, behanceThumb, dribbleThumb, facebookThumb, instagramThumb, youtubeThumb)
 

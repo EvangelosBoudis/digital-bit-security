@@ -20,6 +20,7 @@ class SearchEngineFragment : Fragment(R.layout.fragment_search_engine), View.OnC
         binding.headerContainer.headlineField.setText(R.string.advanced_search)
         binding.headerContainer.trailignBtn.visibility = View.INVISIBLE
         val portrait = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+        // Same result using GridLayoutManager
         binding.itemsRecyclerView.layoutManager = StaggeredGridLayoutManager(if (portrait) 4 else 7, StaggeredGridLayoutManager.VERTICAL)
         binding.itemsRecyclerView.adapter = searchPasswordsAdapter
         binding.headerContainer.leadingBtn.setOnClickListener(this)
