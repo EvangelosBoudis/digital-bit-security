@@ -10,7 +10,7 @@ data class ThumbnailData(
 data class FieldData(
     val id: String = UUID.randomUUID().toString(), // PK
     val name: String,
-    val type: Int,
+    val type: Int = -1,
     val hidden: Boolean,
     val categoryId: String // FK (Categories)
 )

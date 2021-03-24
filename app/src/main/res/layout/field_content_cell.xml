@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toTopOf="@id/content_field"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/Widget.App.TextView"/>
+        style="@style/Widget.App.TextView.12sp"/>
 
     <EditText
         android:id="@+id/content_field"

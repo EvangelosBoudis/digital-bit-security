@@ -11,7 +11,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/ViewLineStyle.Margin" />
+        style="@style/ViewLineStyle.Margin10" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"

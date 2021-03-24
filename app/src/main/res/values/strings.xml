@@ -24,5 +24,9 @@
     <string name="copied">Copied to clipboard</string>
     <string name="field_name">Field Name</string>
     <string name="password_type">Password Type</string>
-    <string name="visible">Visible</string>
+    <string name="type_">Type:</string>
+    <string name="visible_">Visible:</string>
+    <string name="name_">Name:</string>
+    <string name="category_name">Category name</string>
+    <string name="fields">Fields</string>
 </resources>

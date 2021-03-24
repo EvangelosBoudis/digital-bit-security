@@ -82,7 +82,9 @@ object MockData {
         val f2 = FieldData(name = "Email/Username", type = 2, hidden = false, categoryId = desktopCategory.id)
         val f3 = FieldData(name = "Password", type = 2, hidden = true, categoryId = desktopCategory.id)
 
-        fields = listOf(f1, f2, f3)
+        val x  = listOf(f1, f2, f3).toMutableList()
+        x.add(FieldData(name = "", hidden = true, categoryId = desktopCategory.id))
+        fields = x
 
         thumbnails = listOf(appleThumb, adobeThumb, behanceThumb, dribbleThumb, facebookThumb, instagramThumb, youtubeThumb)
 

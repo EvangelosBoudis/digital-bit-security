@@ -70,7 +70,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:text="@string/notes"
-                    style="@style/Widget.App.TextView"/>
+                    style="@style/Widget.App.TextView.12sp"/>
 
                 <EditText
                     android:id="@+id/notes_field"
@@ -95,7 +95,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/thumbnail"
-                style="@style/Widget.App.TextView"/>
+                style="@style/Widget.App.TextView.12sp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/thumbnails_recycler_view"
@@ -116,7 +116,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/tags"
-                style="@style/Widget.App.TextView"/>
+                style="@style/Widget.App.TextView.12sp"/>
 
             <RelativeLayout
                 android:id="@+id/tags_container"
