@@ -72,7 +72,6 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
     private fun setUpListeners(binding: FragmentItemConstructorBinding) {
         binding.headerContainer.leadingBtn.setOnClickListener(this)
         binding.headerContainer.trailignBtn.setOnClickListener(this)
-        binding.generatePasswordBtn.setOnClickListener(this)
         thumbnailsAdapter.adapterClickListener = object : AdapterClickListener<ThumbnailModel> {
             override fun onClick(view: View, model: ThumbnailModel, position: Int) {
                 if (model.type == 3) {

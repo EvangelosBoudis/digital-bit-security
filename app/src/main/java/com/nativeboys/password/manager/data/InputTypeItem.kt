@@ -1,12 +1,15 @@
 package com.nativeboys.password.manager.data
 
 import android.text.InputType
+import com.zeustech.zeuskit.ui.autocomplete.DescriptionModel
 
 data class InputTypeItem(
     val name: String,
     val description: String,
     val value: Int
-) {
+): DescriptionModel {
+
+    override fun getText() = description
 
     companion object {
 

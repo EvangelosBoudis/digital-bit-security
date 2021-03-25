@@ -47,7 +47,7 @@ abstract class AutoCompleteAdapter<T : DescriptionModel>(
                 val comparableText = description.toLowerCase(Locale.ROOT).trim { it <= ' ' }
                 val index = comparableText.indexOf(pattern)
                 if (index != -1) {
-                    str = SpannableString(description)
+                    str = SpannableString(model.getText())
                     getTypeface(parent.context, highlightFont)?.let {
                         str?.setSpan(
                             SpanTypeface(it),
