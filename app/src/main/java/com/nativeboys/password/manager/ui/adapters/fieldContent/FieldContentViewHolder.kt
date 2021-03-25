@@ -25,6 +25,11 @@ class FieldContentViewHolder(itemView: View) : RecyclerViewHolder<FieldContentMo
             .with(itemView.context)
             .load(if (model.hidden) R.drawable.visibility_icon else R.drawable.remove_circle_icon)
             .into(fieldBtn)
+
+        //Regex("^(?=.*[A-Z].*[A-Z])(?=.*[!@#\$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}\$").matches("")
+        //https://stackoverflow.com/questions/5142103/regex-to-validate-password-strength
+        //https://github.com/zeustechgr/doo-Mobile-And/blob/master/app/src/main/java/com/zeustech/doo/ui/book/checkout/CheckoutFragment.kt
+
         fieldBtn.setOnClickListener {
             if (model.hidden) { // Hide-Show Password
                 val hidden = contentField.transformationMethod is PasswordTransformationMethod
