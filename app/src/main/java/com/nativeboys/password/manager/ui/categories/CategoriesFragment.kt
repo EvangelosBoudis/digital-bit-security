@@ -3,17 +3,22 @@ package com.nativeboys.password.manager.ui.categories
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.CategoryData
-import com.nativeboys.password.manager.data.MockData
+import com.nativeboys.password.manager.data.CategoryEntity
+import com.nativeboys.password.manager.other.MockData
 import com.nativeboys.password.manager.databinding.FragmentCategoriesBinding
 import com.nativeboys.password.manager.ui.adapters.categories.CategoriesAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
+import dagger.hilt.android.AndroidEntryPoint
 
-class CategoriesFragment : Fragment(R.layout.fragment_categories), AdapterClickListener<CategoryData>, View.OnClickListener {
+@AndroidEntryPoint
+class CategoriesFragment : Fragment(R.layout.fragment_categories), AdapterClickListener<CategoryEntity>, View.OnClickListener {
+
+    private val viewModel: CategoriesViewModel by viewModels()
 
     private lateinit var navController: NavController
     private val categoriesAdapter = CategoriesAdapter()
@@ -32,7 +37,12 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories), AdapterClickL
             it.plusBtn.setOnClickListener(this)
         }
         categoriesAdapter.adapterClickListener = this
-        applyMockData()
+
+        viewModel.categories.observe(viewLifecycleOwner) {
+            categoriesAdapter.dataSet = it
+        }
+
+        //applyMockData()
     }
 
     override fun onDestroy() {
@@ -40,7 +50,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories), AdapterClickL
         binding = null
     }
 
-    override fun onClick(view: View, model: CategoryData, position: Int) {
+    override fun onClick(view: View, model: CategoryEntity, position: Int) {
         TODO("Not yet implemented")
     }
 

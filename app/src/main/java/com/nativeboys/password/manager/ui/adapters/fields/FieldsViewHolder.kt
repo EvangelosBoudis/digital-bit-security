@@ -6,9 +6,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.FieldContentModel
-import com.nativeboys.password.manager.data.setTransformationMethodAsHidden
-import com.nativeboys.password.manager.data.toggleTransformationMethod
+import com.nativeboys.password.manager.other.FieldContentModel
+import com.nativeboys.password.manager.other.setTransformationMethodAsHidden
+import com.nativeboys.password.manager.other.toggleTransformationMethod
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
 class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentModel>(itemView) {

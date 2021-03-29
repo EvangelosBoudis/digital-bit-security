@@ -6,7 +6,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.google.android.material.imageview.ShapeableImageView
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.ThumbnailModel
+import com.nativeboys.password.manager.other.ThumbnailModel
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
 class ThumbnailsViewHolder(itemView: View) : RecyclerViewHolder<ThumbnailModel>(itemView) {

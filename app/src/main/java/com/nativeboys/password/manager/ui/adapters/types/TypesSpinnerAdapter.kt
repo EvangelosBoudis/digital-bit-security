@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.InputTypeItem
+import com.nativeboys.password.manager.other.InputTypeItem
 import com.zeustech.zeuskit.ui.spinner.SpinnerAdapter
 
 class TypesSpinnerAdapter(context: Context):

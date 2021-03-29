@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.FieldContentModel
+import com.nativeboys.password.manager.other.FieldContentModel
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
 class FieldContentViewHolder(itemView: View) : RecyclerViewHolder<FieldContentModel>(itemView) {

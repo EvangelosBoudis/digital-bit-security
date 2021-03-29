@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.*
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.ThumbnailModel
-import com.nativeboys.password.manager.data.MockData
-import com.nativeboys.password.manager.data.TagModel
-import com.nativeboys.password.manager.data.wrapCells
+import com.nativeboys.password.manager.other.ThumbnailModel
+import com.nativeboys.password.manager.other.MockData
+import com.nativeboys.password.manager.other.TagModel
+import com.nativeboys.password.manager.other.wrapCells
 import com.nativeboys.password.manager.databinding.FragmentItemConstructorBinding
 import com.nativeboys.password.manager.ui.adapters.fieldContent.FieldContentAdapter
 import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter

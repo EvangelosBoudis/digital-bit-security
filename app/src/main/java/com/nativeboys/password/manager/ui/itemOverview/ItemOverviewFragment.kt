@@ -16,8 +16,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.google.android.material.snackbar.Snackbar
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.FieldContentModel
-import com.nativeboys.password.manager.data.MockData
+import com.nativeboys.password.manager.other.FieldContentModel
+import com.nativeboys.password.manager.other.MockData
 import com.nativeboys.password.manager.databinding.FragmentItemOverviewBinding
 import com.nativeboys.password.manager.ui.adapters.fields.FieldsAdapter
 import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
@@ -72,7 +72,7 @@ class ItemOverviewFragment :
         val item = MockData.items[0]
 
         Glide.with(requireContext())
-            .load(item.thumbnailUrl)
+            .load(item.thumbnailId)
             .transform(CenterCrop())
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(binding.thumbnailHolder)

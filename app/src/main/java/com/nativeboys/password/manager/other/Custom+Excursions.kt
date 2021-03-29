@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.data
+package com.nativeboys.password.manager.other
 
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod

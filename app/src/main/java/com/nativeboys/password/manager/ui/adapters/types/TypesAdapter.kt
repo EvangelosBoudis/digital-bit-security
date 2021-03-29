@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.InputTypeItem
+import com.nativeboys.password.manager.other.InputTypeItem
 import com.zeustech.zeuskit.ui.autocomplete.AutoCompleteAdapter
 
 class TypesAdapter(context: Context):

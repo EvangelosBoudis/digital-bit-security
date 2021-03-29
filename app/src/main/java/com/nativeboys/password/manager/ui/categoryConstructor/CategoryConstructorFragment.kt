@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.MockData
+import com.nativeboys.password.manager.other.MockData
 import com.nativeboys.password.manager.databinding.FragmentCategoryConstructorBinding
 import com.nativeboys.password.manager.ui.adapters.newFields.NewFieldsAdapter
 

@@ -2,7 +2,7 @@ package com.nativeboys.password.manager.ui.adapters.tags
 
 import android.view.View
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.TagModel
+import com.nativeboys.password.manager.other.TagModel
 import com.nativeboys.password.manager.ui.adapters.AddViewHolder
 import com.zeustech.zeuskit.ui.rv.RecyclerAdapter
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder

@@ -9,8 +9,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.ItemData
-import com.nativeboys.password.manager.data.MockData
+import com.nativeboys.password.manager.data.ItemEntity
+import com.nativeboys.password.manager.other.MockData
 import com.nativeboys.password.manager.databinding.FragmentHomeBinding
 import com.nativeboys.password.manager.ui.adapters.filters.FiltersAdapter
 import com.nativeboys.password.manager.ui.adapters.items.ItemsAdapter
@@ -36,8 +36,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
             it.passwordsContainer.settingsBtn.setOnClickListener(this)
             it.passwordsContainer.plusBtn.setOnClickListener(this)
         }
-        passwordsAdapter.adapterClickListener = object : AdapterClickListener<ItemData> {
-            override fun onClick(view: View, model: ItemData, position: Int) {
+        passwordsAdapter.adapterClickListener = object : AdapterClickListener<ItemEntity> {
+            override fun onClick(view: View, model: ItemEntity, position: Int) {
                 when (view.id) {
                     R.id.visible_view -> {
                         navController.navigate(R.id.action_home_to_itemPreview)

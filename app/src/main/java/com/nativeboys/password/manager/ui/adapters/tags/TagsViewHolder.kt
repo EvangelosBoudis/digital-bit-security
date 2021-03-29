@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.TagModel
+import com.nativeboys.password.manager.other.TagModel
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
 class TagsViewHolder(itemView: View) : RecyclerViewHolder<TagModel>(itemView) {

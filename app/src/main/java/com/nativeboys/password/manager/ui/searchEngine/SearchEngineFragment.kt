@@ -6,7 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.MockData
+import com.nativeboys.password.manager.other.MockData
 import com.nativeboys.password.manager.databinding.FragmentSearchEngineBinding
 import com.nativeboys.password.manager.ui.adapters.searchItems.SearchItemsAdapter
 

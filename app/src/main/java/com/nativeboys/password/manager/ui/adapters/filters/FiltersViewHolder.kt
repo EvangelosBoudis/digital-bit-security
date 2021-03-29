@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.FilterModel
+import com.nativeboys.password.manager.other.FilterModel
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
 class FiltersViewHolder(itemView: View) : RecyclerViewHolder<FilterModel>(itemView) {
