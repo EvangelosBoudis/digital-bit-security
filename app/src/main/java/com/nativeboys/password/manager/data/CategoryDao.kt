@@ -8,6 +8,9 @@ interface CategoryDao {
 
     // (Multiple) -> ORDER BY name ASC, date_modified DESC
 
+    @Query("SELECT * FROM categories WHERE id == :id")
+    suspend fun findById(id: String): CategoryEntity
+
     @Query("SELECT * FROM categories WHERE name LIKE '%' || :searchKey || '%' ORDER BY name ASC")
     fun findByNameSortedByName(searchKey: String): Flow<List<CategoryEntity>>
 

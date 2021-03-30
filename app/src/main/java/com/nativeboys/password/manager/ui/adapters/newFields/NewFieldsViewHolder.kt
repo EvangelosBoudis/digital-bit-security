@@ -5,6 +5,7 @@ import android.widget.EditText
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.FieldEntity
 import com.nativeboys.password.manager.other.allTypes
+import com.nativeboys.password.manager.other.findByCode
 import com.nativeboys.password.manager.ui.adapters.types.TypesAdapter
 import com.zeustech.zeuskit.ui.autocomplete.DescriptionModel
 import com.zeustech.zeuskit.ui.autocomplete.InstantAutoComplete
@@ -18,13 +19,14 @@ class NewFieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldEntity>(item
 
     override fun bind(model: FieldEntity) {
         contentField.setText(model.name)
+        spinnerView.setText(model.type)
         spinnerView.setAdapter(typesAdapter)
-        val data: List<DescriptionModel> = allTypes().map {
+        typesAdapter.dataSet = allTypes().map {
             return@map object : DescriptionModel {
                 override fun getText() = it.description
             }
         }
-        typesAdapter.dataSet = data
+        spinnerView.setText(findByCode(model.type)?.description)
     }
 
 }

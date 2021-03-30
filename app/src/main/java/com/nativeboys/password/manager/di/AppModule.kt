@@ -27,6 +27,9 @@ object AppModule {
 
     @Provides
     fun provideCategoryDao(db: AppDatabase) = db.categoryDao()
+    
+    @Provides
+    fun provideFieldDao(db: AppDatabase) = db.fieldDao()
 
     @Provides
     @Singleton

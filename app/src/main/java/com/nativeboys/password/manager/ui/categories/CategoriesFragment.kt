@@ -27,16 +27,15 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories), AdapterClickL
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCategoriesBinding.bind(view)
         navController = Navigation.findNavController(view)
-        binding?.let {
-            it.headerContainer.headlineField.setText(R.string.choose_category)
-            it.headerContainer.trailignBtn.visibility = View.INVISIBLE
-            it.categoriesRecyclerView.layoutManager = LinearLayoutManager(view.context)
-            it.categoriesRecyclerView.adapter = categoriesAdapter
-            it.headerContainer.leadingBtn.setOnClickListener(this)
-            it.plusBtn.setOnClickListener(this)
+        binding?.apply {
+            headerContainer.headlineField.setText(R.string.choose_category)
+            headerContainer.trailignBtn.visibility = View.INVISIBLE
+            categoriesRecyclerView.layoutManager = LinearLayoutManager(view.context)
+            categoriesRecyclerView.adapter = categoriesAdapter
+            headerContainer.leadingBtn.setOnClickListener(this@CategoriesFragment)
+            plusBtn.setOnClickListener(this@CategoriesFragment)
         }
         categoriesAdapter.adapterClickListener = this
-
         viewModel.categories.observe(viewLifecycleOwner) {
             categoriesAdapter.dataSet = it
         }
@@ -47,20 +46,23 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories), AdapterClickL
         binding = null
     }
 
-    override fun onClick(view: View, model: CategoryEntity, position: Int) {
-        TODO("Not yet implemented")
-    }
+    override fun onClick(view: View, model: CategoryEntity, position: Int) = moveToCategoryFragment(model.id)
 
     override fun onClick(v: View?) {
         val view = v ?: return
         when (view.id) {
             R.id.plus_btn -> {
-                navController.navigate(R.id.action_categories_to_categoryConstructor)
+                moveToCategoryFragment()
             }
             R.id.leading_btn -> {
                 activity?.onBackPressed()
             }
         }
+    }
+
+    private fun moveToCategoryFragment(id: String? = null) {
+        val action = CategoriesFragmentDirections.actionCategoriesToCategoryConstructor(id)
+        navController.navigate(action)
     }
 
 }

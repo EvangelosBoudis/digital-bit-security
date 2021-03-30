@@ -1,6 +1,5 @@
 package com.nativeboys.password.manager.ui.adapters.categories
 
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
@@ -10,8 +9,8 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.CategoryEntity
+import com.nativeboys.password.manager.other.materialIconCodeToDrawable
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
-import net.steamcrafted.materialiconlib.MaterialDrawableBuilder
 import net.steamcrafted.materialiconlib.MaterialIconView
 
 class CategoriesViewHolder(itemView: View) : RecyclerViewHolder<CategoryEntity>(itemView) {
@@ -22,20 +21,11 @@ class CategoriesViewHolder(itemView: View) : RecyclerViewHolder<CategoryEntity>(
 
     override fun bind(model: CategoryEntity) {
         nameField.text = model.name
-        val icon = try {
-            MaterialDrawableBuilder.IconValue.valueOf(model.thumbnailCode)
-        } catch (e: IllegalArgumentException) {
-            null
-        }
         Glide.with(itemView.context)
             .load(R.drawable.next_icon)
             .into(nextBtn)
-        if (icon != null) {
-            val drawable = MaterialDrawableBuilder.with(itemView.context) // provide a context
-                .setIcon(icon) // provide an icon
-                .setColor(Color.WHITE) // set the icon color
-                .setToActionbarSize() // set the icon size
-                .build() // Finally call build
+        val drawable = materialIconCodeToDrawable(itemView.context, model.thumbnailCode)
+        if (drawable != null) {
             Glide
                 .with(itemView.context)
                 .load(drawable)

@@ -1,6 +1,8 @@
 package com.nativeboys.password.manager.ui.categories
 
+import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.nativeboys.password.manager.data.CategoryDao
@@ -9,7 +11,8 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 
 class CategoriesViewModel @ViewModelInject constructor(
-    private val categoryDao: CategoryDao
+    private val categoryDao: CategoryDao,
+    @Assisted private val state: SavedStateHandle
 ) : ViewModel() {
 
     val searchKey = MutableStateFlow("")

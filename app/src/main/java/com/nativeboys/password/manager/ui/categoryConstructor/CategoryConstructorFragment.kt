@@ -1,17 +1,20 @@
 package com.nativeboys.password.manager.ui.categoryConstructor
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.other.MockData
 import com.nativeboys.password.manager.databinding.FragmentCategoryConstructorBinding
+import com.nativeboys.password.manager.other.setMaterialIcon
 import com.nativeboys.password.manager.ui.adapters.newFields.NewFieldsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
-class CategoryConstructorFragment :
-    Fragment(R.layout.fragment_category_constructor),
-    View.OnClickListener {
+@AndroidEntryPoint
+class CategoryConstructorFragment : Fragment(R.layout.fragment_category_constructor), View.OnClickListener {
+
+    private val viewModel: CategoryConstructorViewModel by viewModels()
 
     private lateinit var fieldsAdapter: NewFieldsAdapter
 
@@ -19,12 +22,24 @@ class CategoryConstructorFragment :
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentCategoryConstructorBinding.bind(view)
         fieldsAdapter = NewFieldsAdapter()
-        binding.headerContainer.headlineField.setText(R.string.create_category)
-        binding.fieldsRecyclerView.layoutManager = LinearLayoutManager(view.context)
-        binding.fieldsRecyclerView.adapter = fieldsAdapter
-        binding.headerContainer.leadingBtn.setOnClickListener(this)
-        binding.headerContainer.trailignBtn.setOnClickListener(this)
-        applyMockData()
+        binding.apply {
+            headerContainer.headlineField.setText(R.string.create_category)
+            fieldsRecyclerView.layoutManager = LinearLayoutManager(view.context)
+            fieldsRecyclerView.adapter = fieldsAdapter
+            headerContainer.leadingBtn.setOnClickListener(this@CategoryConstructorFragment)
+            headerContainer.trailignBtn.setOnClickListener(this@CategoryConstructorFragment)
+        }
+        viewModel.category.observe(viewLifecycleOwner) { category ->
+            binding.apply {
+                contentField.setText(category?.name)
+                category?.thumbnailCode?.let {
+                    thumbnailHolder.setMaterialIcon(it)
+                }
+            }
+        }
+        viewModel.fields.observe(viewLifecycleOwner) {
+            fieldsAdapter.dataSet = it
+        }
     }
 
     override fun onClick(v: View?) {
@@ -37,10 +52,6 @@ class CategoryConstructorFragment :
                 // TODO: implement
             }
         }
-    }
-
-    private fun applyMockData() {
-        fieldsAdapter.dataSet = MockData.fields
     }
 
 }

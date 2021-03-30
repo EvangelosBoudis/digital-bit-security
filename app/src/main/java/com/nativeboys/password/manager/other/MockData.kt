@@ -85,7 +85,7 @@ object MockData {
         val f3 = FieldEntity(name = "Password", type = "textPassword", categoryId = desktopCategory.id)
 
         val x  = listOf(f1, f2, f3).toMutableList()
-        x.add(FieldEntity(name = "", categoryId = desktopCategory.id))
+        x.add(FieldEntity(name = "", type = "", categoryId = desktopCategory.id))
         fields = x
 
         thumbnails = listOf(appleThumb, adobeThumb, behanceThumb, dribbleThumb, facebookThumb, instagramThumb, youtubeThumb)
