@@ -16,8 +16,7 @@ data class TagModel(
 data class FieldContentModel(
     val id: String = UUID.randomUUID().toString(), // PK
     val name: String,
-    val type: Int,
-    val hidden: Boolean,
+    val type: String,
     val content: String
 )
 

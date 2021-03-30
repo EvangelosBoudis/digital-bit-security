@@ -2,6 +2,7 @@ package com.nativeboys.password.manager.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -16,13 +17,14 @@ import javax.inject.Provider
     ItemEntity::class,
     ItemFieldEntity::class
 ], version = 1)
-abstract class ManagerDatabase : RoomDatabase() {
+@TypeConverters(Converters::class)
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun categoryDao(): CategoryDao
 
     class Callback @Inject constructor(
-            private val database: Provider<ManagerDatabase>,
-            private val applicationScope: CoroutineScope
+        private val database: Provider<AppDatabase>,
+        private val applicationScope: CoroutineScope
         ) : RoomDatabase.Callback() {
 
         override fun onCreate(db: SupportSQLiteDatabase) {

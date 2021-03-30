@@ -6,11 +6,11 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.other.InputTypeItem
 import com.zeustech.zeuskit.ui.autocomplete.AutoCompleteAdapter
+import com.zeustech.zeuskit.ui.autocomplete.DescriptionModel
 
 class TypesAdapter(context: Context):
-    AutoCompleteAdapter<InputTypeItem>(
+    AutoCompleteAdapter<DescriptionModel>(
         context,
         R.layout.spinner_child_cell,
         R.font.breeze_sans_medium,
@@ -18,7 +18,7 @@ class TypesAdapter(context: Context):
     )
 {
 
-    override fun onBindView(model: InputTypeItem?, text: SpannableString?, viewHolder: View) {
+    override fun onBindView(model: DescriptionModel?, text: SpannableString?, viewHolder: View) {
         viewHolder.findViewById<TextView>(R.id.description_field).text = text ?: model?.getText()
     }
 

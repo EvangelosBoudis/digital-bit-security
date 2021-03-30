@@ -7,7 +7,8 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.other.FieldContentModel
-import com.nativeboys.password.manager.other.setTransformationMethodAsHidden
+import com.nativeboys.password.manager.other.InputTypeItem
+import com.nativeboys.password.manager.other.findByCode
 import com.nativeboys.password.manager.other.toggleTransformationMethod
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
@@ -28,18 +29,22 @@ class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentModel>(i
     override fun bind(model: FieldContentModel) {
         nameField.text = model.name
         contentField.setText(model.content)
-        contentField.setTransformationMethodAsHidden(model.hidden)
-        if (model.hidden) {
+        val hidden = model.type == InputTypeItem.TEXT_PASSWORD.code
+        if (hidden) {
             Glide
                 .with(itemView.context)
                 .load(R.drawable.visibility_icon)
                 .into(visibilityBtn)
         }
-        visibilityBtn.visibility = if(model.hidden) View.VISIBLE else View.GONE
+        visibilityBtn.visibility = if(hidden) View.VISIBLE else View.GONE
         Glide
             .with(itemView.context)
             .load(R.drawable.copy_icon)
             .into(copyBtn)
+        findByCode(model.type)?.type?.let {
+            contentField.inputType = it
+        }
+        //contentField.setTransformationMethodAsHidden(model.hidden)
     }
 
 }

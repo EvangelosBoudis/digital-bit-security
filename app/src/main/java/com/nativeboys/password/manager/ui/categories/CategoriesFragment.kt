@@ -9,7 +9,6 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.CategoryEntity
-import com.nativeboys.password.manager.other.MockData
 import com.nativeboys.password.manager.databinding.FragmentCategoriesBinding
 import com.nativeboys.password.manager.ui.adapters.categories.CategoriesAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
@@ -41,8 +40,6 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories), AdapterClickL
         viewModel.categories.observe(viewLifecycleOwner) {
             categoriesAdapter.dataSet = it
         }
-
-        //applyMockData()
     }
 
     override fun onDestroy() {
@@ -64,10 +61,6 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories), AdapterClickL
                 activity?.onBackPressed()
             }
         }
-    }
-
-    private fun applyMockData() {
-        categoriesAdapter.dataSet = MockData.categories
     }
 
 }

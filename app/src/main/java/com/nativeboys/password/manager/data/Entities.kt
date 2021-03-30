@@ -5,7 +5,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
-import java.sql.Timestamp
 import java.util.*
 
 @Entity(tableName = "users")
@@ -31,6 +30,7 @@ data class CategoryEntity(
     val name: String,
     @ColumnInfo(name = "thumbnail_code") val thumbnailCode: String,
     @ColumnInfo(name = "owner_id") val ownerId: String, // FK (Users) e.g ADMIN
+    @ColumnInfo(name = "date_modified") val dateModified: Date = Date()
 ) : Parcelable {
 
     val adminCategory: Boolean
@@ -43,7 +43,7 @@ data class CategoryEntity(
 data class FieldEntity(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
     val name: String,
-    val type: Int = -1, // TODO: Fix
+    val type: String = "text",
     @ColumnInfo(name = "category_id") val categoryId: String // FK (Categories)
 ) : Parcelable
 
@@ -57,7 +57,7 @@ data class ItemEntity(
     val tags: String?,
     val favorite: Boolean,
     @ColumnInfo(name = "thumbnail_id") val thumbnailId: String, // FK (Thumbnails)
-    @ColumnInfo(name = "date_modified") val dateModified: String = Timestamp(System.currentTimeMillis()).toString(),
+    @ColumnInfo(name = "date_modified") val dateModified: Date = Date(),
     @ColumnInfo(name = "requires_password") val requiresPassword: Boolean,
     @ColumnInfo(name = "category_id") val categoryId: String, // FK (Categories),
     @ColumnInfo(name = "owner_id") val ownerId: String, // FK (Users),

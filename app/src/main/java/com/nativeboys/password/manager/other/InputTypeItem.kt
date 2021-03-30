@@ -1,20 +1,28 @@
 package com.nativeboys.password.manager.other
 
 import android.text.InputType
-import com.zeustech.zeuskit.ui.autocomplete.DescriptionModel
 
-data class InputTypeItem(
-    val name: String,
-    val description: String,
-    val value: Int
-): DescriptionModel {
+enum class InputTypeItem(val description: String, val code: String, val type: Int) {
+    TEXT("Text","text", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_NORMAL),
+    NUMBER("Number", "number", InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_NORMAL),
+    TIME("Time","time", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_TIME),
+    TEXT_URI("Uri","textUri", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_URI),
+    DATE("Date","date", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_DATE),
+    PHONE("Phone","phone", InputType.TYPE_CLASS_PHONE),
+    TEXT_PASSWORD("Password","textPassword", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD),
+    TEXT_EMAIL_ADDRESS("Email Address","textEmailAddress", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS),
+    TEXT_POSTAL_ADDRESS("Postal Address", "textPostalAddress", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS),
+}
 
-    override fun getText() = description
+fun allTypes() = enumValues<InputTypeItem>().asList()
 
-    companion object {
+fun findByCode(code: String) = allTypes().firstOrNull { it.code == code }
 
-        val inputTypes = listOf(
-            InputTypeItem("date",  "Date", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_DATE),
+fun findByDescription(description: String) = allTypes().firstOrNull { it.description == description }
+
+/*
+    // 8, 0, 7, 14, 20, 25, 30
+InputTypeItem("date",  "Date", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_DATE),
             InputTypeItem("datetime", "Date Time", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_NORMAL),
             InputTypeItem("none", "None", InputType.TYPE_NULL),
             InputTypeItem("number",  "Number", InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_NORMAL),
@@ -44,23 +52,4 @@ data class InputTypeItem(
             InputTypeItem("textWebEditText", "Web Text", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_EDIT_TEXT),
             InputTypeItem("textWebEmailAddress", "Web Email Address", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS),
             InputTypeItem("textWebPassword", "Web Password", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD),
-            InputTypeItem("time", "Time", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_TIME)
-        )
-
-        fun findByName(name: String): InputTypeItem? {
-            return inputTypes.firstOrNull { it.name == name }
-        }
-
-        fun findByDescription(description: String): InputTypeItem? {
-            return inputTypes.firstOrNull { it.description == description }
-        }
-
-        fun getSubset(indexes: List<Int>): List<InputTypeItem> {
-            val subset = mutableListOf<InputTypeItem>()
-            indexes.forEach { subset.add(inputTypes[it]) }
-            return subset
-        }
-
-    }
-
-}
+            InputTypeItem("time", "Time", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_TIME)*/

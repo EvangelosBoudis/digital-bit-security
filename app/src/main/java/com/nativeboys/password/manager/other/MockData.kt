@@ -75,13 +75,14 @@ object MockData {
             tags = "Social, Master Passwords, Bank, Shopping, Personal", thumbnailId = youtubeThumb.url,
             requiresPassword = false, favorite = false, categoryId = homeCategory.id, ownerId = ownerId)
 
-        val field1 = FieldContentModel(name = "Website", type = 1, hidden = false, content = "Instagram")
-        val field2 = FieldContentModel(name = "Email/Username", type = 1, hidden = false, content = "yasirbugra@gmail.com")
-        val field3 = FieldContentModel(name = "Password", type = 1, hidden = true, content = "Yasir123%'/PzhL921")
+        val field1 = FieldContentModel(name = "Website", type = "text", content = "Instagram")
+        val field2 = FieldContentModel(name = "Email/Username", type = "textEmailAddress", content = "yasirbugra@gmail.com")
+        val field3 = FieldContentModel(name = "Password", type = "textPassword", content = "Yasir123%'/PzhL921")
+        val field4 = FieldContentModel(name = "Phone Number", type = "phone", content = "6909004880")
 
-        val f1 = FieldEntity(name = "WebSite", type = 1, categoryId = desktopCategory.id)
-        val f2 = FieldEntity(name = "Email/Username", type = 2, categoryId = desktopCategory.id)
-        val f3 = FieldEntity(name = "Password", type = 2, categoryId = desktopCategory.id)
+        val f1 = FieldEntity(name = "WebSite", type = "text", categoryId = desktopCategory.id)
+        val f2 = FieldEntity(name = "Email/Username", type = "textEmailAddress", categoryId = desktopCategory.id)
+        val f3 = FieldEntity(name = "Password", type = "textPassword", categoryId = desktopCategory.id)
 
         val x  = listOf(f1, f2, f3).toMutableList()
         x.add(FieldEntity(name = "", categoryId = desktopCategory.id))
@@ -94,7 +95,7 @@ object MockData {
             tabletCategory, phoneCategory, bitcoinCategory, bitBucketCategory, cloudCategory,
             mailCategory, desktopCategory, laptopCategory, towerCategory, remoteCategory)
 
-        fieldsContent = listOf(field1, field2, field3)
+        fieldsContent = listOf(field1, field2, field3, field4)
 
         items = listOf(appleId, adobe, behance, dribble, facebook, instagram, youtube)
 
