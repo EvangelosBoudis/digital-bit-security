@@ -9,7 +9,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.google.android.material.imageview.ShapeableImageView
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.ItemEntity
+import com.nativeboys.password.manager.data.ItemData
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 import com.zeustech.zeuskit.ui.swipeRevealLayout.SwipeRevealLayout
 import com.zeustech.zeuskit.ui.swipeRevealLayout.ViewBinderHelper
@@ -17,7 +17,7 @@ import com.zeustech.zeuskit.ui.swipeRevealLayout.ViewBinderHelper
 class ItemsViewHolder(
     itemView: View,
     private val binder: ViewBinderHelper
-) : RecyclerViewHolder<ItemEntity>(itemView) {
+) : RecyclerViewHolder<ItemData>(itemView) {
 
     private val container = itemView.findViewById<SwipeRevealLayout>(R.id.container)
 
@@ -37,7 +37,7 @@ class ItemsViewHolder(
         deleteBtn.setOnClickListener(this)
     }
 
-    override fun bind(model: ItemEntity) {
+    override fun bind(model: ItemData) {
         binder.bind(container, model.id)
         container.setLockDrag(true)
 

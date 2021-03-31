@@ -8,14 +8,14 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.CategoryEntity
+import com.nativeboys.password.manager.data.CategoryData
 import com.nativeboys.password.manager.databinding.FragmentCategoriesBinding
 import com.nativeboys.password.manager.ui.adapters.categories.CategoriesAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CategoriesFragment : Fragment(R.layout.fragment_categories), AdapterClickListener<CategoryEntity>, View.OnClickListener {
+class CategoriesFragment : Fragment(R.layout.fragment_categories), AdapterClickListener<CategoryData>, View.OnClickListener {
 
     private val viewModel: CategoriesViewModel by viewModels()
 
@@ -46,7 +46,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories), AdapterClickL
         binding = null
     }
 
-    override fun onClick(view: View, model: CategoryEntity, position: Int) = moveToCategoryFragment(model.id)
+    override fun onClick(view: View, model: CategoryData, position: Int) = moveToCategoryFragment(model.id)
 
     override fun onClick(v: View?) {
         val view = v ?: return

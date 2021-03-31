@@ -32,6 +32,15 @@ object AppModule {
     fun provideFieldDao(db: AppDatabase) = db.fieldDao()
 
     @Provides
+    fun provideThumbnailDao(db: AppDatabase) = db.thumbnailDao()
+
+    @Provides
+    fun provideItemDao(db: AppDatabase) = db.itemDao()
+
+    @Provides
+    fun provideItemFieldDao(db: AppDatabase) = db.itemFieldDao()
+
+    @Provides
     @Singleton
     fun provideApplicationScope() = CoroutineScope(SupervisorJob())
 

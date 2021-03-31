@@ -9,7 +9,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.ItemEntity
+import com.nativeboys.password.manager.data.ItemData
 import com.nativeboys.password.manager.other.MockData
 import com.nativeboys.password.manager.databinding.FragmentHomeBinding
 import com.nativeboys.password.manager.ui.adapters.filters.FiltersAdapter
@@ -27,17 +27,17 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
         navController = Navigation.findNavController(view)
-        binding?.let {
-            it.passwordsContainer.filtersRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-            it.passwordsContainer.filtersRecyclerView.adapter = filtersAdapter
-            it.passwordsContainer.passwordsRecyclerView.layoutManager = LinearLayoutManager(view.context)
-            it.passwordsContainer.passwordsRecyclerView.adapter = passwordsAdapter
-            it.passwordsContainer.searchBtn.setOnClickListener(this)
-            it.passwordsContainer.settingsBtn.setOnClickListener(this)
-            it.passwordsContainer.plusBtn.setOnClickListener(this)
+        binding?.apply {
+            passwordsContainer.filtersRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
+            passwordsContainer.filtersRecyclerView.adapter = filtersAdapter
+            passwordsContainer.passwordsRecyclerView.layoutManager = LinearLayoutManager(view.context)
+            passwordsContainer.passwordsRecyclerView.adapter = passwordsAdapter
+            passwordsContainer.searchBtn.setOnClickListener(this@HomeFragment)
+            passwordsContainer.settingsBtn.setOnClickListener(this@HomeFragment)
+            passwordsContainer.plusBtn.setOnClickListener(this@HomeFragment)
         }
-        passwordsAdapter.adapterClickListener = object : AdapterClickListener<ItemEntity> {
-            override fun onClick(view: View, model: ItemEntity, position: Int) {
+        passwordsAdapter.adapterClickListener = object : AdapterClickListener<ItemData> {
+            override fun onClick(view: View, model: ItemData, position: Int) {
                 when (view.id) {
                     R.id.visible_view -> {
                         navController.navigate(R.id.action_home_to_itemPreview)

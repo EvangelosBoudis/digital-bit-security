@@ -9,7 +9,7 @@ import java.util.*
 
 @Entity(tableName = "users")
 @Parcelize
-data class UserEntity(
+data class UserData(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
     val email: String,
     @ColumnInfo(name = "master_password") val masterPassword: String,
@@ -18,14 +18,14 @@ data class UserEntity(
 
 @Entity(tableName = "thumbnails")
 @Parcelize
-data class ThumbnailEntity(
+data class ThumbnailData(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
     val url: String
 ) : Parcelable
 
 @Entity(tableName = "categories")
 @Parcelize
-data class CategoryEntity(
+data class CategoryData(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
     val name: String,
     @ColumnInfo(name = "thumbnail_code") val thumbnailCode: String,
@@ -40,7 +40,7 @@ data class CategoryEntity(
 
 @Entity(tableName = "fields")
 @Parcelize
-data class FieldEntity(
+data class FieldData(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
     val name: String,
     val type: String = "text",
@@ -49,7 +49,7 @@ data class FieldEntity(
 
 @Entity(tableName = "items")
 @Parcelize
-data class ItemEntity(
+data class ItemData(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
     val name: String,
     val description: String,
@@ -70,7 +70,7 @@ data class ItemEntity(
 
 @Entity(tableName = "items_fields")
 @Parcelize
-data class ItemFieldEntity(
+data class ItemFieldData(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
     @ColumnInfo(name = "field_id") val fieldId: String, // FK (Fields),
     @ColumnInfo(name = "item_id") val itemId: String, // FK (Items),

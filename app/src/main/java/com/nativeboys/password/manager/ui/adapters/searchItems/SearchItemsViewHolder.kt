@@ -7,15 +7,15 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.google.android.material.imageview.ShapeableImageView
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.ItemEntity
+import com.nativeboys.password.manager.data.ItemData
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
-class SearchItemsViewHolder(itemView: View) : RecyclerViewHolder<ItemEntity>(itemView) {
+class SearchItemsViewHolder(itemView: View) : RecyclerViewHolder<ItemData>(itemView) {
 
     private val thumbnailHolder = itemView.findViewById<ShapeableImageView>(R.id.thumbnail_holder)
     private val nameField = itemView.findViewById<TextView>(R.id.name_field)
 
-    override fun bind(model: ItemEntity) {
+    override fun bind(model: ItemData) {
 
         nameField.text = model.name
 

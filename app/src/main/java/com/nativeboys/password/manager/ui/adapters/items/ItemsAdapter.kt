@@ -2,11 +2,11 @@ package com.nativeboys.password.manager.ui.adapters.items
 
 import android.view.View
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.ItemEntity
+import com.nativeboys.password.manager.data.ItemData
 import com.zeustech.zeuskit.ui.rv.RecyclerAdapter
 import com.zeustech.zeuskit.ui.swipeRevealLayout.ViewBinderHelper
 
-class ItemsAdapter : RecyclerAdapter<ItemEntity, ItemsViewHolder>() {
+class ItemsAdapter : RecyclerAdapter<ItemData, ItemsViewHolder>() {
 
     private val viewBinderHelper = ViewBinderHelper()
 
