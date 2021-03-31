@@ -7,14 +7,14 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.other.FilterModel
+import com.nativeboys.password.manager.other.CategoryDto
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
-class FiltersViewHolder(itemView: View) : RecyclerViewHolder<FilterModel>(itemView) {
+class FiltersViewHolder(itemView: View) : RecyclerViewHolder<CategoryDto>(itemView) {
 
     private val descriptionField = itemView.findViewById<TextView>(R.id.description_field)
 
-    override fun bind(model: FilterModel) {
+    override fun bind(model: CategoryDto) {
         descriptionField.text = model.description
         val drawableResource = if (model.selected) R.drawable.selected_tag_shape else R.drawable.tag_shape
         Glide

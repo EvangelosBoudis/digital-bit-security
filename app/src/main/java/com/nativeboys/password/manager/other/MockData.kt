@@ -15,7 +15,7 @@ object MockData {
     val thumbnailsModels: List<ThumbnailModel>
     val thumbnailsWithAdds: List<ThumbnailModel>
 
-    val filters: List<FilterModel>
+    val filters: List<CategoryDto>
     val tags: List<TagModel>
     val tagsWithAdd: List<TagModel>
 
@@ -112,9 +112,9 @@ object MockData {
         thumbnailsWithAdds = ath
 
         val filters = categories.map {
-            FilterModel(it.id, it.name, false)
+            CategoryDto(it.id, it.name, false)
         }.toMutableList()
-        filters.add(0, FilterModel("FAVORITES", "Favorites", true))
+        filters.add(0, CategoryDto("FAVORITES", "Favorites", true))
 
         MockData.filters = filters
 

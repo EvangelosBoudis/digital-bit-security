@@ -2,7 +2,8 @@ package com.nativeboys.password.manager.di
 
 import android.app.Application
 import androidx.room.Room
-import com.nativeboys.password.manager.data.AppDatabase
+import com.nativeboys.password.manager.BuildConfig.DATABASE_NAME
+import com.nativeboys.password.manager.data.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +21,7 @@ object AppModule {
     fun provideDatabase(
         app: Application,
         callback: AppDatabase.Callback
-    ) = Room.databaseBuilder(app, AppDatabase::class.java, "item_manager_database")
+    ) = Room.databaseBuilder(app, AppDatabase::class.java, DATABASE_NAME)
         .fallbackToDestructiveMigration() // Drop table then create new one
         .addCallback(callback)
         .build()

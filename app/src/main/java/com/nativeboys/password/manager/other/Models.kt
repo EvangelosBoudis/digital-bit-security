@@ -2,7 +2,7 @@ package com.nativeboys.password.manager.other
 
 import java.util.*
 
-data class FilterModel(
+data class CategoryDto(
     val id: String,
     val description: String,
     val selected: Boolean

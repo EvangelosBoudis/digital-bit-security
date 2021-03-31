@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,8 +16,12 @@ import com.nativeboys.password.manager.databinding.FragmentHomeBinding
 import com.nativeboys.password.manager.ui.adapters.filters.FiltersAdapter
 import com.nativeboys.password.manager.ui.adapters.items.ItemsAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
+
+    private val viewModel: HomeViewModel by viewModels()
 
     private lateinit var navController: NavController
     private val filtersAdapter = FiltersAdapter()

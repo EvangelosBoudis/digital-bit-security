@@ -1,35 +1,23 @@
-package com.nativeboys.password.manager.data
+package com.nativeboys.password.manager.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.nativeboys.password.manager.data.dao.*
+import com.nativeboys.password.manager.data.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Provider
 
-@Database(entities = [
-    UserData::class,
-    ThumbnailData::class,
-    CategoryData::class,
-    FieldData::class,
-    ItemData::class,
-    ItemFieldData::class
-], version = 1)
+@Database(entities = [UserData::class, ThumbnailData::class, CategoryData::class, FieldData::class, ItemData::class, ItemFieldData::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun categoryDao(): CategoryDao
-
     abstract fun fieldDao(): FieldDao
-
     abstract fun thumbnailDao(): ThumbnailDao
-
     abstract fun itemDao(): ItemDao
-
     abstract fun itemFieldDao(): ItemFieldDao
 
     class Callback @Inject constructor(

@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.data.dao
+package com.nativeboys.password.manager.data.local
 
 import androidx.room.*
 import com.nativeboys.password.manager.data.CategoryData
@@ -12,11 +12,17 @@ interface CategoryDao {
     @Query("SELECT * FROM categories WHERE id == :id")
     suspend fun findById(id: String): CategoryData
 
+    @Query("SELECT * FROM categories")
+    suspend fun findAll(): List<CategoryData>
+
+    @Query("SELECT * FROM categories")
+    fun findAllAsFlow(): Flow<List<CategoryData>>
+
     @Query("SELECT * FROM categories WHERE name LIKE '%' || :searchKey || '%' ORDER BY name ASC")
-    fun findByNameSortedByName(searchKey: String): Flow<List<CategoryData>>
+    fun findAllByNameSortedByName(searchKey: String): Flow<List<CategoryData>>
 
     @Query("SELECT * FROM categories WHERE name LIKE '%' || :searchKey || '%' ORDER BY date_modified DESC")
-    fun findByNameSortedByDateModified(searchKey: String): Flow<List<CategoryData>>
+    fun findAllByNameSortedByDateModified(searchKey: String): Flow<List<CategoryData>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun save(category: CategoryData)

@@ -5,17 +5,15 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.nativeboys.password.manager.data.dao.CategoryDao
 import com.nativeboys.password.manager.data.CategoryData
-import com.nativeboys.password.manager.data.dao.FieldDao
 import com.nativeboys.password.manager.data.FieldData
+import com.nativeboys.password.manager.data.repository.CategoryRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 
 class CategoryConstructorViewModel @ViewModelInject constructor(
-    private val categoryDao: CategoryDao,
-    private val fieldDao: FieldDao,
+    private val categoryRepository: CategoryRepository,
     @Assisted private val state: SavedStateHandle
 ) : ViewModel() {
 
@@ -23,13 +21,13 @@ class CategoryConstructorViewModel @ViewModelInject constructor(
     private val categoryIdFlow = MutableStateFlow(categoryId)
 
     private val categoryFlow: Flow<CategoryData?> = categoryIdFlow.map { categoryId ->
-        categoryId?.let { categoryDao.findById(it) }
+        categoryId?.let { categoryRepository.findCategoryById(it) }
     }
 
     val category = categoryFlow.asLiveData()
 
     private val fieldsFlow: Flow<List<FieldData>> = categoryIdFlow.map { categoryId ->
-        categoryId?.let { fieldDao.findByCategoryId(it) } ?: emptyList()
+        categoryId?.let { categoryRepository.findCategoryFields(it) } ?: emptyList()
     }
 
     val fields = fieldsFlow.asLiveData()

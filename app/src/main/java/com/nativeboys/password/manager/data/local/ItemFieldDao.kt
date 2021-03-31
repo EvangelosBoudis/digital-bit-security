@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.data.dao
+package com.nativeboys.password.manager.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
