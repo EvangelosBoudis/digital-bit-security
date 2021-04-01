@@ -65,6 +65,9 @@
         <action
             android:id="@+id/action_itemOverview_to_itemConstructor"
             app:destination="@id/itemConstructorFragment" />
+        <argument
+            android:name="item_id"
+            app:argType="string" />
     </fragment>
 
 </navigation>

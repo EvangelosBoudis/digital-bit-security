@@ -11,6 +11,7 @@ interface ItemDao {
     @Query("SELECT * FROM items")
     suspend fun findAll(): List<ItemData>
 
+    // Projection
     @Query("""
         SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.category_id AS itemCategoryId, thumbnails.url AS thumbnailUrl 
         FROM items

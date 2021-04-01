@@ -15,7 +15,7 @@ class ItemRepository @Inject constructor(
     private val preferences: PreferencesManager
 ) {
 
-    fun findAllDtoItemsAsFlow(): Flow<List<ItemDto>> {
+    fun findAllItemsDtoAsFlow(): Flow<List<ItemDto>> {
         return combine(itemDao.findAllDtoAsFlow(), preferences.findSelectedCategoryIdAsFlow()) { items, categoryId ->
             if (categoryId.isEmpty()) items
             else items.filter { it.itemCategoryId == categoryId }

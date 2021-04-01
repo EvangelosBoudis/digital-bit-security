@@ -10,11 +10,11 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nativeboys.password.manager.R
+import com.nativeboys.password.manager.data.CategoryDto
 import com.nativeboys.password.manager.data.ItemDto
 import com.nativeboys.password.manager.databinding.FragmentHomeBinding
-import com.nativeboys.password.manager.other.CategoryDto
-import com.nativeboys.password.manager.ui.adapters.filters.FiltersAdapter
-import com.nativeboys.password.manager.ui.adapters.items.ItemsAdapter
+import com.nativeboys.password.manager.ui.adapters.categoriesDto.CategoriesDtoAdapter
+import com.nativeboys.password.manager.ui.adapters.itemsDto.ItemsDtoAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,16 +26,16 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
     private lateinit var navController: NavController
     private var binding: FragmentHomeBinding? = null
 
-    private val filtersAdapter = FiltersAdapter()
-    private val itemsAdapter = ItemsAdapter()
+    private val categoriesAdapter = CategoriesDtoAdapter()
+    private val itemsAdapter = ItemsDtoAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
         navController = Navigation.findNavController(view)
         binding?.apply {
-            itemsContainer.filtersRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-            itemsContainer.filtersRecyclerView.adapter = filtersAdapter
+            itemsContainer.categoriesRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
+            itemsContainer.categoriesRecyclerView.adapter = categoriesAdapter
             itemsContainer.itemsRecyclerView.layoutManager = LinearLayoutManager(view.context)
             itemsContainer.itemsRecyclerView.adapter = itemsAdapter
             itemsContainer.searchBtn.setOnClickListener(this@HomeFragment)
@@ -46,7 +46,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
             override fun onClick(view: View, model: ItemDto, position: Int) {
                 when (view.id) {
                     R.id.visible_view -> {
-                        navController.navigate(R.id.action_home_to_itemPreview)
+                        navController.navigate(HomeFragmentDirections.actionHomeToItemPreview(model.itemId))
                     }
                     R.id.edit_btn -> {
                         navController.navigate(R.id.action_home_to_itemConstructor)
@@ -57,16 +57,16 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
                 }
             }
         }
-        filtersAdapter.adapterClickListener = object : AdapterClickListener<CategoryDto> {
+        categoriesAdapter.adapterClickListener = object : AdapterClickListener<CategoryDto> {
             override fun onClick(view: View, model: CategoryDto, position: Int) {
                 viewModel.setSelectedCategory(model.id)
             }
         }
         viewModel.categories.observe(viewLifecycleOwner) {
-            filtersAdapter.dataSet = it
+            categoriesAdapter.submitList(it)
         }
         viewModel.itemsDto.observe(viewLifecycleOwner) { items ->
-            itemsAdapter.dataSet = items
+            itemsAdapter.submitList(items)
         }
     }
 

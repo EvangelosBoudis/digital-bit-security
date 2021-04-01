@@ -13,9 +13,9 @@ class HomeViewModel @ViewModelInject constructor(
     private val categoryRepository: CategoryRepository
 ): ViewModel() {
 
-    val categories = categoryRepository.findAllDtoCategoriesAsFlow().asLiveData()
+    val categories = categoryRepository.findAllCategoriesDtoAsFlow().asLiveData()
 
-    val itemsDto = itemRepository.findAllDtoItemsAsFlow().asLiveData()
+    val itemsDto = itemRepository.findAllItemsDtoAsFlow().asLiveData()
 
     fun setSelectedCategory(id: String) = viewModelScope.launch(context = Dispatchers.IO) {
         categoryRepository.updateSelectedCategoryId(id)

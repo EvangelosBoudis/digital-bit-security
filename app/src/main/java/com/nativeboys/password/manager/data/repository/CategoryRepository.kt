@@ -1,10 +1,10 @@
 package com.nativeboys.password.manager.data.repository
 
 import com.nativeboys.password.manager.data.CategoryData
+import com.nativeboys.password.manager.data.CategoryDto
 import com.nativeboys.password.manager.data.local.CategoryDao
 import com.nativeboys.password.manager.data.local.FieldDao
 import com.nativeboys.password.manager.data.preferences.PreferencesManager
-import com.nativeboys.password.manager.other.CategoryDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
@@ -25,11 +25,13 @@ class CategoryRepository @Inject constructor(
 
     suspend fun updateSelectedCategoryId(id: String) = preferences.updateSelectedCategoryId(id)
 
-    fun findAllDtoCategoriesAsFlow(): Flow<List<CategoryDto>> {
+    fun findAllCategoriesDtoAsFlow(addDefault: Boolean = true): Flow<List<CategoryDto>> {
         return combine(categoryDao.findAllAsFlow(), preferences.findSelectedCategoryIdAsFlow()) { categories, categoryId ->
-            categories.map {
+            val mutable = categories.map {
                 CategoryDto(it.id, it.name, categoryId == it.id)
-            }
+            }.toMutableList()
+            if (addDefault) mutable.add(0, CategoryDto("", "All", categoryId == "")) // default (All Categories)
+            return@combine mutable
         }
     }
 

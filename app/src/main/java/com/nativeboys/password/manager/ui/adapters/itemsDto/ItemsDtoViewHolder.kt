@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.ui.adapters.items
+package com.nativeboys.password.manager.ui.adapters.itemsDto
 
 import android.view.View
 import android.widget.ImageView
@@ -14,7 +14,7 @@ import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 import com.zeustech.zeuskit.ui.swipeRevealLayout.SwipeRevealLayout
 import com.zeustech.zeuskit.ui.swipeRevealLayout.ViewBinderHelper
 
-class ItemsViewHolder(
+class ItemsDtoViewHolder(
     itemView: View,
     private val binder: ViewBinderHelper
 ) : RecyclerViewHolder<ItemDto>(itemView) {

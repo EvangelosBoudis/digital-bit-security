@@ -2,12 +2,6 @@ package com.nativeboys.password.manager.other
 
 import java.util.*
 
-data class CategoryDto(
-    val id: String,
-    val description: String,
-    val selected: Boolean
-)
-
 data class TagModel(
     val name: String,
     val type: Int

@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.ui.adapters.filters
+package com.nativeboys.password.manager.ui.adapters.categoriesDto
 
 import android.graphics.drawable.Drawable
 import android.view.View
@@ -7,10 +7,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.other.CategoryDto
+import com.nativeboys.password.manager.data.CategoryDto
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
-class FiltersViewHolder(itemView: View) : RecyclerViewHolder<CategoryDto>(itemView) {
+class CategoriesDtoViewHolder(itemView: View) : RecyclerViewHolder<CategoryDto>(itemView) {
 
     private val descriptionField = itemView.findViewById<TextView>(R.id.description_field)
 
