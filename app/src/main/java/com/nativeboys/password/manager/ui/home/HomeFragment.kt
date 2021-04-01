@@ -10,9 +10,9 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.ItemData
-import com.nativeboys.password.manager.other.MockData
+import com.nativeboys.password.manager.data.ItemDto
 import com.nativeboys.password.manager.databinding.FragmentHomeBinding
+import com.nativeboys.password.manager.other.CategoryDto
 import com.nativeboys.password.manager.ui.adapters.filters.FiltersAdapter
 import com.nativeboys.password.manager.ui.adapters.items.ItemsAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
@@ -24,25 +24,26 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
     private val viewModel: HomeViewModel by viewModels()
 
     private lateinit var navController: NavController
-    private val filtersAdapter = FiltersAdapter()
-    private val passwordsAdapter = ItemsAdapter()
     private var binding: FragmentHomeBinding? = null
+
+    private val filtersAdapter = FiltersAdapter()
+    private val itemsAdapter = ItemsAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
         navController = Navigation.findNavController(view)
         binding?.apply {
-            passwordsContainer.filtersRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
-            passwordsContainer.filtersRecyclerView.adapter = filtersAdapter
-            passwordsContainer.passwordsRecyclerView.layoutManager = LinearLayoutManager(view.context)
-            passwordsContainer.passwordsRecyclerView.adapter = passwordsAdapter
-            passwordsContainer.searchBtn.setOnClickListener(this@HomeFragment)
-            passwordsContainer.settingsBtn.setOnClickListener(this@HomeFragment)
-            passwordsContainer.plusBtn.setOnClickListener(this@HomeFragment)
+            itemsContainer.filtersRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
+            itemsContainer.filtersRecyclerView.adapter = filtersAdapter
+            itemsContainer.itemsRecyclerView.layoutManager = LinearLayoutManager(view.context)
+            itemsContainer.itemsRecyclerView.adapter = itemsAdapter
+            itemsContainer.searchBtn.setOnClickListener(this@HomeFragment)
+            itemsContainer.settingsBtn.setOnClickListener(this@HomeFragment)
+            itemsContainer.plusBtn.setOnClickListener(this@HomeFragment)
         }
-        passwordsAdapter.adapterClickListener = object : AdapterClickListener<ItemData> {
-            override fun onClick(view: View, model: ItemData, position: Int) {
+        itemsAdapter.adapterClickListener = object : AdapterClickListener<ItemDto> {
+            override fun onClick(view: View, model: ItemDto, position: Int) {
                 when (view.id) {
                     R.id.visible_view -> {
                         navController.navigate(R.id.action_home_to_itemPreview)
@@ -51,12 +52,22 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
                         navController.navigate(R.id.action_home_to_itemConstructor)
                     }
                     R.id.delete_btn -> {
-                        // TODO: implement
+                        viewModel.deleteItem(model.itemId)
                     }
                 }
             }
         }
-        applyMockData()
+        filtersAdapter.adapterClickListener = object : AdapterClickListener<CategoryDto> {
+            override fun onClick(view: View, model: CategoryDto, position: Int) {
+                viewModel.setSelectedCategory(model.id)
+            }
+        }
+        viewModel.categories.observe(viewLifecycleOwner) {
+            filtersAdapter.dataSet = it
+        }
+        viewModel.itemsDto.observe(viewLifecycleOwner) { items ->
+            itemsAdapter.dataSet = items
+        }
     }
 
     override fun onDestroy() {
@@ -77,11 +88,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), View.OnClickListener {
                 navController.navigate(R.id.action_home_to_categories)
             }
         }
-    }
-
-    private fun applyMockData() {
-        filtersAdapter.dataSet = MockData.filters
-        passwordsAdapter.dataSet = MockData.items
     }
 
 }

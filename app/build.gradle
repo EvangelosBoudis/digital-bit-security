@@ -20,6 +20,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "DATABASE_NAME", '"item_manager_database"')
+        buildConfigField("String", "DATA_STORE_PREFERENCES_NAME", '"user_preferences"')
     }
 
     buildTypes {

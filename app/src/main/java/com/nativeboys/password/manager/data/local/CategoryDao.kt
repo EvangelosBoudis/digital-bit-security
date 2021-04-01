@@ -19,10 +19,10 @@ interface CategoryDao {
     fun findAllAsFlow(): Flow<List<CategoryData>>
 
     @Query("SELECT * FROM categories WHERE name LIKE '%' || :searchKey || '%' ORDER BY name ASC")
-    fun findAllByNameSortedByName(searchKey: String): Flow<List<CategoryData>>
+    fun findAllByNameSortedByNameAsFlow(searchKey: String): Flow<List<CategoryData>>
 
     @Query("SELECT * FROM categories WHERE name LIKE '%' || :searchKey || '%' ORDER BY date_modified DESC")
-    fun findAllByNameSortedByDateModified(searchKey: String): Flow<List<CategoryData>>
+    fun findAllByNameSortedByDateModifiedAsFlow(searchKey: String): Flow<List<CategoryData>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun save(category: CategoryData)

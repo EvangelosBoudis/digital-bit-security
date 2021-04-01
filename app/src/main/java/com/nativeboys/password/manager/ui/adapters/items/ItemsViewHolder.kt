@@ -9,7 +9,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.google.android.material.imageview.ShapeableImageView
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.ItemData
+import com.nativeboys.password.manager.data.ItemDto
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 import com.zeustech.zeuskit.ui.swipeRevealLayout.SwipeRevealLayout
 import com.zeustech.zeuskit.ui.swipeRevealLayout.ViewBinderHelper
@@ -17,7 +17,7 @@ import com.zeustech.zeuskit.ui.swipeRevealLayout.ViewBinderHelper
 class ItemsViewHolder(
     itemView: View,
     private val binder: ViewBinderHelper
-) : RecyclerViewHolder<ItemData>(itemView) {
+) : RecyclerViewHolder<ItemDto>(itemView) {
 
     private val container = itemView.findViewById<SwipeRevealLayout>(R.id.container)
 
@@ -37,15 +37,15 @@ class ItemsViewHolder(
         deleteBtn.setOnClickListener(this)
     }
 
-    override fun bind(model: ItemData) {
-        binder.bind(container, model.id)
+    override fun bind(model: ItemDto) {
+        binder.bind(container, model.itemId)
         container.setLockDrag(true)
 
-        nameField.text = model.name
-        descriptionField.text = model.description
+        nameField.text = model.itemName
+        descriptionField.text = model.itemDescription
 
         Glide.with(itemView.context)
-            .load(model.thumbnailId)
+            .load(model.thumbnailUrl)
             .transform(CenterCrop())
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(thumbnailHolder)

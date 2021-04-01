@@ -14,6 +14,7 @@ import javax.inject.Provider
 @Database(entities = [UserData::class, ThumbnailData::class, CategoryData::class, FieldData::class, ItemData::class, ItemFieldData::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun categoryDao(): CategoryDao
     abstract fun fieldDao(): FieldDao
     abstract fun thumbnailDao(): ThumbnailDao
@@ -78,17 +79,17 @@ abstract class AppDatabase : RoomDatabase() {
 
             // Items
             val appleId = ItemData(name = "Apple ID", description = "Ritsa's account", notes = "This account is linked to iPad", tags = "Apple, iPad, Tablet, Ritsa",
-                thumbnailId = appleThumb.url, requiresPassword = true, favorite = true, categoryId = accountCategory.id, ownerId = userId)
+                thumbnailId = appleThumb.id, requiresPassword = true, favorite = true, categoryId = accountCategory.id, ownerId = userId)
             val adobe = ItemData(name = "Adobe", description = "ZeusTech account", notes = "This account handled by Fuk Sua", tags = "ZeusTech, Prototype, User Interface",
-                thumbnailId = adobeThumb.url, requiresPassword = false, favorite = false, categoryId = accountCategory.id, ownerId = userId)
+                thumbnailId = adobeThumb.id, requiresPassword = false, favorite = false, categoryId = accountCategory.id, ownerId = userId)
             val behance = ItemData(name = "Behance", description = "Family account", notes = "This account contains photos from travels that we had",
-                tags = "Art, Photos, Hobby", thumbnailId = behanceThumb.url, requiresPassword = false, favorite = true, categoryId = accountCategory.id, ownerId = userId)
+                tags = "Art, Photos, Hobby", thumbnailId = behanceThumb.id, requiresPassword = false, favorite = true, categoryId = accountCategory.id, ownerId = userId)
             val dribble = ItemData(name = "Dribbble", description = "Development account", notes = "This account contains a bunch of libraries with awesome mobile user interfaces", tags = "Inspiration, User Interface, Development",
-                thumbnailId = dribbleThumb.url, requiresPassword = false, favorite = true, categoryId = accountCategory.id, ownerId = userId)
+                thumbnailId = dribbleThumb.id, requiresPassword = false, favorite = true, categoryId = accountCategory.id, ownerId = userId)
             val facebook = ItemData(name = "Facebook", description = "My account", notes = "", tags = "Social Media, Chat, Video Call",
-                thumbnailId = facebookThumb.url, requiresPassword = true, favorite = false, categoryId = accountCategory.id, ownerId = userId)
+                thumbnailId = facebookThumb.id, requiresPassword = true, favorite = false, categoryId = accountCategory.id, ownerId = userId)
             val instagram = ItemData(name = "Instagram", description = "Shared account", notes = "", tags = "Social Media, Chat, Video Call",
-                thumbnailId = instagramThumb.url, requiresPassword = false, favorite = false, categoryId = accountCategory.id, ownerId = userId)
+                thumbnailId = instagramThumb.id, requiresPassword = false, favorite = false, categoryId = accountCategory.id, ownerId = userId)
             val hzTest = ItemData(name = "HZ-TEST", description = "Network details", notes = "", tags = "ZeusTech, Wifi, Network",
                 thumbnailId = modemThumb.id, requiresPassword = false, favorite = false, categoryId = networkCategory.id, ownerId = userId)
             val euroBank = ItemData(name = "Eurobank", description = "Credit card details", notes = "", tags = "Eurobank, Payment, Money",

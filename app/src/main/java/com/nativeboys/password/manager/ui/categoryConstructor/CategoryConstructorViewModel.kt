@@ -27,7 +27,7 @@ class CategoryConstructorViewModel @ViewModelInject constructor(
     val category = categoryFlow.asLiveData()
 
     private val fieldsFlow: Flow<List<FieldData>> = categoryIdFlow.map { categoryId ->
-        categoryId?.let { categoryRepository.findCategoryFields(it) } ?: emptyList()
+        categoryId?.let { categoryRepository.findFieldsByCategoryId(it) } ?: emptyList()
     }
 
     val fields = fieldsFlow.asLiveData()

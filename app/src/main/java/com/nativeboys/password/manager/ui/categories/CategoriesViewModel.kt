@@ -19,7 +19,7 @@ class CategoriesViewModel @ViewModelInject constructor(
         combine(searchKey, sortOrder) { key, order ->
             Pair(key, order)
         }.flatMapLatest { (key, order) ->
-            categoryRepository.findAllCategoriesByName(key, order)
+            categoryRepository.findAllCategoriesByNameAsFlow(key, order)
         }
 
     val categories = categoriesFlow.asLiveData()

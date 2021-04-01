@@ -7,7 +7,7 @@
     tools:openDrawer="end">
 
     <include
-        android:id="@+id/passwords_container"
+        android:id="@+id/items_container"
         layout="@layout/items_layout" />
 
     <com.google.android.material.navigation.NavigationView
@@ -17,7 +17,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true">
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/settings_fragment"
             android:name="com.nativeboys.password.manager.ui.settings.SettingsFragment"
             android:layout_width="match_parent"
