@@ -1,9 +1,7 @@
 package com.nativeboys.password.manager.data
 
 import android.os.Parcelable
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
@@ -68,12 +66,34 @@ data class ItemData(
 
 }
 
-@Entity(tableName = "items_fields")
+@Entity(tableName = "contents")
 @Parcelize
-data class ItemFieldData(
+data class ContentData(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
     @ColumnInfo(name = "field_id") val fieldId: String, // FK (Fields),
     @ColumnInfo(name = "item_id") val itemId: String, // FK (Items),
     val content: String
 ) : Parcelable
+
+//////////////////////////////////////////////////////////////////////////////////////////
+/// Relationships Between Objects
+//////////////////////////////////////////////////////////////////////////////////////////
+
+data class CategoryWithFields(
+    @Embedded val category: CategoryData,
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "category_id"
+    )
+    val fields: List<FieldData>
+)
+
+data class ItemWithContents(
+    @Embedded val item: ItemData,
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "item_id"
+    )
+    val contents: List<ContentData>
+)
 

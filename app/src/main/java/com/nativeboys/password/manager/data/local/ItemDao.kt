@@ -3,13 +3,14 @@ package com.nativeboys.password.manager.data.local
 import androidx.room.*
 import com.nativeboys.password.manager.data.ItemData
 import com.nativeboys.password.manager.data.ItemDto
+import com.nativeboys.password.manager.data.ItemWithContents
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ItemDao {
 
-    @Query("SELECT * FROM items")
-    suspend fun findAll(): List<ItemData>
+    @Query("SELECT * FROM items WHERE items.id == :id")
+    suspend fun findItemWithContentById(id: String): ItemWithContents
 
     // Projection
     @Query("""
@@ -19,6 +20,15 @@ interface ItemDao {
         GROUP BY itemId
         """)
     fun findAllDtoAsFlow(): Flow<List<ItemDto>>
+
+    @Query("""
+        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.category_id AS itemCategoryId, thumbnails.url AS thumbnailUrl 
+        FROM (SELECT * FROM items AS nested WHERE (nested.name LIKE '%' || :searchKey || '%' OR nested.tags LIKE '%' || :searchKey || '%')) AS items
+        LEFT JOIN thumbnails ON thumbnails.id = items.thumbnail_id
+        GROUP BY itemId
+        ORDER BY itemName
+        """)
+    suspend fun findAllDtoByNameAndTagsSortedByNameAsFlow(searchKey: String): List<ItemDto>
 
     @Query("SELECT * FROM items WHERE id == :id")
     suspend fun findById(id: String): ItemData

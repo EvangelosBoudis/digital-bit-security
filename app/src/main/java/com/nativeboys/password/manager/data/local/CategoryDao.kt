@@ -2,6 +2,7 @@ package com.nativeboys.password.manager.data.local
 
 import androidx.room.*
 import com.nativeboys.password.manager.data.CategoryData
+import com.nativeboys.password.manager.data.CategoryWithFields
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -23,6 +24,10 @@ interface CategoryDao {
 
     @Query("SELECT * FROM categories WHERE name LIKE '%' || :searchKey || '%' ORDER BY date_modified DESC")
     fun findAllByNameSortedByDateModifiedAsFlow(searchKey: String): Flow<List<CategoryData>>
+
+    @Transaction
+    @Query("SELECT * FROM categories WHERE id == :id")
+    suspend fun findCategoryWithFieldsById(id: String): CategoryWithFields
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun save(category: CategoryData)

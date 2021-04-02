@@ -15,7 +15,7 @@ class HomeViewModel @ViewModelInject constructor(
 
     val categories = categoryRepository.findAllCategoriesDtoAsFlow().asLiveData()
 
-    val itemsDto = itemRepository.findAllItemsDtoAsFlow().asLiveData()
+    val itemsDto = itemRepository.findItemsFilteredBySelectedCategoryAsFlow().asLiveData()
 
     fun setSelectedCategory(id: String) = viewModelScope.launch(context = Dispatchers.IO) {
         categoryRepository.updateSelectedCategoryId(id)
@@ -28,9 +28,5 @@ class HomeViewModel @ViewModelInject constructor(
     fun deleteItem(id: String) = viewModelScope.launch(context = Dispatchers.IO) {
         itemRepository.deleteItemById(id)
     }
-
-/*    val items2 = liveData {
-        emit(itemRepository.findAllItems())
-    }*/
 
 }

@@ -29,16 +29,14 @@ class CategoryConstructorFragment : Fragment(R.layout.fragment_category_construc
             headerContainer.leadingBtn.setOnClickListener(this@CategoryConstructorFragment)
             headerContainer.trailignBtn.setOnClickListener(this@CategoryConstructorFragment)
         }
-        viewModel.category.observe(viewLifecycleOwner) { category ->
+        viewModel.categoryWithFields.observe(viewLifecycleOwner) { categoryWithFields ->
             binding.apply {
-                contentField.setText(category?.name)
-                category?.thumbnailCode?.let {
+                contentField.setText(categoryWithFields?.category?.name)
+                categoryWithFields?.category?.thumbnailCode?.let {
                     thumbnailHolder.setMaterialIcon(it)
                 }
             }
-        }
-        viewModel.fields.observe(viewLifecycleOwner) {
-            fieldsAdapter.dataSet = it
+            fieldsAdapter.dataSet = categoryWithFields?.fields ?: emptyList()
         }
     }
 

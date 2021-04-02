@@ -2,10 +2,10 @@ package com.nativeboys.password.manager.ui.adapters.searchItems
 
 import android.view.View
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.ItemData
-import com.zeustech.zeuskit.ui.rv.RecyclerAdapter
+import com.nativeboys.password.manager.data.ItemDto
+import com.zeustech.zeuskit.ui.rv.RecyclerListAdapter
 
-class SearchItemsAdapter : RecyclerAdapter<ItemData, SearchItemsViewHolder>() {
+class SearchItemsAdapter : RecyclerListAdapter<ItemDto, SearchItemsViewHolder>() {
 
     override fun getResId(viewType: Int) = R.layout.search_items_cell
 

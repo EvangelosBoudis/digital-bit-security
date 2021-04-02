@@ -5,61 +5,61 @@ import android.content.ClipboardManager
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.google.android.material.snackbar.Snackbar
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.other.FieldContentModel
-import com.nativeboys.password.manager.other.MockData
+import com.nativeboys.password.manager.data.FieldContentDto
 import com.nativeboys.password.manager.databinding.FragmentItemOverviewBinding
 import com.nativeboys.password.manager.ui.adapters.fields.FieldsAdapter
-import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import com.zeustech.zeuskit.ui.views.BottomBar
+import dagger.hilt.android.AndroidEntryPoint
 
-class ItemOverviewFragment :
-    Fragment(R.layout.fragment_item_overview),
-    AdapterClickListener<FieldContentModel>,
-    View.OnClickListener
-{
+@AndroidEntryPoint
+class ItemOverviewFragment : Fragment(R.layout.fragment_item_overview), AdapterClickListener<FieldContentDto>, View.OnClickListener {
+
+    private val viewModel: ItemOverviewViewModel by viewModels()
+
     private lateinit var navController: NavController
     private var binding: FragmentItemOverviewBinding? = null
 
-    private lateinit var fieldsAdapter: FieldsAdapter
-    private lateinit var tagsAdapter: TagsAdapter
+    private val fieldsAdapter = FieldsAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         binding = FragmentItemOverviewBinding.bind(view)
-        fieldsAdapter = FieldsAdapter()
-        tagsAdapter = TagsAdapter()
-        binding?.let {
-            setUpView(it)
-            setUpListeners(it)
+        binding?.apply {
+            headerContainer.headlineField.setText(R.string.item_overview)
+            headerContainer.trailignBtn.visibility = View.INVISIBLE
+            fieldsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            fieldsRecyclerView.adapter = fieldsAdapter
+            headerContainer.leadingBtn.setOnClickListener(this@ItemOverviewFragment)
+            editBtn.setOnClickListener(this@ItemOverviewFragment)
+            deleteBtn.setOnClickListener(this@ItemOverviewFragment)
         }
-        applyMockData()
-    }
-
-    private fun setUpView(binding: FragmentItemOverviewBinding) {
-        binding.headerContainer.headlineField.setText(R.string.item_overview)
-        binding.headerContainer.trailignBtn.visibility = View.INVISIBLE
-        binding.fieldsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.fieldsRecyclerView.adapter = fieldsAdapter
-    }
-
-    private fun setUpListeners(binding: FragmentItemOverviewBinding) {
-        binding.headerContainer.leadingBtn.setOnClickListener(this)
-        binding.editBtn.setOnClickListener(this)
-        binding.deleteBtn.setOnClickListener(this)
         fieldsAdapter.adapterClickListener = this
+
+        viewModel.itemFieldsContent.observe(viewLifecycleOwner) { itemFieldsContent ->
+            val data = itemFieldsContent ?: return@observe
+            binding?.apply {
+                /*Glide.with(requireContext())
+                    .load(item?.item?.thumbnailId)
+                    .transform(CenterCrop())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(binding.thumbnailHolder)*/
+                nameField.text = data.item.name
+                descriptionField.text = data.item.description
+                notesField.setText(data.item.notes)
+                tagsField.setText(data.item.tags)
+                fieldsAdapter.dataSet = data.fieldsContent
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -67,29 +67,12 @@ class ItemOverviewFragment :
         binding = null
     }
 
-    private fun applyMockData() {
-        val binding = binding ?: return
-        val item = MockData.items[0]
-
-        Glide.with(requireContext())
-            .load(item.thumbnailId)
-            .transform(CenterCrop())
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(binding.thumbnailHolder)
-
-        binding.nameField.text = item.name
-        binding.descriptionField.text = item.description
-        binding.notesField.setText(item.notes)
-        fieldsAdapter.dataSet = MockData.fieldsContent
-        binding.tagsField.setText(MockData.tags.joinToString(", ") { it.name })
-    }
-
-    override fun onClick(view: View, model: FieldContentModel, position: Int) {
+    override fun onClick(view: View, model: FieldContentDto, position: Int) {
         if (view.id == R.id.copy_btn) {
             val clipboard = getSystemService(requireContext(), ClipboardManager::class.java)
-            val clip = ClipData.newPlainText("password:manager:field", model.content)
+            val clip = ClipData.newPlainText("password:manager:field", model.textContent)
             clipboard?.setPrimaryClip(clip)
-            showSnackBar(R.layout.copy_bottom_cell)
+            BottomBar(requireView() as ViewGroup, R.layout.copy_bottom_cell, Snackbar.LENGTH_SHORT).show()
         }
     }
 
@@ -106,14 +89,6 @@ class ItemOverviewFragment :
                 // TODO: implement
             }
         }
-    }
-
-    private fun showSnackBar(@LayoutRes layout: Int) {
-        BottomBar(
-            requireView() as ViewGroup,
-            layout,
-            Snackbar.LENGTH_SHORT
-        ).show()
     }
 
 }

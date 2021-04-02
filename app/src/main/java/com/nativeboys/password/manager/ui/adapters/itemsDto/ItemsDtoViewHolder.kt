@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.imageview.ShapeableImageView
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.ItemDto
@@ -47,6 +48,7 @@ class ItemsDtoViewHolder(
         Glide.with(itemView.context)
             .load(model.thumbnailUrl)
             .transform(CenterCrop())
+            .transition(DrawableTransitionOptions().crossFade())
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(thumbnailHolder)
 

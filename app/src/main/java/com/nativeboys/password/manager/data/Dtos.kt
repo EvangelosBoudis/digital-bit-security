@@ -1,6 +1,7 @@
 package com.nativeboys.password.manager.data
 
 import com.zeustech.zeuskit.ui.rv.ListAdapterItem
+import java.util.*
 
 data class CategoryDto(
     val id: String,
@@ -25,3 +26,15 @@ data class ItemDto(
 
     override fun areContentsTheSame(model: ItemDto) = this == model
 }
+
+data class FieldContentDto(
+    val contentId: String = UUID.randomUUID().toString(),
+    val textContent: String,
+    val fieldName: String,
+    val fieldType: String
+)
+
+data class ItemFieldsContentDto(
+    val item: ItemData,
+    val fieldsContent: List<FieldContentDto>
+)

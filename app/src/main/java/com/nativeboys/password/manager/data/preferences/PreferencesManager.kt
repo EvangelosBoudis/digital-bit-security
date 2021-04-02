@@ -32,26 +32,31 @@ class PreferencesManager @Inject constructor(
         }
     }
 
-    fun findSelectedCategoryIdAsFlow(): Flow<String> {
-        return getPreferencesAsFlow().map { preferences ->
-            preferences[PreferencesKeys.SELECTED_CATEGORY_ID] ?: ""
+    fun findSelectedCategoryIdAsFlow() =
+        getPreferencesAsFlow().map {
+            it[PreferencesKeys.SELECTED_CATEGORY_ID] ?: ""
         }
-    }
 
-    fun findFilterItemAsFlow(): Flow<FilterItemPreference> {
-        return getPreferencesAsFlow().map { preferences ->
+    fun findFilterItemAsFlow() =
+        getPreferencesAsFlow().map {
             FilterItemPreference(
-                SortOrder.valueOf(preferences[PreferencesKeys.SORT_ORDER] ?: SortOrder.BY_DATE.name),
-                preferences[PreferencesKeys.HIDE_NON_FAVORITES] ?: false
+                SortOrder.valueOf(it[PreferencesKeys.SORT_ORDER] ?: SortOrder.BY_DATE.name),
+                it[PreferencesKeys.HIDE_NON_FAVORITES] ?: false
             )
         }
-    }
+
+    fun findItemSearchKey() =
+        getPreferencesAsFlow().map {
+            it[PreferencesKeys.ITEM_SEARCH_KEY] ?: ""
+        }
 
     suspend fun updateItemsSortOrder(order: SortOrder) = updatePreferences(PreferencesKeys.SORT_ORDER, order.name)
 
     suspend fun updateNonFavoriteItemsVisibility(hide: Boolean) = updatePreferences(PreferencesKeys.HIDE_NON_FAVORITES, hide)
 
     suspend fun updateSelectedCategoryId(id: String) = updatePreferences(PreferencesKeys.SELECTED_CATEGORY_ID, id)
+
+    suspend fun updateItemSearchKey(searchKey: String) = updatePreferences(PreferencesKeys.ITEM_SEARCH_KEY, searchKey)
 
     private suspend fun <T> updatePreferences(key: Preferences.Key<T>, value: T) {
         dataStore.edit { preferences ->
@@ -63,6 +68,7 @@ class PreferencesManager @Inject constructor(
         val SORT_ORDER = preferencesKey<String>("sort_order")
         val HIDE_NON_FAVORITES = preferencesKey<Boolean>("hide_non_favorites")
         val SELECTED_CATEGORY_ID = preferencesKey<String>("selected_category_id")
+        val ITEM_SEARCH_KEY = preferencesKey<String>("item_search_key")
     }
 
 }

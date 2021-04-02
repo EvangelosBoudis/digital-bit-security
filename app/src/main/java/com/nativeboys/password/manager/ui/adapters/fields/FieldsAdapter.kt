@@ -2,10 +2,10 @@ package com.nativeboys.password.manager.ui.adapters.fields
 
 import android.view.View
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.other.FieldContentModel
+import com.nativeboys.password.manager.data.FieldContentDto
 import com.zeustech.zeuskit.ui.rv.RecyclerAdapter
 
-class FieldsAdapter : RecyclerAdapter<FieldContentModel, FieldsViewHolder>() {
+class FieldsAdapter : RecyclerAdapter<FieldContentDto, FieldsViewHolder>() {
 
     override fun getResId(viewType: Int) = R.layout.fields_cell
 

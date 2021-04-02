@@ -23,6 +23,8 @@ class CategoryRepository @Inject constructor(
 
     suspend fun findFieldsByCategoryId(categoryId: String) = fieldDao.findByCategoryId(categoryId)
 
+    suspend fun findCategoryWithFieldsById(categoryId: String) = categoryDao.findCategoryWithFieldsById(categoryId)
+
     suspend fun updateSelectedCategoryId(id: String) = preferences.updateSelectedCategoryId(id)
 
     fun findAllCategoriesDtoAsFlow(addDefault: Boolean = true): Flow<List<CategoryDto>> {

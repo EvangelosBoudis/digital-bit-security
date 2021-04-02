@@ -6,13 +6,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.other.FieldContentModel
+import com.nativeboys.password.manager.data.FieldContentDto
 import com.nativeboys.password.manager.other.InputTypeItem
 import com.nativeboys.password.manager.other.findByCode
 import com.nativeboys.password.manager.other.toggleTransformationMethod
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
-class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentModel>(itemView) {
+class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentDto>(itemView) {
 
     private val nameField = itemView.findViewById<TextView>(R.id.name_field)
     private val contentField = itemView.findViewById<EditText>(R.id.content_field)
@@ -26,10 +26,10 @@ class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentModel>(i
         copyBtn.setOnClickListener(this)
     }
 
-    override fun bind(model: FieldContentModel) {
-        nameField.text = model.name
-        contentField.setText(model.content)
-        val hidden = model.type == InputTypeItem.TEXT_PASSWORD.code
+    override fun bind(model: FieldContentDto) {
+        nameField.text = model.fieldName
+        contentField.setText(model.textContent)
+        val hidden = model.fieldType == InputTypeItem.TEXT_PASSWORD.code
         if (hidden) {
             Glide
                 .with(itemView.context)
@@ -41,7 +41,7 @@ class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentModel>(i
             .with(itemView.context)
             .load(R.drawable.copy_icon)
             .into(copyBtn)
-        findByCode(model.type)?.type?.let {
+        findByCode(model.fieldType)?.type?.let {
             contentField.inputType = it
         }
         //contentField.setTransformationMethodAsHidden(model.hidden)
