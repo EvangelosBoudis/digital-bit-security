@@ -2,6 +2,7 @@ package com.nativeboys.password.manager.data
 
 import android.os.Parcelable
 import androidx.room.*
+import com.zeustech.zeuskit.ui.rv.ListAdapterItem
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
@@ -29,11 +30,14 @@ data class CategoryData(
     @ColumnInfo(name = "thumbnail_code") val thumbnailCode: String,
     @ColumnInfo(name = "owner_id") val ownerId: String, // FK (Users) e.g ADMIN
     @ColumnInfo(name = "date_modified") val dateModified: Date = Date()
-) : Parcelable {
+) : Parcelable, ListAdapterItem<CategoryData> {
 
     val adminCategory: Boolean
         get() = ownerId == "ADMIN"
 
+    override fun areItemsTheSame(model: CategoryData) = id == model.id
+
+    override fun areContentsTheSame(model: CategoryData) = this == model
 }
 
 @Entity(tableName = "fields")

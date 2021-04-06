@@ -1,15 +1,13 @@
 package com.nativeboys.password.manager.ui.adapters.types
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.other.InputTypeItem
+import com.nativeboys.password.manager.other.intoView
 import com.zeustech.zeuskit.ui.spinner.SpinnerAdapter
 
 class TypesSpinnerAdapter(context: Context):
@@ -27,15 +25,7 @@ class TypesSpinnerAdapter(context: Context):
         Glide
             .with(viewHolder.context)
             .load(R.drawable.spinner_shape)
-            .into(object : CustomTarget<Drawable>() {
-                override fun onResourceReady(
-                    resource: Drawable,
-                    transition: Transition<in Drawable>?
-                ) {
-                    viewHolder.findViewById<ConstraintLayout>(R.id.container).background = resource
-                }
-                override fun onLoadCleared(placeholder: Drawable?) { }
-            })
+            .intoView(viewHolder.findViewById<ConstraintLayout>(R.id.container))
         setUpView(model, viewHolder)
     }
 

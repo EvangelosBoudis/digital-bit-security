@@ -1,18 +1,15 @@
-package com.nativeboys.password.manager.ui.categories
+package com.nativeboys.password.manager.ui.home.categories
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
+import androidx.lifecycle.liveData
 import com.nativeboys.password.manager.data.repository.CategoryRepository
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flatMapLatest
 
 class CategoriesViewModel @ViewModelInject constructor(
     private val categoryRepository: CategoryRepository
 ) : ViewModel() {
 
-    val searchKey = MutableStateFlow("")
+/*    val searchKey = MutableStateFlow("")
     val sortOrder = MutableStateFlow(0)
 
     private val categoriesFlow =
@@ -22,8 +19,10 @@ class CategoriesViewModel @ViewModelInject constructor(
             categoryRepository.findAllCategoriesByNameAsFlow(key, order)
         }
 
-    val categories = categoriesFlow.asLiveData()
+    //val categories = categoryRepository.findAllCategories().asLiveData()*/
+
+    val categories = liveData {
+        emit(categoryRepository.findAllCategories())
+    }
 
 }
-
-//enum class SortOrder { BY_NAME, BY_DATE }

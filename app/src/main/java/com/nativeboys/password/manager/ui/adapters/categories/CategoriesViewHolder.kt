@@ -1,47 +1,49 @@
 package com.nativeboys.password.manager.ui.adapters.categories
 
-import android.graphics.drawable.Drawable
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.CategoryData
+import com.nativeboys.password.manager.other.intoMaterialIcon
+import com.nativeboys.password.manager.other.intoView
 import com.nativeboys.password.manager.other.materialIconCodeToDrawable
-import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
+import com.nativeboys.password.manager.ui.adapters.SwipeRevealViewHolder
+import com.zeustech.zeuskit.ui.swipeRevealLayout.ViewBinderHelper
 import net.steamcrafted.materialiconlib.MaterialIconView
 
-class CategoriesViewHolder(itemView: View) : RecyclerViewHolder<CategoryData>(itemView) {
+class CategoriesViewHolder(
+    itemView: View,
+    private val binder: ViewBinderHelper
+) : SwipeRevealViewHolder<CategoryData>(itemView) {
 
+    private val thumbnailBackgroundHolder = itemView.findViewById<View>(R.id.thumbnail_background_holder)
     private val thumbnailHolder = itemView.findViewById<MaterialIconView>(R.id.thumbnail_holder)
     private val nameField = itemView.findViewById<TextView>(R.id.name_field)
-    private val nextBtn = itemView.findViewById<ImageView>(R.id.next_btn)
 
     override fun bind(model: CategoryData) {
-        nameField.text = model.name
-        Glide.with(itemView.context)
-            .load(R.drawable.next_icon)
-            .into(nextBtn)
-        val drawable = materialIconCodeToDrawable(itemView.context, model.thumbnailCode)
-        if (drawable != null) {
-            Glide
-                .with(itemView.context)
-                .load(drawable)
-                .into(object : CustomTarget<Drawable>() {
-                    override fun onResourceReady(
-                        resource: Drawable,
-                        transition: Transition<in Drawable>?
-                    ) {
-                        thumbnailHolder.setImageDrawable(resource)
-                    }
+        super.bind(model)
+        binder.bind(container, model.id)
+        container.setLockDrag(true)
 
-                    override fun onLoadCleared(placeholder: Drawable?) {}
-                })
+        nameField.text = model.name
+        moreBtn.visibility = if (model.adminCategory) View.INVISIBLE else View.VISIBLE
+
+        val draw = materialIconCodeToDrawable(itemView.context, model.thumbnailCode)
+        if (draw != null) {
+            Glide.with(itemView.context)
+                .load(draw)
+                .transition(DrawableTransitionOptions().crossFade())
+                .intoMaterialIcon(thumbnailHolder)
         } else {
             thumbnailHolder.setImageDrawable(null)
         }
+
+        Glide
+            .with(itemView.context)
+            .load(R.drawable.stroke_shape)
+            .intoView(thumbnailBackgroundHolder)
     }
 
 }

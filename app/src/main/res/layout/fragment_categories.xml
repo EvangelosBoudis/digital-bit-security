@@ -5,10 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".ui.categories.CategoriesFragment">
+    tools:context=".ui.home.categories.CategoriesFragment">
 
-    <include android:id="@+id/header_container"
-        layout="@layout/header_layout" />
+    <TextView
+        android:id="@+id/headline_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/categories"
+        style="@style/Widget.App.TextView.Headline"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categories_recycler_view"
@@ -16,15 +23,22 @@
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:paddingBottom="70dp"
-        app:layout_constraintTop_toBottomOf="@id/header_container"
+        app:layout_constraintTop_toBottomOf="@id/headline_field"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/plus_btn"
+        android:layout_width="40dp"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/PlusButtonStyle" />
+        app:tint="@color/cyan"
+        android:src="@drawable/ic_baseline_add_24"
+        android:background="@drawable/transparent_circle_shape"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

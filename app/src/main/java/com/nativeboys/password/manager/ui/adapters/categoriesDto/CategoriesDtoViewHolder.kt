@@ -1,13 +1,11 @@
 package com.nativeboys.password.manager.ui.adapters.categoriesDto
 
-import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.CategoryDto
+import com.nativeboys.password.manager.other.intoView
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
 class CategoriesDtoViewHolder(itemView: View) : RecyclerViewHolder<CategoryDto>(itemView) {
@@ -16,19 +14,10 @@ class CategoriesDtoViewHolder(itemView: View) : RecyclerViewHolder<CategoryDto>(
 
     override fun bind(model: CategoryDto) {
         descriptionField.text = model.description
-        val drawableResource = if (model.selected) R.drawable.selected_tag_shape else R.drawable.tag_shape
         Glide
             .with(itemView.context)
-            .load(drawableResource)
-            .into(object : CustomTarget<Drawable>() {
-                override fun onResourceReady(
-                    resource: Drawable,
-                    transition: Transition<in Drawable>?
-                ) {
-                    descriptionField.background = resource
-                }
-                override fun onLoadCleared(placeholder: Drawable?) { }
-            })
+            .load(if (model.selected) R.drawable.selected_tag_shape else R.drawable.tag_shape)
+            .intoView(descriptionField)
     }
 
 }

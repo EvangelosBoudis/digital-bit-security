@@ -9,6 +9,7 @@
         <item name="android:spinnerStyle">@style/Widget.App.Spinner</item>
         <item name="switchStyle">@style/Widget.App.Switch</item>
         <item name="checkboxStyle">@style/Widget.App.CheckBox</item>
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
     </style>
 
     <style name="CustomBottomSheetDialogTheme" parent="BottomSheetDialogTheme">
@@ -197,6 +198,26 @@
         <item name="android:padding">16dp</item>
         <item name="tint">@android:color/white</item>
         <item name="android:background">@drawable/add_btn_shape</item>
+    </style>
+
+    <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="android:background">@color/black</item>
+        <item name="itemIconTint">@color/menu_colors</item>
+        <item name="itemTextColor">@color/menu_colors</item>
+        <item name="itemTextAppearanceActive">@style/Widget.App.BottomNavigationView.Text</item>
+        <item name="itemTextAppearanceInactive">@style/Widget.App.BottomNavigationView.Text</item>
+        <item name="labelVisibilityMode">unlabeled</item>
+    </style>
+
+    <style name="Widget.App.BottomNavigationView.Text">
+        <item name="android:fontFamily">@font/breeze_sans_regular</item>
+    </style>
+
+    <style name="Widget.App.TextView.Headline" parent="Widget.MaterialComponents.TextView">
+        <item name="android:padding">20dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/breeze_sans_light</item>
     </style>
 
 </resources>

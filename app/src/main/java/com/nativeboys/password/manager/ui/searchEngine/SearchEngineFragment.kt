@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.databinding.FragmentSearchEngineBinding
 import com.nativeboys.password.manager.ui.adapters.searchItems.SearchItemsAdapter
-import com.zeustech.zeuskit.ui.other.KeyboardManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,17 +23,14 @@ class SearchEngineFragment : Fragment(R.layout.fragment_search_engine), View.OnC
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentSearchEngineBinding.bind(view)
         binding.apply {
-            headerContainer.headlineField.setText(R.string.advanced_search)
-            headerContainer.trailignBtn.visibility = View.INVISIBLE
             val portrait = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
             // Same result using GridLayoutManager
             itemsRecyclerView.layoutManager = StaggeredGridLayoutManager(if (portrait) 4 else 7, StaggeredGridLayoutManager.VERTICAL)
             itemsRecyclerView.adapter = searchItemsAdapter
-            headerContainer.leadingBtn.setOnClickListener(this@SearchEngineFragment)
-            searchField.requestFocus()
-            searchField.setOnFocusChangeListener { v, hasFocus ->
+            //searchField.requestFocus()
+            /*searchField.setOnFocusChangeListener { v, hasFocus ->
                 if (hasFocus) KeyboardManager().showKeyboard(v)
-            }
+            }*/
             searchField.doAfterTextChanged { editable ->
                 editable?.let { viewModel.updateItemSearchKey(it.toString()) }
             }

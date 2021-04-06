@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.ui.categories
+package com.nativeboys.password.manager.ui.home.categories
 
 import android.os.Bundle
 import android.view.View
@@ -21,29 +21,20 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories), AdapterClickL
 
     private lateinit var navController: NavController
     private val categoriesAdapter = CategoriesAdapter()
-    private var binding: FragmentCategoriesBinding? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentCategoriesBinding.bind(view)
+        val binding = FragmentCategoriesBinding.bind(view)
         navController = Navigation.findNavController(view)
-        binding?.apply {
-            headerContainer.headlineField.setText(R.string.choose_category)
-            headerContainer.trailignBtn.visibility = View.INVISIBLE
+        binding.apply {
             categoriesRecyclerView.layoutManager = LinearLayoutManager(view.context)
             categoriesRecyclerView.adapter = categoriesAdapter
-            headerContainer.leadingBtn.setOnClickListener(this@CategoriesFragment)
             plusBtn.setOnClickListener(this@CategoriesFragment)
         }
         categoriesAdapter.adapterClickListener = this
         viewModel.categories.observe(viewLifecycleOwner) {
-            categoriesAdapter.dataSet = it
+            categoriesAdapter.submitList(it)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        binding = null
     }
 
     override fun onClick(view: View, model: CategoryData, position: Int) = moveToCategoryFragment(model.id)
@@ -61,8 +52,7 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories), AdapterClickL
     }
 
     private fun moveToCategoryFragment(id: String? = null) {
-        val action = CategoriesFragmentDirections.actionCategoriesToCategoryConstructor(id)
-        navController.navigate(action)
+        //navController.navigate(CategoriesFragmentDirections.actionCategoriesToCategoryConstructor(id))
     }
 
 }

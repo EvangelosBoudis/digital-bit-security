@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Password Manager</string>
+    <string name="app_name">Offline Security</string>
     <string name="items">Items</string>
     <string name="create_item">Create Item</string>
     <string name="email_username">email/username</string>
@@ -31,4 +31,7 @@
     <string name="fields">Fields</string>
     <string name="password_required_on_overview">Password Required: </string>
     <string name="choose_type">Choose Type</string>
+    <string name="categories">Categories</string>
+    <string name="settings">Settings</string>
+    <string name="filter_by_category">Filter by category</string>
 </resources>

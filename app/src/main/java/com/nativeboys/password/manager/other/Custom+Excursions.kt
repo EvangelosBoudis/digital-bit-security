@@ -6,11 +6,16 @@ import android.graphics.drawable.Drawable
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.text.method.TransformationMethod
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.ColorInt
+import com.bumptech.glide.RequestBuilder
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.google.android.flexbox.*
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder
+import net.steamcrafted.materialiconlib.MaterialIconView
 
 fun FlexboxLayoutManager.wrapCells() {
     this.flexWrap = FlexWrap.WRAP
@@ -52,3 +57,31 @@ fun ImageView.setMaterialIcon(
     materialIconCode: String,
     @ColorInt color: Int = Color.WHITE
 ) = materialIconCodeToDrawable(context, materialIconCode, color)?.let { setImageDrawable(it) }
+
+fun RequestBuilder<Drawable>.intoView(view: View) {
+    into(object : CustomTarget<Drawable>() {
+        override fun onResourceReady(
+            resource: Drawable,
+            transition: Transition<in Drawable>?
+        ) {
+            view.background = resource
+        }
+
+        override fun onLoadCleared(placeholder: Drawable?) {}
+    })
+}
+
+fun RequestBuilder<Drawable>.intoMaterialIcon(view: MaterialIconView) {
+    into(object : CustomTarget<Drawable>() {
+        override fun onResourceReady(
+            resource: Drawable,
+            transition: Transition<in Drawable>?
+        ) {
+            view.setImageDrawable(resource)
+        }
+
+        override fun onLoadCleared(placeholder: Drawable?) {
+            view.setImageDrawable(null)
+        }
+    })
+}
