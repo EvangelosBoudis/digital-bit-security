@@ -23,13 +23,17 @@ class MainActivity : AppCompatActivity() {
 *  7. Welcome Screen with basic Information about the app
 *  8. Settings (exit, theme, patreon link)*/
 
-// Tutorials:
-// Nice profile: https://github.com/jisungbin
-// https://github.com/sberoch/RickAndMorty-AndroidArchitectureSample/blob/master/app/src/main/java/com/example/rickandmorty/di/AppModule.kt
-// https://stackoverflow.com/questions/64831704/how-can-i-use-hilt-to-inject-retrofit-to-repository-which-is-injected-to-viewmo
-
-// Documentation:
-// https://developer.android.com/training/data-storage/room/relationships
-// https://developer.android.com/training/dependency-injection/hilt-android
-// https://developer.android.com/training/dependency-injection/dagger-basics
-// https://developer.android.com/codelabs/advanced-kotlin-coroutines#0
+/*
+* Tutorials:
+* Nice profile: https://github.com/jisungbin
+* https://github.com/sberoch/RickAndMorty-AndroidArchitectureSample/blob/master/app/src/main/java/com/example/rickandmorty/di/AppModule.kt
+* https://stackoverflow.com/questions/64831704/how-can-i-use-hilt-to-inject-retrofit-to-repository-which-is-injected-to-viewmo
+*
+* Documentation:
+* https://developer.android.com/training/data-storage/room/relationships
+* https://developer.android.com/training/dependency-injection/hilt-android
+* https://developer.android.com/training/dependency-injection/dagger-basics
+* https://developer.android.com/codelabs/advanced-kotlin-coroutines#0
+* https://material.io/components/buttons/android#toggle-button
+*
+* */

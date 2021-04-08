@@ -91,7 +91,7 @@ abstract class AppDatabase : RoomDatabase() {
             val instagram = ItemData(name = "Instagram", description = "Shared account", notes = "", tags = "Social Media, Chat, Video Call",
                 thumbnailId = instagramThumb.id, requiresPassword = false, favorite = false, categoryId = accountCategory.id, ownerId = userId)
             val hzTest = ItemData(name = "HZ-TEST", description = "Network details", notes = "", tags = "ZeusTech, Wifi, Network",
-                thumbnailId = modemThumb.id, requiresPassword = false, favorite = false, categoryId = networkCategory.id, ownerId = userId)
+                thumbnailId = modemThumb.id, requiresPassword = false, favorite = true, categoryId = networkCategory.id, ownerId = userId)
             val euroBank = ItemData(name = "Eurobank", description = "Credit card details", notes = "", tags = "Eurobank, Payment, Money",
                 thumbnailId = euroBankThumb.id, requiresPassword = true, favorite = false, categoryId = creditCategory.id, ownerId = userId)
 

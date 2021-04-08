@@ -5,5 +5,3 @@ import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class ManagerApplication : Application()
-
-/*coocksclub.zeushotels.gr*/

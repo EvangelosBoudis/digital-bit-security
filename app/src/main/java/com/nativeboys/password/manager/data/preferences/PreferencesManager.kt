@@ -32,23 +32,21 @@ class PreferencesManager @Inject constructor(
         }
     }
 
-    fun findSelectedCategoryIdAsFlow() =
-        getPreferencesAsFlow().map {
-            it[PreferencesKeys.SELECTED_CATEGORY_ID] ?: ""
-        }
+    fun findSelectedCategoryIdAsFlow() = getPreferencesAsFlow().map {
+        it[PreferencesKeys.SELECTED_CATEGORY_ID] ?: ""
+    }
 
-    fun findFilterItemAsFlow() =
-        getPreferencesAsFlow().map {
-            FilterItemPreference(
-                SortOrder.valueOf(it[PreferencesKeys.SORT_ORDER] ?: SortOrder.BY_DATE.name),
-                it[PreferencesKeys.HIDE_NON_FAVORITES] ?: false
-            )
-        }
+    fun findItemsSortOrderAsFlow() = getPreferencesAsFlow().map {
+        SortOrder.valueOf(it[PreferencesKeys.SORT_ORDER] ?: SortOrder.BY_NAME.name)
+    }
 
-    fun findItemSearchKey() =
-        getPreferencesAsFlow().map {
-            it[PreferencesKeys.ITEM_SEARCH_KEY] ?: ""
-        }
+    fun areNonFavoritesInvisible() = getPreferencesAsFlow().map {
+        it[PreferencesKeys.HIDE_NON_FAVORITES] ?: false
+    }
+
+    fun findItemSearchKey() = getPreferencesAsFlow().map {
+        it[PreferencesKeys.ITEM_SEARCH_KEY] ?: ""
+    }
 
     suspend fun updateItemsSortOrder(order: SortOrder) = updatePreferences(PreferencesKeys.SORT_ORDER, order.name)
 

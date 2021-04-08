@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.annotation.StyleRes
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.zeustech.zeuskit.R
 
 open class BottomFragment(
     @LayoutRes private val contentLayoutId: Int,
-    @StyleRes private val dTheme: Int = R.style.BottomSheetDialogTheme
+    @StyleRes private val dTheme: Int
 ) : BottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

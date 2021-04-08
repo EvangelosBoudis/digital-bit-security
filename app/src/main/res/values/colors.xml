@@ -8,10 +8,11 @@
     <color name="blackTransparent">#80121212</color>
     <color name="black3">#242627</color>
     <color name="gray">#5d6466</color>
-    <color name="grayTransparent">#805d6466</color>
+    <color name="grayTransparent">#4a5051</color>
     <color name="gray2">#303136</color>
     <color name="gray3">#b2b4b6</color>
     <color name="cyan">#00ecd7</color>
     <color name="darkCyan">#172524</color>
     <color name="red">#e84a5f</color>
+    <color name="rippleColor">#40ffffff</color>
 </resources>

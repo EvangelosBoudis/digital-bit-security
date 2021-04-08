@@ -5,13 +5,13 @@
         android:id="@+id/itemsFragment"
         android:icon="@drawable/home_icon_shape"
         android:orderInCategory="1"
-        android:title="@string/items"/>
+        android:title="@string/home"/>
 
     <item
         android:id="@+id/searchEngineFragment"
         android:icon="@drawable/search_icon_shape"
         android:orderInCategory="2"
-        android:title="@string/items"/>
+        android:title="@string/search"/>
 
     <item
         android:id="@+id/categoriesFragment"

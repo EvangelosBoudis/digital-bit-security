@@ -14,7 +14,7 @@ interface ItemDao {
 
     // Projection
     @Query("""
-        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.category_id AS itemCategoryId, thumbnails.url AS thumbnailUrl 
+        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.category_id AS itemCategoryId, thumbnails.url AS thumbnailUrl, items.date_modified AS lastModificationDate, items.favorite AS favoriteItem
         FROM items
         LEFT JOIN thumbnails ON thumbnails.id = items.thumbnail_id
         GROUP BY itemId
@@ -22,7 +22,7 @@ interface ItemDao {
     fun findAllDtoAsFlow(): Flow<List<ItemDto>>
 
     @Query("""
-        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.category_id AS itemCategoryId, thumbnails.url AS thumbnailUrl 
+        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.category_id AS itemCategoryId, thumbnails.url AS thumbnailUrl, items.date_modified AS lastModificationDate, items.favorite AS favoriteItem
         FROM (SELECT * FROM items AS nested WHERE (nested.name LIKE '%' || :searchKey || '%' OR nested.tags LIKE '%' || :searchKey || '%')) AS items
         LEFT JOIN thumbnails ON thumbnails.id = items.thumbnail_id
         GROUP BY itemId

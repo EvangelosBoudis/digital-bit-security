@@ -14,6 +14,7 @@ import com.nativeboys.password.manager.data.ItemDto
 import com.nativeboys.password.manager.databinding.FragmentItemsBinding
 import com.nativeboys.password.manager.ui.adapters.categoriesDto.CategoriesDtoAdapter
 import com.nativeboys.password.manager.ui.adapters.itemsDto.ItemsDtoAdapter
+import com.nativeboys.password.manager.ui.itemConstructor.FactoryBottomFragment
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -69,6 +70,12 @@ class ItemsFragment : Fragment(R.layout.fragment_items), View.OnClickListener {
     override fun onClick(v: View?) {
         val view = v ?: return
         when (view.id) {
+            R.id.settings_btn -> {
+                SettingsBottomFragment().show(
+                    this.childFragmentManager,
+                    FactoryBottomFragment::class.java.simpleName
+                )
+            }
             R.id.plus_btn -> {
                 //navController.navigate(R.id.action_home_to_categories)
             }

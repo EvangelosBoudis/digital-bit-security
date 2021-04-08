@@ -6,7 +6,7 @@ import android.view.View
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.databinding.FragmentSearchEngineBinding
 import com.nativeboys.password.manager.ui.adapters.searchItems.SearchItemsAdapter
@@ -24,13 +24,9 @@ class SearchEngineFragment : Fragment(R.layout.fragment_search_engine), View.OnC
         val binding = FragmentSearchEngineBinding.bind(view)
         binding.apply {
             val portrait = resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
-            // Same result using GridLayoutManager
-            itemsRecyclerView.layoutManager = StaggeredGridLayoutManager(if (portrait) 4 else 7, StaggeredGridLayoutManager.VERTICAL)
+            // Same result using itemsRecyclerView.layoutManager = StaggeredGridLayoutManager(if (portrait) 4 else 7, StaggeredGridLayoutManager.VERTICAL)
+            itemsRecyclerView.layoutManager = GridLayoutManager(view.context, if (portrait) 4 else 7)
             itemsRecyclerView.adapter = searchItemsAdapter
-            //searchField.requestFocus()
-            /*searchField.setOnFocusChangeListener { v, hasFocus ->
-                if (hasFocus) KeyboardManager().showKeyboard(v)
-            }*/
             searchField.doAfterTextChanged { editable ->
                 editable?.let { viewModel.updateItemSearchKey(it.toString()) }
             }
