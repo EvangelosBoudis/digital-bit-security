@@ -83,7 +83,7 @@
             app:layout_constraintTop_toTopOf="@id/thumbnail_holder"
             app:layout_constraintBottom_toBottomOf="@id/thumbnail_holder"
             app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/gray"
+            app:tint="@color/textGray"
             tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

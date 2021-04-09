@@ -10,6 +10,10 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.ColorInt
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -84,4 +88,12 @@ fun RequestBuilder<Drawable>.intoMaterialIcon(view: MaterialIconView) {
             view.setImageDrawable(null)
         }
     })
+}
+
+fun Fragment.parentNavController(): NavController? {
+    val navHostFragment = parentFragment as? NavHostFragment
+    val parentView = navHostFragment?.parentFragment?.view
+    return parentView?.let {
+        Navigation.findNavController(it)
+    }
 }

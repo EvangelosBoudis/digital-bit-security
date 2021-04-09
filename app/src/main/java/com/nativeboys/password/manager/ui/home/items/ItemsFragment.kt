@@ -12,6 +12,7 @@ import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.CategoryDto
 import com.nativeboys.password.manager.data.ItemDto
 import com.nativeboys.password.manager.databinding.FragmentItemsBinding
+import com.nativeboys.password.manager.other.parentNavController
 import com.nativeboys.password.manager.ui.adapters.categoriesDto.CategoriesDtoAdapter
 import com.nativeboys.password.manager.ui.adapters.itemsDto.ItemsDtoAdapter
 import com.nativeboys.password.manager.ui.itemConstructor.FactoryBottomFragment
@@ -77,6 +78,7 @@ class ItemsFragment : Fragment(R.layout.fragment_items), View.OnClickListener {
                 )
             }
             R.id.plus_btn -> {
+                parentNavController()?.navigate(R.id.action_homeFragment_to_itemConstructorFragment)
                 //navController.navigate(R.id.action_home_to_categories)
             }
         }

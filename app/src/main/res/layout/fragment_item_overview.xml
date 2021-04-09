@@ -57,7 +57,7 @@
                 app:layout_constraintStart_toStartOf="@id/name_field"
                 app:layout_constraintEnd_toEndOf="@id/name_field"
                 android:textSize="14sp"
-                android:textColor="@color/gray"
+                android:textColor="@color/textGray"
                 android:fontFamily="@font/breeze_sans_regular"/>
 
             <ImageView
