@@ -36,4 +36,9 @@ class MainActivity : AppCompatActivity() {
 * https://developer.android.com/codelabs/advanced-kotlin-coroutines#0
 * https://material.io/components/buttons/android#toggle-button
 *
+* Animations:
+* https://developer.android.com/guide/fragments/animate
+* https://codelabs.developers.google.com/codelabs/material-motion-android#4
+* https://medium.com/@j.c.moreirapinto/recyclerview-shared-transitions-in-android-navigation-architecture-component-16eb902b39ba
+*
 * */

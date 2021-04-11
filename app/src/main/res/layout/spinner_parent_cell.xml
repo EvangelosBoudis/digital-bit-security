@@ -30,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/description_field"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/cyan"
+        app:tint="@color/colorAccent"
         tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

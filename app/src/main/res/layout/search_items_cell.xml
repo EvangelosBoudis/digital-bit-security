@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="5dp"
-        android:textColor="@color/textGray"
+        android:textColor="@color/lightGray"
         android:fontFamily="@font/breeze_sans_medium"
         android:textSize="12sp"
         android:textAlignment="center" />

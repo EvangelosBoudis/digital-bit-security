@@ -14,7 +14,7 @@ class TypesAdapter(context: Context):
         context,
         R.layout.spinner_child_cell,
         R.font.breeze_sans_medium,
-        ContextCompat.getColor(context, R.color.cyan)
+        ContextCompat.getColor(context, R.color.colorAccent)
     )
 {
 

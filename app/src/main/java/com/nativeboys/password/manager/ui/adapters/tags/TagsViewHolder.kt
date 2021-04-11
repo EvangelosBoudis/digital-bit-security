@@ -24,7 +24,7 @@ class TagsViewHolder(itemView: View) : RecyclerViewHolder<TagModel>(itemView) {
         descriptionField.text = model.name
         Glide
             .with(itemView.context)
-            .load(R.drawable.remove_icon)
+            .load(R.drawable.ic_baseline_clear_24)
             .into(removeBtn)
         Glide
             .with(itemView.context)

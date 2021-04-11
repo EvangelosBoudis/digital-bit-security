@@ -1,5 +1,7 @@
 package com.nativeboys.password.manager.other
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -10,14 +12,15 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.ColorInt
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.flexbox.*
+import com.google.android.material.transition.MaterialSharedAxis
+import com.nativeboys.password.manager.R
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder
 import net.steamcrafted.materialiconlib.MaterialIconView
 
@@ -90,10 +93,22 @@ fun RequestBuilder<Drawable>.intoMaterialIcon(view: MaterialIconView) {
     })
 }
 
-fun Fragment.parentNavController(): NavController? {
-    val navHostFragment = parentFragment as? NavHostFragment
-    val parentView = navHostFragment?.parentFragment?.view
-    return parentView?.let {
-        Navigation.findNavController(it)
+fun copyToClipboard(context: Context, label: String, text: String) {
+    val clipboard = ContextCompat.getSystemService(context, ClipboardManager::class.java)
+    val clip = ClipData.newPlainText(label, text)
+    clipboard?.setPrimaryClip(clip)
+}
+
+fun Fragment.applyZTransition() {
+    enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).apply {
+        duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
+    }
+    returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false).apply {
+        duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
     }
 }
+
+fun Fragment.parentNavController() =
+    parentFragment?.parentFragment?.view?.let {
+        Navigation.findNavController(it)
+    }

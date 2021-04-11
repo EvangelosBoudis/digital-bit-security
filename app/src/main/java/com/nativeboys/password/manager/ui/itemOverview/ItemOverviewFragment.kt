@@ -1,11 +1,8 @@
 package com.nativeboys.password.manager.ui.itemOverview
 
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -15,10 +12,12 @@ import com.google.android.material.snackbar.Snackbar
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.FieldContentDto
 import com.nativeboys.password.manager.databinding.FragmentItemOverviewBinding
+import com.nativeboys.password.manager.other.applyZTransition
 import com.nativeboys.password.manager.ui.adapters.fields.FieldsAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import com.zeustech.zeuskit.ui.views.BottomBar
 import dagger.hilt.android.AndroidEntryPoint
+import com.nativeboys.password.manager.other.copyToClipboard
 
 @AndroidEntryPoint
 class ItemOverviewFragment : Fragment(R.layout.fragment_item_overview), AdapterClickListener<FieldContentDto>, View.OnClickListener {
@@ -30,13 +29,18 @@ class ItemOverviewFragment : Fragment(R.layout.fragment_item_overview), AdapterC
 
     private val fieldsAdapter = FieldsAdapter()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        applyZTransition()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         binding = FragmentItemOverviewBinding.bind(view)
         binding?.apply {
             headerContainer.headlineField.setText(R.string.item_overview)
-            headerContainer.trailignBtn.visibility = View.INVISIBLE
+            headerContainer.trailingBtn.visibility = View.INVISIBLE
             fieldsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             fieldsRecyclerView.adapter = fieldsAdapter
             headerContainer.leadingBtn.setOnClickListener(this@ItemOverviewFragment)
@@ -69,9 +73,7 @@ class ItemOverviewFragment : Fragment(R.layout.fragment_item_overview), AdapterC
 
     override fun onClick(view: View, model: FieldContentDto, position: Int) {
         if (view.id == R.id.copy_btn) {
-            val clipboard = getSystemService(requireContext(), ClipboardManager::class.java)
-            val clip = ClipData.newPlainText("password:manager:field", model.textContent)
-            clipboard?.setPrimaryClip(clip)
+            copyToClipboard(requireContext(), "password:manager:field", model.textContent)
             BottomBar(requireView() as ViewGroup, R.layout.copy_bottom_cell, Snackbar.LENGTH_SHORT).show()
         }
     }

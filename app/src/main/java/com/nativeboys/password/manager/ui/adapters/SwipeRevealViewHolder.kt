@@ -28,11 +28,11 @@ open class SwipeRevealViewHolder<T>(itemView: View) : RecyclerViewHolder<T>(item
             .into(moreBtn)
 
         Glide.with(itemView.context)
-            .load(R.drawable.edit_icon)
+            .load(R.drawable.ic_baseline_edit_24)
             .into(editBtn)
 
         Glide.with(itemView.context)
-            .load(R.drawable.trash_can_icon)
+            .load(R.drawable.ic_baseline_delete_24)
             .into(deleteBtn)
 
         moreBtn.setOnClickListener(this)

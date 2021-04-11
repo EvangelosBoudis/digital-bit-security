@@ -25,7 +25,7 @@ class ThumbnailsViewHolder(itemView: View) : RecyclerViewHolder<ThumbnailModel>(
         foregroundView.visibility = if (model.type == 2) View.VISIBLE else View.INVISIBLE
 
         Glide.with(itemView.context)
-            .load(R.drawable.check_icon)
+            .load(R.drawable.ic_baseline_check_24)
             .into(foregroundView)
 
     }

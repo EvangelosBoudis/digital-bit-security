@@ -27,7 +27,7 @@ class CategoryConstructorFragment : Fragment(R.layout.fragment_category_construc
             fieldsRecyclerView.layoutManager = LinearLayoutManager(view.context)
             fieldsRecyclerView.adapter = fieldsAdapter
             headerContainer.leadingBtn.setOnClickListener(this@CategoryConstructorFragment)
-            headerContainer.trailignBtn.setOnClickListener(this@CategoryConstructorFragment)
+            headerContainer.trailingBtn.setOnClickListener(this@CategoryConstructorFragment)
         }
         viewModel.categoryWithFields.observe(viewLifecycleOwner) { categoryWithFields ->
             binding.apply {
@@ -46,7 +46,7 @@ class CategoryConstructorFragment : Fragment(R.layout.fragment_category_construc
             R.id.leading_btn -> {
                 activity?.onBackPressed()
             }
-            R.id.trailign_btn -> {
+            R.id.trailing_btn -> {
                 // TODO: implement
             }
         }

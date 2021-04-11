@@ -15,6 +15,7 @@ import com.nativeboys.password.manager.databinding.FragmentItemsBinding
 import com.nativeboys.password.manager.other.parentNavController
 import com.nativeboys.password.manager.ui.adapters.categoriesDto.CategoriesDtoAdapter
 import com.nativeboys.password.manager.ui.adapters.itemsDto.ItemsDtoAdapter
+import com.nativeboys.password.manager.ui.home.HomeFragmentDirections
 import com.nativeboys.password.manager.ui.itemConstructor.FactoryBottomFragment
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,10 +56,10 @@ class ItemsFragment : Fragment(R.layout.fragment_items), View.OnClickListener {
             override fun onClick(view: View, model: ItemDto, position: Int) {
                 when (view.id) {
                     R.id.visible_view -> {
-                        //navController.navigate(HomeFragmentDirections.actionHomeToItemPreview(model.itemId))
+                        navigateToItemOverview(model.itemId)
                     }
                     R.id.edit_btn -> {
-                        //navController.navigate(R.id.action_home_to_itemConstructor)
+                        parentNavController()?.navigate(R.id.action_homeFragment_to_itemConstructorFragment)
                     }
                     R.id.delete_btn -> {
                         viewModel.deleteItem(model.itemId)
@@ -79,8 +80,14 @@ class ItemsFragment : Fragment(R.layout.fragment_items), View.OnClickListener {
             }
             R.id.plus_btn -> {
                 parentNavController()?.navigate(R.id.action_homeFragment_to_itemConstructorFragment)
-                //navController.navigate(R.id.action_home_to_categories)
             }
+        }
+    }
+
+    private fun navigateToItemOverview(itemId: String) {
+        parentNavController()?.apply {
+            val action = HomeFragmentDirections.actionHomeFragmentToItemOverviewFragment(itemId)
+            navigate(action)
         }
     }
 

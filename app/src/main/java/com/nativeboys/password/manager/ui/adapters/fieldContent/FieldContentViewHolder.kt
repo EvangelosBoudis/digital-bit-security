@@ -26,7 +26,7 @@ class FieldContentViewHolder(itemView: View) : RecyclerViewHolder<FieldContentMo
         val hidden = model.type == InputTypeItem.TEXT_PASSWORD.code
         Glide
             .with(itemView.context)
-            .load(if (hidden) R.drawable.visibility_icon else R.drawable.remove_circle_icon)
+            .load(if (hidden) R.drawable.visibility_icon else R.drawable.ic_baseline_cancel_24)
             .into(fieldBtn)
         findByCode(model.type)?.type?.let {
             contentField.inputType = it

@@ -26,6 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:icon="@drawable/ic_baseline_clear_24"
         app:iconTint="@android:color/white"
+        app:backgroundTint="@color/lightGray"
         style="@style/Widget.App.Button.OutlinedButton.IconOnly.Regular"/>
 
     <TextView
@@ -86,13 +87,14 @@
 
     <Button
         android:id="@+id/apply_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/filter_radio_group"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:backgroundTint="@color/lightGray"
         android:text="@string/apply"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

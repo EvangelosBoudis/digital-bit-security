@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/edit_btn"
-            app:tint="@color/cyan"
+            app:tint="@color/colorAccent"
             style="@style/ImageButtonStyle"
             tools:ignore="ContentDescription" />
 
@@ -72,7 +72,7 @@
             app:layout_constraintStart_toStartOf="@id/name_field"
             app:layout_constraintEnd_toEndOf="@id/name_field"
             android:fontFamily="@font/breeze_sans_regular"
-            android:textColor="@color/textGray"
+            android:textColor="@color/lightGray"
             android:textSize="12sp" />
 
         <ImageView
@@ -84,7 +84,7 @@
             app:layout_constraintTop_toTopOf="@id/thumbnail_holder"
             app:layout_constraintBottom_toBottomOf="@id/thumbnail_holder"
             app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/textGray"
+            app:tint="@color/lightGray"
             tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

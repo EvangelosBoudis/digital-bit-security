@@ -15,11 +15,7 @@
             app:destination="@id/categoryConstructorFragment" />
         <action
             android:id="@+id/action_homeFragment_to_itemConstructorFragment"
-            app:destination="@id/itemConstructorFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
+            app:destination="@id/itemConstructorFragment" />
 
         <action
             android:id="@+id/action_homeFragment_to_itemOverviewFragment"
@@ -45,6 +41,10 @@
         android:id="@+id/itemOverviewFragment"
         android:name="com.nativeboys.password.manager.ui.itemOverview.ItemOverviewFragment"
         android:label="fragment_item_overview"
-        tools:layout="@layout/fragment_item_overview" />
+        tools:layout="@layout/fragment_item_overview" >
+        <argument
+            android:name="item_id"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

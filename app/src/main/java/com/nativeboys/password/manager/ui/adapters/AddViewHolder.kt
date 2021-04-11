@@ -16,7 +16,7 @@ class AddViewHolder<T> (itemView: View) : RecyclerViewHolder<T>(itemView) {
 
     override fun bind(model: T) {
         Glide.with(itemView.context)
-            .load(R.drawable.add_icon)
+            .load(R.drawable.ic_baseline_add_24)
             .into(addBtn)
     }
 
