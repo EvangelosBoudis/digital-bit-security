@@ -8,6 +8,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.snackbar.Snackbar
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.FieldContentDto
@@ -46,22 +50,29 @@ class ItemOverviewFragment : Fragment(R.layout.fragment_item_overview), AdapterC
             headerContainer.leadingBtn.setOnClickListener(this@ItemOverviewFragment)
             editBtn.setOnClickListener(this@ItemOverviewFragment)
             deleteBtn.setOnClickListener(this@ItemOverviewFragment)
+            favoriteBtn.setOnClickListener(this@ItemOverviewFragment)
         }
         fieldsAdapter.adapterClickListener = this
-
         viewModel.itemFieldsContent.observe(viewLifecycleOwner) { itemFieldsContent ->
-            val data = itemFieldsContent ?: return@observe
+            val item = itemFieldsContent ?: return@observe
             binding?.apply {
-                /*Glide.with(requireContext())
-                    .load(item?.item?.thumbnailId)
+                Glide.with(requireContext())
+                    .load(item.thumbnailUrl)
                     .transform(CenterCrop())
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(binding.thumbnailHolder)*/
-                nameField.text = data.item.name
-                descriptionField.text = data.item.description
-                notesField.setText(data.item.notes)
-                tagsField.setText(data.item.tags)
-                fieldsAdapter.dataSet = data.fieldsContent
+                    .into(thumbnailHolder)
+                updateFavoriteBtn(item.favorite)
+                nameField.text = item.name
+                descriptionField.text = item.description
+                notesField.setText(item.notes)
+                tagsField.setText(item.tags)
+                fieldsAdapter.dataSet = item.fieldsContent
+                val notesVisibility = if (item.notes?.isEmpty() == true) View.GONE else View.VISIBLE
+                notesHeadline.visibility = notesVisibility
+                notesField.visibility = notesVisibility
+                val tagsVisibility = if (item.tags?.isEmpty() == true) View.GONE else View.VISIBLE
+                tagsHeadline.visibility = tagsVisibility
+                tagsField.visibility = tagsVisibility
             }
         }
     }
@@ -78,9 +89,23 @@ class ItemOverviewFragment : Fragment(R.layout.fragment_item_overview), AdapterC
         }
     }
 
+    private fun updateFavoriteBtn(favorite: Boolean) {
+        binding?.apply {
+            Glide.with(requireContext())
+                .load(if (favorite) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_favorite_border_24)
+                .transition(DrawableTransitionOptions().crossFade())
+                .into(favoriteBtn)
+        }
+    }
+
     override fun onClick(v: View?) {
         val view = v ?: return
         when (view.id) {
+            R.id.favorite_btn -> {
+                viewModel.toggleItemFavorite().observe(viewLifecycleOwner) {
+                    updateFavoriteBtn(it)
+                }
+            }
             R.id.leading_btn -> {
                 activity?.onBackPressed()
             }

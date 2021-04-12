@@ -5,6 +5,7 @@ import com.nativeboys.password.manager.data.ItemDto
 import com.nativeboys.password.manager.data.ItemFieldsContentDto
 import com.nativeboys.password.manager.data.local.FieldDao
 import com.nativeboys.password.manager.data.local.ItemDao
+import com.nativeboys.password.manager.data.local.ThumbnailDao
 import com.nativeboys.password.manager.data.preferences.ItemSettings
 import com.nativeboys.password.manager.data.preferences.PreferencesManager
 import com.nativeboys.password.manager.data.preferences.SortOrder
@@ -18,6 +19,7 @@ import javax.inject.Singleton
 class ItemRepository @Inject constructor(
     private val itemDao: ItemDao,
     private val fieldDao: FieldDao,
+    private val thumbnailDao: ThumbnailDao,
     private val preferences: PreferencesManager
 ) {
 
@@ -55,7 +57,11 @@ class ItemRepository @Inject constructor(
             } ?: continue
             fieldContents.add(FieldContentDto(content.id, content.content, field.name, field.type))
         }
-        return ItemFieldsContentDto(itemWithContent.item, fieldContents)
+        return ItemFieldsContentDto(
+            itemWithContent.item,
+            fieldContents,
+            thumbnailDao.findById(itemWithContent.item.thumbnailId).url
+        )
     }
 
     fun findItemSettingsAsFlow() = combine(
@@ -66,6 +72,12 @@ class ItemRepository @Inject constructor(
         }
 
     suspend fun deleteItemById(id: String) = itemDao.deleteById(id)
+
+    suspend fun toggleItemFavorite(itemId: String): Boolean {
+        val favorite = !itemDao.findById(itemId).favorite
+        itemDao.updateFavoriteItem(itemId, favorite)
+        return favorite
+    }
 
     private suspend fun updateItemsSortOrder(order: SortOrder) = preferences.updateItemsSortOrder(order)
 

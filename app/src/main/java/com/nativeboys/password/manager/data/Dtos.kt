@@ -37,6 +37,20 @@ data class FieldContentDto(
 )
 
 data class ItemFieldsContentDto(
-    val item: ItemData,
+    val id: String,
+    val name: String,
+    val description: String,
+    val notes: String?,
+    val tags: String?,
+    val favorite: Boolean,
+    val thumbnailUrl: String?,
     val fieldsContent: List<FieldContentDto>
-)
+) {
+
+    constructor(
+        itemData: ItemData,
+        fieldsContent: List<FieldContentDto>,
+        thumbnailUrl: String?
+    ) : this(itemData.id, itemData.name, itemData.description, itemData.notes, itemData.tags, itemData.favorite, thumbnailUrl, fieldsContent)
+
+}

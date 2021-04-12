@@ -19,4 +19,8 @@ class ItemOverviewViewModel @ViewModelInject constructor(
         emit(if (id.isNotEmpty()) itemRepository.findItemFieldsContentById(id) else null)
     }
 
+    fun toggleItemFavorite() = liveData {
+        emit(itemRepository.toggleItemFavorite(itemId ?: ""))
+    }
+
 }

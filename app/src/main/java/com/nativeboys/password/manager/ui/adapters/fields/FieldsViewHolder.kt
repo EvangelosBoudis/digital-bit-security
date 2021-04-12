@@ -33,7 +33,7 @@ class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentDto>(ite
         if (hidden) {
             Glide
                 .with(itemView.context)
-                .load(R.drawable.visibility_icon)
+                .load(R.drawable.ic_outline_visibility_24)
                 .into(visibilityBtn)
         }
         visibilityBtn.visibility = if(hidden) View.VISIBLE else View.GONE
@@ -44,6 +44,13 @@ class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentDto>(ite
         findByCode(model.fieldType)?.type?.let {
             contentField.inputType = it
         }
+
+        val visibility = if (model.textContent.isEmpty()) View.GONE else View.VISIBLE
+        nameField.visibility = visibility
+        contentField.visibility = visibility
+        visibilityBtn.visibility = visibility
+        copyBtn.visibility = visibility
+
         //contentField.setTransformationMethodAsHidden(model.hidden)
     }
 

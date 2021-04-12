@@ -45,6 +45,9 @@ interface ItemDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun save(items: List<ItemData>)
 
+    @Query("UPDATE items SET favorite = :favorite WHERE id = :id")
+    suspend fun updateFavoriteItem(id: String, favorite: Boolean)
+
     @Update
     suspend fun update(item: ItemData)
 
