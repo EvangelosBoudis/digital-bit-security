@@ -24,7 +24,7 @@
         <com.zeustech.zeuskit.ui.views.FocusableConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/ContainerPadding">
+            style="@style/Container">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/thumbnail_holder"
@@ -33,7 +33,7 @@
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintTop_toBottomOf="@id/header_container"
                 app:layout_constraintStart_toStartOf="parent"
-                app:shapeAppearanceOverlay="@style/ThumbnailStyle" />
+                app:shapeAppearanceOverlay="@style/Widget.App.ImageView.Thumbnail" />
 
             <TextView
                 android:id="@+id/name_field"
@@ -68,7 +68,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:tint="@color/red"
                 android:src="@drawable/ic_baseline_favorite_24"
-                style="@style/ImageButtonStyle"
+                style="@style/Widget.App.ImageView.Button2"
                 tools:ignore="ContentDescription" />
 
             <View
@@ -77,7 +77,7 @@
                 app:layout_constraintTop_toBottomOf="@id/thumbnail_holder"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                style="@style/ViewLineStyle" />
+                style="@style/ViewLine" />
 
             <RelativeLayout
                 android:id="@+id/fields_container"
@@ -101,7 +101,7 @@
                 app:layout_constraintTop_toBottomOf="@id/fields_container"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                style="@style/ViewLineStyle" />
+                style="@style/ViewLine" />
 
             <TextView
                 android:id="@+id/notes_headline"
@@ -112,7 +112,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/notes"
-                style="@style/Widget.App.TextView.12sp"/>
+                style="@style/Widget.App.TextView"/>
 
             <EditText
                 android:id="@+id/notes_field"
@@ -135,7 +135,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/tags"
-                style="@style/Widget.App.TextView.12sp"/>
+                style="@style/Widget.App.TextView"/>
 
             <EditText
                 android:id="@+id/tags_field"
@@ -162,7 +162,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/HeaderContainerStyle">
+        style="@style/HeaderContainer">
 
         <Button
             android:id="@+id/edit_btn"

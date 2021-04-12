@@ -19,13 +19,14 @@
         <ImageView
             android:id="@+id/edit_btn"
             app:tint="@color/colorAccent"
-            style="@style/ImageButtonStyle"
+
+            style="@style/Widget.App.ImageView.Button2"
             tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/delete_btn"
             app:tint="@color/red"
-            style="@style/ImageButtonStyle"
+            style="@style/Widget.App.ImageView.Button2"
             tools:ignore="ContentDescription" />
 
     </LinearLayout>

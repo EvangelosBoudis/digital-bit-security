@@ -15,6 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/settings"
+        android:padding="20dp"
         style="@style/Widget.App.TextView.Headline"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

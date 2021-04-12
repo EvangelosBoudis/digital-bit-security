@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="@style/HeaderContainerStyle">
+    style="@style/HeaderContainer">
 
     <Button
         android:id="@+id/leading_btn"
@@ -22,7 +22,7 @@
         app:layout_constraintBottom_toBottomOf="@id/leading_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/MainHeadlineStyle" />
+        style="@style/Widget.App.TextView.Headline" />
 
     <Button
         android:id="@+id/trailing_btn"

@@ -11,10 +11,7 @@ import com.zeustech.zeuskit.ui.fragments.BottomFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SettingsBottomFragment : BottomFragment(
-    R.layout.fragment_settings_bottom,
-    R.style.CustomBottomSheetDialogTheme
-) {
+class SettingsBottomFragment : BottomFragment(R.layout.fragment_settings_bottom) {
 
     private val viewModel: SettingsBottomViewModel by viewModels()
 

@@ -5,18 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import androidx.annotation.StyleRes
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 open class BottomFragment(
-    @LayoutRes private val contentLayoutId: Int,
-    @StyleRes private val dTheme: Int
+    @LayoutRes private val contentLayoutId: Int
 ) : BottomSheetDialogFragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, dTheme)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

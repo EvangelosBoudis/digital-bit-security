@@ -19,13 +19,13 @@
         <ImageView
             android:id="@+id/edit_btn"
             app:tint="@color/colorAccent"
-            style="@style/ImageButtonStyle"
+            style="@style/Widget.App.ImageView.Button2"
             tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/delete_btn"
             app:tint="@color/red"
-            style="@style/ImageButtonStyle"
+            style="@style/Widget.App.ImageView.Button2"
             tools:ignore="ContentDescription" />
 
     </LinearLayout>
@@ -47,7 +47,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:shapeAppearanceOverlay="@style/ThumbnailStyle" />
+            app:shapeAppearanceOverlay="@style/Widget.App.ImageView.Thumbnail" />
 
         <TextView
             android:id="@+id/name_field"

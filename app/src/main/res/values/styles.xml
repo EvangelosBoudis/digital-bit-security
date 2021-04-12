@@ -1,7 +1,6 @@
 <resources>
-    <!-- Base application theme. Theme.AppCompat.Light.NoActionBar -->
+
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -11,224 +10,33 @@
         <item name="checkboxStyle">@style/Widget.App.CheckBox</item>
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
         <item name="radioButtonStyle">@style/Widget.App.RadioButton</item>
-
-        <!-- Button Style-->
+        <item name="materialButtonStyle">@style/Widget.App.Button</item>
+        <item name="bottomSheetDialogTheme">@style/FragmentDialogTheme</item>
         <!--<item name="textAppearanceButton">@style/TextAppearance.App.Button</item>-->
         <!--<item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>-->
         <!--<item name="borderlessButtonStyle">@style/Widget.App.Button.TextButton</item>-->
         <!--<item name="materialButtonOutlinedStyle">@style/Widget.App.Button.OutlinedButton</item>-->
-        <item name="materialButtonStyle">@style/Widget.App.Button</item>
-        <!-- Button Style-->
-
     </style>
 
-    <style name="CustomBottomSheetDialogTheme" parent="BottomSheetDialogTheme">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <!-- FragmentDialog -->
 
+    <style name="FragmentDialogTheme" parent="Theme.MaterialComponents.BottomSheetDialog">
         <item name="android:spinnerStyle">@style/Widget.App.Spinner</item>
         <item name="switchStyle">@style/Widget.App.Switch</item>
         <item name="checkboxStyle">@style/Widget.App.CheckBox</item>
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
         <item name="radioButtonStyle">@style/Widget.App.RadioButton</item>
-
-        <!-- Button Style-->
-        <!--<item name="textAppearanceButton">@style/TextAppearance.App.Button</item>-->
-        <!--<item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>-->
-        <!--<item name="borderlessButtonStyle">@style/Widget.App.Button.TextButton</item>-->
-        <!--<item name="materialButtonOutlinedStyle">@style/Widget.App.Button.OutlinedButton</item>-->
         <item name="materialButtonStyle">@style/Widget.App.Button</item>
-        <!-- Button Style-->
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
     </style>
 
-    <style name="MainHeadlineStyle">
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:fontFamily">@font/breeze_sans_medium</item>
-        <item name="android:textSize">18sp</item>
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
     </style>
 
-    <style name="HeaderImageStyle">
-        <item name="android:layout_width">45dp</item>
-        <item name="android:layout_height">45dp</item>
-        <item name="android:padding">8dp</item>
-    </style>
-
-    <style name="ThumbnailStyle">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">15%</item>
-    </style>
-
-    <style name="CircleImageStyle">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
-    </style>
-
-    <style name="FieldDrawableStyle">
-        <item name="android:layout_width">35dp</item>
-        <item name="android:layout_height">35dp</item>
-        <item name="android:padding">8dp</item>
-        <item name="tint">@color/lightGray</item>
-    </style>
-
-    <style name="FieldDeleteDrawableStyle" parent="FieldDrawableStyle">
-        <item name="android:src">@drawable/ic_baseline_cancel_24</item>
-    </style>
-
-    <style name="FieldCopyDrawableStyle" parent="FieldDrawableStyle">
-        <item name="android:src">@drawable/copy_icon</item>
-    </style>
-
-    <style name="ViewLineStyle">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">1dp</item>
-        <item name="android:background">@color/darkGray</item>
-    </style>
-
-    <style name="ViewLineStyle.Margin10" parent="ViewLineStyle">
-        <item name="android:layout_marginStart">10dp</item>
-        <item name="android:layout_marginEnd">10dp</item>
-    </style>
-
-    <style name="ButtonStyle" parent="ButtonTextStyle">
-        <!--<item name="android:backgroundTint">@color/black3</item>-->
-        <item name="android:background">@drawable/btn_shape</item>
-    </style>
-
-    <style name="ButtonTextStyle">
-        <item name="android:fontFamily">@font/breeze_sans_medium</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textAllCaps">false</item>
-    </style>
-
-    <style name="NonButtonBackgroundStyle">
-        <item name="android:background">@drawable/btn_shape</item>
-        <item name="android:gravity">center</item>
-        <item name="android:paddingTop">14dp</item>
-        <item name="android:paddingBottom">14dp</item>
-        <item name="android:paddingStart">18dp</item>
-        <item name="android:paddingEnd">18dp</item>
-    </style>
-
-    <style name="NonButtonStyle" parent="NonButtonBackgroundStyle">
-        <!--Same with ButtonTextStyle-->
-        <item name="android:fontFamily">@font/breeze_sans_medium</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textAllCaps">false</item>
-    </style>
-
-    <style name="NonButtonDrawableStyle">
-        <item name="android:layout_width">18dp</item>
-        <item name="android:layout_height">18dp</item>
-        <item name="android:layout_marginEnd">10dp</item>
-    </style>
-
-    <style name="HeaderContainerStyle">
-        <item name="android:background">@color/colorPrimaryDark</item>
-        <item name="android:paddingTop">15dp</item>
-        <item name="android:paddingBottom">15dp</item>
-        <item name="android:paddingStart">20dp</item>
-        <item name="android:paddingEnd">20dp</item>
-    </style>
-
-    <style name="ContainerPadding">
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingBottom">15dp</item>
-        <item name="android:paddingStart">19dp</item>
-        <item name="android:paddingEnd">19dp</item>
-    </style>
-
-    <style name="ImageButtonStyle">
-        <item name="android:layout_width">42dp</item>
-        <item name="android:layout_height">42dp</item>
-        <item name="android:padding">7dp</item>
-    </style>
-
-    <style name="Widget.App.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
-        <item name="buttonTint">@color/widget_tint</item>
-        <item name="android:fontFamily">@font/breeze_sans_light</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:paddingStart">10dp</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="Widget.App.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
-        <item name="buttonTint">@color/widget_tint</item>
-    </style>
-
-    <style name="Widget.App.EditText" parent="Widget.AppCompat.EditText">
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColorHint">@color/lightGray</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:fontFamily">@font/breeze_sans_regular</item>
-        <item name="backgroundTint">@color/field_background_tint_color</item>
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">15dp</item>
-    </style>
-
-    <style name="Widget.App.EditText.20p" parent="Widget.App.EditText">
-        <item name="android:paddingBottom">20dp</item>
-    </style>
-
-    <style name="Widget.App.TextView" parent="Widget.MaterialComponents.TextView">
-        <item name="android:paddingStart">2.5dp</item>
-        <item name="android:paddingEnd">2.5dp</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/lightGray</item>
-        <item name="android:fontFamily">@font/breeze_sans_medium</item>
-    </style>
-
-    <style name="Widget.App.TextView.12sp" parent="Widget.App.TextView">
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="Widget.App.TextView.15sp" parent="Widget.App.TextView">
-        <item name="android:textSize">15sp</item>
-    </style>
-
-    <style name="Widget.App.TextView.TextCenter" parent="Widget.App.TextView.12sp">
-        <item name="android:textAlignment">center</item>
-    </style>
-
-    <style name="Widget.App.Spinner" parent="Widget.AppCompat.Spinner">
-        <item name="android:background">@null</item>
-        <item name="android:overlapAnchor">false</item>
-        <item name="android:popupBackground">?attr/popupMenuBackground</item>
-        <item name="android:popupElevation">8dp</item>
-        <item name="android:popupWindowStyle">?attr/listPopupWindowStyle</item>
-    </style>
-
-    <style name="Widget.App.AddImage" parent="Widget.AppCompat.ImageButton">
-        <item name="android:layout_height">44dp</item>
-        <item name="android:layout_width">44dp</item>
-        <item name="android:padding">16dp</item>
-        <item name="tint">@android:color/white</item>
-        <item name="android:background">@drawable/add_btn_shape</item>
-    </style>
-
-    <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
-        <item name="android:background">@color/colorPrimaryDark</item>
-        <item name="itemIconTint">@color/menu_colors</item>
-        <item name="itemTextColor">@color/menu_colors</item>
-        <item name="itemTextAppearanceActive">@style/Widget.App.BottomNavigationView.Text</item>
-        <item name="itemTextAppearanceInactive">@style/Widget.App.BottomNavigationView.Text</item>
-        <item name="labelVisibilityMode">unlabeled</item>
-    </style>
-
-    <style name="Widget.App.BottomNavigationView.Text">
-        <item name="android:fontFamily">@font/breeze_sans_regular</item>
-    </style>
-
-    <style name="Widget.App.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
-        <item name="buttonTint">@color/widget_tint</item>
-        <item name="android:fontFamily">@font/breeze_sans_light</item>
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:paddingStart">10dp</item>
-        <item name="android:textSize">14sp</item>
-    </style>
+    <!-- TextView -->
 
     <style name="Widget.App.TextView.Headline" parent="Widget.MaterialComponents.TextView">
-        <item name="android:padding">20dp</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:fontFamily">@font/breeze_sans_regular</item>
@@ -246,13 +54,90 @@
         <item name="android:fontFamily">@font/breeze_sans_light</item>
     </style>
 
-    <!--Button Start-->
-
-    <style name="TextAppearance.App.Button" parent="TextAppearance.MaterialComponents.Button">
+    <style name="Widget.App.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingStart">2.5dp</item>
+        <item name="android:paddingEnd">2.5dp</item>
         <item name="android:textAllCaps">true</item>
-        <item name="fontFamily">@font/breeze_sans_regular</item>
+        <item name="android:textColor">@color/lightGray</item>
+        <item name="android:fontFamily">@font/breeze_sans_medium</item>
+    </style>
+
+    <!-- EditText -->
+
+    <style name="Widget.App.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColorHint">@color/lightGray</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/breeze_sans_regular</item>
+        <item name="backgroundTint">@color/field_background_tint_color</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">15dp</item>
+    </style>
+
+    <style name="Widget.App.EditText.20p" parent="Widget.App.EditText">
+        <item name="android:paddingBottom">20dp</item>
+    </style>
+
+    <style name="EditText.Drawable" parent="">
+        <item name="android:layout_width">35dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="tint">@color/lightGray</item>
+    </style>
+
+    <!-- CheckBox -->
+
+    <style name="Widget.App.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
+        <item name="buttonTint">@color/widget_tint</item>
+        <item name="android:fontFamily">@font/breeze_sans_light</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Switch -->
+
+    <style name="Widget.App.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="buttonTint">@color/widget_tint</item>
+    </style>
+
+    <!-- Spinner -->
+
+    <style name="Widget.App.Spinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:background">@null</item>
+        <item name="android:overlapAnchor">false</item>
+        <item name="android:popupBackground">?attr/popupMenuBackground</item>
+        <item name="android:popupElevation">8dp</item>
+        <item name="android:popupWindowStyle">?attr/listPopupWindowStyle</item>
+    </style>
+
+    <!-- RadioButton -->
+
+    <style name="Widget.App.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="buttonTint">@color/widget_tint</item>
+        <item name="android:fontFamily">@font/breeze_sans_light</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- BottomNavigationView -->
+
+    <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="itemIconTint">@color/menu_colors</item>
+        <item name="itemTextColor">@color/menu_colors</item>
+        <item name="itemTextAppearanceActive">@style/Widget.App.BottomNavigationView.Text</item>
+        <item name="itemTextAppearanceInactive">@style/Widget.App.BottomNavigationView.Text</item>
+        <item name="labelVisibilityMode">unlabeled</item>
+    </style>
+
+    <style name="Widget.App.BottomNavigationView.Text">
         <item name="android:fontFamily">@font/breeze_sans_regular</item>
     </style>
+
+    <!-- Button (Regular) -->
 
     <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:textAppearance">@style/TextAppearance.App.Button</item>
@@ -261,14 +146,21 @@
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
         <!--<item name="materialThemeOverlay">@style/ThemeOverlay.App.Button</item>-->
-        <!--<item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>-->
+        <item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>
     </style>
 
-    <style name="Widget.App.Button.OutlinedButton.IconOnly.Regular" parent="Widget.App.Button.OutlinedButton.IconOnly">
-        <item name="android:layout_width">37dp</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="layout_constraintDimensionRatio">1:1</item>
+    <style name="TextAppearance.App.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:textAllCaps">true</item>
+        <item name="fontFamily">@font/breeze_sans_regular</item>
+        <item name="android:fontFamily">@font/breeze_sans_regular</item>
     </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <!-- Button (Circle) -->
 
     <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.OutlinedButton.Icon">
         <item name="iconSize">24dp</item>
@@ -284,14 +176,65 @@
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Button.Circle</item>
     </style>
 
+    <style name="Widget.App.Button.OutlinedButton.IconOnly.Regular" parent="Widget.App.Button.OutlinedButton.IconOnly">
+        <item name="android:layout_width">37dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintDimensionRatio">1:1</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.MyApp.Button.Circle" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
 
-    <!--Button End-->
+    <!-- ImageView -->
 
-    <!--Other Start-->
+    <style name="Widget.App.ImageView.Thumbnail" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">15%</item>
+    </style>
+
+    <style name="Widget.App.ImageView.Button1" parent="Widget.AppCompat.ImageButton">
+        <item name="android:layout_height">44dp</item>
+        <item name="android:layout_width">44dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="tint">@android:color/white</item>
+        <item name="android:background">@drawable/add_btn_shape</item>
+    </style>
+
+    <style name="Widget.App.ImageView.Button2" parent="">
+        <item name="android:layout_width">42dp</item>
+        <item name="android:layout_height">42dp</item>
+        <item name="android:padding">7dp</item>
+    </style>
+
+    <!-- Other -->
+
+    <style name="HeaderContainer">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+    </style>
+
+    <style name="Container">
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingStart">19dp</item>
+        <item name="android:paddingEnd">19dp</item>
+    </style>
+
+    <style name="ViewLine" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/darkGray</item>
+    </style>
+
+    <style name="ViewLine10m" parent="ViewLine">
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+    </style>
 
 <!--    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">cut</item>
@@ -318,7 +261,5 @@
         <item name="colorPrimary">@color/backgroundGray</item>
         <item name="colorOnPrimary">@color/backgroundGray</item>
     </style>-->
-
-    <!--Other End-->
 
 </resources>

@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:shapeAppearanceOverlay="@style/ThumbnailStyle" />
+        app:shapeAppearanceOverlay="@style/Widget.App.ImageView.Thumbnail" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/foreground_view"
@@ -30,6 +30,6 @@
         app:layout_constraintBottom_toBottomOf="@id/thumbnail_holder"
         app:layout_constraintStart_toStartOf="@id/thumbnail_holder"
         app:layout_constraintEnd_toEndOf="@id/thumbnail_holder"
-        app:shapeAppearanceOverlay="@style/ThumbnailStyle" />
+        app:shapeAppearanceOverlay="@style/Widget.App.ImageView.Thumbnail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

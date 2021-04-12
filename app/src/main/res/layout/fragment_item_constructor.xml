@@ -23,7 +23,7 @@
         <com.zeustech.zeuskit.ui.views.FocusableConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/ContainerPadding">
+            style="@style/Container">
 
             <TextView
                 android:id="@+id/password_headline"
@@ -81,7 +81,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:text="@string/notes"
-                    style="@style/Widget.App.TextView.12sp"/>
+                    style="@style/Widget.App.TextView"/>
 
                 <EditText
                     android:id="@+id/notes_field"
@@ -106,7 +106,7 @@
                 app:layout_constraintStart_toStartOf="@id/password_headline"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/thumbnail"
-                style="@style/Widget.App.TextView.12sp"/>
+                style="@style/Widget.App.TextView"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/thumbnails_recycler_view"
@@ -127,7 +127,7 @@
                 app:layout_constraintStart_toStartOf="@id/password_headline"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="@string/tags"
-                style="@style/Widget.App.TextView.12sp"/>
+                style="@style/Widget.App.TextView"/>
 
             <RelativeLayout
                 android:id="@+id/tags_container"

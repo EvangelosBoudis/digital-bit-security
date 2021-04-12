@@ -8,10 +8,7 @@ import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.databinding.FragmentFactoryBottomBinding
 import com.zeustech.zeuskit.ui.fragments.BottomFragment
 
-class FactoryBottomFragment : BottomFragment(
-    R.layout.fragment_factory_bottom,
-    R.style.CustomBottomSheetDialogTheme
-), View.OnClickListener {
+class FactoryBottomFragment : BottomFragment(R.layout.fragment_factory_bottom), View.OnClickListener {
 
     private var headerRes: Int? = null
     private var fieldRes: Int? = null

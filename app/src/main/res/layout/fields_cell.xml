@@ -13,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/visibility_btn"
-        style="@style/Widget.App.TextView.12sp" />
+        style="@style/Widget.App.TextView" />
 
     <EditText
         android:id="@+id/content_field"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/copy_btn"
-        style="@style/FieldDrawableStyle"
+        style="@style/EditText.Drawable"
         tools:ignore="ContentDescription" />
 
     <ImageView
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/FieldDrawableStyle"
+        style="@style/EditText.Drawable"
         tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

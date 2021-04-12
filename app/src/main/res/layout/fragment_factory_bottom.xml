@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/MainHeadlineStyle" />
+        style="@style/Widget.App.TextView.Headline2" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/field_container"
@@ -34,7 +34,7 @@
             app:layout_constraintBottom_toTopOf="@id/field"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            style="@style/Widget.App.TextView.12sp"/>
+            style="@style/Widget.App.TextView"/>
 
         <EditText
             android:id="@+id/field"
@@ -52,7 +52,8 @@
             android:id="@+id/clear_field_btn"
             app:layout_constraintEnd_toEndOf="@id/field"
             app:layout_constraintTop_toTopOf="@id/field"
-            style="@style/FieldDeleteDrawableStyle"
+            style="@style/EditText.Drawable"
+            android:src="@drawable/ic_baseline_cancel_24"
             tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
