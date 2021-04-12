@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.ui.itemOverview
+package com.nativeboys.password.manager.ui.itemConstructor
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.nativeboys.password.manager.data.repository.ItemRepository
 
-class ItemOverviewViewModel @ViewModelInject constructor(
+class ItemConstructorViewModel @ViewModelInject constructor(
     private val itemRepository: ItemRepository,
     @Assisted private val state: SavedStateHandle
 ): ViewModel() {
@@ -16,11 +16,12 @@ class ItemOverviewViewModel @ViewModelInject constructor(
 
     val itemFieldsContent = liveData {
         val id = itemId ?: ""
-        emit(if (id.isNotEmpty()) itemRepository.findItemFieldsContentById(id) else null)
+        emit(itemRepository.findItemFieldsContentById(id))
     }
 
-    fun toggleItemFavorite() = liveData {
-        emit(itemRepository.toggleItemFavorite(itemId ?: ""))
+    val thumbnails = liveData {
+        val id = itemId ?: ""
+        emit(itemRepository.findAllThumbnailsDto(id))
     }
 
 }

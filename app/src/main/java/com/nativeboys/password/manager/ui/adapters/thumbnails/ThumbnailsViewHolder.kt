@@ -6,15 +6,15 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.google.android.material.imageview.ShapeableImageView
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.other.ThumbnailModel
+import com.nativeboys.password.manager.data.ThumbnailDto
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
-class ThumbnailsViewHolder(itemView: View) : RecyclerViewHolder<ThumbnailModel>(itemView) {
+class ThumbnailsViewHolder(itemView: View) : RecyclerViewHolder<ThumbnailDto>(itemView) {
 
     private val thumbnailHolder = itemView.findViewById<ShapeableImageView>(R.id.thumbnail_holder)
     private val foregroundView = itemView.findViewById<ShapeableImageView>(R.id.foreground_view)
 
-    override fun bind(model: ThumbnailModel) {
+    override fun bind(model: ThumbnailDto) {
 
         Glide.with(itemView.context)
             .load(model.url)

@@ -53,4 +53,20 @@ data class ItemFieldsContentDto(
         thumbnailUrl: String?
     ) : this(itemData.id, itemData.name, itemData.description, itemData.notes, itemData.tags, itemData.favorite, thumbnailUrl, fieldsContent)
 
+    val tagsAsList: List<String>
+        get() = tags?.split(",") ?: emptyList()
+
 }
+
+data class ThumbnailDto(
+    val id: String = "",
+    val url: String = "",
+    val type: Int = 3 // 1: Regular, 2: Selected, 3: Button
+) {
+    constructor(thumbnail: ThumbnailData, type: Int) : this(thumbnail.id, thumbnail.url, type)
+}
+
+data class TagDto(
+    val name: String = "",
+    val type: Int = 3
+)

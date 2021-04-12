@@ -12,6 +12,9 @@ interface ThumbnailDao {
     @Query("SELECT * FROM thumbnails WHERE id = :id")
     suspend fun findById(id: String): ThumbnailData
 
+    @Query("SELECT * FROM thumbnails")
+    suspend fun findAll(): List<ThumbnailData>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun save(thumbnails: List<ThumbnailData>)
 

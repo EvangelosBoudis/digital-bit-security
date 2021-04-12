@@ -59,7 +59,10 @@ class ItemsFragment : Fragment(R.layout.fragment_items), View.OnClickListener {
                         navigateToItemOverview(model.itemId)
                     }
                     R.id.edit_btn -> {
-                        parentNavController()?.navigate(R.id.action_homeFragment_to_itemConstructorFragment)
+                        parentNavController()?.apply {
+                            val action = HomeFragmentDirections.actionHomeFragmentToItemConstructorFragment(model.itemId)
+                            navigate(action)
+                        }
                     }
                     R.id.delete_btn -> {
                         viewModel.deleteItem(model.itemId)

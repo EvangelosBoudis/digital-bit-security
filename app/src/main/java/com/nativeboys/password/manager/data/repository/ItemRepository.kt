@@ -3,6 +3,7 @@ package com.nativeboys.password.manager.data.repository
 import com.nativeboys.password.manager.data.FieldContentDto
 import com.nativeboys.password.manager.data.ItemDto
 import com.nativeboys.password.manager.data.ItemFieldsContentDto
+import com.nativeboys.password.manager.data.ThumbnailDto
 import com.nativeboys.password.manager.data.local.FieldDao
 import com.nativeboys.password.manager.data.local.ItemDao
 import com.nativeboys.password.manager.data.local.ThumbnailDao
@@ -77,6 +78,15 @@ class ItemRepository @Inject constructor(
         val favorite = !itemDao.findById(itemId).favorite
         itemDao.updateFavoriteItem(itemId, favorite)
         return favorite
+    }
+
+    suspend fun findAllThumbnailsDto(selectedItemId: String, addDefault: Boolean = true): List<ThumbnailDto> {
+        val item = itemDao.findById(selectedItemId)
+        val thumbnails = thumbnailDao.findAll().map {
+            ThumbnailDto(it, if (it.id == item.thumbnailId) 2 else 1)
+        }.toMutableList()
+        if (addDefault) thumbnails.add(ThumbnailDto())
+        return thumbnails
     }
 
     private suspend fun updateItemsSortOrder(order: SortOrder) = preferences.updateItemsSortOrder(order)

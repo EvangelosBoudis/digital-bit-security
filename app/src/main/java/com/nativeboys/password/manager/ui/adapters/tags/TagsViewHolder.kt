@@ -6,11 +6,11 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.other.TagModel
+import com.nativeboys.password.manager.data.TagDto
 import com.nativeboys.password.manager.other.intoView
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
-class TagsViewHolder(itemView: View) : RecyclerViewHolder<TagModel>(itemView) {
+class TagsViewHolder(itemView: View) : RecyclerViewHolder<TagDto>(itemView) {
 
     private val container = itemView.findViewById<ConstraintLayout>(R.id.container)
     private val descriptionField = itemView.findViewById<TextView>(R.id.description_field)
@@ -20,7 +20,7 @@ class TagsViewHolder(itemView: View) : RecyclerViewHolder<TagModel>(itemView) {
         removeBtn.setOnClickListener(this)
     }
 
-    override fun bind(model: TagModel) {
+    override fun bind(model: TagDto) {
         descriptionField.text = model.name
         Glide
             .with(itemView.context)

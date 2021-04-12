@@ -12,12 +12,12 @@ object MockData {
     val items: List<ItemData>
 
     val thumbnailsUrls: List<String>
-    val thumbnailsModels: List<ThumbnailModel>
-    val thumbnailsWithAdds: List<ThumbnailModel>
+/*    val thumbnailsModels: List<ThumbnailDto>
+    val thumbnailsWithAdds: List<ThumbnailDto>*/
 
     val filters: List<CategoryDto>
-    val tags: List<TagModel>
-    val tagsWithAdd: List<TagModel>
+    val tags: List<TagDto>
+    val tagsWithAdd: List<TagDto>
 
     init {
 
@@ -100,16 +100,16 @@ object MockData {
 
         thumbnailsUrls = thumbnails.map { it.url }
 
-        thumbnailsModels = thumbnailsUrls.mapIndexed { index, model ->
+/*        thumbnailsModels = thumbnailsUrls.mapIndexed { index, model ->
             val type = if (index % 2 == 0) 1 else 2
-            ThumbnailModel(
+            ThumbnailDto(
                 model,
                 type
             )
         }
         val ath = thumbnailsModels.toMutableList()
-        ath.add(ThumbnailModel(type = 3))
-        thumbnailsWithAdds = ath
+        ath.add(ThumbnailDto(type = 3))*/
+/*        thumbnailsWithAdds = ath*/
 
         val filters = categories.map {
             CategoryDto(it.id, it.name, false)
@@ -119,12 +119,12 @@ object MockData {
         MockData.filters = filters
 
         val tags = listOf("Social", "Master Passwords", "Bank", "Shopping", "Personal").map {
-            TagModel(it, 1)
+            TagDto(it, 1)
         }
         MockData.tags = tags
 
         val tagsWithAdd = tags.toMutableList()
-        tagsWithAdd.add(TagModel("", 3))
+        tagsWithAdd.add(TagDto("", 3))
         MockData.tagsWithAdd = tagsWithAdd
     }
 
