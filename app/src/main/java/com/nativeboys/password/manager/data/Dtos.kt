@@ -1,6 +1,8 @@
 package com.nativeboys.password.manager.data
 
+import android.os.Parcelable
 import com.zeustech.zeuskit.ui.rv.ListAdapterItem
+import kotlinx.parcelize.Parcelize
 import java.util.*
 
 data class CategoryDto(
@@ -58,15 +60,23 @@ data class ItemFieldsContentDto(
 
 }
 
+@Parcelize
 data class ThumbnailDto(
     val id: String = "",
     val url: String = "",
+    val deletable: Boolean = false,
     val type: Int = 3 // 1: Regular, 2: Selected, 3: Button
-) {
-    constructor(thumbnail: ThumbnailData, type: Int) : this(thumbnail.id, thumbnail.url, type)
+) : Parcelable, ListAdapterItem<ThumbnailDto> {
+    constructor(thumbnail: ThumbnailData, deletable: Boolean, type: Int) : this(thumbnail.id, thumbnail.url, deletable, type)
+
+    override fun areItemsTheSame(model: ThumbnailDto) = model.id == id
+
+    override fun areContentsTheSame(model: ThumbnailDto) = model == this
+
 }
 
+@Parcelize
 data class TagDto(
     val name: String = "",
     val type: Int = 3
-)
+) : Parcelable

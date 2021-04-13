@@ -4,10 +4,10 @@ import android.view.View
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.ThumbnailDto
 import com.nativeboys.password.manager.ui.adapters.AddViewHolder
-import com.zeustech.zeuskit.ui.rv.RecyclerAdapter
+import com.zeustech.zeuskit.ui.rv.RecyclerListAdapter
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
-class ThumbnailsAdapter : RecyclerAdapter<ThumbnailDto, RecyclerViewHolder<ThumbnailDto>>() {
+class ThumbnailsAdapter : RecyclerListAdapter<ThumbnailDto, RecyclerViewHolder<ThumbnailDto>>() {
 
     override fun getViewType(model: ThumbnailDto) = model.type
 

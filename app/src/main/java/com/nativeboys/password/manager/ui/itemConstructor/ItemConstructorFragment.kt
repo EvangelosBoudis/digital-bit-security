@@ -1,10 +1,10 @@
 package com.nativeboys.password.manager.ui.itemConstructor
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.*
@@ -52,17 +52,22 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
             headerContainer.trailingBtn.setOnClickListener(this@ItemConstructorFragment)
             thumbnailsAdapter.adapterClickListener = object : AdapterClickListener<ThumbnailDto> {
                 override fun onClick(view: View, model: ThumbnailDto, position: Int) {
-                    if (model.type == 3) {
-                        FactoryBottomFragment.showFragment(this@ItemConstructorFragment, R.string.add_thumbnail, R.string.url)
+                    when (model.type) {
+                        1 -> {
+                           viewModel.selectThumbnail(model.id) // Select
+                        }
+                        2, 3 -> {
+                            showBottomFragment(thumbnailDto = model) // Save - Update
+                        }
                     }
                 }
             }
             tagsAdapter.adapterClickListener = object : AdapterClickListener<TagDto> {
                 override fun onClick(view: View, model: TagDto, position: Int) {
                     if (model.type == 3) {
-                        FactoryBottomFragment.showFragment(this@ItemConstructorFragment, R.string.add_tag, R.string.name)
+                        showBottomFragment(tagDto = model)
                     } else if (view.id == R.id.remove_btn) {
-                        Log.i("Remove", model.name)
+                        viewModel.deleteTag(model)
                     }
                 }
             }
@@ -74,8 +79,8 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
             tags.add(TagDto())
             tagsAdapter.dataSet = tags
         }
-        viewModel.thumbnails.observe(viewLifecycleOwner) {
-            thumbnailsAdapter.dataSet = it
+        viewModel.thumbnails.asLiveData().observe(viewLifecycleOwner) {
+            thumbnailsAdapter.submitList(it)
         }
     }
 
@@ -89,6 +94,12 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
                 activity?.onBackPressed()
             }
         }
+    }
+
+    private fun showBottomFragment(tagDto: TagDto? = null, thumbnailDto: ThumbnailDto? = null) {
+        FactoryBottomFragment
+            .newInstance(tagDto, thumbnailDto)
+            .show(childFragmentManager, FactoryBottomFragment::class.java.simpleName)
     }
 
 /*    private fun applyMockData() {

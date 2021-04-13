@@ -73,9 +73,10 @@
         <item name="backgroundTint">@color/field_background_tint_color</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingEnd">40dp</item>
     </style>
 
-    <style name="Widget.App.EditText.20p" parent="Widget.App.EditText">
+    <style name="Widget.App.EditText.20bottom" parent="Widget.App.EditText">
         <item name="android:paddingBottom">20dp</item>
     </style>
 

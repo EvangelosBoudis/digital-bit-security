@@ -81,9 +81,15 @@ class ItemRepository @Inject constructor(
     }
 
     suspend fun findAllThumbnailsDto(selectedItemId: String, addDefault: Boolean = true): List<ThumbnailDto> {
-        val item = itemDao.findById(selectedItemId)
-        val thumbnails = thumbnailDao.findAll().map {
-            ThumbnailDto(it, if (it.id == item.thumbnailId) 2 else 1)
+        val allItems = itemDao.findAll()
+        val selectedItem = allItems.firstOrNull { item ->
+            item.id == selectedItemId
+        }
+        val thumbnails = thumbnailDao.findAll().map { thumbnail ->
+            val itemsWithSameThumbnailSize = allItems.filter { item ->
+                item.thumbnailId == thumbnail.id
+            }.size
+            ThumbnailDto(thumbnail, itemsWithSameThumbnailSize <= 1, if (selectedItem?.thumbnailId == thumbnail.id) 2 else 1)
         }.toMutableList()
         if (addDefault) thumbnails.add(ThumbnailDto())
         return thumbnails

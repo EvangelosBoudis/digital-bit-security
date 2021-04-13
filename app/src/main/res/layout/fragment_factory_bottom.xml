@@ -45,7 +45,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:inputType="textUri"
-            style="@style/Widget.App.EditText.20p"
+            style="@style/Widget.App.EditText.20bottom"
             tools:ignore="Autofill,LabelFor" />
 
         <ImageView

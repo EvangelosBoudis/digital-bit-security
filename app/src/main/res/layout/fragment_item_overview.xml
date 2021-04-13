@@ -123,7 +123,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:inputType="textMultiLine"
                 android:enabled="false"
-                style="@style/Widget.App.EditText.20p"
+                style="@style/Widget.App.EditText.20bottom"
                 tools:ignore="Autofill,LabelFor"/>
 
             <TextView
@@ -148,7 +148,7 @@
                 app:layout_constraintVertical_bias="0"
                 android:inputType="textMultiLine"
                 android:enabled="false"
-                style="@style/Widget.App.EditText.20p"
+                style="@style/Widget.App.EditText.20bottom"
                 tools:ignore="Autofill,LabelFor"/>
 
         </com.zeustech.zeuskit.ui.views.FocusableConstraintLayout>

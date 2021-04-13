@@ -25,7 +25,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/Widget.App.EditText.20p"
+        style="@style/Widget.App.EditText.20bottom"
         tools:ignore="Autofill,LabelFor,TextFields" />
 
     <ImageView

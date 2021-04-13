@@ -33,6 +33,9 @@ interface ItemDao {
     @Query("SELECT * FROM items WHERE id == :id")
     suspend fun findById(id: String): ItemData
 
+    @Query("SELECT * FROM items")
+    suspend fun findAll(): List<ItemData>
+
     @Query("SELECT * FROM items WHERE category_id == :categoryId")
     fun findByCategoryId(categoryId: String): Flow<List<ItemData>>
 
