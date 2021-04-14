@@ -79,4 +79,10 @@ data class ThumbnailDto(
 data class TagDto(
     val name: String = "",
     val type: Int = 3
-) : Parcelable
+) : Parcelable, ListAdapterItem<TagDto> {
+
+    override fun areItemsTheSame(model: TagDto) = name == model.name
+
+    override fun areContentsTheSame(model: TagDto) = this == model
+
+}

@@ -24,6 +24,8 @@ class ItemRepository @Inject constructor(
     private val preferences: PreferencesManager
 ) {
 
+    suspend fun findItemById(id: String) = itemDao.findById(id)
+
     fun findItemsDtoFilteredAndSortedAsFlow(): Flow<List<ItemDto>> {
         return combine(
             itemDao.findAllDtoAsFlow(),

@@ -64,23 +64,23 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
             }
             tagsAdapter.adapterClickListener = object : AdapterClickListener<TagDto> {
                 override fun onClick(view: View, model: TagDto, position: Int) {
-                    if (model.type == 3) {
+                    if (view.id == R.id.remove_btn) {
+                        viewModel.deleteTag(model.name)
+                    } else {
                         showBottomFragment(tagDto = model)
-                    } else if (view.id == R.id.remove_btn) {
-                        viewModel.deleteTag(model)
                     }
                 }
             }
         }
-        viewModel.itemFieldsContent.observe(viewLifecycleOwner) { item ->
-            val tags = item.tagsAsList
-                .map { TagDto(it, 1) }
-                .toMutableList()
-            tags.add(TagDto())
-            tagsAdapter.dataSet = tags
-        }
         viewModel.thumbnails.asLiveData().observe(viewLifecycleOwner) {
             thumbnailsAdapter.submitList(it)
+        }
+        viewModel.tags.asLiveData().observe(viewLifecycleOwner) {
+            tagsAdapter.submitList(it)
+        }
+        viewModel.passwordIsRequired.asLiveData().observe(viewLifecycleOwner) {
+            binding.passwordSwitch.isChecked = it
+            binding.passwordSwitch.jumpDrawablesToCurrentState()
         }
     }
 

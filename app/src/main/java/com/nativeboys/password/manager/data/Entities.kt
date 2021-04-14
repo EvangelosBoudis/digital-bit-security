@@ -68,6 +68,14 @@ data class ItemData(
     val tagsAsList: List<String>
         get() = tags?.split(",") ?: emptyList()
 
+    fun tagsAsDto(addDefault: Boolean = true): List<TagDto> {
+        val tagsDto = tagsAsList.map {
+            TagDto(it, 1)
+        }.toMutableList()
+        if (addDefault) tagsDto.add(TagDto())
+        return tagsDto
+    }
+
 }
 
 @Entity(tableName = "contents")

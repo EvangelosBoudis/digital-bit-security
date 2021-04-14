@@ -48,11 +48,11 @@ class FactoryBottomFragment : BottomFragment(R.layout.fragment_factory_bottom) {
                     } else { // Update
                         if (type == 1) { // Thumbnail
                             thumbnail?.let {
-                                viewModel.updateAndSelectThumbnail(it, content)
+                                viewModel.updateThumbnailUrlAndSelect(it.id, content)
                             }
                         } else { // Tag
                             tag?.let {
-                                viewModel.updateTag(it, content)
+                                viewModel.updateTagName(it.name, content)
                             }
                         }
                     }

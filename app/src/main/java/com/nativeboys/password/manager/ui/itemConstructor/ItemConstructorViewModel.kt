@@ -19,7 +19,9 @@ class ItemConstructorViewModel @ViewModelInject constructor(
 ): ViewModel() {
 
     val itemId: String? = state.get<String>("item_id")
+    val passwordIsRequired: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val thumbnails: MutableStateFlow<List<ThumbnailDto>> = MutableStateFlow(emptyList())
+    val tags: MutableStateFlow<List<TagDto>> = MutableStateFlow(emptyList())
 
     val itemFieldsContent = liveData {
         val id = itemId ?: ""
@@ -30,6 +32,9 @@ class ItemConstructorViewModel @ViewModelInject constructor(
         itemId?.let { id ->
             viewModelScope.launch {
                 thumbnails.value = itemRepository.findAllThumbnailsDto(id)
+                val item = itemRepository.findItemById(id)
+                tags.value = item.tagsAsDto()
+                passwordIsRequired.value = item.requiresPassword
             }
         }
     }
@@ -38,28 +43,31 @@ class ItemConstructorViewModel @ViewModelInject constructor(
     /// Thumbnails
     //////////////////////////////////////////////////////////////////////////////////////////
 
-    private fun addThumbnail(url: String, index: Int = -1): Int {
-        val currentThumbnails = thumbnails.value.toMutableList()
-        currentThumbnails.add(
-            if (index == -1) currentThumbnails.size - 1 else index,
-            ThumbnailDto(UUID.randomUUID().toString(), url, true, 1)
+    private fun addThumbnail(thumbnailUrl: String, index: Int = -1): Int {
+        val thumbnails = this.thumbnails.value.toMutableList()
+        thumbnails.add(
+            if (index == -1) thumbnails.size - 1 else index,
+            ThumbnailDto(UUID.randomUUID().toString(), thumbnailUrl, true, 1)
         )
-        thumbnails.value = currentThumbnails
-        return currentThumbnails.indexOfFirst { it.url == url }
+        this.thumbnails.value = thumbnails
+        return thumbnails.indexOfFirst { it.url == thumbnailUrl }
     }
 
-    private fun updateThumbnail(thumbnailDto: ThumbnailDto, url: String): Int {
+    private fun updateThumbnailUrl(thumbnailId: String, thumbnailUrl: String): Int {
         val thumbnails = this.thumbnails.value
-        val index = thumbnails.indexOf(thumbnailDto)
-        this.thumbnails.value = thumbnails.map { thumbnail ->
-            if (thumbnail.id == thumbnailDto.id) thumbnail.copy(url = url) else thumbnail
+        val thumbnail = thumbnails.firstOrNull { it.id == thumbnailId }
+        val index = thumbnail?.let { thumbnails.indexOf(it) } ?: -1
+        thumbnail?.let { item ->
+            this.thumbnails.value = thumbnails.map {
+                if (it.id == item.id) it.copy(url = thumbnailUrl) else it
+            }
         }
         return index
     }
 
     fun deleteThumbnail(thumbnailId: String) {
         thumbnails.value = thumbnails.value.filter {
-            it.deletable && it.id == thumbnailId
+            !(it.deletable && it.id == thumbnailId)
         }
     }
 
@@ -75,13 +83,13 @@ class ItemConstructorViewModel @ViewModelInject constructor(
         }
     }
 
-    fun addAndSelectThumbnail(url: String) {
-        val index = addThumbnail(url)
+    fun addAndSelectThumbnail(thumbnailUrl: String) {
+        val index = addThumbnail(thumbnailUrl)
         selectThumbnail(index)
     }
 
-    fun updateAndSelectThumbnail(thumbnailDto: ThumbnailDto, url: String) {
-        val index = updateThumbnail(thumbnailDto, url)
+    fun updateThumbnailUrlAndSelect(thumbnailId: String, thumbnailUrl: String) {
+        val index = updateThumbnailUrl(thumbnailId, thumbnailUrl)
         selectThumbnail(index)
     }
 
@@ -89,16 +97,32 @@ class ItemConstructorViewModel @ViewModelInject constructor(
     /// Tags
     //////////////////////////////////////////////////////////////////////////////////////////
 
-    fun addTag(name: String) {
-        // TODO: implement
+    fun addTag(name: String, index: Int = -1): Int {
+        val tags = this.tags.value.toMutableList()
+        tags.add(
+            if (index == -1) tags.size - 1 else index,
+            TagDto(name, 1)
+        )
+        this.tags.value = tags
+        return tags.indexOfFirst { it.name == name }
     }
 
-    fun updateTag(tagDto: TagDto, name: String) {
-        // TODO: implement
+    fun updateTagName(previousName: String, name: String): Int {
+        val tags = this.tags.value
+        val tag = tags.firstOrNull { it.name == previousName }
+        val index = tag?.let { tags.indexOf(it) } ?: -1
+        tag?.let { item ->
+            this.tags.value = tags.map {
+                if (it.name == item.name) it.copy(name = name) else it
+            }
+        }
+        return index
     }
 
-    fun deleteTag(tagDto: TagDto) {
-        // TODO: implement
+    fun deleteTag(name: String) {
+        tags.value = tags.value.filter {
+            it.name != name
+        }
     }
 
 }

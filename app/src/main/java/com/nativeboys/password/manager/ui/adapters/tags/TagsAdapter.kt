@@ -4,10 +4,10 @@ import android.view.View
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.TagDto
 import com.nativeboys.password.manager.ui.adapters.AddViewHolder
-import com.zeustech.zeuskit.ui.rv.RecyclerAdapter
+import com.zeustech.zeuskit.ui.rv.RecyclerListAdapter
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
-class TagsAdapter: RecyclerAdapter<TagDto, RecyclerViewHolder<TagDto>>() {
+class TagsAdapter: RecyclerListAdapter<TagDto, RecyclerViewHolder<TagDto>>() {
 
     override fun getViewType(model: TagDto) = model.type
 
