@@ -7,28 +7,36 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import com.bumptech.glide.Glide
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.other.FieldContentModel
+import com.nativeboys.password.manager.data.FieldContentDto
 import com.nativeboys.password.manager.other.InputTypeItem
 import com.nativeboys.password.manager.other.findByCode
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
-class FieldContentViewHolder(itemView: View) : RecyclerViewHolder<FieldContentModel>(itemView) {
+interface FieldContentTextChangeListener {
+    fun onContentChanged(contentId: String, textContent: String)
+}
+
+class FieldContentViewHolder(
+    itemView: View,
+    private val fieldContentTextChangeListener: FieldContentTextChangeListener
+) : RecyclerViewHolder<FieldContentDto>(itemView) {
 
     private val nameField = itemView.findViewById<TextView>(R.id.name_field)
     private val contentField = itemView.findViewById<EditText>(R.id.content_field)
     private val fieldBtn = itemView.findViewById<ImageView>(R.id.field_btn)
 
-    override fun bind(model: FieldContentModel) {
-        nameField.text = model.name
-        contentField.setText(model.content)
-        val hidden = model.type == InputTypeItem.TEXT_PASSWORD.code
+    override fun bind(model: FieldContentDto) {
+        nameField.text = model.fieldName
+        contentField.setText(model.textContent)
+        val hidden = model.fieldType == InputTypeItem.TEXT_PASSWORD.code
         Glide
             .with(itemView.context)
             .load(if (hidden) R.drawable.ic_outline_visibility_24 else R.drawable.ic_baseline_cancel_24)
             .into(fieldBtn)
-        findByCode(model.type)?.type?.let {
+        findByCode(model.fieldType)?.type?.let {
             contentField.inputType = it
         }
         fieldBtn.setOnClickListener {
@@ -40,6 +48,10 @@ class FieldContentViewHolder(itemView: View) : RecyclerViewHolder<FieldContentMo
             } else { // Erase content
                 contentField.text = null
             }
+        }
+        contentField.addTextChangedListener {
+            val text = it?.toString() ?: return@addTextChangedListener
+            fieldContentTextChangeListener.onContentChanged(model.contentId, text)
         }
     }
 

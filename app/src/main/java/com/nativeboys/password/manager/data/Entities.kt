@@ -63,20 +63,7 @@ data class ItemData(
     @ColumnInfo(name = "requires_password") val requiresPassword: Boolean,
     @ColumnInfo(name = "category_id") val categoryId: String, // FK (Categories),
     @ColumnInfo(name = "owner_id") val ownerId: String, // FK (Users),
-) : Parcelable {
-
-    val tagsAsList: List<String>
-        get() = tags?.split(",") ?: emptyList()
-
-    fun tagsAsDto(addDefault: Boolean = true): List<TagDto> {
-        val tagsDto = tagsAsList.map {
-            TagDto(it, 1)
-        }.toMutableList()
-        if (addDefault) tagsDto.add(TagDto())
-        return tagsDto
-    }
-
-}
+) : Parcelable
 
 @Entity(tableName = "contents")
 @Parcelize

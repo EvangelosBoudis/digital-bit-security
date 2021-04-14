@@ -36,7 +36,13 @@ data class FieldContentDto(
     val textContent: String,
     val fieldName: String,
     val fieldType: String
-)
+) : ListAdapterItem<FieldContentDto> {
+
+    override fun areItemsTheSame(model: FieldContentDto) = contentId == model.contentId
+
+    override fun areContentsTheSame(model: FieldContentDto) = this == model
+
+}
 
 data class ItemFieldsContentDto(
     val id: String,
@@ -45,6 +51,7 @@ data class ItemFieldsContentDto(
     val notes: String?,
     val tags: String?,
     val favorite: Boolean,
+    val requiresPassword: Boolean,
     val thumbnailUrl: String?,
     val fieldsContent: List<FieldContentDto>
 ) {
@@ -53,10 +60,14 @@ data class ItemFieldsContentDto(
         itemData: ItemData,
         fieldsContent: List<FieldContentDto>,
         thumbnailUrl: String?
-    ) : this(itemData.id, itemData.name, itemData.description, itemData.notes, itemData.tags, itemData.favorite, thumbnailUrl, fieldsContent)
+    ) : this(itemData.id, itemData.name, itemData.description, itemData.notes, itemData.tags, itemData.favorite, itemData.requiresPassword, thumbnailUrl, fieldsContent)
 
-    val tagsAsList: List<String>
-        get() = tags?.split(",") ?: emptyList()
+    fun tagsAsDto(addDefault: Boolean = true): List<TagDto> {
+        val tagList = tags?.split(",") ?: emptyList()
+        val tagsDto = tagList.map { TagDto(it, 1) }.toMutableList()
+        if (addDefault) tagsDto.add(TagDto())
+        return tagsDto
+    }
 
 }
 

@@ -2,6 +2,7 @@ package com.nativeboys.password.manager.ui.itemConstructor
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
@@ -14,6 +15,7 @@ import com.nativeboys.password.manager.data.ThumbnailDto
 import com.nativeboys.password.manager.databinding.FragmentItemConstructorBinding
 import com.nativeboys.password.manager.other.*
 import com.nativeboys.password.manager.ui.adapters.fieldContent.FieldContentAdapter
+import com.nativeboys.password.manager.ui.adapters.fieldContent.FieldContentTextChangeListener
 import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
 import com.nativeboys.password.manager.ui.adapters.thumbnails.ThumbnailsAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
@@ -31,9 +33,12 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val binding = FragmentItemConstructorBinding.bind(view)
-        fieldsAdapter = FieldContentAdapter()
+        fieldsAdapter = FieldContentAdapter(object : FieldContentTextChangeListener {
+            override fun onContentChanged(contentId: String, textContent: String) {
+                viewModel.updateUserCache(contentId, textContent)
+            }
+        })
         thumbnailsAdapter = ThumbnailsAdapter()
         tagsAdapter = TagsAdapter()
 
@@ -50,6 +55,10 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
 
             headerContainer.leadingBtn.setOnClickListener(this@ItemConstructorFragment)
             headerContainer.trailingBtn.setOnClickListener(this@ItemConstructorFragment)
+            notesField.addTextChangedListener {
+                val text = it?.toString() ?: ""
+                viewModel.updateUserCache(NOTES_ID, text)
+            }
             thumbnailsAdapter.adapterClickListener = object : AdapterClickListener<ThumbnailDto> {
                 override fun onClick(view: View, model: ThumbnailDto, position: Int) {
                     when (model.type) {
@@ -72,6 +81,9 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
                 }
             }
         }
+        viewModel.transformedFieldContent.asLiveData().observe(viewLifecycleOwner) {
+            fieldsAdapter.submitList(it)
+        }
         viewModel.thumbnails.asLiveData().observe(viewLifecycleOwner) {
             thumbnailsAdapter.submitList(it)
         }
@@ -80,7 +92,9 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
         }
         viewModel.passwordIsRequired.asLiveData().observe(viewLifecycleOwner) {
             binding.passwordSwitch.isChecked = it
-            binding.passwordSwitch.jumpDrawablesToCurrentState()
+        }
+        viewModel.notes.asLiveData().observe(viewLifecycleOwner) {
+            binding.notesField.setText(it)
         }
     }
 
@@ -101,12 +115,5 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
             .newInstance(tagDto, thumbnailDto)
             .show(childFragmentManager, FactoryBottomFragment::class.java.simpleName)
     }
-
-/*    private fun applyMockData() {
-        tagsAdapter.dataSet = MockData.tagsWithAdd
-        thumbnailsAdapter.dataSet = MockData.thumbnailsWithAdds
-        fieldsAdapter.dataSet = MockData.fieldsContent
-        binding?.notesField?.setText(MockData.items[0].notes)
-    }*/
 
 }

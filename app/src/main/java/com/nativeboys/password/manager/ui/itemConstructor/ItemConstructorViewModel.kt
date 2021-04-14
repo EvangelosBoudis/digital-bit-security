@@ -4,14 +4,22 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
+import com.nativeboys.password.manager.data.FieldContentDto
+import com.nativeboys.password.manager.data.ItemFieldsContentDto
 import com.nativeboys.password.manager.data.TagDto
 import com.nativeboys.password.manager.data.ThumbnailDto
 import com.nativeboys.password.manager.data.repository.ItemRepository
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.collections.HashMap
+
+const val NAME_ID = "NAME"
+const val DESCRIPTION_ID = "DESCRIPTION"
+const val NOTES_ID = "NOTES"
+const val PASSWORD_REQUIRED_ID = "PASSWORD_REQUIRED"
 
 class ItemConstructorViewModel @ViewModelInject constructor(
     private val itemRepository: ItemRepository,
@@ -19,24 +27,48 @@ class ItemConstructorViewModel @ViewModelInject constructor(
 ): ViewModel() {
 
     val itemId: String? = state.get<String>("item_id")
-    val passwordIsRequired: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    private val userCache: HashMap<String, String> = hashMapOf()
+    private val itemDto: MutableStateFlow<ItemFieldsContentDto?> = MutableStateFlow(null)
+
+    val passwordIsRequired = itemDto.map { item ->
+        val required = item?.requiresPassword ?: true
+        val value = userCache[PASSWORD_REQUIRED_ID]
+        return@map if (value != null) value == "TRUE" else required
+    }
+    val notes = itemDto.map { item ->
+        userCache[NOTES_ID] ?: item?.notes ?: ""
+    }
+    val transformedFieldContent = itemDto.map { item ->
+        val nameContent = userCache[NAME_ID] ?: item?.name ?: ""
+        val descriptionContent = userCache[DESCRIPTION_ID] ?: item?.description ?: ""
+        val allFieldContent = listOf(
+            FieldContentDto(NAME_ID, nameContent, "Name", "text"),
+            FieldContentDto(DESCRIPTION_ID, descriptionContent, "Description", "text")
+        ).toMutableList()
+        item?.fieldsContent?.let { fieldsContent ->
+            allFieldContent.addAll(fieldsContent.map {
+                it.copy(textContent = userCache[it.contentId] ?: it.textContent)
+            })
+        }
+        return@map allFieldContent
+    }
+
     val thumbnails: MutableStateFlow<List<ThumbnailDto>> = MutableStateFlow(emptyList())
     val tags: MutableStateFlow<List<TagDto>> = MutableStateFlow(emptyList())
-
-    val itemFieldsContent = liveData {
-        val id = itemId ?: ""
-        emit(itemRepository.findItemFieldsContentById(id))
-    }
 
     init {
         itemId?.let { id ->
             viewModelScope.launch {
-                thumbnails.value = itemRepository.findAllThumbnailsDto(id)
-                val item = itemRepository.findItemById(id)
+                val item = itemRepository.findItemFieldsContentById(id)
+                this@ItemConstructorViewModel.itemDto.value = item
                 tags.value = item.tagsAsDto()
-                passwordIsRequired.value = item.requiresPassword
+                thumbnails.value = itemRepository.findAllThumbnailsDto(id)
             }
         }
+    }
+
+    fun updateUserCache(contentId: String, textContent: String) {
+        userCache[contentId] = textContent
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////
