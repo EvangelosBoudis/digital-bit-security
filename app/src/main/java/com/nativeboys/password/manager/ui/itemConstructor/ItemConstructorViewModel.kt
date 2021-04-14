@@ -4,6 +4,7 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.nativeboys.password.manager.data.FieldContentDto
 import com.nativeboys.password.manager.data.ItemFieldsContentDto
@@ -97,10 +98,16 @@ class ItemConstructorViewModel @ViewModelInject constructor(
         return index
     }
 
-    fun deleteThumbnail(thumbnailId: String) {
-        thumbnails.value = thumbnails.value.filter {
-            !(it.deletable && it.id == thumbnailId)
+    fun deleteThumbnail(thumbnailId: String) = liveData {
+        val count = itemRepository.getItemsCountWithThumbnailId(thumbnailId)
+        val item = itemId?.let { itemRepository.findItemById(it) }
+        val deletable = count == 0 || count == 1 && (item?.thumbnailId == thumbnailId)
+        if (deletable) {
+            thumbnails.value = thumbnails.value.filter {
+                !(it.deletable && it.id == thumbnailId)
+            }
         }
+        emit(deletable)
     }
 
     fun selectThumbnail(thumbnailId: String) {

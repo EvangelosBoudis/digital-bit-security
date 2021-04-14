@@ -9,7 +9,11 @@ import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.ThumbnailDto
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
-class ThumbnailsViewHolder(itemView: View) : RecyclerViewHolder<ThumbnailDto>(itemView) {
+interface OnThumbnailLongClickListener {
+    fun onLongClick(model: ThumbnailDto)
+}
+
+class ThumbnailsViewHolder(itemView: View, private val longClickListener: OnThumbnailLongClickListener) : RecyclerViewHolder<ThumbnailDto>(itemView) {
 
     private val thumbnailHolder = itemView.findViewById<ShapeableImageView>(R.id.thumbnail_holder)
     private val foregroundView = itemView.findViewById<ShapeableImageView>(R.id.foreground_view)
@@ -27,6 +31,11 @@ class ThumbnailsViewHolder(itemView: View) : RecyclerViewHolder<ThumbnailDto>(it
         Glide.with(itemView.context)
             .load(R.drawable.ic_baseline_check_24)
             .into(foregroundView)
+
+        itemView.setOnLongClickListener {
+            longClickListener.onLongClick(model)
+            return@setOnLongClickListener true
+        }
 
     }
 

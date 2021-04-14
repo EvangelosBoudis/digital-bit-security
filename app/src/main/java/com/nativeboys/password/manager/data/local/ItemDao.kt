@@ -9,25 +9,32 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ItemDao {
 
+    @Query("SELECT COUNT(id) FROM items WHERE thumbnail_id = :thumbnailId")
+    suspend fun getCountWithThumbnailId(thumbnailId: String): Int
+
     @Query("SELECT * FROM items WHERE items.id == :id")
     suspend fun findItemWithContentById(id: String): ItemWithContents
 
     // Projection
-    @Query("""
+    @Query(
+        """
         SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.category_id AS itemCategoryId, thumbnails.url AS thumbnailUrl, items.date_modified AS lastModificationDate, items.favorite AS favoriteItem
         FROM items
         LEFT JOIN thumbnails ON thumbnails.id = items.thumbnail_id
         GROUP BY itemId
-        """)
+        """
+    )
     fun findAllDtoAsFlow(): Flow<List<ItemDto>>
 
-    @Query("""
+    @Query(
+        """
         SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.category_id AS itemCategoryId, thumbnails.url AS thumbnailUrl, items.date_modified AS lastModificationDate, items.favorite AS favoriteItem
         FROM (SELECT * FROM items AS nested WHERE (nested.name LIKE '%' || :searchKey || '%' OR nested.tags LIKE '%' || :searchKey || '%')) AS items
         LEFT JOIN thumbnails ON thumbnails.id = items.thumbnail_id
         GROUP BY itemId
         ORDER BY itemName
-        """)
+        """
+    )
     suspend fun findAllDtoByNameAndTagsSortedByNameAsFlow(searchKey: String): List<ItemDto>
 
     @Query("SELECT * FROM items WHERE id == :id")

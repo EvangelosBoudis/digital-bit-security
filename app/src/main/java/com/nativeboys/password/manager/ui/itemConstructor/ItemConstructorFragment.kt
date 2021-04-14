@@ -17,6 +17,7 @@ import com.nativeboys.password.manager.other.*
 import com.nativeboys.password.manager.ui.adapters.fieldContent.FieldContentAdapter
 import com.nativeboys.password.manager.ui.adapters.fieldContent.FieldContentTextChangeListener
 import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
+import com.nativeboys.password.manager.ui.adapters.thumbnails.OnThumbnailLongClickListener
 import com.nativeboys.password.manager.ui.adapters.thumbnails.ThumbnailsAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,7 +40,11 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
                 viewModel.updateUserCache(contentId, textContent)
             }
         })
-        thumbnailsAdapter = ThumbnailsAdapter()
+        thumbnailsAdapter = ThumbnailsAdapter(object : OnThumbnailLongClickListener {
+            override fun onLongClick(model: ThumbnailDto) {
+                showBottomFragment(thumbnailDto = model)
+            }
+        })
         tagsAdapter = TagsAdapter()
 
         binding.apply {
@@ -63,10 +68,10 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
                 override fun onClick(view: View, model: ThumbnailDto, position: Int) {
                     when (model.type) {
                         1 -> {
-                           viewModel.selectThumbnail(model.id) // Select
+                           viewModel.selectThumbnail(model.id)
                         }
-                        2, 3 -> {
-                            showBottomFragment(thumbnailDto = model) // Save - Update
+                        3 -> {
+                            showBottomFragment(thumbnailDto = model)
                         }
                     }
                 }

@@ -174,7 +174,6 @@
             app:layout_constraintEnd_toStartOf="@id/delete_btn"
             app:icon="@drawable/ic_baseline_edit_24"
             app:iconTint="@color/colorAccent"
-            android:textAllCaps="false"
             android:text="@string/edit"/>
 
         <Button
@@ -186,7 +185,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:icon="@drawable/ic_baseline_delete_24"
             app:iconTint="@color/red"
-            android:textAllCaps="false"
             android:text="@string/delete"/>
 
     </com.zeustech.zeuskit.ui.views.FocusableConstraintLayout>

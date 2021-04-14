@@ -26,6 +26,8 @@ class ItemRepository @Inject constructor(
 
     suspend fun findItemById(id: String) = itemDao.findById(id)
 
+    suspend fun getItemsCountWithThumbnailId(thumbnailId: String) = itemDao.getCountWithThumbnailId(thumbnailId)
+
     fun findItemsDtoFilteredAndSortedAsFlow(): Flow<List<ItemDto>> {
         return combine(
             itemDao.findAllDtoAsFlow(),
