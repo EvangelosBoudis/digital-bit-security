@@ -6,6 +6,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.nativeboys.password.manager.data.*
 import com.nativeboys.password.manager.data.repository.ItemRepository
+import com.nativeboys.password.manager.data.repository.ThumbnailRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,6 +14,7 @@ import java.util.*
 
 class ItemConstructorViewModel @ViewModelInject constructor(
     private val itemRepository: ItemRepository,
+    private val thumbnailRepository: ThumbnailRepository,
     @Assisted private val state: SavedStateHandle
 ): ViewModel() {
 
@@ -246,17 +248,14 @@ class ItemConstructorViewModel @ViewModelInject constructor(
             ThumbnailData(it.id, it.url)
         }
 
-        val itemData = ItemData(
-            itemId, name,
-            description, notes,
-            tags, favorite,
-            thumbnailId, Date(),
-            passwordRequired, categoryId,
-            userId
-        )
+        val itemData = ItemData(itemId, name, description, notes, tags, favorite, thumbnailId, Date(), passwordRequired, categoryId, userId)
 
         // TODO: Change ThumbnailData, ItemData, ContentData
+        thumbnailRepository.replaceAllThumbnails(thumbnailData)
+        itemRepository.saveItem(itemData)
+
         
+
 
     }
 

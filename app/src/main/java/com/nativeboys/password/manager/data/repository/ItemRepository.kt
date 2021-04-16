@@ -1,9 +1,6 @@
 package com.nativeboys.password.manager.data.repository
 
-import com.nativeboys.password.manager.data.FieldContentDto
-import com.nativeboys.password.manager.data.ItemDto
-import com.nativeboys.password.manager.data.ItemFieldsContentDto
-import com.nativeboys.password.manager.data.ThumbnailDto
+import com.nativeboys.password.manager.data.*
 import com.nativeboys.password.manager.data.local.FieldDao
 import com.nativeboys.password.manager.data.local.ItemDao
 import com.nativeboys.password.manager.data.local.ThumbnailDao
@@ -23,6 +20,8 @@ class ItemRepository @Inject constructor(
     private val thumbnailDao: ThumbnailDao,
     private val preferences: PreferencesManager
 ) {
+
+    suspend fun saveItem(item: ItemData) = itemDao.save(item)
 
     suspend fun findItemById(id: String) = itemDao.findById(id)
 

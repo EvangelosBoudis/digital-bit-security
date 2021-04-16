@@ -1,9 +1,6 @@
 package com.nativeboys.password.manager.data.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.nativeboys.password.manager.data.ThumbnailData
 
 @Dao
@@ -17,5 +14,11 @@ interface ThumbnailDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun save(thumbnails: List<ThumbnailData>)
+
+    @Delete
+    suspend fun delete(thumbnails: List<ThumbnailData>)
+
+    @Update
+    suspend fun update(thumbnails: List<ThumbnailData>)
 
 }
