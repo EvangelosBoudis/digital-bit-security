@@ -22,6 +22,7 @@ import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import com.zeustech.zeuskit.ui.views.BottomBar
 import dagger.hilt.android.AndroidEntryPoint
 import com.nativeboys.password.manager.other.copyToClipboard
+import com.nativeboys.password.manager.presentation.ItemOverviewViewModel
 
 @AndroidEntryPoint
 class ItemOverviewFragment : Fragment(R.layout.fragment_item_overview), AdapterClickListener<FieldContentDto>, View.OnClickListener {

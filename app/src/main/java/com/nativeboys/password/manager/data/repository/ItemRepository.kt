@@ -60,7 +60,7 @@ class ItemRepository @Inject constructor(
             val field = fields.firstOrNull {
                 content.fieldId == it.id
             } ?: continue
-            fieldContents.add(FieldContentDto(content.id, content.content, field.name, field.type))
+            fieldContents.add(FieldContentDto(content.id, content.content, field.id, field.name, field.type))
         }
         return ItemFieldsContentDto(
             itemWithContent.item,

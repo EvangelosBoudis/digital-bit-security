@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.ui.searchEngine
+package com.nativeboys.password.manager.presentation
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel

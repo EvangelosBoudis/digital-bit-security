@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.preferences.SortOrder
 import com.nativeboys.password.manager.databinding.FragmentSettingsBottomBinding
+import com.nativeboys.password.manager.presentation.SettingsBottomViewModel
 import com.zeustech.zeuskit.ui.fragments.BottomFragment
 import dagger.hilt.android.AndroidEntryPoint
 

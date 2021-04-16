@@ -13,10 +13,10 @@ import com.nativeboys.password.manager.data.CategoryDto
 import com.nativeboys.password.manager.data.ItemDto
 import com.nativeboys.password.manager.databinding.FragmentItemsBinding
 import com.nativeboys.password.manager.other.parentNavController
+import com.nativeboys.password.manager.presentation.ItemsViewModel
 import com.nativeboys.password.manager.ui.adapters.categoriesDto.CategoriesDtoAdapter
 import com.nativeboys.password.manager.ui.adapters.itemsDto.ItemsDtoAdapter
 import com.nativeboys.password.manager.ui.home.HomeFragmentDirections
-import com.nativeboys.password.manager.ui.itemConstructor.FactoryBottomFragment
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -78,7 +78,7 @@ class ItemsFragment : Fragment(R.layout.fragment_items), View.OnClickListener {
             R.id.settings_btn -> {
                 SettingsBottomFragment().show(
                     this.childFragmentManager,
-                    FactoryBottomFragment::class.java.simpleName
+                    SettingsBottomFragment::class.java.simpleName
                 )
             }
             R.id.plus_btn -> {

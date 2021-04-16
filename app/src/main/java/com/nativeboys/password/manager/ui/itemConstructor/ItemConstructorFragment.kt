@@ -5,7 +5,6 @@ import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.*
@@ -14,11 +13,16 @@ import com.nativeboys.password.manager.data.TagDto
 import com.nativeboys.password.manager.data.ThumbnailDto
 import com.nativeboys.password.manager.databinding.FragmentItemConstructorBinding
 import com.nativeboys.password.manager.other.*
+import com.nativeboys.password.manager.presentation.ItemConstructorViewModel
 import com.nativeboys.password.manager.ui.adapters.fieldContent.FieldContentAdapter
 import com.nativeboys.password.manager.ui.adapters.fieldContent.FieldContentTextChangeListener
 import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
 import com.nativeboys.password.manager.ui.adapters.thumbnails.OnThumbnailLongClickListener
 import com.nativeboys.password.manager.ui.adapters.thumbnails.ThumbnailsAdapter
+import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.NOTES_ID
+import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.PASSWORD_REQUIRED_ID
+import com.nativeboys.password.manager.ui.itemConstructor.bottomFragment.TagFactoryBottomFragment
+import com.nativeboys.password.manager.ui.itemConstructor.bottomFragment.ThumbnailFactoryBottomFragment
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -42,7 +46,7 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
         })
         thumbnailsAdapter = ThumbnailsAdapter(object : OnThumbnailLongClickListener {
             override fun onLongClick(model: ThumbnailDto) {
-                showBottomFragment(thumbnailDto = model)
+                showThumbnailBottomFactory(model)
             }
         })
         tagsAdapter = TagsAdapter()
@@ -64,41 +68,41 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
                 val text = it?.toString() ?: ""
                 viewModel.updateUserCache(NOTES_ID, text)
             }
+            passwordSwitch.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.updateUserCache(PASSWORD_REQUIRED_ID, isChecked)
+            }
             thumbnailsAdapter.adapterClickListener = object : AdapterClickListener<ThumbnailDto> {
                 override fun onClick(view: View, model: ThumbnailDto, position: Int) {
                     when (model.type) {
                         1 -> {
-                           viewModel.selectThumbnail(model.id)
+                           viewModel.selectThumbnail(model)
                         }
                         3 -> {
-                            showBottomFragment(thumbnailDto = model)
+                            showThumbnailBottomFactory(model)
                         }
                     }
                 }
             }
             tagsAdapter.adapterClickListener = object : AdapterClickListener<TagDto> {
                 override fun onClick(view: View, model: TagDto, position: Int) {
-                    if (view.id == R.id.remove_btn) {
-                        viewModel.deleteTag(model.name)
-                    } else {
-                        showBottomFragment(tagDto = model)
-                    }
+                    if (view.id == R.id.remove_btn) viewModel.deleteTag(model.name)
+                    else showTagFactoryBottomFragment(model)
                 }
             }
         }
-        viewModel.transformedFieldContent.asLiveData().observe(viewLifecycleOwner) {
+        viewModel.getInitFieldsContent().observe(viewLifecycleOwner) {
             fieldsAdapter.submitList(it)
         }
-        viewModel.thumbnails.asLiveData().observe(viewLifecycleOwner) {
+        viewModel.thumbnails.observe(viewLifecycleOwner) {
             thumbnailsAdapter.submitList(it)
         }
-        viewModel.tags.asLiveData().observe(viewLifecycleOwner) {
+        viewModel.tags.observe(viewLifecycleOwner) {
             tagsAdapter.submitList(it)
         }
-        viewModel.passwordIsRequired.asLiveData().observe(viewLifecycleOwner) {
+        viewModel.getInitPasswordIsRequired().observe(viewLifecycleOwner) {
             binding.passwordSwitch.isChecked = it
         }
-        viewModel.notes.asLiveData().observe(viewLifecycleOwner) {
+        viewModel.getInitNotes().observe(viewLifecycleOwner) {
             binding.notesField.setText(it)
         }
     }
@@ -107,7 +111,9 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
         val view = v ?: return
         when (view.id) {
             R.id.submit_btn -> {
-                // TODO: implement
+                view.isEnabled = false
+                // TODO: Validation
+                viewModel.submitItem()
             }
             R.id.leading_btn -> {
                 activity?.onBackPressed()
@@ -115,10 +121,14 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
         }
     }
 
-    private fun showBottomFragment(tagDto: TagDto? = null, thumbnailDto: ThumbnailDto? = null) {
-        FactoryBottomFragment
-            .newInstance(tagDto, thumbnailDto)
-            .show(childFragmentManager, FactoryBottomFragment::class.java.simpleName)
-    }
+    private fun showTagFactoryBottomFragment(tagDto: TagDto) =
+        TagFactoryBottomFragment
+            .newInstance(tagDto)
+            .show(childFragmentManager, TagFactoryBottomFragment::class.java.simpleName)
+
+    private fun showThumbnailBottomFactory(thumbnailDto: ThumbnailDto) =
+        ThumbnailFactoryBottomFragment
+            .newInstance(thumbnailDto)
+            .show(childFragmentManager, ThumbnailFactoryBottomFragment::class.java.simpleName)
 
 }

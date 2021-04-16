@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.ui.home.items
+package com.nativeboys.password.manager.presentation
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel

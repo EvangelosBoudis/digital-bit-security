@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.ui.categoryConstructor
+package com.nativeboys.password.manager.presentation
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject

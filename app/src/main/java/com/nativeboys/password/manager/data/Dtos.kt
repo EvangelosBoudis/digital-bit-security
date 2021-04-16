@@ -31,12 +31,14 @@ data class ItemDto(
     override fun areContentsTheSame(model: ItemDto) = this == model
 }
 
+@Parcelize
 data class FieldContentDto(
     val contentId: String = UUID.randomUUID().toString(),
     val textContent: String,
+    val fieldId: String,
     val fieldName: String,
     val fieldType: String
-) : ListAdapterItem<FieldContentDto> {
+) : Parcelable, ListAdapterItem<FieldContentDto> {
 
     override fun areItemsTheSame(model: FieldContentDto) = contentId == model.contentId
 
@@ -44,6 +46,7 @@ data class FieldContentDto(
 
 }
 
+@Parcelize
 data class ItemFieldsContentDto(
     val id: String,
     val name: String,
@@ -52,15 +55,16 @@ data class ItemFieldsContentDto(
     val tags: String?,
     val favorite: Boolean,
     val requiresPassword: Boolean,
+    val categoryId: String,
     val thumbnailUrl: String?,
     val fieldsContent: List<FieldContentDto>
-) {
+) : Parcelable {
 
     constructor(
         itemData: ItemData,
         fieldsContent: List<FieldContentDto>,
         thumbnailUrl: String?
-    ) : this(itemData.id, itemData.name, itemData.description, itemData.notes, itemData.tags, itemData.favorite, itemData.requiresPassword, thumbnailUrl, fieldsContent)
+    ) : this(itemData.id, itemData.name, itemData.description, itemData.notes, itemData.tags, itemData.favorite, itemData.requiresPassword, itemData.categoryId, thumbnailUrl, fieldsContent)
 
     fun tagsAsDto(addDefault: Boolean = true): List<TagDto> {
         val tagList = tags?.split(",") ?: emptyList()

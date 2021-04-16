@@ -35,12 +35,11 @@
     <string name="choose_type">Choose Type</string>
     <string name="categories">Categories</string>
     <string name="settings">Settings</string>
-    <string name="filter_by_category">Filter by category</string>
     <string name="show_favorites">Show only favorites</string>
     <string name="date_modified">Last date modified</string>
     <string name="filters">Filters</string>
     <string name="sort_by">Sort by</string>
     <string name="items_settings">Items settings</string>
     <string name="apply">Apply</string>
-    <string name="thumbnail_already_used">Thumbnail is used by other items</string>
+    <string name="thumbnail_already_used">This thumbnail is used by other items</string>
 </resources>

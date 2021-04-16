@@ -27,7 +27,7 @@
         android:label="fragment_item_constructor"
         tools:layout="@layout/fragment_item_constructor" >
         <argument
-            android:name="item_id"
+            android:name="ITEM_ID"
             app:argType="string"
             app:nullable="true" />
     </fragment>

@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.databinding.FragmentSearchEngineBinding
+import com.nativeboys.password.manager.presentation.SearchEngineViewModel
 import com.nativeboys.password.manager.ui.adapters.searchItems.SearchItemsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 

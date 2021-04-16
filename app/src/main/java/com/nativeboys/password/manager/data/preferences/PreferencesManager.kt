@@ -5,9 +5,7 @@ import android.util.Log
 import androidx.datastore.preferences.*
 import com.nativeboys.password.manager.BuildConfig.DATA_STORE_PREFERENCES_NAME
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -48,18 +46,23 @@ class PreferencesManager @Inject constructor(
         it[PreferencesKeys.ITEM_SEARCH_KEY] ?: ""
     }
 
-    suspend fun updateItemsSortOrder(order: SortOrder) = updatePreferences(PreferencesKeys.SORT_ORDER, order.name)
+    suspend fun updateItemsSortOrder(order: SortOrder) = update(PreferencesKeys.SORT_ORDER, order.name)
 
-    suspend fun updateNonFavoriteItemsVisibility(hide: Boolean) = updatePreferences(PreferencesKeys.HIDE_NON_FAVORITES, hide)
+    suspend fun updateNonFavoriteItemsVisibility(hide: Boolean) = update(PreferencesKeys.HIDE_NON_FAVORITES, hide)
 
-    suspend fun updateSelectedCategoryId(id: String) = updatePreferences(PreferencesKeys.SELECTED_CATEGORY_ID, id)
+    suspend fun updateSelectedCategoryId(id: String) = update(PreferencesKeys.SELECTED_CATEGORY_ID, id)
 
-    suspend fun updateItemSearchKey(searchKey: String) = updatePreferences(PreferencesKeys.ITEM_SEARCH_KEY, searchKey)
+    suspend fun updateItemSearchKey(searchKey: String) = update(PreferencesKeys.ITEM_SEARCH_KEY, searchKey)
 
-    private suspend fun <T> updatePreferences(key: Preferences.Key<T>, value: T) {
+    private suspend fun <T> update(key: Preferences.Key<T>, value: T) {
         dataStore.edit { preferences ->
             preferences[key] = value
         }
+    }
+
+    private suspend fun <T> read(key: Preferences.Key<T>): T? {
+        val preferences = dataStore.data.firstOrNull()
+        return preferences?.let { it[key] }
     }
 
     private object PreferencesKeys {

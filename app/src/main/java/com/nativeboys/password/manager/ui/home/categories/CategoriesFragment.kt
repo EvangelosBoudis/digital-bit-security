@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.CategoryData
 import com.nativeboys.password.manager.databinding.FragmentCategoriesBinding
+import com.nativeboys.password.manager.presentation.CategoriesViewModel
 import com.nativeboys.password.manager.ui.adapters.categories.CategoriesAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
