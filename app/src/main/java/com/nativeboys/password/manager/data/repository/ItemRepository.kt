@@ -1,6 +1,8 @@
 package com.nativeboys.password.manager.data.repository
 
+import androidx.room.Transaction
 import com.nativeboys.password.manager.data.*
+import com.nativeboys.password.manager.data.local.ContentDao
 import com.nativeboys.password.manager.data.local.FieldDao
 import com.nativeboys.password.manager.data.local.ItemDao
 import com.nativeboys.password.manager.data.local.ThumbnailDao
@@ -17,9 +19,14 @@ import javax.inject.Singleton
 class ItemRepository @Inject constructor(
     private val itemDao: ItemDao,
     private val fieldDao: FieldDao,
+    private val contentDao: ContentDao,
     private val thumbnailDao: ThumbnailDao,
     private val preferences: PreferencesManager
 ) {
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+    /// SQLite
+    //////////////////////////////////////////////////////////////////////////////////////////
 
     suspend fun saveItem(item: ItemData) = itemDao.save(item)
 
@@ -98,15 +105,29 @@ class ItemRepository @Inject constructor(
         return thumbnails
     }
 
+    @Transaction
+    suspend fun replaceAllFieldContent(
+        itemId: String,
+        contents: List<ContentData>
+    ) {
+        val prevContents = contentDao.findAllByItemId(itemId)
+        contentDao.delete(prevContents)
+        contentDao.save(contents)
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+    /// Preference Data Store
+    //////////////////////////////////////////////////////////////////////////////////////////
+
     private suspend fun updateItemsSortOrder(order: SortOrder) = preferences.updateItemsSortOrder(order)
 
     private suspend fun updateNonFavoriteItemsVisibility(hide: Boolean) = preferences.updateNonFavoriteItemsVisibility(hide)
+
+    suspend fun updateItemSearchKey(searchKey: String = "") = preferences.updateItemSearchKey(searchKey)
 
     suspend fun updateSortOrderAndFavoritesVisibility(order: SortOrder, hide: Boolean) {
         updateItemsSortOrder(order)
         updateNonFavoriteItemsVisibility(hide)
     }
-
-    suspend fun updateItemSearchKey(searchKey: String = "") = preferences.updateItemSearchKey(searchKey)
 
 }

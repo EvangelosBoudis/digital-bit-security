@@ -24,6 +24,8 @@ import com.nativeboys.password.manager.R
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder
 import net.steamcrafted.materialiconlib.MaterialIconView
 
+inline fun <T> List<T>.contains(predicate: (T) -> Boolean) = indexOfFirst(predicate) != -1
+
 fun FlexboxLayoutManager.wrapCells() {
     this.flexWrap = FlexWrap.WRAP
     this.flexDirection = FlexDirection.ROW

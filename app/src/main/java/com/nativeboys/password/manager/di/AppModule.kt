@@ -39,7 +39,7 @@ object AppModule {
     fun provideItemDao(db: AppDatabase) = db.itemDao()
 
     @Provides
-    fun provideItemFieldDao(db: AppDatabase) = db.itemFieldDao()
+    fun provideContentDao(db: AppDatabase) = db.contentDao()
 
     @Provides
     @Singleton

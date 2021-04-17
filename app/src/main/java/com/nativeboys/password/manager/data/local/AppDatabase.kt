@@ -19,7 +19,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun fieldDao(): FieldDao
     abstract fun thumbnailDao(): ThumbnailDao
     abstract fun itemDao(): ItemDao
-    abstract fun itemFieldDao(): ContentDao
+    abstract fun contentDao(): ContentDao
 
     class Callback @Inject constructor(
             private val database: Provider<AppDatabase>,
@@ -37,7 +37,7 @@ abstract class AppDatabase : RoomDatabase() {
             val fieldDao = database.get().fieldDao()
             val thumbnailDao = database.get().thumbnailDao()
             val itemDao = database.get().itemDao()
-            val itemFieldDao = database.get().itemFieldDao()
+            val contentDao = database.get().contentDao()
 
             val userId = UUID.randomUUID().toString()
 
@@ -160,7 +160,7 @@ abstract class AppDatabase : RoomDatabase() {
                 categoryDao.save(categories)
                 fieldDao.save(fields)
                 itemDao.save(items)
-                itemFieldDao.save(itemFields)
+                contentDao.save(itemFields)
             }
         }
 

@@ -241,21 +241,13 @@ class ItemConstructorViewModel @ViewModelInject constructor(
 
         // ThumbnailData Transformation
         val thumbnails = getThumbnails().toMutableList()
-
-        thumbnails.removeAll { it.id.isEmpty() }
         val thumbnailId = thumbnails.firstOrNull { it.type == 2 }?.id ?: ""
-        val thumbnailData = thumbnails.map {
-            ThumbnailData(it.id, it.url)
-        }
 
         val itemData = ItemData(itemId, name, description, notes, tags, favorite, thumbnailId, Date(), passwordRequired, categoryId, userId)
 
-        // TODO: Change ThumbnailData, ItemData, ContentData
-        thumbnailRepository.replaceAllThumbnails(thumbnailData)
+        thumbnailRepository.replaceAllThumbnails(thumbnails)
         itemRepository.saveItem(itemData)
-
-        
-
+        itemRepository.replaceAllFieldContent(itemId, contentData)
 
     }
 
