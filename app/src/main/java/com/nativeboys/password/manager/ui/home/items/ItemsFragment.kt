@@ -56,7 +56,10 @@ class ItemsFragment : Fragment(R.layout.fragment_items), View.OnClickListener {
             override fun onClick(view: View, model: ItemDto, position: Int) {
                 when (view.id) {
                     R.id.visible_view -> {
-                        navigateToItemOverview(model.itemId)
+                        parentNavController()?.apply {
+                            val action = HomeFragmentDirections.actionHomeFragmentToItemOverviewFragment(model.itemId)
+                            navigate(action)
+                        }
                     }
                     R.id.edit_btn -> {
                         parentNavController()?.apply {
@@ -82,15 +85,8 @@ class ItemsFragment : Fragment(R.layout.fragment_items), View.OnClickListener {
                 )
             }
             R.id.plus_btn -> {
-                parentNavController()?.navigate(R.id.action_homeFragment_to_itemConstructorFragment)
+                parentNavController()?.navigate(R.id.action_homeFragment_to_categoryChooseFragment)
             }
-        }
-    }
-
-    private fun navigateToItemOverview(itemId: String) {
-        parentNavController()?.apply {
-            val action = HomeFragmentDirections.actionHomeFragmentToItemOverviewFragment(itemId)
-            navigate(action)
         }
     }
 

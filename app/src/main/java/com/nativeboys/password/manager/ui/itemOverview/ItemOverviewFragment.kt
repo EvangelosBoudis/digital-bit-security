@@ -3,7 +3,6 @@ package com.nativeboys.password.manager.ui.itemOverview
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -16,7 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.FieldContentDto
 import com.nativeboys.password.manager.databinding.FragmentItemOverviewBinding
-import com.nativeboys.password.manager.other.applyZTransition
+import com.nativeboys.password.manager.other.ZTransactionFragment
 import com.nativeboys.password.manager.ui.adapters.fields.FieldsAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import com.zeustech.zeuskit.ui.views.BottomBar
@@ -25,19 +24,13 @@ import com.nativeboys.password.manager.other.copyToClipboard
 import com.nativeboys.password.manager.presentation.ItemOverviewViewModel
 
 @AndroidEntryPoint
-class ItemOverviewFragment : Fragment(R.layout.fragment_item_overview), AdapterClickListener<FieldContentDto>, View.OnClickListener {
+class ItemOverviewFragment : ZTransactionFragment(R.layout.fragment_item_overview), AdapterClickListener<FieldContentDto>, View.OnClickListener {
 
     private val viewModel: ItemOverviewViewModel by viewModels()
 
     private lateinit var navController: NavController
     private var binding: FragmentItemOverviewBinding? = null
-
     private val fieldsAdapter = FieldsAdapter()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        applyZTransition()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
