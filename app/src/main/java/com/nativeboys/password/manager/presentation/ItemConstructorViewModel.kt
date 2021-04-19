@@ -209,46 +209,47 @@ class ItemConstructorViewModel @ViewModelInject constructor(
 
     fun submitItem() = liveData<Boolean> {
 
+        val categoryId = item!!.categoryId // TODO: Change
+        val userId = UUID.randomUUID().toString() // TODO: Change
         val itemId = this@ItemConstructorViewModel.itemId ?: UUID.randomUUID().toString()
 
-        // TODO: Change
-        val categoryId = item!!.categoryId
-        val userId = UUID.randomUUID().toString()
+        val thumbnailsDto = getThumbnails()
 
-        // Favorite
-        val favorite = item?.favorite ?: false
+        val thumbnails = thumbnailsDto
+            .filter { it.id.isNotEmpty() }
+            .map { ThumbnailData(it.id, it.url) }
 
-        // Notes
-        val notes = getNotesFromCacheOrDatabase()
+        val fieldsContentDto = getFieldsContentMergedByCacheAndDatabase()
 
-        // PasswordIsRequired
-        val passwordRequired = getPasswordFromCacheOrDatabase()
+        val name = fieldsContentDto
+            .firstOrNull { it.contentId == NAME_ID }
+            ?.textContent ?: ""
 
-        // Tags
-        val tagList = getTags().toMutableList()
-        tagList.removeAll { it.name.isEmpty() }
-        val tags = tagList.joinToString(", ")
+        val description = fieldsContentDto
+            .firstOrNull { it.contentId == DESCRIPTION_ID }
+            ?.textContent ?: ""
 
-        // ContentData Transformation
-        val fieldsContent = getFieldsContentMergedByCacheAndDatabase().toMutableList()
+        val contents = fieldsContentDto
+            .filter { it.contentId != NAME_ID && it.contentId != DESCRIPTION_ID }
+            .map { ContentData(fieldId = it.fieldId, itemId = itemId, content = it.textContent) }
 
-        val name = fieldsContent.firstOrNull { it.contentId == NAME_ID }?.textContent ?: ""
-        val description = fieldsContent.firstOrNull { it.contentId == DESCRIPTION_ID }?.textContent ?: ""
-        fieldsContent.removeAll { it.contentId == NAME_ID || it.contentId == DESCRIPTION_ID }
-        val contentData = fieldsContent.map {
-            ContentData(fieldId = it.fieldId, itemId = itemId, content = it.textContent)
-        }
+        val tags = getTags()
+            .filter { it.name.isNotEmpty() }
+            .joinToString(",") { it.name }
 
-        // ThumbnailData Transformation
-        val thumbnails = getThumbnails().toMutableList()
-        val thumbnailId = thumbnails.firstOrNull { it.type == 2 }?.id ?: ""
-
-        val itemData = ItemData(itemId, name, description, notes, tags, favorite, thumbnailId, Date(), passwordRequired, categoryId, userId)
+        val itemData = ItemData(
+            itemId, name, description,
+            getNotesFromCacheOrDatabase(), tags,
+            item?.favorite ?: false, thumbnailsDto.firstOrNull { it.type == 2 }?.id ?: "",
+            Date(), getPasswordFromCacheOrDatabase(),
+            categoryId, userId
+        )
 
         thumbnailRepository.replaceAllThumbnails(thumbnails)
-        itemRepository.saveItem(itemData)
-        itemRepository.replaceAllFieldContent(itemId, contentData)
+        itemRepository.updateItem(itemData) // TODO: Save or Update
+        itemRepository.replaceAllFieldContent(itemId, contents)
 
+        emit(true)
     }
 
     fun <T> updateUserCache(contentId: String, value: T) {

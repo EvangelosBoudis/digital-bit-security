@@ -30,6 +30,8 @@ class ItemRepository @Inject constructor(
 
     suspend fun saveItem(item: ItemData) = itemDao.save(item)
 
+    suspend fun updateItem(item: ItemData) = itemDao.update(item)
+
     suspend fun findItemById(id: String) = itemDao.findById(id)
 
     suspend fun getItemsCountWithThumbnailId(thumbnailId: String) = itemDao.getCountWithThumbnailId(thumbnailId)
@@ -114,6 +116,20 @@ class ItemRepository @Inject constructor(
         contentDao.delete(prevContents)
         contentDao.save(contents)
     }
+
+/*    suspend fun updateItem(
+        id: String,
+        passwordIsRequired: Boolean,
+        favorite: Boolean,
+        notes: String?,
+        tagsDto: List<TagDto>,
+        thumbnailsDto: List<ThumbnailDto>,
+        fieldsContentDto: List<FieldContentDto>
+    ) {
+
+
+
+    }*/
 
     //////////////////////////////////////////////////////////////////////////////////////////
     /// Preference Data Store

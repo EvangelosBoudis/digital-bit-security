@@ -110,10 +110,11 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
     override fun onClick(v: View?) {
         val view = v ?: return
         when (view.id) {
-            R.id.submit_btn -> {
+            R.id.trailing_btn -> {
                 view.isEnabled = false
-                // TODO: Validation
-                viewModel.submitItem()
+                viewModel.submitItem().observe(viewLifecycleOwner) {
+                    activity?.onBackPressed()
+                }
             }
             R.id.leading_btn -> {
                 activity?.onBackPressed()

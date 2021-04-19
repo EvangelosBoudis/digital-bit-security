@@ -66,7 +66,7 @@ class ItemOverviewFragment : Fragment(R.layout.fragment_item_overview), AdapterC
                 nameField.text = item.name
                 descriptionField.text = item.description
                 notesField.setText(item.notes)
-                tagsField.setText(item.tags)
+                tagsField.setText(item.formattedTags)
                 fieldsAdapter.dataSet = item.fieldsContent
                 val notesVisibility = if (item.notes?.isEmpty() == true) View.GONE else View.VISIBLE
                 notesHeadline.visibility = notesVisibility

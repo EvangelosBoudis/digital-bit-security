@@ -66,11 +66,18 @@ data class ItemFieldsContentDto(
         thumbnailUrl: String?
     ) : this(itemData.id, itemData.name, itemData.description, itemData.notes, itemData.tags, itemData.favorite, itemData.requiresPassword, itemData.categoryId, thumbnailUrl, fieldsContent)
 
+    val formattedTags: String?
+        get() {
+            return this.tags?.split(",")?.joinToString(", ")
+        }
+
     fun tagsAsDto(addDefault: Boolean = true): List<TagDto> {
-        val tagList = tags?.split(",") ?: emptyList()
-        val tagsDto = tagList.map { TagDto(it, 1) }.toMutableList()
-        if (addDefault) tagsDto.add(TagDto())
-        return tagsDto
+        val tags = (this.tags ?: "")
+            .split(",")
+            .map { TagDto(it, 1) }
+            .toMutableList()
+        if (addDefault) tags.add(TagDto())
+        return tags
     }
 
 }

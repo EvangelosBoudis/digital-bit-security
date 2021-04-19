@@ -78,21 +78,21 @@ abstract class AppDatabase : RoomDatabase() {
             val fields = listOf(accountF1, accountF2, accountF3, accountF4, accountF5, creditF1, creditF2, creditF3, networkF1, networkF2, networkF3, networkF4, networkF5)
 
             // Items
-            val appleId = ItemData(name = "Apple ID", description = "Ritsa's account", notes = "This account is linked to iPad", tags = "Apple, iPad, Tablet, Ritsa",
+            val appleId = ItemData(name = "Apple ID", description = "Ritsa's account", notes = "This account is linked to iPad", tags = "Apple,iPad,Tablet,Ritsa",
                 thumbnailId = appleThumb.id, requiresPassword = true, favorite = true, categoryId = accountCategory.id, ownerId = userId)
-            val adobe = ItemData(name = "Adobe", description = "ZeusTech account", notes = "This account handled by Fuk Sua", tags = "ZeusTech, Prototype, User Interface",
+            val adobe = ItemData(name = "Adobe", description = "ZeusTech account", notes = "This account handled by Fuk Sua", tags = "ZeusTech,Prototype,User Interface",
                 thumbnailId = adobeThumb.id, requiresPassword = false, favorite = false, categoryId = accountCategory.id, ownerId = userId)
             val behance = ItemData(name = "Behance", description = "Family account", notes = "This account contains photos from travels that we had",
-                tags = "Art, Photos, Hobby", thumbnailId = behanceThumb.id, requiresPassword = false, favorite = true, categoryId = accountCategory.id, ownerId = userId)
-            val dribble = ItemData(name = "Dribbble", description = "Development account", notes = "This account contains a bunch of libraries with awesome mobile user interfaces", tags = "Inspiration, User Interface, Development",
+                tags = "Art,Photos,Hobby", thumbnailId = behanceThumb.id, requiresPassword = false, favorite = true, categoryId = accountCategory.id, ownerId = userId)
+            val dribble = ItemData(name = "Dribbble", description = "Development account", notes = "This account contains a bunch of libraries with awesome mobile user interfaces", tags = "Inspiration,User Interface,Development",
                 thumbnailId = dribbleThumb.id, requiresPassword = false, favorite = true, categoryId = accountCategory.id, ownerId = userId)
-            val facebook = ItemData(name = "Facebook", description = "My account", notes = "", tags = "Social Media, Chat, Video Call",
+            val facebook = ItemData(name = "Facebook", description = "My account", notes = "", tags = "Social Media,Chat,Video Call",
                 thumbnailId = facebookThumb.id, requiresPassword = true, favorite = false, categoryId = accountCategory.id, ownerId = userId)
-            val instagram = ItemData(name = "Instagram", description = "Shared account", notes = "", tags = "Social Media, Chat, Video Call",
+            val instagram = ItemData(name = "Instagram", description = "Shared account", notes = "", tags = "Social Media,Chat,Video Call",
                 thumbnailId = instagramThumb.id, requiresPassword = false, favorite = false, categoryId = accountCategory.id, ownerId = userId)
-            val hzTest = ItemData(name = "HZ-TEST", description = "Network details", notes = "", tags = "ZeusTech, Wifi, Network",
+            val hzTest = ItemData(name = "HZ-TEST", description = "Network details", notes = "", tags = "ZeusTech,Wifi,Network",
                 thumbnailId = modemThumb.id, requiresPassword = false, favorite = true, categoryId = networkCategory.id, ownerId = userId)
-            val euroBank = ItemData(name = "Eurobank", description = "Credit card details", notes = "", tags = "Eurobank, Payment, Money",
+            val euroBank = ItemData(name = "Eurobank", description = "Credit card details", notes = "", tags = "Eurobank,Payment,Money",
                 thumbnailId = euroBankThumb.id, requiresPassword = true, favorite = false, categoryId = creditCategory.id, ownerId = userId)
 
             val items = listOf(appleId, adobe, behance, dribble, facebook, instagram, hzTest, euroBank)
