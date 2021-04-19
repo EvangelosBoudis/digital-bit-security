@@ -40,6 +40,8 @@ data class FieldContentDto(
     val fieldType: String
 ) : Parcelable, ListAdapterItem<FieldContentDto> {
 
+    constructor(textContent: String, field: FieldData) : this(textContent = textContent, fieldId = field.id, fieldName = field.name, fieldType = field.type)
+
     override fun areItemsTheSame(model: FieldContentDto) = contentId == model.contentId
 
     override fun areContentsTheSame(model: FieldContentDto) = this == model

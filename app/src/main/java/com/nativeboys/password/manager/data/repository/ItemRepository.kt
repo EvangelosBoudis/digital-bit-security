@@ -9,8 +9,8 @@ import com.nativeboys.password.manager.data.local.ThumbnailDao
 import com.nativeboys.password.manager.data.preferences.ItemSettings
 import com.nativeboys.password.manager.data.preferences.PreferencesManager
 import com.nativeboys.password.manager.data.preferences.SortOrder
-import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.DESCRIPTION_ID
-import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.NAME_ID
+import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.FIELD_DESCRIPTION_ID
+import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.FIELD_NAME_ID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
@@ -138,13 +138,13 @@ class ItemRepository @Inject constructor(
             .joinToString(",") { it.name }
 
         val name = fieldsContentDto
-            .firstOrNull { it.contentId == NAME_ID }?.textContent ?: ""
+            .firstOrNull { it.fieldId == FIELD_NAME_ID }?.textContent ?: ""
 
         val description = fieldsContentDto
-            .firstOrNull { it.contentId == DESCRIPTION_ID }?.textContent ?: ""
+            .firstOrNull { it.fieldId == FIELD_DESCRIPTION_ID }?.textContent ?: ""
 
         val contents = fieldsContentDto
-            .filter { it.contentId != NAME_ID && it.contentId != DESCRIPTION_ID }
+            .filter { it.fieldId != FIELD_NAME_ID && it.fieldId != FIELD_DESCRIPTION_ID }
             .map { ContentData(fieldId = it.fieldId, itemId = id, content = it.textContent) }
 
         val item = ItemData(

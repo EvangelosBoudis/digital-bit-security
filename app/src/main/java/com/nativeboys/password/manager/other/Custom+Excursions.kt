@@ -5,6 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.os.Looper
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.text.method.TransformationMethod
@@ -14,6 +15,7 @@ import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.Navigation
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.target.CustomTarget
@@ -21,10 +23,23 @@ import com.bumptech.glide.request.transition.Transition
 import com.google.android.flexbox.*
 import com.google.android.material.transition.MaterialSharedAxis
 import com.nativeboys.password.manager.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder
 import net.steamcrafted.materialiconlib.MaterialIconView
 
 inline fun <T> List<T>.contains(predicate: (T) -> Boolean) = indexOfFirst(predicate) != -1
+
+fun <T> SavedStateHandle.safeSet(tag: String, value: T, scope: CoroutineScope) {
+    if (Thread.currentThread() == Looper.getMainLooper().thread) {
+        this[tag] = value
+    } else {
+        scope.launch(context = Dispatchers.Main) {
+            this@safeSet[tag] = value
+        }
+    }
+}
 
 fun FlexboxLayoutManager.wrapCells() {
     this.flexWrap = FlexWrap.WRAP

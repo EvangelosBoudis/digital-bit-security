@@ -60,7 +60,7 @@ class ItemsFragment : Fragment(R.layout.fragment_items), View.OnClickListener {
                     }
                     R.id.edit_btn -> {
                         parentNavController()?.apply {
-                            val action = HomeFragmentDirections.actionHomeFragmentToItemConstructorFragment(model.itemId)
+                            val action = HomeFragmentDirections.actionHomeFragmentToItemConstructorFragment(model.itemId, null)
                             navigate(action)
                         }
                     }

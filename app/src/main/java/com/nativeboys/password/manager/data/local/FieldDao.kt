@@ -13,7 +13,7 @@ interface FieldDao {
     suspend fun findByIds(ids: List<String>): List<FieldData>
 
     @Query("SELECT * FROM fields WHERE fields.category_id == :categoryId")
-    suspend fun findByCategoryId(categoryId: String): List<FieldData>
+    suspend fun findAllByCategoryId(categoryId: String): List<FieldData>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun save(fields: List<FieldData>)

@@ -19,8 +19,8 @@ import com.nativeboys.password.manager.ui.adapters.fieldContent.FieldContentText
 import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
 import com.nativeboys.password.manager.ui.adapters.thumbnails.OnThumbnailLongClickListener
 import com.nativeboys.password.manager.ui.adapters.thumbnails.ThumbnailsAdapter
-import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.NOTES_ID
-import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.PASSWORD_REQUIRED_ID
+import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.NOTES
+import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.PASSWORD_REQUIRED
 import com.nativeboys.password.manager.ui.itemConstructor.bottomFragment.TagFactoryBottomFragment
 import com.nativeboys.password.manager.ui.itemConstructor.bottomFragment.ThumbnailFactoryBottomFragment
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
@@ -40,8 +40,8 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentItemConstructorBinding.bind(view)
         fieldsAdapter = FieldContentAdapter(object : FieldContentTextChangeListener {
-            override fun onContentChanged(contentId: String, textContent: String) {
-                viewModel.updateUserCache(contentId, textContent)
+            override fun onContentChanged(fieldId: String, textContent: String) {
+                viewModel.updateUserCache(fieldId, textContent)
             }
         })
         thumbnailsAdapter = ThumbnailsAdapter(object : OnThumbnailLongClickListener {
@@ -66,10 +66,10 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
             headerContainer.trailingBtn.setOnClickListener(this@ItemConstructorFragment)
             notesField.addTextChangedListener {
                 val text = it?.toString() ?: ""
-                viewModel.updateUserCache(NOTES_ID, text)
+                viewModel.updateUserCache(NOTES, text)
             }
             passwordSwitch.setOnCheckedChangeListener { _, isChecked ->
-                viewModel.updateUserCache(PASSWORD_REQUIRED_ID, isChecked)
+                viewModel.updateUserCache(PASSWORD_REQUIRED, isChecked)
             }
             thumbnailsAdapter.adapterClickListener = object : AdapterClickListener<ThumbnailDto> {
                 override fun onClick(view: View, model: ThumbnailDto, position: Int) {

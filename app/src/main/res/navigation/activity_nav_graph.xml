@@ -30,6 +30,10 @@
             android:name="ITEM_ID"
             app:argType="string"
             app:nullable="true" />
+        <argument
+            android:name="CATEGORY_ID"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/categoryConstructorFragment"

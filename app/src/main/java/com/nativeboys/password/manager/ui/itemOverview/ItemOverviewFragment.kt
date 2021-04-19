@@ -111,7 +111,7 @@ class ItemOverviewFragment : Fragment(R.layout.fragment_item_overview), AdapterC
                 activity?.onBackPressed()
             }
             R.id.edit_btn -> {
-                val action = ItemOverviewFragmentDirections.actionItemOverviewFragmentToItemConstructorFragment(viewModel.itemId)
+                val action = ItemOverviewFragmentDirections.actionItemOverviewFragmentToItemConstructorFragment(viewModel.itemId, null)
                 navController.navigate(action)
             }
             R.id.delete_btn -> {

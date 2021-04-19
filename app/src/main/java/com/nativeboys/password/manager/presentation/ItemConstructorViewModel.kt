@@ -1,25 +1,27 @@
 package com.nativeboys.password.manager.presentation
 
-import android.os.Looper
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.nativeboys.password.manager.data.*
+import com.nativeboys.password.manager.data.repository.FieldRepository
 import com.nativeboys.password.manager.data.repository.ItemRepository
 import com.nativeboys.password.manager.data.repository.ThumbnailRepository
-import kotlinx.coroutines.CoroutineScope
+import com.nativeboys.password.manager.other.safeSet
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
 
 class ItemConstructorViewModel @ViewModelInject constructor(
     private val itemRepository: ItemRepository,
+    private val fieldRepository: FieldRepository,
     private val thumbnailRepository: ThumbnailRepository,
     @Assisted private val state: SavedStateHandle
 ): ViewModel() {
 
-    val itemId: String? = state[ITEM_ID]
-    var item: ItemFieldsContentDto? = null
+    private val itemId: String? = state[ITEM_ID]
+    private val categoryId: String? = state[CATEGORY_ID]
+    private var item: ItemFieldsContentDto? = null
 
     val tags = state.getLiveData<List<TagDto>>(TAGS)
     val thumbnails = state.getLiveData<List<ThumbnailDto>>(THUMBNAILS)
@@ -51,18 +53,28 @@ class ItemConstructorViewModel @ViewModelInject constructor(
     //////////////////////////////////////////////////////////////////////////////////////////
 
     /** Merge database fields with cache */
-    private fun getFieldsContentMergedByCacheAndDatabase(): List<FieldContentDto> {
-        val nameContent = state[NAME_ID] ?: item?.name ?: ""
-        val descriptionContent = state[DESCRIPTION_ID] ?: item?.description ?: ""
+    private suspend fun getFieldsContentMergedByCacheAndDatabase(): List<FieldContentDto> {
+
+        val nameContent = state[FIELD_NAME_ID] ?: item?.name ?: ""
+        val descriptionContent = state[FIELD_DESCRIPTION_ID] ?: item?.description ?: ""
         val allFieldContent = listOf(
-            FieldContentDto(NAME_ID, nameContent, "", "Name", "text"),
-            FieldContentDto(DESCRIPTION_ID, descriptionContent, "", "Description", "text")
+            FieldContentDto("", nameContent, FIELD_NAME_ID, "Name", "text"),
+            FieldContentDto("", descriptionContent, FIELD_DESCRIPTION_ID, "Description", "text")
         ).toMutableList()
-        item?.fieldsContent?.let { fieldsContent ->
-            allFieldContent.addAll(fieldsContent.map {
-                it.copy(textContent = state[it.contentId] ?: it.textContent)
-            })
+
+        item?.fieldsContent?.let { preFieldsContent ->
+            val fieldsContent = preFieldsContent
+                .map { it.copy(textContent = state[it.fieldId] ?: it.textContent) }
+            allFieldContent.addAll(fieldsContent)
         }
+
+        categoryId?.let { categoryId ->
+            val fieldsContent = fieldRepository
+                .findAllFieldsByCategoryId(categoryId)
+                .map { FieldContentDto(state[it.id] ?: "", it) }
+            allFieldContent.addAll(fieldsContent)
+        }
+
         return allFieldContent
     }
 
@@ -77,7 +89,7 @@ class ItemConstructorViewModel @ViewModelInject constructor(
 
     /** Get from cache or database */
     private fun getPasswordFromCacheOrDatabase(): Boolean {
-        return state.get<Boolean>(PASSWORD_REQUIRED_ID) ?: item?.requiresPassword ?: true
+        return state.get<Boolean>(PASSWORD_REQUIRED) ?: item?.requiresPassword ?: true
     }
 
     fun getInitPasswordIsRequired() = liveData {
@@ -91,7 +103,7 @@ class ItemConstructorViewModel @ViewModelInject constructor(
 
     /** Get from cache or database */
     private fun getNotesFromCacheOrDatabase(): String? {
-        return state.get<String>(NOTES_ID) ?: item?.notes
+        return state.get<String>(NOTES) ?: item?.notes
     }
 
     fun getInitNotes() = liveData {
@@ -227,30 +239,21 @@ class ItemConstructorViewModel @ViewModelInject constructor(
         emit(true)
     }
 
-    fun <T> updateUserCache(contentId: String, value: T) {
-        state[contentId] = value
+    fun <T> updateUserCache(fieldId: String, value: T) {
+        state[fieldId] = value
     }
 
     companion object {
         const val ITEM_ID = "ITEM_ID"
+        const val CATEGORY_ID = "CATEGORY_ID"
 
-        const val NAME_ID = "NAME_ID"
-        const val DESCRIPTION_ID = "DESCRIPTION_ID"
-        const val PASSWORD_REQUIRED_ID = "PASSWORD_REQUIRED_ID"
-        const val NOTES_ID = "NOTES_ID"
+        const val FIELD_NAME_ID = "NAME_ID"
+        const val FIELD_DESCRIPTION_ID = "DESCRIPTION_ID"
 
+        const val PASSWORD_REQUIRED = "PASSWORD_REQUIRED"
+        const val NOTES = "NOTES"
         const val TAGS = "TAGS"
         const val THUMBNAILS = "THUMBNAILS"
     }
 
-}
-
-fun <T> SavedStateHandle.safeSet(tag: String, value: T, scope: CoroutineScope) {
-    if (Thread.currentThread() == Looper.getMainLooper().thread) {
-        this[tag] = value
-    } else {
-        scope.launch(context = Dispatchers.Main) {
-            this@safeSet[tag] = value
-        }
-    }
 }

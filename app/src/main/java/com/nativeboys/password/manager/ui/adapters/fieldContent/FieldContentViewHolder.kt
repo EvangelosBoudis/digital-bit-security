@@ -16,7 +16,7 @@ import com.nativeboys.password.manager.other.findByCode
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
 interface FieldContentTextChangeListener {
-    fun onContentChanged(contentId: String, textContent: String)
+    fun onContentChanged(fieldId: String, textContent: String)
 }
 
 class FieldContentViewHolder(
@@ -51,7 +51,7 @@ class FieldContentViewHolder(
         }
         contentField.addTextChangedListener {
             val text = it?.toString() ?: return@addTextChangedListener
-            fieldContentTextChangeListener.onContentChanged(model.contentId, text)
+            fieldContentTextChangeListener.onContentChanged(model.fieldId, text)
         }
     }
 

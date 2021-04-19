@@ -21,7 +21,7 @@ class CategoryRepository @Inject constructor(
 
     suspend fun findCategoryById(categoryId: String) = categoryDao.findById(categoryId)
 
-    suspend fun findFieldsByCategoryId(categoryId: String) = fieldDao.findByCategoryId(categoryId)
+    suspend fun findFieldsByCategoryId(categoryId: String) = fieldDao.findAllByCategoryId(categoryId)
 
     suspend fun findCategoryWithFieldsById(categoryId: String) = categoryDao.findCategoryWithFieldsById(categoryId)
 
