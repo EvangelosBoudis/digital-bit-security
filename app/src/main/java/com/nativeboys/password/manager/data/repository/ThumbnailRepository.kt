@@ -2,6 +2,7 @@ package com.nativeboys.password.manager.data.repository
 
 import androidx.room.Transaction
 import com.nativeboys.password.manager.data.ThumbnailData
+import com.nativeboys.password.manager.data.ThumbnailDto
 import com.nativeboys.password.manager.data.local.ThumbnailDao
 import com.nativeboys.password.manager.other.contains
 import javax.inject.Inject
@@ -12,8 +13,13 @@ class ThumbnailRepository @Inject constructor(
     private val thumbnailDao: ThumbnailDao
 ) {
 
+    suspend fun findAllThumbnails() = thumbnailDao.findAll()
+
     @Transaction
-    suspend fun replaceAllThumbnails(thumbnails: List<ThumbnailData>) {
+    suspend fun replaceAllThumbnails(thumbnailDto: List<ThumbnailDto>) {
+        val thumbnails = thumbnailDto
+            .filter { it.url.isNotEmpty() }
+            .map { ThumbnailData(it.id, it.url) }
 
         val prevThumbnails = thumbnailDao.findAll()
 
@@ -22,7 +28,7 @@ class ThumbnailRepository @Inject constructor(
         })
 
         thumbnailDao.save(thumbnails.filter { thumbnail ->
-            prevThumbnails.contains { it.id == thumbnail.id }
+            prevThumbnails.contains { it.id != thumbnail.id }
         })
 
         thumbnailDao.update(thumbnails.filter { thumbnail ->

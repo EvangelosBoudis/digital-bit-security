@@ -9,9 +9,12 @@ import com.nativeboys.password.manager.data.local.ThumbnailDao
 import com.nativeboys.password.manager.data.preferences.ItemSettings
 import com.nativeboys.password.manager.data.preferences.PreferencesManager
 import com.nativeboys.password.manager.data.preferences.SortOrder
+import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.DESCRIPTION_ID
+import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.NAME_ID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -107,8 +110,7 @@ class ItemRepository @Inject constructor(
         return thumbnails
     }
 
-    @Transaction
-    suspend fun replaceAllFieldContent(
+    private suspend fun replaceAllFieldContent(
         itemId: String,
         contents: List<ContentData>
     ) {
@@ -117,19 +119,45 @@ class ItemRepository @Inject constructor(
         contentDao.save(contents)
     }
 
-/*    suspend fun updateItem(
+    @Transaction
+    suspend fun updateItem(
         id: String,
-        passwordIsRequired: Boolean,
-        favorite: Boolean,
+        categoryId: String,
+        thumbnailId: String,
         notes: String?,
+        favorite: Boolean,
+        passwordIsRequired: Boolean,
         tagsDto: List<TagDto>,
-        thumbnailsDto: List<ThumbnailDto>,
         fieldsContentDto: List<FieldContentDto>
     ) {
 
+        val userId = UUID.randomUUID().toString() // TODO: Change
 
+        val tags = tagsDto
+            .filter { it.name.isNotEmpty() }
+            .joinToString(",") { it.name }
 
-    }*/
+        val name = fieldsContentDto
+            .firstOrNull { it.contentId == NAME_ID }?.textContent ?: ""
+
+        val description = fieldsContentDto
+            .firstOrNull { it.contentId == DESCRIPTION_ID }?.textContent ?: ""
+
+        val contents = fieldsContentDto
+            .filter { it.contentId != NAME_ID && it.contentId != DESCRIPTION_ID }
+            .map { ContentData(fieldId = it.fieldId, itemId = id, content = it.textContent) }
+
+        val item = ItemData(
+            id, name, description,
+            notes, tags,
+            favorite, thumbnailId,
+            Date(), passwordIsRequired,
+            categoryId, userId
+        )
+
+        itemDao.update(item)
+        replaceAllFieldContent(id, contents)
+    }
 
     //////////////////////////////////////////////////////////////////////////////////////////
     /// Preference Data Store

@@ -207,47 +207,22 @@ class ItemConstructorViewModel @ViewModelInject constructor(
     /// Other
     //////////////////////////////////////////////////////////////////////////////////////////
 
-    fun submitItem() = liveData<Boolean> {
-
-        val categoryId = item!!.categoryId // TODO: Change
-        val userId = UUID.randomUUID().toString() // TODO: Change
-        val itemId = this@ItemConstructorViewModel.itemId ?: UUID.randomUUID().toString()
+    fun submitItem() = liveData {
 
         val thumbnailsDto = getThumbnails()
 
-        val thumbnails = thumbnailsDto
-            .filter { it.id.isNotEmpty() }
-            .map { ThumbnailData(it.id, it.url) }
+        val thumbnailId = thumbnailsDto
+            .firstOrNull { it.type == 2 }?.id ?: ""
 
-        val fieldsContentDto = getFieldsContentMergedByCacheAndDatabase()
+        thumbnailRepository.replaceAllThumbnails(thumbnailsDto)
 
-        val name = fieldsContentDto
-            .firstOrNull { it.contentId == NAME_ID }
-            ?.textContent ?: ""
-
-        val description = fieldsContentDto
-            .firstOrNull { it.contentId == DESCRIPTION_ID }
-            ?.textContent ?: ""
-
-        val contents = fieldsContentDto
-            .filter { it.contentId != NAME_ID && it.contentId != DESCRIPTION_ID }
-            .map { ContentData(fieldId = it.fieldId, itemId = itemId, content = it.textContent) }
-
-        val tags = getTags()
-            .filter { it.name.isNotEmpty() }
-            .joinToString(",") { it.name }
-
-        val itemData = ItemData(
-            itemId, name, description,
-            getNotesFromCacheOrDatabase(), tags,
-            item?.favorite ?: false, thumbnailsDto.firstOrNull { it.type == 2 }?.id ?: "",
-            Date(), getPasswordFromCacheOrDatabase(),
-            categoryId, userId
+        itemRepository.updateItem(
+            item!!.id, item!!.categoryId, thumbnailId,
+            getNotesFromCacheOrDatabase(),
+            item?.favorite ?: false,
+            getPasswordFromCacheOrDatabase(), getTags(),
+            getFieldsContentMergedByCacheAndDatabase()
         )
-
-        thumbnailRepository.replaceAllThumbnails(thumbnails)
-        itemRepository.updateItem(itemData) // TODO: Save or Update
-        itemRepository.replaceAllFieldContent(itemId, contents)
 
         emit(true)
     }
