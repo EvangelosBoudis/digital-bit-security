@@ -3,13 +3,13 @@
     <string name="items">Items</string>
     <string name="home">Home</string>
     <string name="search">Search</string>
-    <string name="create_item">Create Item</string>
     <string name="email_username">email/username</string>
     <string name="password">password</string>
     <string name="generate_password">Generate a Password</string>
     <string name="notes">Notes</string>
     <string name="tags">Tags</string>
     <string name="thumbnail">Thumbnail</string>
+    <string name="edit_item">Edit Item</string>
     <string name="edit_thumbnail">Edit Thumbnail</string>
     <string name="url">Url</string>
     <string name="submit">Submit</string>
@@ -22,7 +22,7 @@
     <string name="update_item">Update Item</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
-    <string name="item_overview">Item Overview</string>
+    <string name="overview">Item Overview</string>
     <string name="copied">Copied to clipboard</string>
     <string name="field_name">Field Name</string>
     <string name="password_type">Password Type</string>
@@ -42,4 +42,8 @@
     <string name="items_settings">Items settings</string>
     <string name="apply">Apply</string>
     <string name="thumbnail_already_used">This thumbnail is used by other items</string>
+    <string name="remove_item_confirmation">Do you want to remove this item?</string>
+    <string name="remove_item_description">By deleting an item there is no way to recover it.</string>
+    <string name="yes_remove">Yes, remove</string>
+    <string name="keep">Keep it</string>
 </resources>

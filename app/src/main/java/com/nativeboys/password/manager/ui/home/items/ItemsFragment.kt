@@ -3,6 +3,7 @@ package com.nativeboys.password.manager.ui.home.items
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -12,16 +13,20 @@ import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.CategoryDto
 import com.nativeboys.password.manager.data.ItemDto
 import com.nativeboys.password.manager.databinding.FragmentItemsBinding
-import com.nativeboys.password.manager.other.parentNavController
+import com.nativeboys.password.manager.util.parentNavController
 import com.nativeboys.password.manager.presentation.ItemsViewModel
 import com.nativeboys.password.manager.ui.adapters.categoriesDto.CategoriesDtoAdapter
 import com.nativeboys.password.manager.ui.adapters.itemsDto.ItemsDtoAdapter
+import com.nativeboys.password.manager.ui.confirmation.ConfirmationDialogListener
+import com.nativeboys.password.manager.ui.confirmation.ConfirmationFragment
 import com.nativeboys.password.manager.ui.home.HomeFragmentDirections
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ItemsFragment : Fragment(R.layout.fragment_items), View.OnClickListener {
+class ItemsFragment : Fragment(
+    R.layout.fragment_items
+), View.OnClickListener, ConfirmationDialogListener {
 
     private val viewModel: ItemsViewModel by viewModels()
 
@@ -41,11 +46,10 @@ class ItemsFragment : Fragment(R.layout.fragment_items), View.OnClickListener {
             settingsBtn.setOnClickListener(this@ItemsFragment)
             plusBtn.setOnClickListener(this@ItemsFragment)
         }
-        viewModel.categories.observe(viewLifecycleOwner) {
-            categoriesAdapter.submitList(it)
-        }
-        viewModel.itemsDto.observe(viewLifecycleOwner) { items ->
-            itemsAdapter.submitList(items)
+        childFragmentManager.addFragmentOnAttachListener { _, fragment ->
+            (fragment as? ConfirmationFragment)?.let {
+                it.confirmationDialogListener = this
+            }
         }
         categoriesAdapter.adapterClickListener = object : AdapterClickListener<CategoryDto> {
             override fun onClick(view: View, model: CategoryDto, position: Int) {
@@ -68,10 +72,19 @@ class ItemsFragment : Fragment(R.layout.fragment_items), View.OnClickListener {
                         }
                     }
                     R.id.delete_btn -> {
-                        viewModel.deleteItem(model.itemId)
+                        viewModel.setPendingItemToDelete(model.itemId)
+                        ConfirmationFragment
+                            .newInstance(R.layout.fragment_confirmation)
+                            .show(childFragmentManager, ConfirmationFragment::class.java.simpleName)
                     }
                 }
             }
+        }
+        viewModel.categories.observe(viewLifecycleOwner) {
+            categoriesAdapter.submitList(it)
+        }
+        viewModel.itemsDto.observe(viewLifecycleOwner) { items ->
+            itemsAdapter.submitList(items)
         }
     }
 
@@ -88,6 +101,11 @@ class ItemsFragment : Fragment(R.layout.fragment_items), View.OnClickListener {
                 parentNavController()?.navigate(R.id.action_homeFragment_to_categoryChooseFragment)
             }
         }
+    }
+
+    override fun onClick(dialogFragment: DialogFragment, view: View) {
+        if (view.id == R.id.trailing_btn) viewModel.deleteItem()
+        dialogFragment.dismiss()
     }
 
 }

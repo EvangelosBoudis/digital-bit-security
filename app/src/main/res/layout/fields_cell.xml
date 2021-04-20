@@ -23,14 +23,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="@id/name_field"
+        android:paddingBottom="20dp"
         android:inputType="text"
         android:enabled="false"
-        style="@style/Widget.App.EditText.20bottom"
+        style="@style/Widget.App.EditText"
         tools:ignore="Autofill,LabelFor" />
 
     <ImageView
         android:id="@+id/visibility_btn"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/copy_btn"

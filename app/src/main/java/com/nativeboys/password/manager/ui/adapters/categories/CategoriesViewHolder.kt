@@ -6,9 +6,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.CategoryData
-import com.nativeboys.password.manager.other.intoMaterialIcon
-import com.nativeboys.password.manager.other.intoView
-import com.nativeboys.password.manager.other.materialIconCodeToDrawable
+import com.nativeboys.password.manager.util.intoMaterialIcon
+import com.nativeboys.password.manager.util.intoView
+import com.nativeboys.password.manager.util.materialIconCodeToDrawable
 import com.nativeboys.password.manager.ui.adapters.SwipeRevealViewHolder
 import com.zeustech.zeuskit.ui.swipeRevealLayout.ViewBinderHelper
 import net.steamcrafted.materialiconlib.MaterialIconView

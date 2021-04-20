@@ -11,8 +11,8 @@ import androidx.core.widget.addTextChangedListener
 import com.bumptech.glide.Glide
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.FieldContentDto
-import com.nativeboys.password.manager.other.InputTypeItem
-import com.nativeboys.password.manager.other.findByCode
+import com.nativeboys.password.manager.util.InputTypeItem
+import com.nativeboys.password.manager.util.findByCode
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
 interface FieldContentTextChangeListener {
@@ -56,7 +56,3 @@ class FieldContentViewHolder(
     }
 
 }
-
-//Regex("^(?=.*[A-Z].*[A-Z])(?=.*[!@#\$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}\$").matches("")
-//https://stackoverflow.com/questions/5142103/regex-to-validate-password-strength
-//https://github.com/zeustechgr/doo-Mobile-And/blob/master/app/src/main/java/com/zeustech/doo/ui/book/checkout/CheckoutFragment.kt

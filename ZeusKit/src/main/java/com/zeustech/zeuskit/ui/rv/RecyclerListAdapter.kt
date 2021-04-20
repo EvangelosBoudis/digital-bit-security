@@ -40,9 +40,11 @@ abstract class RecyclerListAdapter<T : ListAdapterItem<T>, VH : RecyclerViewHold
         adapterClickListener?.onClick(view, getItem(index), index)
     }
 
-    protected open fun getViewType(model: T): Int {
-        return 0
+    override fun onLongClick(view: View, index: Int) {
+        adapterClickListener?.onLongClick(view, getItem(index), index)
     }
+
+    protected open fun getViewType(model: T) = 0
 
     @LayoutRes
     protected abstract fun getResId(viewType: Int): Int

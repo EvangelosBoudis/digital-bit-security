@@ -92,7 +92,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:inputType="textMultiLine"
-                    style="@style/Widget.App.EditText.20bottom"
+                    style="@style/Widget.App.EditText.Padding"
                     tools:ignore="Autofill,LabelFor" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

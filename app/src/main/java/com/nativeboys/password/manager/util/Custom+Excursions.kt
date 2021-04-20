@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.other
+package com.nativeboys.password.manager.util
 
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -129,3 +129,7 @@ fun Fragment.parentNavController() =
     parentFragment?.parentFragment?.view?.let {
         Navigation.findNavController(it)
     }
+
+//Regex().matches("")
+//https://stackoverflow.com/questions/5142103/regex-to-validate-password-strength
+//https://github.com/zeustechgr/doo-Mobile-And/blob/master/app/src/main/java/com/zeustech/doo/ui/book/checkout/CheckoutFragment.kt

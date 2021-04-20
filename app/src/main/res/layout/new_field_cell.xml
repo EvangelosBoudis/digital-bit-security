@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:hint="@string/field_name"
         android:inputType="text"
-        style="@style/Widget.App.EditText"
+        style="@style/Widget.App.EditText.Padding"
         tools:ignore="Autofill,LabelFor" />
 
     <TextView
@@ -59,6 +59,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:hint="@string/choose_type"
-        style="@style/Widget.App.EditText"/>
+        style="@style/Widget.App.EditText.Padding"/>
 
 </com.zeustech.zeuskit.ui.views.FocusableConstraintLayout>

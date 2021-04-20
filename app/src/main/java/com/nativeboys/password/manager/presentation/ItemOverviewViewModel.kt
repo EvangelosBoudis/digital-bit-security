@@ -5,7 +5,9 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import com.nativeboys.password.manager.data.Result
 import com.nativeboys.password.manager.data.repository.ItemRepository
+import java.lang.Exception
 
 class ItemOverviewViewModel @ViewModelInject constructor(
     private val itemRepository: ItemRepository,
@@ -15,12 +17,25 @@ class ItemOverviewViewModel @ViewModelInject constructor(
     val itemId: String? = state.get<String>("item_id")
 
     val itemFieldsContent = liveData {
-        val id = itemId ?: ""
-        emit(if (id.isNotEmpty()) itemRepository.findItemFieldsContentById(id) else null)
+        val item = itemId?.let {
+            itemRepository.findItemFieldsContentById(it)
+        }
+        emit(item)
     }
 
     fun toggleItemFavorite() = liveData {
-        emit(itemRepository.toggleItemFavorite(itemId ?: ""))
+        val success = itemId?.let {
+            itemRepository.toggleItemFavorite(it)
+        } ?: false
+        emit(success)
+    }
+
+    fun deleteItem() = liveData {
+        try {
+            emit(Result.Success(itemRepository.deleteItemById(itemId!!)))
+        } catch (e: Exception) {
+            emit(Result.Error(e))
+        }
     }
 
 }

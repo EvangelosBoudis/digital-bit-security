@@ -34,17 +34,17 @@ abstract class RecyclerAdapter<T, VH : RecyclerViewHolder<T>> : RecyclerView.Ada
         holder.clickListener = this
     }
 
-    override fun getItemCount(): Int {
-        return dataSet.size
-    }
+    override fun getItemCount() = dataSet.size
 
     override fun onClick(view: View, index: Int) {
         adapterClickListener?.onClick(view, dataSet[index], index)
     }
 
-    protected open fun getViewType(model: T): Int {
-        return 0
+    override fun onLongClick(view: View, index: Int) {
+        adapterClickListener?.onLongClick(view, dataSet[index], index)
     }
+
+    protected open fun getViewType(model: T) = 0
 
     @LayoutRes
     protected abstract fun getResId(viewType: Int): Int

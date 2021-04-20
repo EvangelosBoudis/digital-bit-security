@@ -1,7 +1,6 @@
 package com.nativeboys.password.manager.ui.itemConstructor
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -13,17 +12,16 @@ import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.Result
 import com.nativeboys.password.manager.data.TagDto
 import com.nativeboys.password.manager.data.ThumbnailDto
-import com.nativeboys.password.manager.data.succeeded
 import com.nativeboys.password.manager.databinding.FragmentItemConstructorBinding
-import com.nativeboys.password.manager.other.*
+import com.nativeboys.password.manager.util.*
 import com.nativeboys.password.manager.presentation.ItemConstructorViewModel
 import com.nativeboys.password.manager.ui.adapters.fieldContent.FieldContentAdapter
 import com.nativeboys.password.manager.ui.adapters.fieldContent.FieldContentTextChangeListener
 import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
-import com.nativeboys.password.manager.ui.adapters.thumbnails.OnThumbnailLongClickListener
 import com.nativeboys.password.manager.ui.adapters.thumbnails.ThumbnailsAdapter
 import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.NOTES
 import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.PASSWORD_REQUIRED
+import com.nativeboys.password.manager.ui.confirmation.ConfirmationFragment
 import com.nativeboys.password.manager.ui.itemConstructor.bottomFragment.TagFactoryBottomFragment
 import com.nativeboys.password.manager.ui.itemConstructor.bottomFragment.ThumbnailFactoryBottomFragment
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
@@ -47,17 +45,13 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
                 viewModel.updateUserCache(fieldId, textContent)
             }
         })
-        thumbnailsAdapter = ThumbnailsAdapter(object : OnThumbnailLongClickListener {
-            override fun onLongClick(model: ThumbnailDto) {
-                showThumbnailBottomFactory(model)
-            }
-        })
+        thumbnailsAdapter = ThumbnailsAdapter()
         tagsAdapter = TagsAdapter()
 
         binding.apply {
             fieldsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             fieldsRecyclerView.adapter = fieldsAdapter
-            headerContainer.headlineField.setText(R.string.create_item)
+            headerContainer.headlineField.setText(R.string.edit_item)
             thumbnailsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
             thumbnailsRecyclerView.adapter = thumbnailsAdapter
             val layoutManager = FlexboxLayoutManager(requireContext())
@@ -75,6 +69,7 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
                 viewModel.updateUserCache(PASSWORD_REQUIRED, isChecked)
             }
             thumbnailsAdapter.adapterClickListener = object : AdapterClickListener<ThumbnailDto> {
+
                 override fun onClick(view: View, model: ThumbnailDto, position: Int) {
                     when (model.type) {
                         1 -> {
@@ -85,12 +80,18 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
                         }
                     }
                 }
+
+                override fun onLongClick(view: View, model: ThumbnailDto, position: Int) {
+                    showThumbnailBottomFactory(model)
+                }
+
             }
             tagsAdapter.adapterClickListener = object : AdapterClickListener<TagDto> {
+
                 override fun onClick(view: View, model: TagDto, position: Int) {
-                    if (view.id == R.id.remove_btn) viewModel.deleteTag(model.name)
-                    else showTagFactoryBottomFragment(model)
+                    showTagFactoryBottomFragment(model)
                 }
+
             }
         }
         viewModel.getInitFieldsContent().observe(viewLifecycleOwner) {
@@ -116,10 +117,14 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
             R.id.trailing_btn -> {
                 view.isEnabled = false
                 viewModel.submitItem().observe(viewLifecycleOwner) { result ->
+                    view.isEnabled = true
                     when (result) {
                         is Result.Success -> activity?.onBackPressed()
                         is Result.Error -> {
-                            // TODO: Show Dialog
+                            ConfirmationFragment().show(
+                                childFragmentManager,
+                                ConfirmationFragment::class.java.simpleName
+                            )
                         }
                     }
                 }

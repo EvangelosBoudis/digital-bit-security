@@ -34,6 +34,12 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    <style name="Widget.App.Dialog.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/breeze_sans_light</item>
+    </style>
+
     <!-- TextView -->
 
     <style name="Widget.App.TextView.Headline" parent="Widget.MaterialComponents.TextView">
@@ -45,10 +51,16 @@
     <style name="Widget.App.TextView.Headline2" parent="Widget.MaterialComponents.TextView">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:fontFamily">@font/breeze_sans_light</item>
+        <item name="android:fontFamily">@font/breeze_sans_regular</item>
     </style>
 
     <style name="Widget.App.TextView.Headline3" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/breeze_sans_light</item>
+    </style>
+
+    <style name="Widget.App.TextView.Headline4" parent="Widget.MaterialComponents.TextView">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:fontFamily">@font/breeze_sans_light</item>
@@ -71,13 +83,12 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:fontFamily">@font/breeze_sans_regular</item>
         <item name="backgroundTint">@color/field_background_tint_color</item>
-        <item name="android:paddingTop">8dp</item>
-        <item name="android:paddingBottom">15dp</item>
-        <item name="android:paddingEnd">40dp</item>
     </style>
 
-    <style name="Widget.App.EditText.20bottom" parent="Widget.App.EditText">
+    <style name="Widget.App.EditText.Padding" parent="Widget.App.EditText">
+        <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">20dp</item>
+        <item name="android:paddingEnd">40dp</item>
     </style>
 
     <style name="EditText.Drawable" parent="">
@@ -158,7 +169,7 @@
 
     <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">8dp</item>
+        <item name="cornerSize">22dp</item>
     </style>
 
     <!-- Button (Circle) -->

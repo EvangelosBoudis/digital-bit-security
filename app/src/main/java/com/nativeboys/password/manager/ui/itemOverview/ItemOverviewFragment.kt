@@ -3,6 +3,7 @@ package com.nativeboys.password.manager.ui.itemOverview
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -14,17 +15,22 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.snackbar.Snackbar
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.FieldContentDto
+import com.nativeboys.password.manager.data.Result
 import com.nativeboys.password.manager.databinding.FragmentItemOverviewBinding
-import com.nativeboys.password.manager.other.ZTransactionFragment
+import com.nativeboys.password.manager.util.ZTransactionFragment
 import com.nativeboys.password.manager.ui.adapters.fields.FieldsAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import com.zeustech.zeuskit.ui.views.BottomBar
 import dagger.hilt.android.AndroidEntryPoint
-import com.nativeboys.password.manager.other.copyToClipboard
+import com.nativeboys.password.manager.util.copyToClipboard
 import com.nativeboys.password.manager.presentation.ItemOverviewViewModel
+import com.nativeboys.password.manager.ui.confirmation.ConfirmationDialogListener
+import com.nativeboys.password.manager.ui.confirmation.ConfirmationFragment
 
 @AndroidEntryPoint
-class ItemOverviewFragment : ZTransactionFragment(R.layout.fragment_item_overview), AdapterClickListener<FieldContentDto>, View.OnClickListener {
+class ItemOverviewFragment : ZTransactionFragment(
+    R.layout.fragment_item_overview
+), View.OnClickListener, AdapterClickListener<FieldContentDto>, ConfirmationDialogListener {
 
     private val viewModel: ItemOverviewViewModel by viewModels()
 
@@ -37,7 +43,7 @@ class ItemOverviewFragment : ZTransactionFragment(R.layout.fragment_item_overvie
         navController = Navigation.findNavController(view)
         binding = FragmentItemOverviewBinding.bind(view)
         binding?.apply {
-            headerContainer.headlineField.setText(R.string.item_overview)
+            headerContainer.headlineField.setText(R.string.overview)
             headerContainer.trailingBtn.visibility = View.INVISIBLE
             fieldsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             fieldsRecyclerView.adapter = fieldsAdapter
@@ -47,6 +53,12 @@ class ItemOverviewFragment : ZTransactionFragment(R.layout.fragment_item_overvie
             favoriteBtn.setOnClickListener(this@ItemOverviewFragment)
         }
         fieldsAdapter.adapterClickListener = this
+        childFragmentManager.addFragmentOnAttachListener { _, fragment ->
+            (fragment as? ConfirmationFragment)?.let {
+                it.confirmationDialogListener = this
+            }
+        }
+
         viewModel.itemFieldsContent.observe(viewLifecycleOwner) { itemFieldsContent ->
             val item = itemFieldsContent ?: return@observe
             binding?.apply {
@@ -76,13 +88,6 @@ class ItemOverviewFragment : ZTransactionFragment(R.layout.fragment_item_overvie
         binding = null
     }
 
-    override fun onClick(view: View, model: FieldContentDto, position: Int) {
-        if (view.id == R.id.copy_btn) {
-            copyToClipboard(requireContext(), "password:manager:field", model.textContent)
-            BottomBar(requireView() as ViewGroup, R.layout.copy_bottom_cell, Snackbar.LENGTH_SHORT).show()
-        }
-    }
-
     private fun updateFavoriteBtn(favorite: Boolean) {
         binding?.apply {
             Glide.with(requireContext())
@@ -108,7 +113,34 @@ class ItemOverviewFragment : ZTransactionFragment(R.layout.fragment_item_overvie
                 navController.navigate(action)
             }
             R.id.delete_btn -> {
-                // TODO: show dialog
+                ConfirmationFragment
+                    .newInstance(R.layout.fragment_confirmation)
+                    .show(childFragmentManager, ConfirmationFragment::class.java.simpleName)
+            }
+        }
+    }
+
+    override fun onClick(view: View, model: FieldContentDto, position: Int) {
+        if (view.id == R.id.copy_btn) {
+            copyToClipboard(requireContext(), "password:manager:field", model.textContent)
+            BottomBar(requireView() as ViewGroup, R.layout.copy_bottom_cell, Snackbar.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onClick(dialogFragment: DialogFragment, view: View) {
+        when (view.id) {
+            R.id.leading_btn -> {
+                dialogFragment.dismiss()
+            }
+            R.id.trailing_btn -> {
+                viewModel.deleteItem().observe(viewLifecycleOwner) { result ->
+                    when (result) {
+                        is Result.Success -> {
+                            dialogFragment.dismiss()
+                            activity?.onBackPressed()
+                        }
+                    }
+                }
             }
         }
     }

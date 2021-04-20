@@ -7,7 +7,7 @@ import com.nativeboys.password.manager.data.*
 import com.nativeboys.password.manager.data.repository.FieldRepository
 import com.nativeboys.password.manager.data.repository.ItemRepository
 import com.nativeboys.password.manager.data.repository.ThumbnailRepository
-import com.nativeboys.password.manager.other.safeSet
+import com.nativeboys.password.manager.util.safeSet
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -238,17 +238,17 @@ class ItemConstructorViewModel @ViewModelInject constructor(
             .filter { it.fieldId != FIELD_NAME_ID && it.fieldId != FIELD_DESCRIPTION_ID }
 
         try {
-            val categoryId = this@ItemConstructorViewModel.categoryId ?: item?.categoryId
-                ?: throw SaveItemException("Category does not provided")
+            val categoryId = this@ItemConstructorViewModel.categoryId ?: item?.categoryId ?: ""
+            if (categoryId.isEmpty()) throw SaveItemException("Category does not provided")
 
-            val thumbnailId = thumbnails.firstOrNull { it.type == 2 }?.id
-                ?: throw SaveItemException("Thumbnail does not provided")
+            val thumbnailId = thumbnails.firstOrNull { it.type == 2 }?.id ?: ""
+            if (thumbnailId.isEmpty()) throw SaveItemException("Thumbnail does not provided")
 
-            val name = fieldsContent.firstOrNull { it.fieldId == FIELD_NAME_ID }?.textContent
-                ?: throw SaveItemException("Name does not provided")
+            val name = fieldsContent.firstOrNull { it.fieldId == FIELD_NAME_ID }?.textContent ?: ""
+            if (name.isEmpty()) throw SaveItemException("Name does not provided")
 
-            val description = fieldsContent.firstOrNull { it.fieldId == FIELD_DESCRIPTION_ID }?.textContent
-                ?:  throw SaveItemException("Description does not provided")
+            val description = fieldsContent.firstOrNull { it.fieldId == FIELD_DESCRIPTION_ID }?.textContent ?: ""
+            if (description.isEmpty()) throw SaveItemException("Description does not provided")
 
             thumbnailRepository.replaceAllThumbnails(thumbnails)
             itemRepository.saveOrUpdateItem(

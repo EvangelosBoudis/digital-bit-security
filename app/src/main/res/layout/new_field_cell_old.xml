@@ -34,7 +34,7 @@
         app:layout_constraintHorizontal_bias="0"
         android:hint="@string/field_name"
         android:inputType="text"
-        style="@style/Widget.App.EditText"
+        style="@style/Widget.App.EditText.Padding"
         tools:ignore="Autofill,LabelFor" />
 
     <TextView

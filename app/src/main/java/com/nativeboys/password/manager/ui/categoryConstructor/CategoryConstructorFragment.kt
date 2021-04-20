@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.databinding.FragmentCategoryConstructorBinding
-import com.nativeboys.password.manager.other.setMaterialIcon
+import com.nativeboys.password.manager.util.setMaterialIcon
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel
 import com.nativeboys.password.manager.ui.adapters.newFields.NewFieldsAdapter
 import dagger.hilt.android.AndroidEntryPoint

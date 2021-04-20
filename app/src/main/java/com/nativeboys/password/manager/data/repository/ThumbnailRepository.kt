@@ -5,7 +5,7 @@ import com.nativeboys.password.manager.data.ThumbnailData
 import com.nativeboys.password.manager.data.ThumbnailDto
 import com.nativeboys.password.manager.data.local.AppDatabase
 import com.nativeboys.password.manager.data.local.ThumbnailDao
-import com.nativeboys.password.manager.other.contains
+import com.nativeboys.password.manager.util.contains
 import javax.inject.Inject
 import javax.inject.Singleton
 

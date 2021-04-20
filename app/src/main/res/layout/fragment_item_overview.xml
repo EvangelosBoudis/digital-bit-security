@@ -123,7 +123,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:inputType="textMultiLine"
                 android:enabled="false"
-                style="@style/Widget.App.EditText.20bottom"
+                style="@style/Widget.App.EditText.Padding"
                 tools:ignore="Autofill,LabelFor"/>
 
             <TextView
@@ -148,7 +148,7 @@
                 app:layout_constraintVertical_bias="0"
                 android:inputType="textMultiLine"
                 android:enabled="false"
-                style="@style/Widget.App.EditText.20bottom"
+                style="@style/Widget.App.EditText.Padding"
                 tools:ignore="Autofill,LabelFor"/>
 
         </com.zeustech.zeuskit.ui.views.FocusableConstraintLayout>
@@ -173,7 +173,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/delete_btn"
             app:icon="@drawable/ic_baseline_edit_24"
-            app:iconTint="@color/colorAccent"
+            app:iconTint="@android:color/white"
+            android:backgroundTint="@color/colorAccent"
             android:text="@string/edit"/>
 
         <Button
@@ -184,7 +185,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:icon="@drawable/ic_baseline_delete_24"
-            app:iconTint="@color/red"
+            app:iconTint="@android:color/white"
+            android:backgroundTint="@color/red"
             android:text="@string/delete"/>
 
     </com.zeustech.zeuskit.ui.views.FocusableConstraintLayout>

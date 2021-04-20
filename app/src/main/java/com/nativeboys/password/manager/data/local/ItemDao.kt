@@ -62,8 +62,10 @@ interface ItemDao {
     suspend fun update(item: ItemData)
 
     @Delete
+    @Transaction
     suspend fun delete(item: ItemData)
 
+    @Transaction
     @Query("DELETE FROM items WHERE items.id == :id")
     suspend fun deleteById(id: String)
 

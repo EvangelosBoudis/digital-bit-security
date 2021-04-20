@@ -41,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/filters"
         android:padding="7dp"
-        style="@style/Widget.App.TextView.Headline3"/>
+        style="@style/Widget.App.TextView.Headline4"/>
 
     <CheckBox
         android:id="@+id/favorites_checkbox"
@@ -63,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/sort_by"
         android:padding="7dp"
-        style="@style/Widget.App.TextView.Headline3"/>
+        style="@style/Widget.App.TextView.Headline4"/>
 
     <RadioGroup
         android:id="@+id/filter_radio_group"

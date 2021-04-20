@@ -4,8 +4,8 @@ import android.view.View
 import android.widget.EditText
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.FieldData
-import com.nativeboys.password.manager.other.allTypes
-import com.nativeboys.password.manager.other.findByCode
+import com.nativeboys.password.manager.util.allTypes
+import com.nativeboys.password.manager.util.findByCode
 import com.nativeboys.password.manager.ui.adapters.types.TypesAdapter
 import com.zeustech.zeuskit.ui.autocomplete.DescriptionModel
 import com.zeustech.zeuskit.ui.autocomplete.InstantAutoComplete

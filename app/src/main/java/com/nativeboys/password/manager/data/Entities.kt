@@ -6,30 +6,6 @@ import com.zeustech.zeuskit.ui.rv.ListAdapterItem
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
-/*@Entity
-data class Artist(
-    @PrimaryKey
-    val id: String,
-    val name: String
-)
-
-@Entity(
-    foreignKeys = [ForeignKey(
-        entity = Artist::class,
-        parentColumns = arrayOf("id"),
-        childColumns = arrayOf("artist"),
-        onDelete = ForeignKey.CASCADE,
-        onUpdate = ForeignKey.CASCADE,
-    )]
-)
-data class Album(
-    @PrimaryKey
-    val albumId: String,
-    val name: String,
-    @ColumnInfo(index = true)
-    val artist: String
-)*/
-
 @Entity(tableName = "users")
 @Parcelize
 data class UserData(
@@ -89,7 +65,15 @@ data class ItemData(
     @ColumnInfo(name = "owner_id") val ownerId: String, // FK (Users),
 ) : Parcelable
 
-@Entity(tableName = "contents")
+@Entity(
+    tableName = "contents",
+    foreignKeys = [ForeignKey(
+        entity = ItemData::class,
+        parentColumns = arrayOf("id"),
+        childColumns = arrayOf("item_id"),
+        onDelete = ForeignKey.CASCADE
+    )]
+)
 @Parcelize
 data class ContentData(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),

@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/searchEngineFragment"
-        android:name="com.nativeboys.password.manager.ui.searchEngine.SearchEngineFragment"
+        android:name="com.nativeboys.password.manager.ui.home.searchEngine.SearchEngineFragment"
         android:label="fragment_search_engine"
         tools:layout="@layout/fragment_search_engine" />
 

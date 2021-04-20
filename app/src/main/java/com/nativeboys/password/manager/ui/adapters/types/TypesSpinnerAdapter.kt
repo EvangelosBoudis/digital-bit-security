@@ -6,8 +6,8 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.other.InputTypeItem
-import com.nativeboys.password.manager.other.intoView
+import com.nativeboys.password.manager.util.InputTypeItem
+import com.nativeboys.password.manager.util.intoView
 import com.zeustech.zeuskit.ui.spinner.SpinnerAdapter
 
 class TypesSpinnerAdapter(context: Context):

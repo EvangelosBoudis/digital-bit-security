@@ -27,10 +27,6 @@ class ItemRepository @Inject constructor(
     /// SQLite
     //////////////////////////////////////////////////////////////////////////////////////////
 
-    suspend fun saveItem(item: ItemData) = itemDao.save(item)
-
-    suspend fun updateItem(item: ItemData) = itemDao.update(item)
-
     suspend fun findItemById(id: String) = itemDao.findById(id)
 
     suspend fun getItemsCountWithThumbnailId(thumbnailId: String) = itemDao.getCountWithThumbnailId(thumbnailId)

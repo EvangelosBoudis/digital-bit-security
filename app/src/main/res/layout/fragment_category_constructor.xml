@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:hint="@string/category_name"
         android:inputType="text"
-        style="@style/Widget.App.EditText"
+        style="@style/Widget.App.EditText.Padding"
         tools:ignore="Autofill,LabelFor" />
 
     <androidx.recyclerview.widget.RecyclerView

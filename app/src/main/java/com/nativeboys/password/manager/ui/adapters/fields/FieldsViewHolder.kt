@@ -7,9 +7,9 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.FieldContentDto
-import com.nativeboys.password.manager.other.InputTypeItem
-import com.nativeboys.password.manager.other.findByCode
-import com.nativeboys.password.manager.other.toggleTransformationMethod
+import com.nativeboys.password.manager.util.InputTypeItem
+import com.nativeboys.password.manager.util.findByCode
+import com.nativeboys.password.manager.util.toggleTransformationMethod
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
 class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentDto>(itemView) {

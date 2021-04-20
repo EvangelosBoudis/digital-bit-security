@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.other
+package com.nativeboys.password.manager.util
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
