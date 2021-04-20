@@ -67,15 +67,16 @@ abstract class AppDatabase : RoomDatabase() {
             val accountF5 = FieldData(name = "Password hint", type = "text", categoryId = accountCategory.id)
 
             val creditF1 = FieldData(name = "Card holder name", type = "text", categoryId = creditCategory.id)
-            val creditF2 = FieldData(name = "CVV", type = "textPassword", categoryId = creditCategory.id)
+            val creditF2 = FieldData(name = "Card Number", type = "number", categoryId = creditCategory.id)
             val creditF3 = FieldData(name = "Expiration date", type = "date", categoryId = creditCategory.id)
+            val creditF4 = FieldData(name = "CVV", type = "textPassword", categoryId = creditCategory.id)
 
             val networkF1 = FieldData(name = "IP address", type = "text", categoryId = networkCategory.id)
             val networkF2 = FieldData(name = "Gateway", type = "text", categoryId = networkCategory.id)
             val networkF3 = FieldData(name = "Prefix length", type = "number", categoryId = networkCategory.id)
             val networkF4 = FieldData(name = "DNS 1", type = "text", categoryId = networkCategory.id)
             val networkF5 = FieldData(name = "DNS 2", type = "text", categoryId = networkCategory.id)
-            val fields = listOf(accountF1, accountF2, accountF3, accountF4, accountF5, creditF1, creditF2, creditF3, networkF1, networkF2, networkF3, networkF4, networkF5)
+            val fields = listOf(accountF1, accountF2, accountF3, accountF4, accountF5, creditF1, creditF2, creditF3, creditF4, networkF1, networkF2, networkF3, networkF4, networkF5)
 
             // Items
             val appleId = ItemData(name = "Apple ID", description = "Ritsa's account", notes = "This account is linked to iPad", tags = "Apple,iPad,Tablet,Ritsa",
@@ -141,8 +142,9 @@ abstract class AppDatabase : RoomDatabase() {
             val hzTestF5 = ContentData(fieldId = networkF5.id, itemId = hzTest.id, content = "8.8.4.4")
 
             val euroBankF1 = ContentData(fieldId = creditF1.id, itemId = euroBank.id, content = "JohnDoe")
-            val euroBankF2 = ContentData(fieldId = creditF2.id, itemId = euroBank.id, content = "123")
-            val euroBankF3 = ContentData(fieldId = creditF3.id, itemId = euroBank.id, content = "7456294512784")
+            val euroBankF2 = ContentData(fieldId = creditF2.id, itemId = euroBank.id, content = "1234-5678-910-1213")
+            val euroBankF3 = ContentData(fieldId = creditF3.id, itemId = euroBank.id, content = "10/20")
+            val euroBankF4 = ContentData(fieldId = creditF4.id, itemId = euroBank.id, content = "123")
 
             val itemFields = listOf(
                 appleF1, appleF2, appleF3, appleF4, appleF5,
@@ -152,7 +154,7 @@ abstract class AppDatabase : RoomDatabase() {
                 facebookF1, facebookF2 , facebookF3, facebookF4, facebookF5,
                 instagramF1, instagramF2, instagramF3, instagramF4, instagramF5,
                 hzTestF1, hzTestF2, hzTestF3, hzTestF4, hzTestF5,
-                euroBankF1, euroBankF2, euroBankF3
+                euroBankF1, euroBankF2, euroBankF3, euroBankF4
             )
 
             applicationScope.launch {

@@ -1,6 +1,7 @@
 package com.nativeboys.password.manager.ui.itemConstructor
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -9,8 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.*
 import com.nativeboys.password.manager.R
+import com.nativeboys.password.manager.data.Result
 import com.nativeboys.password.manager.data.TagDto
 import com.nativeboys.password.manager.data.ThumbnailDto
+import com.nativeboys.password.manager.data.succeeded
 import com.nativeboys.password.manager.databinding.FragmentItemConstructorBinding
 import com.nativeboys.password.manager.other.*
 import com.nativeboys.password.manager.presentation.ItemConstructorViewModel
@@ -112,8 +115,13 @@ class ItemConstructorFragment : Fragment(R.layout.fragment_item_constructor), Vi
         when (view.id) {
             R.id.trailing_btn -> {
                 view.isEnabled = false
-                viewModel.submitItem().observe(viewLifecycleOwner) {
-                    activity?.onBackPressed()
+                viewModel.submitItem().observe(viewLifecycleOwner) { result ->
+                    when (result) {
+                        is Result.Success -> activity?.onBackPressed()
+                        is Result.Error -> {
+                            // TODO: Show Dialog
+                        }
+                    }
                 }
             }
             R.id.leading_btn -> {

@@ -10,6 +10,7 @@ import com.nativeboys.password.manager.data.repository.ThumbnailRepository
 import com.nativeboys.password.manager.other.safeSet
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.util.*
 
 class ItemConstructorViewModel @ViewModelInject constructor(
@@ -29,12 +30,16 @@ class ItemConstructorViewModel @ViewModelInject constructor(
     init {
         viewModelScope.launch(context = Dispatchers.IO) {
             initItem()
-
             val emptyTags = state.get<List<TagDto>>(TAGS)?.isEmpty() ?: true
-            if (emptyTags) state.safeSet(TAGS, item?.tagsAsDto() ?: emptyList(), this) // init cache data
-
+            if (emptyTags) { // init cache data
+                val tags = (item?.tagsAsDto ?: emptyList()).toMutableList()
+                tags.add(TagDto())
+                state.safeSet(TAGS, tags, this)
+            }
             val emptyThumbnails = state.get<List<ThumbnailDto>>(THUMBNAILS)?.isEmpty() ?: true
-            if (emptyThumbnails) state.safeSet(THUMBNAILS, itemRepository.findAllThumbnailsDto(itemId ?: ""), this) // init cache data
+            if (emptyThumbnails) { // init cache data
+                state.safeSet(THUMBNAILS, itemRepository.findAllThumbnailsDto(itemId ?: ""), this)
+            }
         }
     }
 
@@ -221,22 +226,44 @@ class ItemConstructorViewModel @ViewModelInject constructor(
 
     fun submitItem() = liveData {
 
-        val thumbnailsDto = getThumbnails()
+        val thumbnails = getThumbnails()
 
-        val thumbnailId = thumbnailsDto
-            .firstOrNull { it.type == 2 }?.id ?: ""
+        val fieldsContent = getFieldsContentMergedByCacheAndDatabase()
 
-        thumbnailRepository.replaceAllThumbnails(thumbnailsDto)
+        val tags = getTags()
+            .filter { it.name.isNotEmpty() }
+            .joinToString(",") { it.name }
 
-        itemRepository.updateItem(
-            item!!.id, item!!.categoryId, thumbnailId,
-            getNotesFromCacheOrDatabase(),
-            item?.favorite ?: false,
-            getPasswordFromCacheOrDatabase(), getTags(),
-            getFieldsContentMergedByCacheAndDatabase()
-        )
+        val contents = fieldsContent
+            .filter { it.fieldId != FIELD_NAME_ID && it.fieldId != FIELD_DESCRIPTION_ID }
 
-        emit(true)
+        try {
+            val categoryId = this@ItemConstructorViewModel.categoryId ?: item?.categoryId
+                ?: throw SaveItemException("Category does not provided")
+
+            val thumbnailId = thumbnails.firstOrNull { it.type == 2 }?.id
+                ?: throw SaveItemException("Thumbnail does not provided")
+
+            val name = fieldsContent.firstOrNull { it.fieldId == FIELD_NAME_ID }?.textContent
+                ?: throw SaveItemException("Name does not provided")
+
+            val description = fieldsContent.firstOrNull { it.fieldId == FIELD_DESCRIPTION_ID }?.textContent
+                ?:  throw SaveItemException("Description does not provided")
+
+            thumbnailRepository.replaceAllThumbnails(thumbnails)
+            itemRepository.saveOrUpdateItem(
+                item?.id, name, description,
+                getNotesFromCacheOrDatabase(),
+                tags, item?.favorite ?: false,
+                getPasswordFromCacheOrDatabase(),
+                categoryId, thumbnailId, contents
+            )
+            emit(Result.Success(true))
+
+        } catch (e: Exception) {
+            emit(Result.Error(e))
+        }
+
     }
 
     fun <T> updateUserCache(fieldId: String, value: T) {

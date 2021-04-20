@@ -1,16 +1,11 @@
 package com.nativeboys.password.manager.data.repository
 
-import androidx.room.Transaction
+import androidx.room.withTransaction
 import com.nativeboys.password.manager.data.*
-import com.nativeboys.password.manager.data.local.ContentDao
-import com.nativeboys.password.manager.data.local.FieldDao
-import com.nativeboys.password.manager.data.local.ItemDao
-import com.nativeboys.password.manager.data.local.ThumbnailDao
+import com.nativeboys.password.manager.data.local.*
 import com.nativeboys.password.manager.data.preferences.ItemSettings
 import com.nativeboys.password.manager.data.preferences.PreferencesManager
 import com.nativeboys.password.manager.data.preferences.SortOrder
-import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.FIELD_DESCRIPTION_ID
-import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.FIELD_NAME_ID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
@@ -20,6 +15,7 @@ import javax.inject.Singleton
 
 @Singleton
 class ItemRepository @Inject constructor(
+    private val database: AppDatabase,
     private val itemDao: ItemDao,
     private val fieldDao: FieldDao,
     private val contentDao: ContentDao,
@@ -100,63 +96,52 @@ class ItemRepository @Inject constructor(
         val selectedItem = allItems.firstOrNull { item ->
             item.id == selectedItemId
         }
-        val thumbnails = thumbnailDao.findAll().map { thumbnail ->
-            val itemsWithSameThumbnailSize = allItems.filter { item ->
-                item.thumbnailId == thumbnail.id
-            }.size
-            ThumbnailDto(thumbnail, itemsWithSameThumbnailSize <= 1, if (selectedItem?.thumbnailId == thumbnail.id) 2 else 1)
+        val thumbnails = thumbnailDao.findAll()
+            .map { thumbnail ->
+            val deletable = allItems
+                .filter { item -> item.thumbnailId == thumbnail.id }
+                .size <= 1
+            ThumbnailDto(thumbnail, deletable, if (selectedItem?.thumbnailId == thumbnail.id) 2 else 1)
         }.toMutableList()
         if (addDefault) thumbnails.add(ThumbnailDto())
         return thumbnails
     }
 
-    private suspend fun replaceAllFieldContent(
-        itemId: String,
-        contents: List<ContentData>
-    ) {
-        val prevContents = contentDao.findAllByItemId(itemId)
-        contentDao.delete(prevContents)
-        contentDao.save(contents)
-    }
-
-    @Transaction
-    suspend fun updateItem(
-        id: String,
+    suspend fun saveOrUpdateItem(
+        id: String?,
+        name: String,
+        description: String,
+        notes: String?,
+        tags: String?,
+        favorite: Boolean,
+        requiresPassword: Boolean,
         categoryId: String,
         thumbnailId: String,
-        notes: String?,
-        favorite: Boolean,
-        passwordIsRequired: Boolean,
-        tagsDto: List<TagDto>,
-        fieldsContentDto: List<FieldContentDto>
+        fieldsContent: List<FieldContentDto>
     ) {
 
-        val userId = UUID.randomUUID().toString() // TODO: Change
+        val userId = UUID.randomUUID().toString()
+        val itemId = id ?: UUID.randomUUID().toString()
 
-        val tags = tagsDto
-            .filter { it.name.isNotEmpty() }
-            .joinToString(",") { it.name }
-
-        val name = fieldsContentDto
-            .firstOrNull { it.fieldId == FIELD_NAME_ID }?.textContent ?: ""
-
-        val description = fieldsContentDto
-            .firstOrNull { it.fieldId == FIELD_DESCRIPTION_ID }?.textContent ?: ""
-
-        val contents = fieldsContentDto
-            .filter { it.fieldId != FIELD_NAME_ID && it.fieldId != FIELD_DESCRIPTION_ID }
-            .map { ContentData(fieldId = it.fieldId, itemId = id, content = it.textContent) }
+        val contents = fieldsContent
+            .map { ContentData(fieldId = it.fieldId, itemId = itemId, content = it.textContent) }
 
         val item = ItemData(
-            id, name, description,
-            notes, tags,
-            favorite, thumbnailId,
-            Date(), passwordIsRequired,
-            categoryId, userId
+            itemId, name,
+            description, notes,
+            tags, favorite,
+            thumbnailId, Date(),
+            requiresPassword,
+            categoryId,
+            userId
         )
 
-        itemDao.update(item)
-        replaceAllFieldContent(id, contents)
+        database.withTransaction {
+            if (id == null) itemDao.save(item) else itemDao.update(item)
+            contentDao.deleteAllByItemId(itemId)
+            contentDao.save(contents)
+        }
+
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////

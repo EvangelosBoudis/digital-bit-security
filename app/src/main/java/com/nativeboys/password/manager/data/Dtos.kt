@@ -73,14 +73,12 @@ data class ItemFieldsContentDto(
             return this.tags?.split(",")?.joinToString(", ")
         }
 
-    fun tagsAsDto(addDefault: Boolean = true): List<TagDto> {
-        val tags = (this.tags ?: "")
-            .split(",")
-            .map { TagDto(it, 1) }
-            .toMutableList()
-        if (addDefault) tags.add(TagDto())
-        return tags
-    }
+    val tagsAsDto: List<TagDto>
+        get() {
+            return (this.tags ?: "")
+                .split(",")
+                .map { TagDto(it, 1) }
+        }
 
 }
 
