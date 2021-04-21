@@ -18,24 +18,35 @@ interface ItemDao {
     // Projection
     @Query(
         """
-        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.category_id AS itemCategoryId, thumbnails.url AS thumbnailUrl, items.date_modified AS lastModificationDate, items.favorite AS favoriteItem
+        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.tags AS itemTags, items.favorite AS favoriteItem, items.category_id AS itemCategoryId, items.date_modified AS lastModificationDate, thumbnails.url AS thumbnailUrl 
         FROM items
         LEFT JOIN thumbnails ON thumbnails.id = items.thumbnail_id
         GROUP BY itemId
         """
     )
-    fun findAllDtoAsFlow(): Flow<List<ItemDto>>
+    fun observeAllDto(): Flow<List<ItemDto>>
 
     @Query(
         """
-        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.category_id AS itemCategoryId, thumbnails.url AS thumbnailUrl, items.date_modified AS lastModificationDate, items.favorite AS favoriteItem
+        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.tags AS itemTags, items.favorite AS favoriteItem, items.category_id AS itemCategoryId, items.date_modified AS lastModificationDate, thumbnails.url AS thumbnailUrl
+        FROM items
+        LEFT JOIN thumbnails ON thumbnails.id = items.thumbnail_id
+        GROUP BY itemId
+        ORDER BY itemName
+        """
+    )
+    fun observeAllDtoSortedByName(): Flow<List<ItemDto>>
+
+    @Query(
+        """
+        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.tags AS itemTags, items.favorite AS favoriteItem, items.category_id AS itemCategoryId, items.date_modified AS lastModificationDate, thumbnails.url AS thumbnailUrl
         FROM (SELECT * FROM items AS nested WHERE (nested.name LIKE '%' || :searchKey || '%' OR nested.tags LIKE '%' || :searchKey || '%')) AS items
         LEFT JOIN thumbnails ON thumbnails.id = items.thumbnail_id
         GROUP BY itemId
         ORDER BY itemName
         """
     )
-    suspend fun findAllDtoByNameAndTagsSortedByNameAsFlow(searchKey: String): List<ItemDto>
+    suspend fun findAllDtoByNameAndTagsSortedByName(searchKey: String): List<ItemDto>
 
     @Query("SELECT * FROM items WHERE id == :id")
     suspend fun findById(id: String): ItemData
@@ -44,10 +55,10 @@ interface ItemDao {
     suspend fun findAll(): List<ItemData>
 
     @Query("SELECT * FROM items WHERE category_id == :categoryId")
-    fun findByCategoryId(categoryId: String): Flow<List<ItemData>>
+    fun observeAllByCategoryId(categoryId: String): Flow<List<ItemData>>
 
     @Query("SELECT * FROM items WHERE favorite == :favorite")
-    fun findByFavorite(favorite: Boolean = true): Flow<List<ItemData>>
+    fun observeAllFavorites(favorite: Boolean = true): Flow<List<ItemData>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun save(item: ItemData)

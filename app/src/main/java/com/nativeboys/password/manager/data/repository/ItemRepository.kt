@@ -6,6 +6,7 @@ import com.nativeboys.password.manager.data.local.*
 import com.nativeboys.password.manager.data.preferences.ItemSettings
 import com.nativeboys.password.manager.data.preferences.PreferencesManager
 import com.nativeboys.password.manager.data.preferences.SortOrder
+import com.nativeboys.password.manager.util.toComparable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
@@ -31,12 +32,12 @@ class ItemRepository @Inject constructor(
 
     suspend fun getItemsCountWithThumbnailId(thumbnailId: String) = itemDao.getCountWithThumbnailId(thumbnailId)
 
-    fun findItemsDtoFilteredAndSortedAsFlow(): Flow<List<ItemDto>> {
+    fun observeItemsDtoFilteredAndSorted(): Flow<List<ItemDto>> {
         return combine(
-            itemDao.findAllDtoAsFlow(),
-            preferences.findSelectedCategoryIdAsFlow(),
-            preferences.findItemsSortOrderAsFlow(),
-            preferences.areNonFavoritesInvisible()
+            itemDao.observeAllDto(),
+            preferences.observeSelectedCategoryId(),
+            preferences.observeItemsSortOrder(),
+            preferences.observeNonFavoritesVisibility()
         ) { items, categoryId, sortOrder, nonFavoritesInvisible ->
             // Filter & Sort programmatically and not at query level because we have to get notified about item, selected category, and filter changes
             val filteredItems = items.filter {
@@ -49,10 +50,24 @@ class ItemRepository @Inject constructor(
         }
     }
 
+    fun observeItemsFilteredBySearchKey(): Flow<List<ItemDto>> {
+        return combine(
+            itemDao.observeAllDtoSortedByName(),
+            preferences.observeItemSearchKey()
+        ) { items, searchKey ->
+            val comparableSearchKey = searchKey.toComparable()
+            items.filter {
+                val comparableName = it.itemName.toComparable()
+                val comparableTags = it.itemTags?.toComparable()
+                comparableName.contains(comparableSearchKey) || (comparableTags?.contains(comparableSearchKey) ?: false)
+            }
+        }
+    }
+
     // ALERT! -> This Flow triggered searchKey changes and then it queries the database [Different from findItemsFilteredBySelectedCategoryAsFlow()]
-    fun findItemsFilteredBySearchKeyAsFlow() =
-        preferences.findItemSearchKey().map { searchKey ->
-            itemDao.findAllDtoByNameAndTagsSortedByNameAsFlow(searchKey.trim { it <= ' ' })
+    private fun observeItemsFilteredBySearchKey2() =
+        preferences.observeItemSearchKey().map { searchKey ->
+            itemDao.findAllDtoByNameAndTagsSortedByName(searchKey.trim { it <= ' ' })
         }
 
     suspend fun findItemFieldsContentById(id: String): ItemFieldsContentDto {
@@ -72,9 +87,9 @@ class ItemRepository @Inject constructor(
         )
     }
 
-    fun findItemSettingsAsFlow() = combine(
-            preferences.findItemsSortOrderAsFlow(),
-            preferences.areNonFavoritesInvisible())
+    fun observeItemSettings() = combine(
+            preferences.observeItemsSortOrder(),
+            preferences.observeNonFavoritesVisibility())
         { sortOrder, nonFavoritesInvisible ->
             ItemSettings(sortOrder, nonFavoritesInvisible)
         }

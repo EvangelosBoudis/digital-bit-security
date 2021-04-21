@@ -20,4 +20,8 @@ sealed class Result<out R> {
 val Result<*>.succeeded
     get() = this is Result.Success && data != null
 
-class SaveItemException(message: String) : Exception(message)
+class NoSuchItemException : NoSuchElementException()
+
+class SaveItemException(message: String) : Exception(message) {
+    constructor(cause: Throwable) : this(cause.message ?: "")
+}

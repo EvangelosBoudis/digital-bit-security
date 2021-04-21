@@ -17,13 +17,13 @@ interface CategoryDao {
     suspend fun findAll(): List<CategoryData>
 
     @Query("SELECT * FROM categories")
-    fun findAllAsFlow(): Flow<List<CategoryData>>
+    fun observeAll(): Flow<List<CategoryData>>
 
     @Query("SELECT * FROM categories WHERE name LIKE '%' || :searchKey || '%' ORDER BY name ASC")
-    fun findAllByNameSortedByNameAsFlow(searchKey: String): Flow<List<CategoryData>>
+    fun observeAllByNameSortedByName(searchKey: String): Flow<List<CategoryData>>
 
     @Query("SELECT * FROM categories WHERE name LIKE '%' || :searchKey || '%' ORDER BY date_modified DESC")
-    fun findAllByNameSortedByDateModifiedAsFlow(searchKey: String): Flow<List<CategoryData>>
+    fun observeAllByNameSortedByDateModified(searchKey: String): Flow<List<CategoryData>>
 
     @Transaction
     @Query("SELECT * FROM categories WHERE id == :id")

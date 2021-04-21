@@ -11,7 +11,7 @@ class SettingsBottomViewModel @ViewModelInject constructor(
     private val itemRepository: ItemRepository
 ): ViewModel() {
 
-    val itemSettings = itemRepository.findItemSettingsAsFlow().asLiveData()
+    val itemSettings = itemRepository.observeItemSettings().asLiveData()
 
     fun updateSortOrderAndFavoritesVisibility(order: SortOrder, hide: Boolean) = liveData {
         emit(itemRepository.updateSortOrderAndFavoritesVisibility(order, hide))

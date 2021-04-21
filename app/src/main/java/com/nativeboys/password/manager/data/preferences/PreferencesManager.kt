@@ -19,7 +19,7 @@ class PreferencesManager @Inject constructor(
 
     private val dataStore = context.createDataStore(DATA_STORE_PREFERENCES_NAME)
 
-    private fun getPreferencesAsFlow(): Flow<Preferences> {
+    private fun observePreferences(): Flow<Preferences> {
         return dataStore.data.catch { exception ->
             if (exception is IOException) {
                 Log.i(TAG, "Error reading preferences", exception)
@@ -30,19 +30,19 @@ class PreferencesManager @Inject constructor(
         }
     }
 
-    fun findSelectedCategoryIdAsFlow() = getPreferencesAsFlow().map {
+    fun observeSelectedCategoryId() = observePreferences().map {
         it[PreferencesKeys.SELECTED_CATEGORY_ID] ?: ""
     }
 
-    fun findItemsSortOrderAsFlow() = getPreferencesAsFlow().map {
+    fun observeItemsSortOrder() = observePreferences().map {
         SortOrder.valueOf(it[PreferencesKeys.SORT_ORDER] ?: SortOrder.BY_NAME.name)
     }
 
-    fun areNonFavoritesInvisible() = getPreferencesAsFlow().map {
+    fun observeNonFavoritesVisibility() = observePreferences().map {
         it[PreferencesKeys.HIDE_NON_FAVORITES] ?: false
     }
 
-    fun findItemSearchKey() = getPreferencesAsFlow().map {
+    fun observeItemSearchKey() = observePreferences().map {
         it[PreferencesKeys.ITEM_SEARCH_KEY] ?: ""
     }
 

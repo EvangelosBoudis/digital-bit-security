@@ -18,7 +18,7 @@ class SearchEngineViewModel @ViewModelInject constructor(
         }
     }
 
-    val items = itemRepository.findItemsFilteredBySearchKeyAsFlow().asLiveData()
+    val items = itemRepository.observeItemsFilteredBySearchKey().asLiveData()
 
     fun updateItemSearchKey(searchKey: String) = viewModelScope.launch(context = Dispatchers.IO) {
         itemRepository.updateItemSearchKey(searchKey)

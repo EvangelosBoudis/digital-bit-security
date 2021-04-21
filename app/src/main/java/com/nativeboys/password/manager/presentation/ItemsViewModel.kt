@@ -17,9 +17,9 @@ class ItemsViewModel @ViewModelInject constructor(
     @Assisted private val state: SavedStateHandle
 ): ViewModel() {
 
-    val categories = categoryRepository.findAllCategoriesDtoAsFlow().asLiveData()
+    val categories = categoryRepository.observeAllCategoriesDto().asLiveData()
 
-    val itemsDto = itemRepository.findItemsDtoFilteredAndSortedAsFlow().asLiveData()
+    val itemsDto = itemRepository.observeItemsDtoFilteredAndSorted().asLiveData()
 
     fun setSelectedCategory(id: String) = viewModelScope.launch(context = Dispatchers.IO) {
         categoryRepository.updateSelectedCategoryId(id)

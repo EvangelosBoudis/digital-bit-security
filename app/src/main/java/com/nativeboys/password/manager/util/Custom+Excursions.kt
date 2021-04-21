@@ -28,6 +28,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder
 import net.steamcrafted.materialiconlib.MaterialIconView
+import java.util.*
+
+fun String.toComparable() = toLowerCase(Locale.ROOT).trim { it <= ' ' }
 
 inline fun <T> List<T>.contains(predicate: (T) -> Boolean) = indexOfFirst(predicate) != -1
 

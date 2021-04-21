@@ -27,8 +27,8 @@ class CategoryRepository @Inject constructor(
 
     suspend fun updateSelectedCategoryId(id: String) = preferences.updateSelectedCategoryId(id)
 
-    fun findAllCategoriesDtoAsFlow(addDefault: Boolean = true): Flow<List<CategoryDto>> {
-        return combine(categoryDao.findAllAsFlow(), preferences.findSelectedCategoryIdAsFlow()) { categories, categoryId ->
+    fun observeAllCategoriesDto(addDefault: Boolean = true): Flow<List<CategoryDto>> {
+        return combine(categoryDao.observeAll(), preferences.observeSelectedCategoryId()) { categories, categoryId ->
             val mutable = categories.map {
                 CategoryDto(it.id, it.name, categoryId == it.id)
             }.toMutableList()
@@ -38,9 +38,9 @@ class CategoryRepository @Inject constructor(
     }
 
     // Sort by: 0->name, 1->date
-    fun findAllCategoriesByNameAsFlow(name: String, order: Int): Flow<List<CategoryData>> {
-        return if (order == 0) categoryDao.findAllByNameSortedByNameAsFlow(name)
-        else categoryDao.findAllByNameSortedByNameAsFlow(name)
+    fun observeAllCategoriesByName(name: String, order: Int): Flow<List<CategoryData>> {
+        return if (order == 0) categoryDao.observeAllByNameSortedByName(name)
+        else categoryDao.observeAllByNameSortedByName(name)
     }
 
 }
