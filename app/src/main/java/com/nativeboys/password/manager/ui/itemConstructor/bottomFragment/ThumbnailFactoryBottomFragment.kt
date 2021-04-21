@@ -36,8 +36,8 @@ class ThumbnailFactoryBottomFragment : FactoryBottomFragment() {
             }
             deleteBtn.visibility = if (thumbnailId.isEmpty()) View.INVISIBLE else View.VISIBLE
             deleteBtn.setOnClickListener {
-                if (thumbnailId.isNotEmpty()) {
-                    viewModel.deleteThumbnail(thumbnailId).observe(viewLifecycleOwner) { success ->
+                thumbnail?.let {
+                    viewModel.deleteThumbnail(it).observe(viewLifecycleOwner) { success ->
                         if (success) {
                             dismiss()
                         } else {
@@ -53,8 +53,11 @@ class ThumbnailFactoryBottomFragment : FactoryBottomFragment() {
             submitBtn.setOnClickListener {
                 val textContent = field.text.toString()
                 if (textContent.isNotEmpty()) {
-                    if (thumbnailId.isEmpty()) viewModel.addAndSelectThumbnail(textContent)
-                    else viewModel.updateThumbnailUrlAndSelect(thumbnailId, textContent)
+                    if (thumbnailId.isEmpty()) {
+                        viewModel.addAndSelectThumbnail(textContent)
+                    } else {
+                        thumbnail?.let { viewModel.updateThumbnailUrlAndSelect(it, textContent) }
+                    }
                     dismiss()
                 }
             }

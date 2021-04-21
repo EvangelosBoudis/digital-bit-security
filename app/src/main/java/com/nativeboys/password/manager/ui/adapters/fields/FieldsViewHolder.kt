@@ -29,14 +29,13 @@ class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentDto>(ite
     override fun bind(model: FieldContentDto) {
         nameField.text = model.fieldName
         contentField.setText(model.textContent)
-        val hidden = model.fieldType == InputTypeItem.TEXT_PASSWORD.code
-        if (hidden) {
+        val passwordField = model.fieldType == InputTypeItem.TEXT_PASSWORD.code
+        if (passwordField) {
             Glide
                 .with(itemView.context)
                 .load(R.drawable.ic_outline_visibility_24)
                 .into(visibilityBtn)
         }
-        visibilityBtn.visibility = if(hidden) View.VISIBLE else View.GONE
         Glide
             .with(itemView.context)
             .load(R.drawable.copy_icon)
@@ -45,11 +44,14 @@ class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentDto>(ite
             contentField.inputType = it
         }
 
-        val visibility = if (model.textContent.isEmpty()) View.GONE else View.VISIBLE
+        val emptyContent = model.textContent.isEmpty()
+        val visibility = if (emptyContent) View.GONE else View.VISIBLE
+
         nameField.visibility = visibility
         contentField.visibility = visibility
-        visibilityBtn.visibility = visibility
         copyBtn.visibility = visibility
+
+        visibilityBtn.visibility = if (emptyContent) View.GONE else if (passwordField) View.VISIBLE else View.GONE
 
         //contentField.setTransformationMethodAsHidden(model.hidden)
     }

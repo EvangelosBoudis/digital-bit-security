@@ -114,7 +114,7 @@ class ItemOverviewFragment : ZTransactionFragment(
             }
             R.id.delete_btn -> {
                 ConfirmationFragment
-                    .newInstance(R.layout.fragment_confirmation)
+                    .newInstance(R.layout.dialog_confirmation)
                     .show(childFragmentManager, ConfirmationFragment::class.java.simpleName)
             }
         }

@@ -4,6 +4,7 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.nativeboys.password.manager.data.*
+import com.nativeboys.password.manager.data.local.ThumbnailDao
 import com.nativeboys.password.manager.data.repository.FieldRepository
 import com.nativeboys.password.manager.data.repository.ItemRepository
 import com.nativeboys.password.manager.data.repository.ThumbnailRepository
@@ -132,27 +133,24 @@ class ItemConstructorViewModel @ViewModelInject constructor(
         return thumbnails.indexOfFirst { it.url == thumbnailUrl }
     }
 
-    private fun updateThumbnailUrl(thumbnailId: String, thumbnailUrl: String): Int {
+    private fun updateThumbnailUrl(thumbnail: ThumbnailDto, thumbnailUrl: String): Int {
         val thumbnails = getThumbnails()
-        val thumbnail = thumbnails.firstOrNull { it.id == thumbnailId }
-        val index = thumbnail?.let { thumbnails.indexOf(it) } ?: -1
-        thumbnail?.let { item ->
-            val modifiedThumbnails = thumbnails.map {
-                if (it.id == item.id) it.copy(url = thumbnailUrl) else it
-            }
-            state.safeSet(THUMBNAILS, modifiedThumbnails, viewModelScope)
+        val thumbnailIndex = thumbnails.indexOf(thumbnail)
+        val modifiedThumbnails = thumbnails.map {
+            if (it.id == thumbnail.id) it.copy(url = thumbnailUrl) else it
         }
-        return index
+        state.safeSet(THUMBNAILS, modifiedThumbnails, viewModelScope)
+        return thumbnailIndex
     }
 
-    fun deleteThumbnail(thumbnailId: String) = liveData {
-        val count = itemRepository.getItemsCountWithThumbnailId(thumbnailId)
+    fun deleteThumbnail(thumbnail: ThumbnailDto) = liveData {
+        val count = itemRepository.getItemsCountWithThumbnailId(thumbnail.id)
         val item = itemId?.let { itemRepository.findItemById(it) }
-        val deletable = count == 0 || count == 1 && (item?.thumbnailId == thumbnailId)
+        val deletable = count == 0 || count == 1 && (item?.thumbnailId == thumbnail.id)
         if (deletable) {
             val thumbnails = state[THUMBNAILS] ?: emptyList<ThumbnailDto>()
             val modifiedThumbnails = thumbnails.filter {
-                !(it.deletable && it.id == thumbnailId)
+                !(it.deletable && it.id == thumbnail.id)
             }
             state.safeSet(THUMBNAILS, modifiedThumbnails, viewModelScope)
         }
@@ -174,12 +172,12 @@ class ItemConstructorViewModel @ViewModelInject constructor(
     }
 
     fun addAndSelectThumbnail(thumbnailUrl: String) {
-        val index = addThumbnail(thumbnailUrl)
+        val index = addThumbnail(thumbnailUrl.trim { it <= ' ' })
         selectThumbnail(index)
     }
 
-    fun updateThumbnailUrlAndSelect(thumbnailId: String, thumbnailUrl: String) {
-        val index = updateThumbnailUrl(thumbnailId, thumbnailUrl)
+    fun updateThumbnailUrlAndSelect(thumbnail: ThumbnailDto, thumbnailUrl: String) {
+        val index = updateThumbnailUrl(thumbnail, thumbnailUrl.trim { it <= ' ' })
         selectThumbnail(index)
     }
 
@@ -191,31 +189,27 @@ class ItemConstructorViewModel @ViewModelInject constructor(
 
     fun addTag(name: String, index: Int = -1): Int {
         val tags = getTags().toMutableList()
-        tags.add(
-            if (index == -1) tags.size - 1 else index,
-            TagDto(name, 1)
-        )
+        val tagIndex = if (index == -1) tags.size - 1 else index
+        tags.add(tagIndex, TagDto(name.trim { it <= ' ' }, 1))
         state.safeSet(TAGS, tags, viewModelScope)
-        return tags.indexOfFirst { it.name == name }
+        return tagIndex
     }
 
-    fun updateTagName(previousName: String, name: String): Int {
+    fun updateTagName(tag: TagDto, name: String): Int {
+        val trimmedName = name.trim { it <= ' ' }
         val tags = getTags()
-        val tag = tags.firstOrNull { it.name == previousName }
-        val index = tag?.let { tags.indexOf(it) } ?: -1
-        tag?.let { item ->
-            val modifiedTags = tags.map {
-                if (it.name == item.name) it.copy(name = name) else it
-            }
-            state.safeSet(TAGS, modifiedTags, viewModelScope)
+        val tagIndex = tags.indexOf(tag)
+        val modifiedTags = tags.map {
+            if (it.name == tag.name) it.copy(name = trimmedName) else it
         }
-        return index
+        state.safeSet(TAGS, modifiedTags, viewModelScope)
+        return tagIndex
     }
 
-    fun deleteTag(name: String) {
+    fun deleteTag(tag: TagDto) {
         state.safeSet(
             TAGS,
-            getTags().filter { it.name != name },
+            getTags().filter { it.name != tag.name },
             viewModelScope
         )
     }

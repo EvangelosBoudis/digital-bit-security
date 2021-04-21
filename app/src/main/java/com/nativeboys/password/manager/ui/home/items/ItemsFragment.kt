@@ -74,7 +74,7 @@ class ItemsFragment : Fragment(
                     R.id.delete_btn -> {
                         viewModel.setPendingItemToDelete(model.itemId)
                         ConfirmationFragment
-                            .newInstance(R.layout.fragment_confirmation)
+                            .newInstance(R.layout.dialog_confirmation)
                             .show(childFragmentManager, ConfirmationFragment::class.java.simpleName)
                     }
                 }

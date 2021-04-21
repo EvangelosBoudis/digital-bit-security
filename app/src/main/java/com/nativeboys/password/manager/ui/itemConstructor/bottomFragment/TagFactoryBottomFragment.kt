@@ -33,16 +33,19 @@ class TagFactoryBottomFragment : FactoryBottomFragment() {
             }
             deleteBtn.visibility = if (tagName.isEmpty()) View.INVISIBLE else View.VISIBLE
             deleteBtn.setOnClickListener {
-                if (tagName.isNotEmpty()) {
-                    viewModel.deleteTag(tagName)
+                tag?.let {
+                    viewModel.deleteTag(it)
                     dismiss()
                 }
             }
             submitBtn.setOnClickListener {
                 val textContent = field.text.toString()
                 if (textContent.isNotEmpty()) {
-                    if (tagName.isEmpty()) viewModel.addTag(textContent)
-                    else viewModel.updateTagName(tagName, textContent)
+                    if (tagName.isEmpty()) {
+                        viewModel.addTag(textContent)
+                    } else {
+                        tag?.let { viewModel.updateTagName(it, textContent) }
+                    }
                     dismiss()
                 }
             }

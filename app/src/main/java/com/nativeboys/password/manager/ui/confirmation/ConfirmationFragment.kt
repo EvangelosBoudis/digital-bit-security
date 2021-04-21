@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import com.nativeboys.password.manager.R
@@ -16,24 +17,30 @@ interface ConfirmationDialogListener {
 class ConfirmationFragment : DialogFragment(), View.OnClickListener {
 
     private var layoutRes: Int? = null
+    private var description: String? = null
+
     var confirmationDialogListener: ConfirmationDialogListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             layoutRes = it.getInt(ARG_LAYOUT)
+            description = it.getString(ARG_DESCRIPTION)
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(layoutRes ?: R.layout.fragment_confirmation, container, false)
+    ): View? = inflater.inflate(layoutRes ?: R.layout.dialog_confirmation, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<Button>(R.id.leading_btn).setOnClickListener(this)
-        view.findViewById<Button>(R.id.trailing_btn).setOnClickListener(this)
+        description?.let {
+            view.findViewById<TextView>(R.id.description_field)?.text = it
+        }
+        view.findViewById<Button>(R.id.leading_btn)?.setOnClickListener(this)
+        view.findViewById<Button>(R.id.trailing_btn)?.setOnClickListener(this)
     }
 
     override fun onDetach() {
@@ -49,12 +56,14 @@ class ConfirmationFragment : DialogFragment(), View.OnClickListener {
     companion object {
 
         private const val ARG_LAYOUT = "layout_param"
+        private const val ARG_DESCRIPTION = "description_param"
 
         @JvmStatic
-        fun newInstance(@LayoutRes layoutRes: Int) =
+        fun newInstance(@LayoutRes layoutRes: Int, description: String? = null) =
             ConfirmationFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_LAYOUT, layoutRes)
+                    putString(ARG_DESCRIPTION, description)
                 }
             }
     }
