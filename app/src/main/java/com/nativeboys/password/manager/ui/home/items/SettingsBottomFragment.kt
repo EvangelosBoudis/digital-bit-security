@@ -12,7 +12,7 @@ import com.zeustech.zeuskit.ui.fragments.BottomFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SettingsBottomFragment : BottomFragment(R.layout.fragment_settings_bottom) {
+class SettingsBottomFragment : BottomFragment(R.layout.fragment_settings_bottom, FRAGMENT_WRAP_CONTENT) {
 
     private val viewModel: SettingsBottomViewModel by viewModels()
 

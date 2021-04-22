@@ -10,30 +10,31 @@
     <include android:id="@+id/header_container"
         layout="@layout/header_layout" />
 
-    <ImageView
+    <net.steamcrafted.materialiconlib.MaterialIconView
         android:id="@+id/thumbnail_holder"
         android:layout_width="45dp"
         android:layout_height="0dp"
-        android:padding="5dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="20dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toBottomOf="@id/header_container"
         app:layout_constraintStart_toStartOf="parent"
-        app:tint="@color/lightGray"
-        android:src="@drawable/ic_baseline_image_24"
-        tools:ignore="ContentDescription" />
+        android:scaleType="center"
+        app:materialIconSize="36dp"
+        app:materialIconColor="#fff"/>
 
     <EditText
         android:id="@+id/content_field"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintTop_toBottomOf="@id/header_container"
         app:layout_constraintStart_toEndOf="@id/thumbnail_holder"
         app:layout_constraintEnd_toEndOf="parent"
         android:hint="@string/category_name"
         android:inputType="text"
-        style="@style/Widget.App.EditText.Padding"
+        style="@style/Widget.App.EditText"
+        android:paddingBottom="15dp"
         tools:ignore="Autofill,LabelFor" />
 
     <androidx.recyclerview.widget.RecyclerView

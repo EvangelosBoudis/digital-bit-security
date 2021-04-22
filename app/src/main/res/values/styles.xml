@@ -21,6 +21,10 @@
     <!-- FragmentDialog -->
 
     <style name="FragmentDialogTheme" parent="Theme.MaterialComponents.BottomSheetDialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
         <item name="android:spinnerStyle">@style/Widget.App.Spinner</item>
         <item name="switchStyle">@style/Widget.App.Switch</item>
         <item name="checkboxStyle">@style/Widget.App.CheckBox</item>

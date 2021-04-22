@@ -109,3 +109,14 @@ data class TagDto(
     override fun areContentsTheSame(model: TagDto) = this == model
 
 }
+
+data class UICategoryIcon(
+    val thumbnailCode: String,
+    val selected: Boolean = false
+) : ListAdapterItem<UICategoryIcon> {
+
+    override fun areItemsTheSame(model: UICategoryIcon) = thumbnailCode == model.thumbnailCode
+
+    override fun areContentsTheSame(model: UICategoryIcon) = this == model
+
+}

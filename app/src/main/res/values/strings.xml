@@ -48,4 +48,5 @@
     <string name="keep">Keep it</string>
     <string name="form_validation_error">Form Validation Error</string>
     <string name="ok">OK</string>
+    <string name="search_category_icon">Search category icon</string>
 </resources>

@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_categoryChooseFragment"
             app:destination="@id/categoryChooseFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_categoryConstructorFragment"
+            app:destination="@id/categoryConstructorFragment" />
     </fragment>
     <fragment
         android:id="@+id/itemConstructorFragment"
@@ -59,6 +62,16 @@
             app:popUpTo="@id/categoryChooseFragment"
             app:popUpToInclusive="true"
             app:destination="@id/itemConstructorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryConstructorFragment"
+        android:name="com.nativeboys.password.manager.ui.categoryConstructor.CategoryConstructorFragment"
+        android:label="fragment_category_constructor"
+        tools:layout="@layout/fragment_category_constructor" >
+        <argument
+            android:name="CATEGORY_ID"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 
 </navigation>

@@ -12,6 +12,8 @@ import com.nativeboys.password.manager.data.CategoryData
 import com.nativeboys.password.manager.databinding.FragmentCategoriesBinding
 import com.nativeboys.password.manager.presentation.CategoriesViewModel
 import com.nativeboys.password.manager.ui.adapters.categories.CategoriesAdapter
+import com.nativeboys.password.manager.ui.home.HomeFragmentDirections
+import com.nativeboys.password.manager.util.parentNavController
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -53,7 +55,10 @@ class CategoriesFragment : Fragment(R.layout.fragment_categories), AdapterClickL
     }
 
     private fun moveToCategoryFragment(id: String? = null) {
-        //navController.navigate(CategoriesFragmentDirections.actionCategoriesToCategoryConstructor(id))
+        parentNavController()?.apply {
+            val action = HomeFragmentDirections.actionHomeFragmentToCategoryConstructorFragment(id)
+            navigate(action)
+        }
     }
 
 }

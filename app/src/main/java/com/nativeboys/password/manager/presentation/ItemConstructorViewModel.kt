@@ -4,7 +4,6 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.nativeboys.password.manager.data.*
-import com.nativeboys.password.manager.data.local.ThumbnailDao
 import com.nativeboys.password.manager.data.repository.FieldRepository
 import com.nativeboys.password.manager.data.repository.ItemRepository
 import com.nativeboys.password.manager.data.repository.ThumbnailRepository
@@ -43,10 +42,6 @@ class ItemConstructorViewModel @ViewModelInject constructor(
             }
         }
     }
-
-    //////////////////////////////////////////////////////////////////////////////////////////
-    /// Item
-    //////////////////////////////////////////////////////////////////////////////////////////
 
     private suspend fun initItem() {
         if (item == null && itemId != null) {

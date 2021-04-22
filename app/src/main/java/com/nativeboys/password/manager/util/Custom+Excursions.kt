@@ -11,7 +11,6 @@ import android.text.method.PasswordTransformationMethod
 import android.text.method.TransformationMethod
 import android.view.View
 import android.widget.EditText
-import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -58,44 +57,28 @@ fun EditText.toggleTransformationMethod() {
     this.setSelection(this.length())
 }
 
-fun EditText.setTransformationMethodAsHidden(hidden: Boolean) {
-    this.transformationMethod = if (hidden) PasswordTransformationMethod.getInstance() else HideReturnsTransformationMethod.getInstance()
+fun EditText.setTextAndFixCursor(text: String?) {
+    setText(text)
+    setSelection(text?.length ?: 0)
 }
 
 fun materialIconCodeToDrawable(
     context: Context,
-    materialIconCode: String,
-    @ColorInt color: Int = Color.WHITE
+    iconCode: String,
+    @ColorInt iconColor: Int = Color.WHITE,
+    iconSize: Int = MaterialDrawableBuilder.ANDROID_ACTIONBAR_ICON_SIZE_DP
 ): Drawable? {
     return try {
-        MaterialDrawableBuilder.IconValue.valueOf(materialIconCode)
+        MaterialDrawableBuilder.IconValue.valueOf(iconCode)
     } catch (e: IllegalArgumentException) {
         null
     }?.let { icon ->
         MaterialDrawableBuilder.with(context) // provide a context
             .setIcon(icon) // provide an icon
-            .setColor(color) // set the icon color
-            .setToActionbarSize() // set the icon size
+            .setColor(iconColor) // set the icon color
+            .setSizeDp(iconSize) // set the icon size
             .build() // Finally call build
     }
-}
-
-fun ImageView.setMaterialIcon(
-    materialIconCode: String,
-    @ColorInt color: Int = Color.WHITE
-) = materialIconCodeToDrawable(context, materialIconCode, color)?.let { setImageDrawable(it) }
-
-fun RequestBuilder<Drawable>.intoView(view: View) {
-    into(object : CustomTarget<Drawable>() {
-        override fun onResourceReady(
-            resource: Drawable,
-            transition: Transition<in Drawable>?
-        ) {
-            view.background = resource
-        }
-
-        override fun onLoadCleared(placeholder: Drawable?) {}
-    })
 }
 
 fun RequestBuilder<Drawable>.intoMaterialIcon(view: MaterialIconView) {
@@ -110,6 +93,19 @@ fun RequestBuilder<Drawable>.intoMaterialIcon(view: MaterialIconView) {
         override fun onLoadCleared(placeholder: Drawable?) {
             view.setImageDrawable(null)
         }
+    })
+}
+
+fun RequestBuilder<Drawable>.intoView(view: View) {
+    into(object : CustomTarget<Drawable>() {
+        override fun onResourceReady(
+            resource: Drawable,
+            transition: Transition<in Drawable>?
+        ) {
+            view.background = resource
+        }
+
+        override fun onLoadCleared(placeholder: Drawable?) {}
     })
 }
 
