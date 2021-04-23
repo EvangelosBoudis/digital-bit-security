@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.data.FieldData
+import com.nativeboys.password.manager.data.UIField
 import com.nativeboys.password.manager.databinding.FragmentCategoryConstructorBinding
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel
 import com.nativeboys.password.manager.ui.adapters.newFields.NewFieldsAdapter
@@ -22,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CategoryConstructorFragment : Fragment(
     R.layout.fragment_category_constructor
-), View.OnClickListener, AdapterClickListener<FieldData> {
+), View.OnClickListener, AdapterClickListener<UIField> {
 
     private val viewModel: CategoryConstructorViewModel by viewModels()
 
@@ -83,7 +83,7 @@ class CategoryConstructorFragment : Fragment(
         }
     }
 
-    override fun onClick(view: View, model: FieldData, position: Int) {
+    override fun onClick(view: View, model: UIField, position: Int) {
         if (view.id == R.id.type_btn) {
             CategoryTypeChooserBottomFragment().show(
                 this.childFragmentManager,

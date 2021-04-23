@@ -6,6 +6,7 @@ import androidx.lifecycle.*
 import com.nativeboys.password.manager.data.CategoryWithFields
 import com.nativeboys.password.manager.data.FieldData
 import com.nativeboys.password.manager.data.UICategoryIcon
+import com.nativeboys.password.manager.data.UIField
 import com.nativeboys.password.manager.data.repository.CategoryRepository
 import com.nativeboys.password.manager.util.allTypes
 import com.nativeboys.password.manager.util.safeSet
@@ -24,7 +25,19 @@ class CategoryConstructorViewModel @ViewModelInject constructor(
     private val categoryId: String? = state.get<String>(CATEGORY_ID)
     private var categoryWithFields: CategoryWithFields? = null
 
-    val fields = state.getLiveData<List<FieldData>>(FIELDS)
+    val categoriesTypes = allTypes()
+
+    val fields = state.getLiveData<List<FieldData>>(FIELDS).map { fields ->
+        fields.map { field ->
+            UIField(
+                field.id,
+                field.name,
+                categoriesTypes.firstOrNull { it.code == field.type }?.description,
+                if (field.id.isNotEmpty()) 1 else 2
+            )
+        }
+    }
+
     val thumbnailCode = state.getLiveData<String>(THUMBNAIL_CODE)
 
     val thumbnailSearchKey: String?
@@ -47,7 +60,6 @@ class CategoryConstructorViewModel @ViewModelInject constructor(
             .map { UICategoryIcon(it.name, it.name == thumbnailCode) }
     }.asLiveData()
 
-    val categoriesTypes = allTypes()
 
     init {
         viewModelScope.launch(context = Dispatchers.IO) {

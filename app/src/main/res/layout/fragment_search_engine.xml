@@ -52,7 +52,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="10dp"
             android:textSize="15sp"
-            android:textColorHint="@android:color/white"
+            android:textColorHint="@color/lightGray"
             android:textColor="@android:color/white"
             app:backgroundTint="@color/colorAccent"
             android:background="@android:color/transparent"

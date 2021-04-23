@@ -24,7 +24,8 @@ class CategoriesIconsViewHolder(
         val draw = materialIconCodeToDrawable(
             itemView.context,
             model.thumbnailCode,
-            if (model.selected) ContextCompat.getColor(itemView.context, R.color.colorPrimary) else Color.WHITE
+            if (model.selected) ContextCompat.getColor(itemView.context, R.color.colorPrimary) else Color.WHITE,
+            30
         )
         if (draw != null) {
             Glide.with(itemView.context)
@@ -38,7 +39,6 @@ class CategoriesIconsViewHolder(
             .with(itemView.context)
             .load(R.drawable.stroke_shape)
             .intoView(thumbnailBackgroundHolder)
-
     }
 
 }

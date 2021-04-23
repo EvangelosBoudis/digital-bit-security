@@ -120,3 +120,10 @@ data class UICategoryIcon(
     override fun areContentsTheSame(model: UICategoryIcon) = this == model
 
 }
+
+data class UIField(
+    val id: String,
+    val name: String,
+    val typeDescription: String?,
+    val cellType: Int = 1 // 1: Field, 2: Add Btn
+)
