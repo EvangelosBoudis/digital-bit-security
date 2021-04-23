@@ -10,8 +10,8 @@ enum class InputTypeItem(val description: String, val code: String, val type: In
     DATE("Date","date", InputType.TYPE_CLASS_DATETIME or InputType.TYPE_DATETIME_VARIATION_DATE),
     PHONE("Phone","phone", InputType.TYPE_CLASS_PHONE),
     TEXT_PASSWORD("Password","textPassword", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD),
-    TEXT_EMAIL_ADDRESS("Email Address","textEmailAddress", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS),
-    TEXT_POSTAL_ADDRESS("Postal Address", "textPostalAddress", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS),
+    TEXT_EMAIL_ADDRESS("Email","textEmailAddress", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS),
+    TEXT_POSTAL_ADDRESS("Address", "textPostalAddress", InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS),
 }
 
 fun allTypes() = enumValues<InputTypeItem>().asList()

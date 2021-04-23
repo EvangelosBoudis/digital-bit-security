@@ -40,7 +40,17 @@ data class CategoryData(
     override fun areContentsTheSame(model: CategoryData) = this == model
 }
 
-@Entity(tableName = "fields")
+@Entity(
+    tableName = "fields",
+    foreignKeys = [
+        ForeignKey(
+            entity = CategoryData::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("category_id"),
+            onDelete = ForeignKey.CASCADE
+        )
+    ]
+)
 @Parcelize
 data class FieldData(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
@@ -67,12 +77,20 @@ data class ItemData(
 
 @Entity(
     tableName = "contents",
-    foreignKeys = [ForeignKey(
-        entity = ItemData::class,
-        parentColumns = arrayOf("id"),
-        childColumns = arrayOf("item_id"),
-        onDelete = ForeignKey.CASCADE
-    )]
+    foreignKeys = [
+        ForeignKey(
+            entity = ItemData::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("item_id"),
+            onDelete = ForeignKey.CASCADE
+        ),
+        ForeignKey(
+            entity = FieldData::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("field_id"),
+            onDelete = ForeignKey.CASCADE
+        )
+    ]
 )
 @Parcelize
 data class ContentData(

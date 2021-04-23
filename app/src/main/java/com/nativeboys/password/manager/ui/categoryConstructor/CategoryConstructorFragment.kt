@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.nativeboys.password.manager.R
+import com.nativeboys.password.manager.data.Result
 import com.nativeboys.password.manager.data.UIField
 import com.nativeboys.password.manager.databinding.FragmentCategoryConstructorBinding
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel
@@ -17,6 +18,7 @@ import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel.Companion.PENDING_FIELD_ID_FOR_TYPE
 import com.nativeboys.password.manager.ui.adapters.FieldContentTextChangeListener
 import com.nativeboys.password.manager.ui.adapters.newFields.NewFieldsAdapter
+import com.nativeboys.password.manager.ui.confirmation.ConfirmationFragment
 import com.nativeboys.password.manager.ui.home.items.SettingsBottomFragment
 import com.nativeboys.password.manager.util.ZTransactionFragment
 import com.nativeboys.password.manager.util.intoMaterialIcon
@@ -86,7 +88,18 @@ class CategoryConstructorFragment : ZTransactionFragment(
                 activity?.onBackPressed()
             }
             R.id.trailing_btn -> {
-                // TODO: implement
+                view.isEnabled = false
+                viewModel.submit().observe(viewLifecycleOwner) { result ->
+                    view.isEnabled = true
+                    when (result) {
+                        is Result.Success -> activity?.onBackPressed()
+                        is Result.Error -> {
+                            ConfirmationFragment
+                                .newInstance(R.layout.dialog_form_error, result.exception.message)
+                                .show(childFragmentManager, ConfirmationFragment::class.java.simpleName)
+                        }
+                    }
+                }
             }
             R.id.thumbnail_holder -> {
                 CategoryIconChooserBottomFragment().show(

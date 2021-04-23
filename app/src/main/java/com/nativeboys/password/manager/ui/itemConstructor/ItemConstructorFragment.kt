@@ -3,7 +3,6 @@ package com.nativeboys.password.manager.ui.itemConstructor
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +21,6 @@ import com.nativeboys.password.manager.ui.adapters.thumbnails.ThumbnailsAdapter
 import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.NOTES
 import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.PASSWORD_REQUIRED
 import com.nativeboys.password.manager.ui.adapters.FieldContentTextChangeListener
-import com.nativeboys.password.manager.ui.confirmation.ConfirmationDialogListener
 import com.nativeboys.password.manager.ui.confirmation.ConfirmationFragment
 import com.nativeboys.password.manager.ui.itemConstructor.bottomFragment.TagFactoryBottomFragment
 import com.nativeboys.password.manager.ui.itemConstructor.bottomFragment.ThumbnailFactoryBottomFragment
@@ -33,7 +31,7 @@ import java.util.*
 @AndroidEntryPoint
 class ItemConstructorFragment : Fragment(
     R.layout.fragment_item_constructor
-), View.OnClickListener, ConfirmationDialogListener {
+), View.OnClickListener {
 
     private val viewModel: ItemConstructorViewModel by viewModels()
 
@@ -99,12 +97,6 @@ class ItemConstructorFragment : Fragment(
             }
         }
 
-        childFragmentManager.addFragmentOnAttachListener { _, fragment ->
-            (fragment as? ConfirmationFragment)?.let {
-                it.confirmationDialogListener = this
-            }
-        }
-
         viewModel.getInitFieldsContent().observe(viewLifecycleOwner) {
             fieldsAdapter.submitList(it)
         }
@@ -143,10 +135,6 @@ class ItemConstructorFragment : Fragment(
                 activity?.onBackPressed()
             }
         }
-    }
-
-    override fun onClick(dialogFragment: DialogFragment, view: View) {
-        if (view.id == R.id.trailing_btn) dialogFragment.dismiss()
     }
 
     private fun showTagFactoryBottomFragment(tagDto: TagDto) =

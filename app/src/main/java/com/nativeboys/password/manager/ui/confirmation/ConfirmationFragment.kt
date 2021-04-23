@@ -50,7 +50,7 @@ class ConfirmationFragment : DialogFragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         val view = v ?: return
-        confirmationDialogListener?.onClick(this, view)
+        confirmationDialogListener?.onClick(this, view) ?: dismiss()
     }
 
     companion object {

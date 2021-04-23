@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder
+import java.lang.Exception
 import java.util.*
 
 class CategoryConstructorViewModel @ViewModelInject constructor(
@@ -148,6 +149,32 @@ class CategoryConstructorViewModel @ViewModelInject constructor(
             getFields().filter { it.id != fieldId },
             viewModelScope
         )
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////
+    /// Other
+    //////////////////////////////////////////////////////////////////////////////////////////
+
+    fun submit() = liveData {
+
+        try {
+
+            val name = nameFromCacheOrDatabase ?: ""
+            if (name.isEmpty()) throw SaveItemException("Name does not provided")
+
+            val thumbnailCode = thumbnailCodeFromCacheOrDatabase ?: ""
+            if (thumbnailCode.isEmpty()) throw SaveItemException("Thumbnail does not provided")
+
+            val fields = getFields()
+            if (fields.size <= 1) throw SaveItemException("Categories require at least one field")
+
+            val process = categoryRepository.saveOrUpdateCategory(categoryId, name, thumbnailCode, fields)
+
+            emit(Result.Success(process))
+
+        } catch (e: Exception) {
+            emit(Result.Error(e))
+        }
     }
 
     fun <T> updateUserCache(fieldId: String, value: T) {
