@@ -24,20 +24,30 @@ class ItemConstructorViewModel @ViewModelInject constructor(
     private val categoryId: String? = state[CATEGORY_ID]
     private var item: ItemFieldsContentDto? = null
 
-    val tags = state.getLiveData<List<TagDto>>(TAGS)
-    val thumbnails = state.getLiveData<List<ThumbnailDto>>(THUMBNAILS)
+    private val passwordFromCacheOrDatabase: Boolean
+        get() {
+            return state.get<Boolean>(PASSWORD_REQUIRED) ?: item?.requiresPassword ?: true
+        }
+
+    private val notesFromCacheOrDatabase: String?
+        get() {
+            return state.get<String>(NOTES) ?: item?.notes
+        }
+
+    val observeTags = state.getLiveData<List<TagDto>>(TAGS)
+    val observeThumbnails = state.getLiveData<List<ThumbnailDto>>(THUMBNAILS)
 
     init {
         viewModelScope.launch(context = Dispatchers.IO) {
             initItem()
-            val emptyTags = state.get<List<TagDto>>(TAGS)?.isEmpty() ?: true
-            if (emptyTags) { // init cache data
+            val noTags = state.get<List<TagDto>>(TAGS)?.isEmpty() ?: true
+            if (noTags) { // init cache data
                 val tags = (item?.tagsAsDto ?: emptyList()).toMutableList()
                 tags.add(TagDto())
                 state.safeSet(TAGS, tags, this)
             }
-            val emptyThumbnails = state.get<List<ThumbnailDto>>(THUMBNAILS)?.isEmpty() ?: true
-            if (emptyThumbnails) { // init cache data
+            val noThumbnails = state.get<List<ThumbnailDto>>(THUMBNAILS)?.isEmpty() ?: true
+            if (noThumbnails) { // init cache data
                 state.safeSet(THUMBNAILS, itemRepository.findAllThumbnailsDto(itemId ?: ""), this)
             }
         }
@@ -47,6 +57,21 @@ class ItemConstructorViewModel @ViewModelInject constructor(
         if (item == null && itemId != null) {
             item = itemRepository.findItemFieldsContentById(itemId)
         }
+    }
+
+    fun getInitFieldsContent() = liveData {
+        initItem()
+        emit(getFieldsContentMergedByCacheAndDatabase())
+    }
+
+    fun getInitPasswordIsRequired() = liveData {
+        initItem()
+        emit(passwordFromCacheOrDatabase)
+    }
+
+    fun getInitNotes() = liveData {
+        initItem()
+        emit(notesFromCacheOrDatabase)
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////
@@ -79,49 +104,16 @@ class ItemConstructorViewModel @ViewModelInject constructor(
         return allFieldContent
     }
 
-    fun getInitFieldsContent() = liveData {
-        initItem()
-        emit(getFieldsContentMergedByCacheAndDatabase())
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////////////
-    /// Password
-    //////////////////////////////////////////////////////////////////////////////////////////
-
-    /** Get from cache or database */
-    private fun getPasswordFromCacheOrDatabase(): Boolean {
-        return state.get<Boolean>(PASSWORD_REQUIRED) ?: item?.requiresPassword ?: true
-    }
-
-    fun getInitPasswordIsRequired() = liveData {
-        initItem()
-        emit(getPasswordFromCacheOrDatabase())
-    }
-
-    //////////////////////////////////////////////////////////////////////////////////////////
-    /// Notes
-    //////////////////////////////////////////////////////////////////////////////////////////
-
-    /** Get from cache or database */
-    private fun getNotesFromCacheOrDatabase(): String? {
-        return state.get<String>(NOTES) ?: item?.notes
-    }
-
-    fun getInitNotes() = liveData {
-        initItem()
-        emit(getNotesFromCacheOrDatabase())
-    }
-
     //////////////////////////////////////////////////////////////////////////////////////////
     /// Thumbnails
     //////////////////////////////////////////////////////////////////////////////////////////
 
     private fun getThumbnails() = state[THUMBNAILS] ?: emptyList<ThumbnailDto>()
 
-    private fun addThumbnail(thumbnailUrl: String, index: Int = -1): Int {
+    private fun addThumbnail(thumbnailUrl: String): Int {
         val thumbnails = getThumbnails().toMutableList()
         thumbnails.add(
-            if (index == -1) thumbnails.size - 1 else index,
+            thumbnails.size - 1,
             ThumbnailDto(UUID.randomUUID().toString(), thumbnailUrl, true, 1)
         )
         state.safeSet(THUMBNAILS, thumbnails, viewModelScope)
@@ -182,23 +174,19 @@ class ItemConstructorViewModel @ViewModelInject constructor(
 
     private fun getTags() = state[TAGS] ?: emptyList<TagDto>()
 
-    fun addTag(name: String, index: Int = -1): Int {
+    fun addTag(name: String) {
         val tags = getTags().toMutableList()
-        val tagIndex = if (index == -1) tags.size - 1 else index
-        tags.add(tagIndex, TagDto(name.trim { it <= ' ' }, 1))
+        tags.add(tags.size - 1, TagDto(name.trim { it <= ' ' }, 1))
         state.safeSet(TAGS, tags, viewModelScope)
-        return tagIndex
     }
 
-    fun updateTagName(tag: TagDto, name: String): Int {
+    fun updateTagName(tag: TagDto, name: String) {
         val trimmedName = name.trim { it <= ' ' }
         val tags = getTags()
-        val tagIndex = tags.indexOf(tag)
         val modifiedTags = tags.map {
             if (it.name == tag.name) it.copy(name = trimmedName) else it
         }
         state.safeSet(TAGS, modifiedTags, viewModelScope)
-        return tagIndex
     }
 
     fun deleteTag(tag: TagDto) {
@@ -242,9 +230,9 @@ class ItemConstructorViewModel @ViewModelInject constructor(
             thumbnailRepository.replaceAllThumbnails(thumbnails)
             itemRepository.saveOrUpdateItem(
                 item?.id, name, description,
-                getNotesFromCacheOrDatabase(),
+                notesFromCacheOrDatabase,
                 tags, item?.favorite ?: false,
-                getPasswordFromCacheOrDatabase(),
+                passwordFromCacheOrDatabase,
                 categoryId, thumbnailId, contents
             )
             emit(Result.Success(true))

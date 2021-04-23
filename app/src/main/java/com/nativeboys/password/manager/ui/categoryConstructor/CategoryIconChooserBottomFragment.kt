@@ -42,7 +42,7 @@ class CategoryIconChooserBottomFragment : BottomFragment(
                 if (hasFocus) KeyboardManager().showKeyboard(v)
             }
         }
-        viewModel.categoriesIcons.observe(viewLifecycleOwner) {
+        viewModel.observeCategoriesIcons.observe(viewLifecycleOwner) {
             categoriesIconsAdapter.submitList(it)
         }
         categoriesIconsAdapter.adapterClickListener = this

@@ -17,11 +17,11 @@ import com.nativeboys.password.manager.databinding.FragmentItemConstructorBindin
 import com.nativeboys.password.manager.util.*
 import com.nativeboys.password.manager.presentation.ItemConstructorViewModel
 import com.nativeboys.password.manager.ui.adapters.fieldContent.FieldContentAdapter
-import com.nativeboys.password.manager.ui.adapters.fieldContent.FieldContentTextChangeListener
 import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
 import com.nativeboys.password.manager.ui.adapters.thumbnails.ThumbnailsAdapter
 import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.NOTES
 import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.PASSWORD_REQUIRED
+import com.nativeboys.password.manager.ui.adapters.FieldContentTextChangeListener
 import com.nativeboys.password.manager.ui.confirmation.ConfirmationDialogListener
 import com.nativeboys.password.manager.ui.confirmation.ConfirmationFragment
 import com.nativeboys.password.manager.ui.itemConstructor.bottomFragment.TagFactoryBottomFragment
@@ -108,10 +108,10 @@ class ItemConstructorFragment : Fragment(
         viewModel.getInitFieldsContent().observe(viewLifecycleOwner) {
             fieldsAdapter.submitList(it)
         }
-        viewModel.thumbnails.observe(viewLifecycleOwner) {
+        viewModel.observeThumbnails.observe(viewLifecycleOwner) {
             thumbnailsAdapter.submitList(it)
         }
-        viewModel.tags.observe(viewLifecycleOwner) {
+        viewModel.observeTags.observe(viewLifecycleOwner) {
             tagsAdapter.submitList(it)
         }
         viewModel.getInitPasswordIsRequired().observe(viewLifecycleOwner) {

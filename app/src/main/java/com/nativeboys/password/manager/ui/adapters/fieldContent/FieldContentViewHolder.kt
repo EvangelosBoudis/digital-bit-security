@@ -11,13 +11,10 @@ import androidx.core.widget.addTextChangedListener
 import com.bumptech.glide.Glide
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.FieldContentDto
+import com.nativeboys.password.manager.ui.adapters.FieldContentTextChangeListener
 import com.nativeboys.password.manager.util.InputTypeItem
 import com.nativeboys.password.manager.util.findByCode
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
-
-interface FieldContentTextChangeListener {
-    fun onContentChanged(fieldId: String, textContent: String)
-}
 
 class FieldContentViewHolder(
     itemView: View,

@@ -126,4 +126,10 @@ data class UIField(
     val name: String,
     val typeDescription: String?,
     val cellType: Int = 1 // 1: Field, 2: Add Btn
-)
+) : ListAdapterItem<UIField> {
+
+    override fun areItemsTheSame(model: UIField) = id == model.id
+
+    override fun areContentsTheSame(model: UIField) = this == model
+
+}
