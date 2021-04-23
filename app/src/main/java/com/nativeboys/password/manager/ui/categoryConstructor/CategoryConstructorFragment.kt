@@ -14,6 +14,7 @@ import com.nativeboys.password.manager.data.UIField
 import com.nativeboys.password.manager.databinding.FragmentCategoryConstructorBinding
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel.Companion.NAME
+import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel.Companion.PENDING_FIELD_ID_FOR_TYPE
 import com.nativeboys.password.manager.ui.adapters.FieldContentTextChangeListener
 import com.nativeboys.password.manager.ui.adapters.newFields.NewFieldsAdapter
 import com.nativeboys.password.manager.ui.home.items.SettingsBottomFragment
@@ -102,6 +103,7 @@ class CategoryConstructorFragment : ZTransactionFragment(
         } else {
             when (view.id) {
                 R.id.type_btn -> {
+                    viewModel.updateUserCache(PENDING_FIELD_ID_FOR_TYPE, model.id)
                     CategoryTypeChooserBottomFragment().show(
                         this.childFragmentManager,
                         CategoryTypeChooserBottomFragment::class.java.simpleName

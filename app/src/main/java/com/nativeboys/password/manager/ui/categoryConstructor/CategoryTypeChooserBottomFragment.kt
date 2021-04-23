@@ -7,6 +7,7 @@ import com.google.android.material.radiobutton.MaterialRadioButton
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.databinding.FragmentCategoryTypeChooserBottomBinding
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel
+import com.nativeboys.password.manager.util.checkedRadioButtonIndex
 import com.zeustech.zeuskit.ui.fragments.BottomFragment
 
 class CategoryTypeChooserBottomFragment : BottomFragment(
@@ -25,6 +26,13 @@ class CategoryTypeChooserBottomFragment : BottomFragment(
                 val rdBtn = MaterialRadioButton(requireContext())
                 rdBtn.text = it.description
                 filterRadioGroup.addView(rdBtn)
+            }
+            dismissBtn.setOnClickListener { dismiss() }
+            applyBtn.setOnClickListener {
+                binding.filterRadioGroup.checkedRadioButtonIndex()?.let { index ->
+                    viewModel.updateFieldType(index)
+                    dismiss()
+                }
             }
         }
     }

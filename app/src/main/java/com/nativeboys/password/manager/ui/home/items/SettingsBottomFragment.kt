@@ -2,12 +2,12 @@ package com.nativeboys.password.manager.ui.home.items
 
 import android.os.Bundle
 import android.view.View
-import android.widget.RadioButton
 import androidx.fragment.app.viewModels
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.preferences.SortOrder
 import com.nativeboys.password.manager.databinding.FragmentSettingsBottomBinding
 import com.nativeboys.password.manager.presentation.SettingsBottomViewModel
+import com.nativeboys.password.manager.util.checkedRadioButtonIndex
 import com.zeustech.zeuskit.ui.fragments.BottomFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,9 +21,7 @@ class SettingsBottomFragment : BottomFragment(R.layout.fragment_settings_bottom,
         val binding = FragmentSettingsBottomBinding.bind(view)
         binding.apply {
             applyBtn.setOnClickListener {
-                val checkedId = filterRadioGroup.checkedRadioButtonId
-                val radioBtn = filterRadioGroup.findViewById<RadioButton>(checkedId)
-                val index = filterRadioGroup.indexOfChild(radioBtn)
+                val index = filterRadioGroup.checkedRadioButtonIndex()
                 viewModel.updateSortOrderAndFavoritesVisibility(
                     if (index == 0) SortOrder.BY_NAME else SortOrder.BY_DATE,
                     favoritesCheckbox.isChecked

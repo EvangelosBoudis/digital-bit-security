@@ -11,6 +11,8 @@ import android.text.method.PasswordTransformationMethod
 import android.text.method.TransformationMethod
 import android.view.View
 import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -108,6 +110,8 @@ fun RequestBuilder<Drawable>.intoView(view: View) {
         override fun onLoadCleared(placeholder: Drawable?) {}
     })
 }
+
+fun RadioGroup.checkedRadioButtonIndex() = findViewById<RadioButton>(checkedRadioButtonId)?.let { indexOfChild(it) }
 
 fun copyToClipboard(context: Context, label: String, text: String) {
     val clipboard = ContextCompat.getSystemService(context, ClipboardManager::class.java)

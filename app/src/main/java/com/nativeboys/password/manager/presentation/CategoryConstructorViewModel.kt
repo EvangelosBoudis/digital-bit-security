@@ -128,10 +128,12 @@ class CategoryConstructorViewModel @ViewModelInject constructor(
         state.safeSet(FIELDS, fields, viewModelScope)
     }
 
-    private fun updateFieldType(fieldId: String, type: String) {
+    fun updateFieldType(typeIndex: Int) {
+        val typeCode = categoriesTypes[typeIndex].code
+        val fieldId: String = state[PENDING_FIELD_ID_FOR_TYPE] ?: return
         state.safeSet(
             FIELDS,
-            getFields().map { if (it.id == fieldId) it.copy(type = type) else it },
+            getFields().map { if (it.id == fieldId) it.copy(type = typeCode) else it },
             viewModelScope
         )
     }
@@ -162,7 +164,7 @@ class CategoryConstructorViewModel @ViewModelInject constructor(
         const val FIELD_NAME_ = "FIELD_NAME_"
 
         const val THUMBNAIL_SEARCH_KEY = "THUMBNAIL_SEARCH_KEY"
-
+        const val PENDING_FIELD_ID_FOR_TYPE = "PENDING_FIELD_ID_FOR_TYPE"
     }
 
 }
