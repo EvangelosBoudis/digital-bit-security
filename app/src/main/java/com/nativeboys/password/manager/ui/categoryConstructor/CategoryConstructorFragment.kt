@@ -16,7 +16,7 @@ import com.nativeboys.password.manager.databinding.FragmentCategoryConstructorBi
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel.Companion.NAME
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel.Companion.PENDING_FIELD_ID_FOR_TYPE
-import com.nativeboys.password.manager.ui.adapters.FieldContentTextChangeListener
+import com.nativeboys.password.manager.ui.adapters.FieldTextChangeListener
 import com.nativeboys.password.manager.ui.adapters.newFields.NewFieldsAdapter
 import com.nativeboys.password.manager.ui.confirmation.ConfirmationFragment
 import com.nativeboys.password.manager.ui.home.items.SettingsBottomFragment
@@ -38,8 +38,8 @@ class CategoryConstructorFragment : ZTransactionFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentCategoryConstructorBinding.bind(view)
-        fieldsAdapter = NewFieldsAdapter(object : FieldContentTextChangeListener {
-            override fun onContentChanged(fieldId: String, textContent: String) {
+        fieldsAdapter = NewFieldsAdapter(object : FieldTextChangeListener {
+            override fun onChange(fieldId: String, textContent: String) {
                 viewModel.updateFieldName(fieldId, textContent)
             }
         })

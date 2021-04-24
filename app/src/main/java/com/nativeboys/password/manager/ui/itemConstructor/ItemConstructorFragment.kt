@@ -20,13 +20,12 @@ import com.nativeboys.password.manager.ui.adapters.tags.TagsAdapter
 import com.nativeboys.password.manager.ui.adapters.thumbnails.ThumbnailsAdapter
 import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.NOTES
 import com.nativeboys.password.manager.presentation.ItemConstructorViewModel.Companion.PASSWORD_REQUIRED
-import com.nativeboys.password.manager.ui.adapters.FieldContentTextChangeListener
+import com.nativeboys.password.manager.ui.adapters.FieldTextChangeListener
 import com.nativeboys.password.manager.ui.confirmation.ConfirmationFragment
 import com.nativeboys.password.manager.ui.itemConstructor.bottomFragment.TagFactoryBottomFragment
 import com.nativeboys.password.manager.ui.itemConstructor.bottomFragment.ThumbnailFactoryBottomFragment
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @AndroidEntryPoint
 class ItemConstructorFragment : Fragment(
@@ -42,8 +41,8 @@ class ItemConstructorFragment : Fragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentItemConstructorBinding.bind(view)
-        fieldsAdapter = FieldContentAdapter(object : FieldContentTextChangeListener {
-            override fun onContentChanged(fieldId: String, textContent: String) {
+        fieldsAdapter = FieldContentAdapter(object : FieldTextChangeListener {
+            override fun onChange(fieldId: String, textContent: String) {
                 viewModel.updateUserCache(fieldId, textContent)
             }
         })
