@@ -158,7 +158,7 @@ abstract class AppDatabase : RoomDatabase() {
             )
 
             applicationScope.launch {
-                thumbnailDao.save(thumbnails)
+                thumbnailDao.saveOrReplace(thumbnails)
                 categoryDao.save(categories)
                 fieldDao.save(fields)
                 itemDao.save(items)

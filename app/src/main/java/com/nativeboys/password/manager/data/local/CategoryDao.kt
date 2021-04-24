@@ -13,10 +13,10 @@ interface CategoryDao {
     @Query("SELECT * FROM categories WHERE id == :id")
     suspend fun findById(id: String): CategoryData
 
-    @Query("SELECT * FROM categories")
+    @Query("SELECT * FROM categories ORDER BY name")
     suspend fun findAll(): List<CategoryData>
 
-    @Query("SELECT * FROM categories")
+    @Query("SELECT * FROM categories ORDER BY name")
     fun observeAll(): Flow<List<CategoryData>>
 
     @Query("SELECT * FROM categories WHERE name LIKE '%' || :searchKey || '%' ORDER BY name ASC")
@@ -40,5 +40,14 @@ interface CategoryDao {
 
     @Delete
     suspend fun delete(category: CategoryData)
+
+    //    @Query(
+//        """
+//            SELECT id AS entityId, COUNT(id) rowsCount
+//            FROM thumbnails
+//            WHERE thumbnails.id IN (:thumbnailIds)
+//            GROUP BY entityId
+//            """)
+//    suspend fun countByThumbnailId(thumbnailIds: List<String>): List<CountDto>
 
 }

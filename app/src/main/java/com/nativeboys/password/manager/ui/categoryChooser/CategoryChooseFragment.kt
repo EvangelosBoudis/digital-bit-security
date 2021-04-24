@@ -10,7 +10,7 @@ import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.CategoryData
 import com.nativeboys.password.manager.databinding.FragmentCategoryChooseBinding
 import com.nativeboys.password.manager.util.ZTransactionFragment
-import com.nativeboys.password.manager.presentation.CategoriesViewModel
+import com.nativeboys.password.manager.presentation.CategoryChooseViewModel
 import com.nativeboys.password.manager.ui.adapters.categories.CategoriesAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CategoryChooseFragment : ZTransactionFragment(R.layout.fragment_category_choose), AdapterClickListener<CategoryData> {
 
-    private val viewModel: CategoriesViewModel by viewModels()
+    private val viewModel: CategoryChooseViewModel by viewModels()
 
     private lateinit var navController: NavController
     private val categoriesAdapter = CategoriesAdapter()

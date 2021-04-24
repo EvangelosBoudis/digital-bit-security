@@ -22,6 +22,8 @@ class CategoryRepository @Inject constructor(
     private val preferences: PreferencesManager
 ) {
 
+    fun observeAllCategories() = categoryDao.observeAll()
+
     suspend fun findAllCategories() = categoryDao.findAll()
 
     suspend fun findCategoryById(categoryId: String) = categoryDao.findById(categoryId)
@@ -60,10 +62,23 @@ class CategoryRepository @Inject constructor(
 
         val category = CategoryData(categoryId, name, thumbnailCode, userId)
 
-        database.withTransaction {
-            categoryDao.save(category)
-            fieldDao.save(fields)
+        val fieldIds = fieldDao.findAllIdsByCategoryId(categoryId)
+
+        val saveFields = fields.filter {
+            !fieldIds.contains(it.id)
         }
+
+        val updateFields = fields.filter {
+            fieldIds.contains(it.id)
+        }
+
+        database.withTransaction {
+            if (id == null) categoryDao.save(category) else categoryDao.update(category)
+            fieldDao.deleteAllExcept(categoryId, fields.map { it.id })
+            fieldDao.save(saveFields)
+            fieldDao.update(updateFields)
+        }
+
     }
 
 }

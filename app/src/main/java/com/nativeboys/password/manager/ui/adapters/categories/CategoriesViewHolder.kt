@@ -22,6 +22,7 @@ class CategoriesViewHolder(
     private val thumbnailHolder = itemView.findViewById<MaterialIconView>(R.id.thumbnail_holder)
     private val nameField = itemView.findViewById<TextView>(R.id.name_field)
 
+    // TODO: lock thumbnail or delete thumbnail depending on userId
     override fun bind(model: CategoryData) {
         super.bind(model)
         binder.bind(container, model.id)

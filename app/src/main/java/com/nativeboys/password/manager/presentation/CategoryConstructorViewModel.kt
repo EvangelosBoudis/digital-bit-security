@@ -165,8 +165,8 @@ class CategoryConstructorViewModel @ViewModelInject constructor(
             val thumbnailCode = thumbnailCodeFromCacheOrDatabase ?: ""
             if (thumbnailCode.isEmpty()) throw SaveItemException("Thumbnail does not provided")
 
-            val fields = getFields()
-            if (fields.size <= 1) throw SaveItemException("Categories require at least one field")
+            val fields = getFields().filter { it.id.isNotEmpty() }
+            if (fields.isEmpty()) throw SaveItemException("Categories require at least one field")
 
             val process = categoryRepository.saveOrUpdateCategory(categoryId, name, thumbnailCode, fields)
 

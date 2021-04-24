@@ -13,7 +13,10 @@ interface ThumbnailDao {
     suspend fun findAll(): List<ThumbnailData>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun save(thumbnails: List<ThumbnailData>)
+    suspend fun saveOrReplace(thumbnails: List<ThumbnailData>)
+
+    @Query("DELETE FROM thumbnails WHERE thumbnails.id NOT IN (:thumbnailIds)")
+    suspend fun deleteAllExcept(thumbnailIds: List<String>)
 
     @Delete
     suspend fun delete(thumbnails: List<ThumbnailData>)

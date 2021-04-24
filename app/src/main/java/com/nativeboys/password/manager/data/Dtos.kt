@@ -110,6 +110,11 @@ data class TagDto(
 
 }
 
+data class CountDto(
+    val entityId: String,
+    val rowsCount: Int
+)
+
 data class UICategoryIcon(
     val thumbnailCode: String,
     val selected: Boolean = false
