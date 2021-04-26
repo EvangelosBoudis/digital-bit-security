@@ -13,7 +13,7 @@ import com.zeustech.zeuskit.ui.fragments.BottomFragment
 class CategoryTypeChooserBottomFragment : BottomFragment(
     R.layout.fragment_category_type_chooser_bottom,
     70f
-), View.OnClickListener {
+) {
 
     private val viewModel: CategoryConstructorViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
@@ -21,7 +21,6 @@ class CategoryTypeChooserBottomFragment : BottomFragment(
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentCategoryTypeChooserBottomBinding.bind(view)
         binding.apply {
-            dismissBtn.setOnClickListener(this@CategoryTypeChooserBottomFragment)
             viewModel.categoriesTypes.forEach {
                 val rdBtn = MaterialRadioButton(requireContext())
                 rdBtn.text = it.description
@@ -33,18 +32,6 @@ class CategoryTypeChooserBottomFragment : BottomFragment(
                     viewModel.updateFieldType(index)
                     dismiss()
                 }
-            }
-        }
-    }
-
-    override fun onClick(v: View?) {
-        val view = v ?: return
-        when (view.id) {
-            R.id.dismiss_btn -> {
-                dismiss()
-            }
-            R.id.apply_btn -> {
-                // TODO: implement
             }
         }
     }

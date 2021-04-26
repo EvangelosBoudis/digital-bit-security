@@ -50,31 +50,21 @@ class CategoryRepository @Inject constructor(
         else categoryDao.observeAllByNameSortedByName(name)
     }
 
-    suspend fun saveOrUpdateCategory(
-        id: String?,
-        name: String,
-        thumbnailCode: String,
-        fields: List<FieldData>
+    suspend fun deleteCategoryById(id: String) = categoryDao.deleteById(id)
+
+    suspend fun editCategory(
+        category: CategoryData,
+        fields: List<FieldData>,
+        save: Boolean
     ) {
 
-        val userId = UUID.randomUUID().toString() // TODO: Change
-        val categoryId = id ?: UUID.randomUUID().toString()
-
-        val category = CategoryData(categoryId, name, thumbnailCode, userId)
-
-        val fieldIds = fieldDao.findAllIdsByCategoryId(categoryId)
-
-        val saveFields = fields.filter {
-            !fieldIds.contains(it.id)
-        }
-
-        val updateFields = fields.filter {
-            fieldIds.contains(it.id)
-        }
+        val fieldIds = fieldDao.findAllIdsByCategoryId(category.id)
+        val saveFields = fields.filter { !fieldIds.contains(it.id) }
+        val updateFields = fields.filter { fieldIds.contains(it.id) }
 
         database.withTransaction {
-            if (id == null) categoryDao.save(category) else categoryDao.update(category)
-            fieldDao.deleteAllExcept(categoryId, fields.map { it.id })
+            if (save) categoryDao.save(category) else categoryDao.update(category)
+            fieldDao.deleteAllExcept(category.id, fields.map { it.id })
             fieldDao.save(saveFields)
             fieldDao.update(updateFields)
         }

@@ -124,7 +124,7 @@ class ItemConstructorFragment : Fragment(
                         is Result.Success -> activity?.onBackPressed()
                         is Result.Error -> {
                             ConfirmationFragment
-                                .newInstance(R.layout.dialog_form_error, result.exception.message)
+                                .newInstance(R.layout.dialog_error, getString(R.string.form_validation_error), result.exception.message)
                                 .show(childFragmentManager, ConfirmationFragment::class.java.simpleName)
                         }
                     }

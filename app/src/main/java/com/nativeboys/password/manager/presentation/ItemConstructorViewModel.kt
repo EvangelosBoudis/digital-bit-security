@@ -88,7 +88,6 @@ class ItemConstructorViewModel @ViewModelInject constructor(
             FieldContentDto("", descriptionContent, FIELD_DESCRIPTION_ID, "Description", "text")
         ).toMutableList()
 
-        // TODO: Fix Bug
         item?.fieldsContent?.let { preFieldsContent ->
             val fieldsContent = preFieldsContent
                 .map { it.copy(textContent = state[it.fieldId] ?: it.textContent) }

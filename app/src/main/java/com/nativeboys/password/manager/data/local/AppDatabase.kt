@@ -11,7 +11,7 @@ import java.util.*
 import javax.inject.Inject
 import javax.inject.Provider
 
-@Database(entities = [UserData::class, ThumbnailData::class, CategoryData::class, FieldData::class, ItemData::class, ContentData::class], version = 1)
+@Database(entities = [ThumbnailData::class, CategoryData::class, FieldData::class, ItemData::class, ContentData::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
@@ -39,8 +39,6 @@ abstract class AppDatabase : RoomDatabase() {
             val itemDao = database.get().itemDao()
             val contentDao = database.get().contentDao()
 
-            val userId = UUID.randomUUID().toString()
-
             // Thumbnails
             val appleThumb = ThumbnailData(url = "https://imagens.canaltech.com.br/empresas/838.400.jpg")
             val adobeThumb = ThumbnailData(url = "https://2.img-dpreview.com/files/p/E~TS940x788~articles/2988339509/BlogHeader_150-1-1800x0-c-default_copy.jpeg")
@@ -54,9 +52,9 @@ abstract class AppDatabase : RoomDatabase() {
             val thumbnails = listOf(appleThumb, adobeThumb, behanceThumb, behanceThumb, dribbleThumb, facebookThumb, instagramThumb, youtubeThumb, modemThumb, euroBankThumb)
 
             // Categories
-            val accountCategory = CategoryData(name = "Accounts", thumbnailCode = "ACCOUNT", ownerId = "ADMIN")
-            val creditCategory = CategoryData(name = "Credit Cards", thumbnailCode = "CREDIT_CARD", ownerId = "ADMIN")
-            val networkCategory = CategoryData(name = "Networks", thumbnailCode = "NETWORK", ownerId = "ADMIN")
+            val accountCategory = CategoryData(name = "Accounts", thumbnailCode = "ACCOUNT", defaultCategory = false)
+            val creditCategory = CategoryData(name = "Credit Cards", thumbnailCode = "CREDIT_CARD", defaultCategory = false)
+            val networkCategory = CategoryData(name = "Networks", thumbnailCode = "NETWORK", defaultCategory = false)
             val categories = listOf(accountCategory, creditCategory, networkCategory)
 
             // Fields
@@ -80,21 +78,21 @@ abstract class AppDatabase : RoomDatabase() {
 
             // Items
             val appleId = ItemData(name = "Apple ID", description = "Ritsa's account", notes = "This account is linked to iPad", tags = "Apple,iPad,Tablet,Ritsa",
-                thumbnailId = appleThumb.id, requiresPassword = true, favorite = true, categoryId = accountCategory.id, ownerId = userId)
+                thumbnailId = appleThumb.id, requiresPassword = true, favorite = true, categoryId = accountCategory.id)
             val adobe = ItemData(name = "Adobe", description = "ZeusTech account", notes = "This account handled by Fuk Sua", tags = "ZeusTech,Prototype,User Interface",
-                thumbnailId = adobeThumb.id, requiresPassword = false, favorite = false, categoryId = accountCategory.id, ownerId = userId)
+                thumbnailId = adobeThumb.id, requiresPassword = false, favorite = false, categoryId = accountCategory.id)
             val behance = ItemData(name = "Behance", description = "Family account", notes = "This account contains photos from travels that we had",
-                tags = "Art,Photos,Hobby", thumbnailId = behanceThumb.id, requiresPassword = false, favorite = true, categoryId = accountCategory.id, ownerId = userId)
+                tags = "Art,Photos,Hobby", thumbnailId = behanceThumb.id, requiresPassword = false, favorite = true, categoryId = accountCategory.id)
             val dribble = ItemData(name = "Dribbble", description = "Development account", notes = "This account contains a bunch of libraries with awesome mobile user interfaces", tags = "Inspiration,User Interface,Development",
-                thumbnailId = dribbleThumb.id, requiresPassword = false, favorite = true, categoryId = accountCategory.id, ownerId = userId)
+                thumbnailId = dribbleThumb.id, requiresPassword = false, favorite = true, categoryId = accountCategory.id)
             val facebook = ItemData(name = "Facebook", description = "My account", notes = "", tags = "Social Media,Chat,Video Call",
-                thumbnailId = facebookThumb.id, requiresPassword = true, favorite = false, categoryId = accountCategory.id, ownerId = userId)
+                thumbnailId = facebookThumb.id, requiresPassword = true, favorite = false, categoryId = accountCategory.id)
             val instagram = ItemData(name = "Instagram", description = "Shared account", notes = "", tags = "Social Media,Chat,Video Call",
-                thumbnailId = instagramThumb.id, requiresPassword = false, favorite = false, categoryId = accountCategory.id, ownerId = userId)
+                thumbnailId = instagramThumb.id, requiresPassword = false, favorite = false, categoryId = accountCategory.id)
             val hzTest = ItemData(name = "HZ-TEST", description = "Network details", notes = "", tags = "ZeusTech,Wifi,Network",
-                thumbnailId = modemThumb.id, requiresPassword = false, favorite = true, categoryId = networkCategory.id, ownerId = userId)
+                thumbnailId = modemThumb.id, requiresPassword = false, favorite = true, categoryId = networkCategory.id)
             val euroBank = ItemData(name = "Eurobank", description = "Credit card details", notes = "", tags = "Eurobank,Payment,Money",
-                thumbnailId = euroBankThumb.id, requiresPassword = true, favorite = false, categoryId = creditCategory.id, ownerId = userId)
+                thumbnailId = euroBankThumb.id, requiresPassword = true, favorite = false, categoryId = creditCategory.id)
 
             val items = listOf(appleId, adobe, behance, dribble, facebook, instagram, hzTest, euroBank)
 

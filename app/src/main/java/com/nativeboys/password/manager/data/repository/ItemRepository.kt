@@ -118,7 +118,6 @@ class ItemRepository @Inject constructor(
         fieldsContent: List<FieldContentDto>
     ) {
 
-        val userId = UUID.randomUUID().toString() // TODO: Change
         val itemId = id ?: UUID.randomUUID().toString()
 
         val contents = fieldsContent
@@ -130,8 +129,7 @@ class ItemRepository @Inject constructor(
             tags, favorite,
             thumbnailId, Date(),
             requiresPassword,
-            categoryId,
-            userId
+            categoryId
         )
 
         database.withTransaction {

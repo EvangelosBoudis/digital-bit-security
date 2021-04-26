@@ -14,7 +14,7 @@ class ItemsDtoAdapter : RecyclerListAdapter<ItemDto, ItemsDtoViewHolder>() {
         viewBinderHelper.setOpenOnlyOne(true)
     }
 
-    override fun getResId(viewType: Int) = R.layout.items_cell
+    override fun getResId(viewType: Int) = R.layout.item_cell
 
     override fun getViewHolder(view: View, viewType: Int) = ItemsDtoViewHolder(view, viewBinderHelper)
 

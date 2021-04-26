@@ -15,7 +15,7 @@ import com.nativeboys.password.manager.data.ItemDto
 import com.nativeboys.password.manager.databinding.FragmentItemsBinding
 import com.nativeboys.password.manager.util.parentNavController
 import com.nativeboys.password.manager.presentation.ItemsViewModel
-import com.nativeboys.password.manager.ui.adapters.categoriesDto.CategoriesDtoAdapter
+import com.nativeboys.password.manager.ui.adapters.categoriesSelection.CategoriesSelectionAdapter
 import com.nativeboys.password.manager.ui.adapters.itemsDto.ItemsDtoAdapter
 import com.nativeboys.password.manager.ui.confirmation.ConfirmationDialogListener
 import com.nativeboys.password.manager.ui.confirmation.ConfirmationFragment
@@ -31,7 +31,7 @@ class ItemsFragment : Fragment(
     private val viewModel: ItemsViewModel by viewModels()
 
     private lateinit var navController: NavController
-    private val categoriesAdapter = CategoriesDtoAdapter()
+    private val categoriesAdapter = CategoriesSelectionAdapter()
     private val itemsAdapter = ItemsDtoAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,7 +74,7 @@ class ItemsFragment : Fragment(
                     R.id.delete_btn -> {
                         viewModel.setPendingItemToDelete(model.itemId)
                         ConfirmationFragment
-                            .newInstance(R.layout.dialog_confirmation)
+                            .newInstance(R.layout.dialog_confirmation, getString(R.string.remove_item_confirmation), getString(R.string.remove_item_description))
                             .show(childFragmentManager, ConfirmationFragment::class.java.simpleName)
                     }
                 }

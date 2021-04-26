@@ -17,6 +17,7 @@ interface ConfirmationDialogListener {
 class ConfirmationFragment : DialogFragment(), View.OnClickListener {
 
     private var layoutRes: Int? = null
+    private var headline: String? = null
     private var description: String? = null
 
     var confirmationDialogListener: ConfirmationDialogListener? = null
@@ -25,6 +26,7 @@ class ConfirmationFragment : DialogFragment(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         arguments?.let {
             layoutRes = it.getInt(ARG_LAYOUT)
+            headline = it.getString(ARG_HEADLINE)
             description = it.getString(ARG_DESCRIPTION)
         }
     }
@@ -36,6 +38,9 @@ class ConfirmationFragment : DialogFragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        headline?.let {
+            view.findViewById<TextView>(R.id.headline_field)?.text = headline
+        }
         description?.let {
             view.findViewById<TextView>(R.id.description_field)?.text = it
         }
@@ -56,13 +61,15 @@ class ConfirmationFragment : DialogFragment(), View.OnClickListener {
     companion object {
 
         private const val ARG_LAYOUT = "layout_param"
+        private const val ARG_HEADLINE = "headline_param"
         private const val ARG_DESCRIPTION = "description_param"
 
         @JvmStatic
-        fun newInstance(@LayoutRes layoutRes: Int, description: String? = null) =
+        fun newInstance(@LayoutRes layoutRes: Int, headline: String, description: String?) =
             ConfirmationFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_LAYOUT, layoutRes)
+                    putString(ARG_HEADLINE, headline)
                     putString(ARG_DESCRIPTION, description)
                 }
             }

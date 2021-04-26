@@ -11,7 +11,7 @@ import com.nativeboys.password.manager.data.CategoryData
 import com.nativeboys.password.manager.databinding.FragmentCategoryChooseBinding
 import com.nativeboys.password.manager.util.ZTransactionFragment
 import com.nativeboys.password.manager.presentation.CategoryChooseViewModel
-import com.nativeboys.password.manager.ui.adapters.categories.CategoriesAdapter
+import com.nativeboys.password.manager.ui.adapters.categoriesChooser.CategoriesChooserAdapter
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +21,7 @@ class CategoryChooseFragment : ZTransactionFragment(R.layout.fragment_category_c
     private val viewModel: CategoryChooseViewModel by viewModels()
 
     private lateinit var navController: NavController
-    private val categoriesAdapter = CategoriesAdapter()
+    private val categoriesAdapter = CategoriesChooserAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

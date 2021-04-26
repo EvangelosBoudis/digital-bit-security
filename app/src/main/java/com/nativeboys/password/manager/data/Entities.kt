@@ -6,14 +6,14 @@ import com.zeustech.zeuskit.ui.rv.ListAdapterItem
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
-@Entity(tableName = "users")
+/*@Entity(tableName = "users")
 @Parcelize
 data class UserData(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
     val email: String,
     @ColumnInfo(name = "master_password") val masterPassword: String,
     val avatarUrl: String
-) : Parcelable
+) : Parcelable*/
 
 @Entity(tableName = "thumbnails")
 @Parcelize
@@ -28,12 +28,10 @@ data class CategoryData(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
     val name: String,
     @ColumnInfo(name = "thumbnail_code") val thumbnailCode: String,
-    @ColumnInfo(name = "owner_id") val ownerId: String, // FK (Users) e.g ADMIN
+    @ColumnInfo(name = "default_category") val defaultCategory: Boolean,
+    // @ColumnInfo(name = "owner_id") val ownerId: String, // FK (Users) e.g ADMIN
     @ColumnInfo(name = "date_modified") val dateModified: Date = Date()
 ) : Parcelable, ListAdapterItem<CategoryData> {
-
-    val adminCategory: Boolean
-        get() = ownerId == "ADMIN"
 
     override fun areItemsTheSame(model: CategoryData) = id == model.id
 
@@ -59,7 +57,17 @@ data class FieldData(
     @ColumnInfo(name = "category_id") val categoryId: String // FK (Categories)
 ) : Parcelable
 
-@Entity(tableName = "items")
+@Entity(
+    tableName = "items",
+    foreignKeys = [
+        ForeignKey(
+            entity = CategoryData::class,
+            parentColumns = arrayOf("id"),
+            childColumns = arrayOf("category_id"),
+            onDelete = ForeignKey.CASCADE
+        )
+    ]
+)
 @Parcelize
 data class ItemData(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
@@ -72,7 +80,7 @@ data class ItemData(
     @ColumnInfo(name = "date_modified") val dateModified: Date = Date(),
     @ColumnInfo(name = "requires_password") val requiresPassword: Boolean,
     @ColumnInfo(name = "category_id") val categoryId: String, // FK (Categories),
-    @ColumnInfo(name = "owner_id") val ownerId: String, // FK (Users),
+    // @ColumnInfo(name = "owner_id") val ownerId: String, // FK (Users),
 ) : Parcelable
 
 @Entity(

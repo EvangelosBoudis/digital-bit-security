@@ -11,7 +11,7 @@ class TagsAdapter: RecyclerListAdapter<TagDto, RecyclerViewHolder<TagDto>>() {
 
     override fun getViewType(model: TagDto) = model.type
 
-    override fun getResId(viewType: Int) = if (viewType == 3) R.layout.descriptions_add_cell else R.layout.descriptions_cell
+    override fun getResId(viewType: Int) = if (viewType == 3) R.layout.description_add_cell else R.layout.description_cell
 
     override fun getViewHolder(view: View, viewType: Int) = if (viewType == 3) AddViewHolder(view) else TagsViewHolder(view)
 

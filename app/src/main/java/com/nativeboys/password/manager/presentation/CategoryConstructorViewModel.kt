@@ -22,6 +22,8 @@ class CategoryConstructorViewModel @ViewModelInject constructor(
 ) : ViewModel() {
 
     private val categoryId: String? = state.get<String>(CATEGORY_ID)
+    private val generatedCategoryId = UUID.randomUUID().toString()
+
     private var categoryWithFields: CategoryWithFields? = null
 
     val thumbnailSearchKey: String?
@@ -79,9 +81,8 @@ class CategoryConstructorViewModel @ViewModelInject constructor(
             }
             val noThumbnailCode = state.get<String>(THUMBNAIL_CODE)?.isEmpty() ?: true
             if (noThumbnailCode) {
-                categoryWithFields?.category?.thumbnailCode?.let {
-                    state.safeSet(THUMBNAIL_CODE, it, this)
-                }
+                val thumbnailCode = categoryWithFields?.category?.thumbnailCode ?: MaterialDrawableBuilder.IconValue.IMAGE.name
+                state.safeSet(THUMBNAIL_CODE, thumbnailCode, this)
             }
             val noName = state.get<String>(NAME)?.isEmpty() ?: true
             if (noName) {
@@ -124,7 +125,7 @@ class CategoryConstructorViewModel @ViewModelInject constructor(
         val fields = getFields().toMutableList()
         fields.add(
             fields.size - 1,
-            FieldData(name = "", categoryId = categoryId ?: "") // TODO: if (categoryId == null) throw Exception()
+            FieldData(name = "", categoryId = categoryId ?: generatedCategoryId)
         )
         state.safeSet(FIELDS, fields, viewModelScope)
     }
@@ -168,9 +169,13 @@ class CategoryConstructorViewModel @ViewModelInject constructor(
             val fields = getFields().filter { it.id.isNotEmpty() }
             if (fields.isEmpty()) throw SaveItemException("Categories require at least one field")
 
-            val process = categoryRepository.saveOrUpdateCategory(categoryId, name, thumbnailCode, fields)
+            val category = CategoryData(
+                categoryId ?: generatedCategoryId,
+                name, thumbnailCode,
+                categoryWithFields?.category?.defaultCategory ?: false
+            )
 
-            emit(Result.Success(process))
+            emit(Result.Success(categoryRepository.editCategory(category, fields, categoryId == null)))
 
         } catch (e: Exception) {
             emit(Result.Error(e))

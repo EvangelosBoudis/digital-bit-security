@@ -12,7 +12,7 @@ import com.nativeboys.password.manager.databinding.FragmentCategoryIconChooserBo
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel.Companion.THUMBNAIL_CODE
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel.Companion.THUMBNAIL_SEARCH_KEY
-import com.nativeboys.password.manager.ui.adapters.categoriesIcons.CategoriesIconsAdapter
+import com.nativeboys.password.manager.ui.adapters.categoriesIconSearch.CategoriesIconSearchAdapter
 import com.nativeboys.password.manager.util.setTextAndFixCursor
 import com.zeustech.zeuskit.ui.fragments.BottomFragment
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
@@ -25,7 +25,7 @@ class CategoryIconChooserBottomFragment : BottomFragment(
 
     private val viewModel: CategoryConstructorViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
-    private val categoriesIconsAdapter = CategoriesIconsAdapter()
+    private val categoriesIconsAdapter = CategoriesIconSearchAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

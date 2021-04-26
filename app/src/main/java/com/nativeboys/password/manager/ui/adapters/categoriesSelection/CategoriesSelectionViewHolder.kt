@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.ui.adapters.categoriesDto
+package com.nativeboys.password.manager.ui.adapters.categoriesSelection
 
 import android.view.View
 import android.widget.TextView
@@ -8,7 +8,7 @@ import com.nativeboys.password.manager.data.CategoryDto
 import com.nativeboys.password.manager.util.intoView
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
-class CategoriesDtoViewHolder(itemView: View) : RecyclerViewHolder<CategoryDto>(itemView) {
+class CategoriesSelectionViewHolder(itemView: View) : RecyclerViewHolder<CategoryDto>(itemView) {
 
     private val descriptionField = itemView.findViewById<TextView>(R.id.description_field)
 

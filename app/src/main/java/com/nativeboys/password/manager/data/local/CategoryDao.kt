@@ -27,7 +27,7 @@ interface CategoryDao {
 
     @Transaction
     @Query("SELECT * FROM categories WHERE id == :id")
-    suspend fun findCategoryWithFieldsById(id: String): CategoryWithFields
+    suspend fun findCategoryWithFieldsById(id: String): CategoryWithFields?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun save(category: CategoryData)
@@ -40,6 +40,10 @@ interface CategoryDao {
 
     @Delete
     suspend fun delete(category: CategoryData)
+
+    @Transaction
+    @Query("DELETE from categories WHERE id = :id")
+    suspend fun deleteById(id: String)
 
     //    @Query(
 //        """

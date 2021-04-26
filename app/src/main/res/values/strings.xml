@@ -44,6 +44,8 @@
     <string name="thumbnail_already_used">This thumbnail is used by other items</string>
     <string name="remove_item_confirmation">Do you want to remove this item?</string>
     <string name="remove_item_description">By deleting an item there is no way to recover it.</string>
+    <string name="remove_category_confirmation">Do you want to remove this category?</string>
+    <string name="remove_category_description">By deleting a category all associated items gonna be deleted.</string>
     <string name="yes_remove">Yes, remove</string>
     <string name="keep">Keep it</string>
     <string name="form_validation_error">Form Validation Error</string>
