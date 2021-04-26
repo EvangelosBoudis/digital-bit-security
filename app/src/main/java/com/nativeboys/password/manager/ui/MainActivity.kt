@@ -15,8 +15,6 @@ class MainActivity : AppCompatActivity() {
 
 /*TODO:
 *  1. Regular Expression Weak-Medium-Strong Password
-*  2. Confirmation Dialog
-*  3. Category Thumbnail Chooser
 *  4. Master Password Constructor Fragment
 *  5. Master Password Fragment
 *  6. Password Generator Fragment

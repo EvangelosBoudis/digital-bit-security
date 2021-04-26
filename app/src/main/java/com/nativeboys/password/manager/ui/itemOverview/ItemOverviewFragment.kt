@@ -122,7 +122,8 @@ class ItemOverviewFragment : ZTransactionFragment(
 
     override fun onClick(view: View, model: FieldContentDto, position: Int) {
         if (view.id == R.id.copy_btn) {
-            copyToClipboard(requireContext(), "password:manager:field", model.textContent)
+            val textContent = model.textContent ?: return
+            copyToClipboard(requireContext(), "password:manager:field", textContent)
             BottomBar(requireView() as ViewGroup, R.layout.copy_bottom_cell, Snackbar.LENGTH_SHORT).show()
         }
     }

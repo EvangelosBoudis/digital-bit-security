@@ -34,8 +34,8 @@ data class ItemDto(
 
 @Parcelize
 data class FieldContentDto(
-    val contentId: String = UUID.randomUUID().toString(),
-    val textContent: String,
+    val contentId: String? = UUID.randomUUID().toString(),
+    val textContent: String?,
     val fieldId: String,
     val fieldName: String,
     val fieldType: String

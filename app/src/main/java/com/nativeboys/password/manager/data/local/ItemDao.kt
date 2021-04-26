@@ -15,6 +15,13 @@ interface ItemDao {
     @Query("SELECT * FROM items WHERE items.id == :id")
     suspend fun findItemWithContentById(id: String): ItemWithContents
 
+    @Query("""
+        SELECT mItems.id AS itemId, mItems.name AS itemName, mItems.description AS itemDescription, mItems.tags AS itemTags, mItems.favorite AS favoriteItem, mItems.category_id AS itemCategoryId, mItems.date_modified AS lastModificationDate, thumbnails.url AS thumbnailUrl
+        FROM (SELECT * FROM items WHERE items.id = :id) AS mItems
+        LEFT JOIN thumbnails ON thumbnails.id = mItems.thumbnail_id
+        """)
+    suspend fun findDtoByItemId(id: String): ItemDto
+
     // Projection
     @Query(
         """

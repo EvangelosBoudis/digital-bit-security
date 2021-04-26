@@ -44,7 +44,7 @@ class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentDto>(ite
             contentField.inputType = it
         }
 
-        val emptyContent = model.textContent.isEmpty()
+        val emptyContent = model.textContent?.isEmpty() ?: true
         val visibility = if (emptyContent) View.GONE else View.VISIBLE
 
         nameField.visibility = visibility

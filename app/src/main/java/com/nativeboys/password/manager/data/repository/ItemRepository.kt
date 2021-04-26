@@ -9,7 +9,6 @@ import com.nativeboys.password.manager.data.preferences.SortOrder
 import com.nativeboys.password.manager.util.toComparable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -64,26 +63,14 @@ class ItemRepository @Inject constructor(
         }
     }
 
-    // ALERT! -> This Flow triggered searchKey changes and then it queries the database [Different from findItemsFilteredBySelectedCategoryAsFlow()]
-    private fun observeItemsFilteredBySearchKey2() =
-        preferences.observeItemSearchKey().map { searchKey ->
-            itemDao.findAllDtoByNameAndTagsSortedByName(searchKey.trim { it <= ' ' })
-        }
-
     suspend fun findItemFieldsContentById(id: String): ItemFieldsContentDto {
-        val itemWithContent = itemDao.findItemWithContentById(id)
-        val fields = fieldDao.findByIds(itemWithContent.contents.map { it.fieldId })
-        val fieldContents = mutableListOf<FieldContentDto>()
-        for (content in itemWithContent.contents) {
-            val field = fields.firstOrNull {
-                content.fieldId == it.id
-            } ?: continue
-            fieldContents.add(FieldContentDto(content.id, content.content, field.id, field.name, field.type))
-        }
+        val item = itemDao.findById(id)
+        val thumbnailUrl = thumbnailDao.findById(item.thumbnailId).url
+        val fieldsContent = fieldDao.findAllDtoByCategoryIdAndItemId(item.categoryId, item.id)
         return ItemFieldsContentDto(
-            itemWithContent.item,
-            fieldContents,
-            thumbnailDao.findById(itemWithContent.item.thumbnailId).url
+            item,
+            fieldsContent,
+            thumbnailUrl
         )
     }
 
@@ -135,7 +122,7 @@ class ItemRepository @Inject constructor(
         val itemId = id ?: UUID.randomUUID().toString()
 
         val contents = fieldsContent
-            .map { ContentData(fieldId = it.fieldId, itemId = itemId, content = it.textContent) }
+            .map { ContentData(fieldId = it.fieldId, itemId = itemId, content = it.textContent ?: "") }
 
         val item = ItemData(
             itemId, name,
