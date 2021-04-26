@@ -42,3 +42,23 @@ class MainActivity : AppCompatActivity() {
 * https://medium.com/@j.c.moreirapinto/recyclerview-shared-transitions-in-android-navigation-architecture-component-16eb902b39ba
 *
 * */
+
+/*
+  IconMaker: https://www.namecheap.com/logo-maker/app/editor
+
+* Dark-Light Theme:
+* https://www.raywenderlich.com/18348259-datastore-tutorial-for-android-getting-started
+*
+* DataStore Security with SQLChiper:
+* https://blog.stylingandroid.com/datastore-security/
+
+  Encrypted Shared Preferences:
+  https://developer.android.com/reference/kotlin/androidx/security/crypto/EncryptedSharedPreferences.html
+
+  KeyStore usage ( blog entry 1 and blog entry 2):
+  https://stackoverflow.com/questions/21987170/how-to-store-the-key-used-in-sqlcipher-for-android
+
+  Account Manager for saving tokens:
+  https://developer.android.com/reference/android/accounts/AccountManager.html
+
+* */
