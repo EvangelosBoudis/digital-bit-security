@@ -61,4 +61,12 @@ class MainActivity : AppCompatActivity() {
   Account Manager for saving tokens:
   https://developer.android.com/reference/android/accounts/AccountManager.html
 
+Import/Export:
+https://github.com/rafi0101/Android-Room-Database-Backup
+https://github.com/android/architecture-components-samples/issues/340
+
+Keystore Manager:
+https://github.com/sauravpradhan/AndroidKeyStore
+https://github.com/phanirajabhandari/android-keystore-example
+
 * */
