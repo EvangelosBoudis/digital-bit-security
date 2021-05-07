@@ -423,4 +423,13 @@ object FileUtils {
         return intent
     }
 
+    fun treeUriToFilePath(context: Context, treeUri: Uri): String? {
+        val docUri = DocumentsContract
+            .buildDocumentUriUsingTree(
+                treeUri,
+                DocumentsContract.getTreeDocumentId(treeUri)
+            )
+        return getPath(context, docUri)
+    }
+
 }

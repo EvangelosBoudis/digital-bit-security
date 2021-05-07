@@ -3,12 +3,10 @@ package com.nativeboys.password.manager.ui.home.settings
 import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.databinding.FragmentSettingsBinding
 import com.nativeboys.password.manager.presentation.SettingsViewModel
+import com.nativeboys.password.manager.util.isPermissionGranted
 import com.zeustech.zeuskit.ui.views.BottomBar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -66,9 +65,9 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
         }
     }
 
-    private val writeFilePermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { permission ->
+    private val writeFilePermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
         lifecycleScope.launchWhenResumed {
-
+            if (granted) chooseDirectory()
         }
     }
 
@@ -90,7 +89,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
                 else readFilePermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
             }
             R.id.export_db_btn -> {
-                chooseDirectory()
+                if (isPermissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) chooseDirectory()
+                else writeFilePermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
             }
         }
     }
@@ -98,10 +98,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
     private fun chooseDirectory() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
         chooseDirectoryLauncher.launch(intent)
-        /*val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-                   .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                   .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
-               launchActivity(intent)*/
     }
 
     private fun chooseFile() {
@@ -112,16 +108,3 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
     }
 
 }
-
-fun Fragment.isPermissionGranted(permission: String): Boolean {
-    return ContextCompat.checkSelfPermission(requireActivity(), permission) == PackageManager.PERMISSION_GRANTED
-}
-
-/*    fun onPermissionResult(permissions: Map<String, Boolean>) {
-        val permissionGranted = permissions.entries.firstOrNull {
-            it.key == Manifest.permission.READ_EXTERNAL_STORAGE
-        }?.value ?: false
-        if (permissionGranted) chooseFile()
-    }*/
-// addCategory(Intent.CATEGORY_OPENABLE)
-// putExtra(Intent.EXTRA_TITLE, "Select File")

@@ -42,9 +42,7 @@ class SettingsViewModel @ViewModelInject constructor(
         encryptionKey: String,
         callback: (Boolean, String) -> Unit
     )  {
-        // val exportPath = context.externalCacheDir?.path ?:
-        // return callback(Pair(false, "Path not found"))
-        FileUtils.getPath(context, uri)?.let { path ->
+        FileUtils.treeUriToFilePath(context, uri)?.let { path ->
             Backup.Init()
                 .database(database)
                 .path(path)

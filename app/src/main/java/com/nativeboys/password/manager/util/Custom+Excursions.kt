@@ -3,6 +3,7 @@ package com.nativeboys.password.manager.util
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Looper
@@ -43,6 +44,10 @@ fun <T> SavedStateHandle.safeSet(tag: String, value: T, scope: CoroutineScope) {
             this@safeSet[tag] = value
         }
     }
+}
+
+fun Fragment.isPermissionGranted(permission: String): Boolean {
+    return ContextCompat.checkSelfPermission(requireActivity(), permission) == PackageManager.PERMISSION_GRANTED
 }
 
 fun FlexboxLayoutManager.wrapCells() {
