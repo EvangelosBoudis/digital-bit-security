@@ -21,6 +21,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "DATABASE_NAME", '"item_manager_database"')
         buildConfigField("String", "DATABASE_ENCRYPTION_KEY_ALIAS", '"database_encryption_key"')
+        buildConfigField("String", "DATABASE_BACKUP", '"database_backup.txt"')
         buildConfigField("String", "DATA_STORE_PREFERENCES_NAME", '"user_preferences"')
     }
 
@@ -99,11 +100,16 @@ dependencies {
     // Material Icons
     implementation "net.steamcrafted:materialiconlib:$materialIconsVersion"
 
+    // -- Database And Encryption --
+
     // SQLCipher
     implementation "net.zetetic:android-database-sqlcipher:$sqlcipher_version@aar"
 
     // KeyStore Management
     implementation "com.github.leonardoxh:keystore-ultimate:$keystore_ultimate_version"
+
+    // Restore & Backup Database
+    implementation "com.github.salehyarahmadi:RoomDatabaseBackupAndRestore:$room_backup_restore_version"
 }
 
 kapt {

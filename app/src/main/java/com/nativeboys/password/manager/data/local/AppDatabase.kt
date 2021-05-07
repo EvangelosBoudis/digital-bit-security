@@ -36,8 +36,8 @@ abstract class AppDatabase : RoomDatabase() {
             val categoryDao = database.get().categoryDao()
             val fieldDao = database.get().fieldDao()
             val thumbnailDao = database.get().thumbnailDao()
-            val itemDao = database.get().itemDao()
-            val contentDao = database.get().contentDao()
+            //val itemDao = database.get().itemDao()
+            //val contentDao = database.get().contentDao()
 
             // Thumbnails
             val appleThumb = ThumbnailData(url = "https://imagens.canaltech.com.br/empresas/838.400.jpg")
@@ -76,7 +76,7 @@ abstract class AppDatabase : RoomDatabase() {
             val networkF5 = FieldData(name = "DNS 2", type = "text", categoryId = networkCategory.id)
             val fields = listOf(accountF1, accountF2, accountF3, accountF4, accountF5, creditF1, creditF2, creditF3, creditF4, networkF1, networkF2, networkF3, networkF4, networkF5)
 
-            // Items
+/*            // Items
             val appleId = ItemData(name = "Apple ID", description = "Ritsa's account", notes = "This account is linked to iPad", tags = "Apple,iPad,Tablet,Ritsa",
                 thumbnailId = appleThumb.id, requiresPassword = true, favorite = true, categoryId = accountCategory.id)
             val adobe = ItemData(name = "Adobe", description = "ZeusTech account", notes = "This account handled by Fuk Sua", tags = "ZeusTech,Prototype,User Interface",
@@ -94,9 +94,9 @@ abstract class AppDatabase : RoomDatabase() {
             val euroBank = ItemData(name = "Eurobank", description = "Credit card details", notes = "", tags = "Eurobank,Payment,Money",
                 thumbnailId = euroBankThumb.id, requiresPassword = true, favorite = false, categoryId = creditCategory.id)
 
-            val items = listOf(appleId, adobe, behance, dribble, facebook, instagram, hzTest, euroBank)
+            val items = listOf(appleId, adobe, behance, dribble, facebook, instagram, hzTest, euroBank)*/
 
-            // ItemFields
+/*            // ItemFields
             val appleF1 = ContentData(fieldId = accountF1.id, itemId = appleId.id, content = "ritsa.galanaki@apple.com")
             val appleF2 = ContentData(fieldId = accountF2.id, itemId = appleId.id, content = "RitsaGalanaki")
             val appleF3 = ContentData(fieldId = accountF3.id, itemId = appleId.id, content = "Yasir123%'/PzhL921")
@@ -142,8 +142,9 @@ abstract class AppDatabase : RoomDatabase() {
             val euroBankF1 = ContentData(fieldId = creditF1.id, itemId = euroBank.id, content = "JohnDoe")
             val euroBankF2 = ContentData(fieldId = creditF2.id, itemId = euroBank.id, content = "1234-5678-910-1213")
             val euroBankF3 = ContentData(fieldId = creditF3.id, itemId = euroBank.id, content = "10/20")
-            val euroBankF4 = ContentData(fieldId = creditF4.id, itemId = euroBank.id, content = "123")
+            val euroBankF4 = ContentData(fieldId = creditF4.id, itemId = euroBank.id, content = "123")*/
 
+/*
             val itemFields = listOf(
                 appleF1, appleF2, appleF3, appleF4, appleF5,
                 adobeF1, adobeF2, adobeF3, adobeF4, adobeF5,
@@ -154,13 +155,14 @@ abstract class AppDatabase : RoomDatabase() {
                 hzTestF1, hzTestF2, hzTestF3, hzTestF4, hzTestF5,
                 euroBankF1, euroBankF2, euroBankF3, euroBankF4
             )
+*/
 
             applicationScope.launch {
                 thumbnailDao.saveOrReplace(thumbnails)
                 categoryDao.save(categories)
                 fieldDao.save(fields)
-                itemDao.save(items)
-                contentDao.save(itemFields)
+                //itemDao.save(items)
+                //contentDao.save(itemFields)
             }
         }
 

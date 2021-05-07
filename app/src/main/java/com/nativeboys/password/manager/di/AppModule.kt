@@ -49,6 +49,7 @@ object AppModule {
 
         return Room.databaseBuilder(app, AppDatabase::class.java, DATABASE_NAME)
             .openHelperFactory(factory)
+            //.createFromAsset("database/pre_populate.db") -- PROBLEM--
             .fallbackToDestructiveMigration() // Drop table then create new one
             .addCallback(callback)
             .build()

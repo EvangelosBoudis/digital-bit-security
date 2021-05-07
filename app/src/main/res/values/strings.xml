@@ -53,4 +53,9 @@
     <string name="search_category_icon">Search Category Icon</string>
     <string name="type">Type</string>
     <string name="search_category_icon_hint">Example: Netflix, Twitch, Discord etc.</string>
+    <string name="import_backup">Import Backup</string>
+    <string name="export_backup">Export Backup</string>
+    <string name="backup_exported">Backup exported at: %s</string>
+    <string name="backup_imported">Backup imported successfully!</string>
+    <string name="unsuccessful_import">Unsuccessful import</string>
 </resources>

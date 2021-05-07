@@ -124,7 +124,14 @@ class ItemOverviewFragment : ZTransactionFragment(
         if (view.id == R.id.copy_btn) {
             val textContent = model.textContent ?: return
             copyToClipboard(requireContext(), "password:manager:field", textContent)
-            BottomBar(requireView() as ViewGroup, R.layout.copy_bottom_cell, Snackbar.LENGTH_SHORT).show()
+            BottomBar(
+                requireView() as ViewGroup,
+                R.layout.bottom_cell,
+                R.id.content_field,
+                getString(R.string.copied),
+                View.TEXT_ALIGNMENT_TEXT_END,
+                Snackbar.LENGTH_SHORT
+            ).show()
         }
     }
 
