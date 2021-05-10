@@ -3,6 +3,7 @@ package com.nativeboys.password.manager.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatDelegate
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.presentation.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,7 +16,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewModel.initIfRequired(this)
+        viewModel.initIfRequired()
+        viewModel.darkThemeEnabled.observe(this) { enabled ->
+            val mode =
+                if (enabled) AppCompatDelegate.MODE_NIGHT_YES
+                else AppCompatDelegate.MODE_NIGHT_NO
+            AppCompatDelegate.setDefaultNightMode(mode)
+        }
     }
 
 }

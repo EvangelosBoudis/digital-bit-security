@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:icon="@drawable/ic_baseline_clear_24"
-        app:iconTint="@android:color/white"
+        app:iconTint="@color/white"
         app:backgroundTint="@android:color/transparent"
         style="@style/Widget.App.Button.OutlinedButton.IconOnly.Regular"/>
 

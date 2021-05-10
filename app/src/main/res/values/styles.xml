@@ -40,7 +40,7 @@
 
     <style name="Widget.App.Dialog.TextView" parent="Widget.MaterialComponents.TextView">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/breeze_sans_light</item>
     </style>
 
@@ -48,25 +48,25 @@
 
     <style name="Widget.App.TextView.Headline" parent="Widget.MaterialComponents.TextView">
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/breeze_sans_regular</item>
     </style>
 
     <style name="Widget.App.TextView.Headline2" parent="Widget.MaterialComponents.TextView">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/breeze_sans_regular</item>
     </style>
 
     <style name="Widget.App.TextView.Headline3" parent="Widget.MaterialComponents.TextView">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/breeze_sans_light</item>
     </style>
 
     <style name="Widget.App.TextView.Headline4" parent="Widget.MaterialComponents.TextView">
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/breeze_sans_light</item>
     </style>
 
@@ -84,7 +84,7 @@
     <style name="Widget.App.EditText" parent="Widget.AppCompat.EditText">
         <item name="android:textSize">14sp</item>
         <item name="android:textColorHint">@color/lightGray</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/breeze_sans_regular</item>
         <item name="backgroundTint">@color/field_background_tint_color</item>
     </style>
@@ -107,7 +107,7 @@
     <style name="Widget.App.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
         <item name="buttonTint">@color/widget_tint</item>
         <item name="android:fontFamily">@font/breeze_sans_light</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:paddingStart">10dp</item>
         <item name="android:textSize">14sp</item>
     </style>
@@ -117,14 +117,14 @@
     <style name="Widget.App.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
         <item name="buttonTint">@color/widget_tint</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/breeze_sans_regular</item>
         <item name="android:paddingEnd">10dp</item>
     </style>
 
     <style name="Widget.App.Switch.Text">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/breeze_sans_regular</item>
     </style>
 
@@ -143,7 +143,7 @@
     <style name="Widget.App.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
         <item name="buttonTint">@color/widget_tint</item>
         <item name="android:fontFamily">@font/breeze_sans_light</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:paddingStart">10dp</item>
         <item name="android:textSize">14sp</item>
     </style>
@@ -167,7 +167,7 @@
 
     <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:textAppearance">@style/TextAppearance.App.Button</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/white</item>
         <item name="backgroundTint">@color/darkGray</item>
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
@@ -230,7 +230,7 @@
         <item name="android:layout_height">44dp</item>
         <item name="android:layout_width">44dp</item>
         <item name="android:padding">16dp</item>
-        <item name="tint">@android:color/white</item>
+        <item name="tint">@color/white</item>
         <item name="android:background">@drawable/add_btn_shape</item>
     </style>
 

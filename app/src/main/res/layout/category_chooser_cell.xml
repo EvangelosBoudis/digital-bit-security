@@ -41,7 +41,7 @@
         app:layout_constraintStart_toEndOf="@id/thumbnail_holder"
         app:layout_constraintEnd_toEndOf="parent"
         android:fontFamily="@font/breeze_sans_regular"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         android:textSize="14sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

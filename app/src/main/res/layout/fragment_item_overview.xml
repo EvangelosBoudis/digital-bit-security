@@ -46,7 +46,7 @@
                 app:layout_constraintStart_toEndOf="@id/thumbnail_holder"
                 app:layout_constraintEnd_toStartOf="@id/favorite_btn"
                 android:textSize="16sp"
-                android:textColor="@android:color/white"
+                android:textColor="@color/white"
                 android:fontFamily="@font/breeze_sans_regular"/>
 
             <TextView
@@ -173,7 +173,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/delete_btn"
             app:icon="@drawable/ic_baseline_edit_24"
-            app:iconTint="@android:color/white"
+            app:iconTint="@color/white"
             android:backgroundTint="@color/darkCyan"
             android:text="@string/edit"/>
 
@@ -185,7 +185,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:icon="@drawable/ic_baseline_delete_24"
-            app:iconTint="@android:color/white"
+            app:iconTint="@color/white"
             android:backgroundTint="@color/red"
             android:text="@string/delete"/>
 

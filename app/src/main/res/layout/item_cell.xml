@@ -60,7 +60,7 @@
             app:layout_constraintStart_toEndOf="@id/thumbnail_holder"
             app:layout_constraintEnd_toStartOf="@id/more_btn"
             android:fontFamily="@font/breeze_sans_regular"
-            android:textColor="@android:color/white"
+            android:textColor="@color/white"
             android:textSize="14sp" />
 
         <TextView

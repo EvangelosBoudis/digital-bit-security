@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -28,7 +27,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
         lifecycleScope.launchWhenResumed {
             val uri = result.data?.data
             if (result.resultCode == RESULT_OK && uri != null) {
-                viewModel.importDatabase(requireContext(), uri, "123") { success, message ->
+                viewModel.importDatabase(uri, "123") { success, _ ->
                     BottomBar(
                         requireView() as ViewGroup,
                         R.layout.bottom_cell,
@@ -46,7 +45,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
         lifecycleScope.launchWhenResumed {
             val uri = result.data?.data
             if (result.resultCode == RESULT_OK && uri != null) {
-                viewModel.exportDatabase(requireContext(), uri, "123") { success, message ->
+                viewModel.exportDatabase(uri, "123") { success, message ->
                     BottomBar(
                         requireView() as ViewGroup,
                         R.layout.bottom_cell,
@@ -86,10 +85,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
         }
 
         viewModel.darkThemeEnabled.observe(viewLifecycleOwner) { enabled ->
-            val mode =
-                if (enabled) AppCompatDelegate.MODE_NIGHT_YES
-                else AppCompatDelegate.MODE_NIGHT_NO
-            AppCompatDelegate.setDefaultNightMode(mode)
+            binding.modeSwitch.isChecked = enabled
         }
 
     }

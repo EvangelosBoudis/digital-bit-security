@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/trailing_icon"
         android:fontFamily="@font/breeze_sans_medium"
-        android:textColor="@android:color/white" />
+        android:textColor="@color/white" />
 
     <ImageView
         android:id="@+id/trailing_icon"

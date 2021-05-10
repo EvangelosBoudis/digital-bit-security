@@ -34,7 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/headline_field"
         app:icon="@drawable/ic_baseline_delete_24"
-        app:iconTint="@android:color/white"
+        app:iconTint="@color/white"
         android:text="@string/delete"
         android:backgroundTint="@color/red" />
 

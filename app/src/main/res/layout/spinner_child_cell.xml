@@ -18,6 +18,6 @@
         android:ellipsize="end"
         android:textSize="14sp"
         android:fontFamily="@font/breeze_sans_regular"
-        android:textColor="@android:color/white"/>
+        android:textColor="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

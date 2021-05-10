@@ -10,12 +10,14 @@ import com.nativeboys.password.manager.BuildConfig.DATABASE_BACKUP
 import com.nativeboys.password.manager.data.local.AppDatabase
 import com.nativeboys.password.manager.data.preferences.PreferencesManager
 import com.nativeboys.password.manager.util.storage.FileUtils
+import dagger.hilt.android.qualifiers.ApplicationContext
 import ir.androidexception.roomdatabasebackupandrestore.Backup
 import ir.androidexception.roomdatabasebackupandrestore.Restore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SettingsViewModel @ViewModelInject constructor(
+    @ApplicationContext private val context: Context,
     private val database: AppDatabase,
     private val preferencesManager: PreferencesManager
 ): ViewModel() {
@@ -27,7 +29,6 @@ class SettingsViewModel @ViewModelInject constructor(
     }
 
     fun importDatabase(
-        context: Context,
         uri: Uri,
         encryptionKey: String,
         callback: (Boolean, String) -> Unit
@@ -47,7 +48,6 @@ class SettingsViewModel @ViewModelInject constructor(
     }
 
     fun exportDatabase(
-        context: Context,
         uri: Uri,
         encryptionKey: String,
         callback: (Boolean, String) -> Unit

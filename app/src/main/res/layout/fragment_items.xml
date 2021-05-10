@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/shield_icon"
-        app:tint="@android:color/white"
+        app:tint="@color/white"
         tools:ignore="ContentDescription" />
 
     <Button

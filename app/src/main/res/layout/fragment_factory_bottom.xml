@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@id/field_container"
         app:layout_constraintEnd_toStartOf="@id/submit_btn"
         app:icon="@drawable/ic_baseline_delete_24"
-        app:iconTint="@android:color/white"
+        app:iconTint="@color/white"
         android:backgroundTint="@color/red"
         android:text="@string/delete"/>
 
