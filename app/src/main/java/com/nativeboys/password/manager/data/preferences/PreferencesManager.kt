@@ -46,6 +46,10 @@ class PreferencesManager @Inject constructor(
         it[PreferencesKeys.ITEM_SEARCH_KEY] ?: ""
     }
 
+    fun observeDarkTheme() = observePreferences().map {
+        it[PreferencesKeys.DARK_THEME_ENABLED] ?: true
+    }
+
     suspend fun updateItemsSortOrder(order: SortOrder) = update(PreferencesKeys.SORT_ORDER, order.name)
 
     suspend fun updateNonFavoriteItemsVisibility(hide: Boolean) = update(PreferencesKeys.HIDE_NON_FAVORITES, hide)
@@ -53,6 +57,8 @@ class PreferencesManager @Inject constructor(
     suspend fun updateSelectedCategoryId(id: String) = update(PreferencesKeys.SELECTED_CATEGORY_ID, id)
 
     suspend fun updateItemSearchKey(searchKey: String) = update(PreferencesKeys.ITEM_SEARCH_KEY, searchKey)
+
+    suspend fun updateDarkTheme(enabled: Boolean) = update(PreferencesKeys.DARK_THEME_ENABLED, enabled)
 
     private suspend fun <T> update(key: Preferences.Key<T>, value: T) {
         dataStore.edit { preferences ->
@@ -70,6 +76,7 @@ class PreferencesManager @Inject constructor(
         val HIDE_NON_FAVORITES = preferencesKey<Boolean>("hide_non_favorites")
         val SELECTED_CATEGORY_ID = preferencesKey<String>("selected_category_id")
         val ITEM_SEARCH_KEY = preferencesKey<String>("item_search_key")
+        val DARK_THEME_ENABLED = preferencesKey<Boolean>("dark_theme_enabled")
     }
 
 }

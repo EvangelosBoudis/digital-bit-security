@@ -4,15 +4,27 @@ import android.content.Context
 import android.net.Uri
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.nativeboys.password.manager.BuildConfig.DATABASE_BACKUP
 import com.nativeboys.password.manager.data.local.AppDatabase
+import com.nativeboys.password.manager.data.preferences.PreferencesManager
 import com.nativeboys.password.manager.util.storage.FileUtils
 import ir.androidexception.roomdatabasebackupandrestore.Backup
 import ir.androidexception.roomdatabasebackupandrestore.Restore
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class SettingsViewModel @ViewModelInject constructor(
-    private val database: AppDatabase
+    private val database: AppDatabase,
+    private val preferencesManager: PreferencesManager
 ): ViewModel() {
+
+    val darkThemeEnabled = preferencesManager.observeDarkTheme().asLiveData()
+
+    fun enableDarkTheme(enabled: Boolean) = viewModelScope.launch(context = Dispatchers.IO) {
+        preferencesManager.updateDarkTheme(enabled)
+    }
 
     fun importDatabase(
         context: Context,

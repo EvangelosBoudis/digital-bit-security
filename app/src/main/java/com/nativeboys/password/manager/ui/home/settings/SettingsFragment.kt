@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -79,6 +80,18 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
         val binding = FragmentSettingsBinding.bind(view)
         binding.importDbBtn.setOnClickListener(this)
         binding.exportDbBtn.setOnClickListener(this)
+
+        binding.modeSwitch.setOnCheckedChangeListener { _, isChecked ->
+            viewModel.enableDarkTheme(isChecked)
+        }
+
+        viewModel.darkThemeEnabled.observe(viewLifecycleOwner) { enabled ->
+            val mode =
+                if (enabled) AppCompatDelegate.MODE_NIGHT_YES
+                else AppCompatDelegate.MODE_NIGHT_NO
+            AppCompatDelegate.setDefaultNightMode(mode)
+        }
+
     }
 
     override fun onClick(v: View?) {

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
+    android:padding="20dp"
     tools:context=".ui.home.settings.SettingsFragment">
 
     <TextView
@@ -15,17 +16,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/settings"
-        android:padding="20dp"
         style="@style/Widget.App.TextView.Headline"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/mode_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/headline_field"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/enable_dark_theme"/>
 
     <Button
         android:id="@+id/import_db_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/mode_switch"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/import_backup"/>
 
     <Button
@@ -35,7 +43,6 @@
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/import_db_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/export_backup"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

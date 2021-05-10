@@ -31,7 +31,7 @@
     <string name="name_">Name :</string>
     <string name="category_name">Category name</string>
     <string name="fields">Fields</string>
-    <string name="password_required_on_overview">Password Required: </string>
+    <string name="password_required_on_overview">Password Required:&#160;</string>
     <string name="choose_type">Choose Type</string>
     <string name="categories">Categories</string>
     <string name="settings">Settings</string>
@@ -58,4 +58,5 @@
     <string name="backup_exported">Backup exported at: %s</string>
     <string name="backup_imported">Backup imported successfully!</string>
     <string name="unsuccessful_import">Unsuccessful import</string>
+    <string name="enable_dark_theme">Enable Dark Theme:&#160;</string>
 </resources>

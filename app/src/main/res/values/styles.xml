@@ -116,6 +116,16 @@
 
     <style name="Widget.App.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
         <item name="buttonTint">@color/widget_tint</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/breeze_sans_regular</item>
+        <item name="android:paddingEnd">10dp</item>
+    </style>
+
+    <style name="Widget.App.Switch.Text">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/breeze_sans_regular</item>
     </style>
 
     <!-- Spinner -->
