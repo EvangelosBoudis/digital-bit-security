@@ -57,11 +57,11 @@ fun FlexboxLayoutManager.wrapCells() {
     this.alignItems = AlignItems.FLEX_START
 }
 
-fun EditText.toggleTransformationMethod() {
-    val hidden = this.transformationMethod is PasswordTransformationMethod
-    val updatedMethod: TransformationMethod = if (hidden) HideReturnsTransformationMethod.getInstance() else PasswordTransformationMethod.getInstance()
-    this.transformationMethod = updatedMethod
-    this.setSelection(this.length())
+fun EditText.togglePasswordTransformationMethod(revealText: String? = null, hideText: String) {
+    val hidden = transformationMethod is PasswordTransformationMethod
+    transformationMethod = if (hidden) HideReturnsTransformationMethod.getInstance() else PasswordTransformationMethod.getInstance()
+    setText(if (hidden) revealText else hideText)
+    setSelection(length())
 }
 
 fun EditText.setTextAndFixCursor(text: String?) {

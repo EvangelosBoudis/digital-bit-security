@@ -76,9 +76,9 @@ data class ItemFieldsContentDto(
 
     val tagsAsDto: List<TagDto>
         get() {
-            return (this.tags ?: "")
-                .split(",")
-                .map { TagDto(it, 1) }
+            val tags = this.tags ?: ""
+            return if (tags.isNotEmpty()) tags.split(",").map { TagDto(it, 1) }
+            else emptyList()
         }
 
 }

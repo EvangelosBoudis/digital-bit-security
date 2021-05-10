@@ -9,7 +9,7 @@ import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.FieldContentDto
 import com.nativeboys.password.manager.util.InputTypeItem
 import com.nativeboys.password.manager.util.findByCode
-import com.nativeboys.password.manager.util.toggleTransformationMethod
+import com.nativeboys.password.manager.util.togglePasswordTransformationMethod
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
 class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentDto>(itemView) {
@@ -20,16 +20,13 @@ class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentDto>(ite
     private val copyBtn = itemView.findViewById<ImageView>(R.id.copy_btn)
 
     init {
-        visibilityBtn.setOnClickListener {
-            contentField.toggleTransformationMethod()
-        }
         copyBtn.setOnClickListener(this)
     }
 
     override fun bind(model: FieldContentDto) {
         nameField.text = model.fieldName
-        contentField.setText(model.textContent)
         val passwordField = model.fieldType == InputTypeItem.TEXT_PASSWORD.code
+        contentField.setText(if (passwordField) "----------" else model.textContent)
         if (passwordField) {
             Glide
                 .with(itemView.context)
@@ -40,6 +37,7 @@ class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentDto>(ite
             .with(itemView.context)
             .load(R.drawable.copy_icon)
             .into(copyBtn)
+
         findByCode(model.fieldType)?.type?.let {
             contentField.inputType = it
         }
@@ -52,6 +50,10 @@ class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentDto>(ite
         copyBtn.visibility = visibility
 
         visibilityBtn.visibility = if (emptyContent) View.GONE else if (passwordField) View.VISIBLE else View.GONE
+
+        visibilityBtn.setOnClickListener {
+            contentField.togglePasswordTransformationMethod(model.textContent, "----------")
+        }
 
         //contentField.setTransformationMethodAsHidden(model.hidden)
     }

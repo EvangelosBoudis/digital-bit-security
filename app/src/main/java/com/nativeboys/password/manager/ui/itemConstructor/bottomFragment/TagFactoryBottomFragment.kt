@@ -40,14 +40,13 @@ class TagFactoryBottomFragment : FactoryBottomFragment() {
             }
             submitBtn.setOnClickListener {
                 val textContent = field.text.toString()
-                if (textContent.isNotEmpty()) {
-                    if (tagName.isEmpty()) {
-                        viewModel.addTag(textContent)
-                    } else {
-                        tag?.let { viewModel.updateTagName(it, textContent) }
-                    }
-                    dismiss()
+                if (textContent.isBlank()) return@setOnClickListener
+                if (tagName.isEmpty()) {
+                    viewModel.addTag(textContent)
+                } else {
+                    tag?.let { viewModel.updateTagName(it, textContent) }
                 }
+                dismiss()
             }
         }
     }

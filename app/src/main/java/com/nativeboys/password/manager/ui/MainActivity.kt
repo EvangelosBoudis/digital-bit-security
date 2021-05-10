@@ -2,6 +2,7 @@ package com.nativeboys.password.manager.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import com.nativeboys.password.manager.R
@@ -15,7 +16,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_SECURE,
+            WindowManager.LayoutParams.FLAG_SECURE
+        ) // hide content of program from Android “Overview Screen”
         setContentView(R.layout.activity_main)
+
         viewModel.initIfRequired()
         viewModel.darkThemeEnabled.observe(this) { enabled ->
             val mode =

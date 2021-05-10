@@ -543,7 +543,7 @@
     },
     {
       "id": "8a94ab77-a092-4fc3-add9-2156dbf6a5f2",
-      "name": "Hoatname",
+      "name": "Hostname",
       "type": "text",
       "category_id": "ae9b2b00-051c-4edc-9273-be73b293bef9"
     },

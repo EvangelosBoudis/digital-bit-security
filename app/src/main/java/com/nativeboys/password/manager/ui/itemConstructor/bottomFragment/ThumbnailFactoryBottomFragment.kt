@@ -52,14 +52,13 @@ class ThumbnailFactoryBottomFragment : FactoryBottomFragment() {
             }
             submitBtn.setOnClickListener {
                 val textContent = field.text.toString()
-                if (textContent.isNotEmpty()) {
-                    if (thumbnailId.isEmpty()) {
-                        viewModel.addAndSelectThumbnail(textContent)
-                    } else {
-                        thumbnail?.let { viewModel.updateThumbnailUrlAndSelect(it, textContent) }
-                    }
-                    dismiss()
+                if (textContent.isBlank()) return@setOnClickListener
+                if (thumbnailId.isEmpty()) {
+                    viewModel.addAndSelectThumbnail(textContent)
+                } else {
+                    thumbnail?.let { viewModel.updateThumbnailUrlAndSelect(it, textContent) }
                 }
+                dismiss()
             }
         }
     }

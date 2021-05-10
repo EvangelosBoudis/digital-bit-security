@@ -204,12 +204,12 @@ class ItemConstructorViewModel @ViewModelInject constructor(
     fun submitItem() = liveData {
 
         val thumbnails = getThumbnails()
-            .filter { it.url.isNotEmpty() }
+            .filter { it.url.isNotBlank() }
 
         val fieldsContent = getFieldsContentMergedByCacheAndDatabase()
 
         val tags = getTags()
-            .filter { it.name.isNotEmpty() }
+            .filter { it.name.isNotBlank() }
             .joinToString(",") { it.name }
 
         val contents = fieldsContent
