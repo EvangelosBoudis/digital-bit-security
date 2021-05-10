@@ -1,0 +1,673 @@
+{
+  "thumbnails": [
+    {
+      "id": "4612d3fe-d195-410f-8961-2468c4ffe9d4",
+      "url": "https://imagens.canaltech.com.br/empresas/838.400.jpg"
+    },
+    {
+      "id": "d6526e49-cdc0-4b04-9c02-b037bc9a2cf9",
+      "url": "https://2.img-dpreview.com/files/p/E~TS940x788~articles/2988339509/BlogHeader_150-1-1800x0-c-default_copy.jpeg"
+    },
+    {
+      "id": "0d55c867-2608-4a84-94ff-56f7af68700d",
+      "url": "https://dist.neo4j.com/wp-content/uploads/20180720064210/belogo-social-posts-default.png"
+    },
+    {
+      "id": "73a827c1-9581-406f-943c-98678e27224a",
+      "url": "https://www.logolynx.com/images/logolynx/17/17bd9deba688043e6b996413deff3a50.png"
+    },
+    {
+      "id": "538700c6-5243-40e7-a4a4-efc359e9b8f5",
+      "url": "https://seeklogo.com/images/F/facebook-icon-logo-C61047A9E7-seeklogo.com.png"
+    },
+    {
+      "id": "35f58ce1-4913-4dfe-9a7f-64d9f57c612e",
+      "url": "https://i.pinimg.com/originals/76/00/8b/76008bb9685d410d47fe1fa01dc54f15.jpg"
+    },
+    {
+      "id": "c283c943-b339-4dcf-be4f-73dd8b845bfd",
+      "url": "https://1000logos.net/wp-content/uploads/2020/04/Logo-Eurobank.jpg"
+    }
+  ],
+  "categories": [
+    {
+      "id": "055c1dfd-d9f2-4544-b6f2-414e27ea61a8",
+      "name": "Payment Card",
+      "thumbnail_code": "CREDIT_CARD",
+      "default_category": "0",
+      "date_modified": "1620640713957"
+    },
+    {
+      "id": "91638316-a0a0-4d58-a512-ab8660851ac0",
+      "name": "Bank Account",
+      "thumbnail_code": "BANK",
+      "default_category": "0",
+      "date_modified": "1620641007269"
+    },
+    {
+      "id": "33985cd1-d877-48fb-b0fe-4cac86dfbef8",
+      "name": "Driver Licence",
+      "thumbnail_code": "CAR",
+      "default_category": "0",
+      "date_modified": "1620641302696"
+    },
+    {
+      "id": "ea7ddbf8-f3b9-481a-ab44-d380206af83e",
+      "name": "Passport",
+      "thumbnail_code": "PASSPORT",
+      "default_category": "0",
+      "date_modified": "1620641830505"
+    },
+    {
+      "id": "6608c8fc-48fb-4f25-875d-7ced24407a91",
+      "name": "Membership card",
+      "thumbnail_code": "BARCODE",
+      "default_category": "0",
+      "date_modified": "1620641786899"
+    },
+    {
+      "id": "6e0f6de9-2246-4ab0-826e-7919de9fb832",
+      "name": "Wi-fi Password",
+      "thumbnail_code": "WIFI",
+      "default_category": "0",
+      "date_modified": "1620642079650"
+    },
+    {
+      "id": "9c463363-d6a8-4851-af74-2eac5a52cfd6",
+      "name": "Email Address",
+      "thumbnail_code": "EMAIL_VARIANT",
+      "default_category": "0",
+      "date_modified": "1620642303958"
+    },
+    {
+      "id": "dcc9c0db-5126-456e-b887-94e88284d8e7",
+      "name": "Database",
+      "thumbnail_code": "DATABASE",
+      "default_category": "0",
+      "date_modified": "1620642472380"
+    },
+    {
+      "id": "ae9b2b00-051c-4edc-9273-be73b293bef9",
+      "name": "Server",
+      "thumbnail_code": "SERVER",
+      "default_category": "0",
+      "date_modified": "1620642588871"
+    },
+    {
+      "id": "e9c51a0b-c817-4a6e-8c49-e15043b315f7",
+      "name": "Software Licence",
+      "thumbnail_code": "LAPTOP",
+      "default_category": "0",
+      "date_modified": "1620642829478"
+    },
+    {
+      "id": "c444eb37-e10d-47f8-b325-b394e36b1947",
+      "name": "SSH Key",
+      "thumbnail_code": "SSH",
+      "default_category": "0",
+      "date_modified": "1620643080348"
+    }
+  ],
+  "fields": [
+    {
+      "id": "1e8bcc10-b2ec-4791-b6db-377c0cc9e199",
+      "name": "Name on Card",
+      "type": "text",
+      "category_id": "055c1dfd-d9f2-4544-b6f2-414e27ea61a8"
+    },
+    {
+      "id": "0289d5d0-4c48-46ea-b758-d7309ed0c63d",
+      "name": "Type",
+      "type": "text",
+      "category_id": "055c1dfd-d9f2-4544-b6f2-414e27ea61a8"
+    },
+    {
+      "id": "263e618b-3046-4d28-aad3-f1a5fedb22ba",
+      "name": "Number",
+      "type": "text",
+      "category_id": "055c1dfd-d9f2-4544-b6f2-414e27ea61a8"
+    },
+    {
+      "id": "d6220ffd-1bfa-4d52-829a-e86c5b8d6f59",
+      "name": "Security Code",
+      "type": "textPassword",
+      "category_id": "055c1dfd-d9f2-4544-b6f2-414e27ea61a8"
+    },
+    {
+      "id": "9e12b2fb-306b-4734-aacc-dacfddb6eaca",
+      "name": "Start Date",
+      "type": "date",
+      "category_id": "055c1dfd-d9f2-4544-b6f2-414e27ea61a8"
+    },
+    {
+      "id": "8213f3e1-dcd2-4f3d-91b0-45096db923f3",
+      "name": "Expiration Date",
+      "type": "date",
+      "category_id": "055c1dfd-d9f2-4544-b6f2-414e27ea61a8"
+    },
+    {
+      "id": "d0b5e351-b245-4a2e-85be-2f52568b1316",
+      "name": "Bank Name",
+      "type": "text",
+      "category_id": "91638316-a0a0-4d58-a512-ab8660851ac0"
+    },
+    {
+      "id": "b9709ddd-bdab-4261-a5e0-0e7ef2987674",
+      "name": "Bank Account",
+      "type": "text",
+      "category_id": "91638316-a0a0-4d58-a512-ab8660851ac0"
+    },
+    {
+      "id": "dcc58f88-4161-45d0-9522-126a66d8bd36",
+      "name": "Account Type",
+      "type": "text",
+      "category_id": "91638316-a0a0-4d58-a512-ab8660851ac0"
+    },
+    {
+      "id": "12970efe-d1f6-47ec-83cf-785b661c1e95",
+      "name": "Routing Number",
+      "type": "text",
+      "category_id": "91638316-a0a0-4d58-a512-ab8660851ac0"
+    },
+    {
+      "id": "303355d6-92d7-49b9-91e5-bdb92041a189",
+      "name": "Account Number",
+      "type": "text",
+      "category_id": "91638316-a0a0-4d58-a512-ab8660851ac0"
+    },
+    {
+      "id": "dc05927e-af08-47ec-bb6e-a95676b90b36",
+      "name": "SWIFT code",
+      "type": "text",
+      "category_id": "91638316-a0a0-4d58-a512-ab8660851ac0"
+    },
+    {
+      "id": "c9c69bab-643c-43a7-9dd0-eccc24d068a6",
+      "name": "IBAN Number",
+      "type": "text",
+      "category_id": "91638316-a0a0-4d58-a512-ab8660851ac0"
+    },
+    {
+      "id": "73d8cc60-787f-48f4-8aa8-cf09f4bf14d5",
+      "name": "PIN",
+      "type": "textPassword",
+      "category_id": "91638316-a0a0-4d58-a512-ab8660851ac0"
+    },
+    {
+      "id": "50fd34b2-88a6-4c34-ae0f-a58785cdfcc9",
+      "name": "Branch Address",
+      "type": "textPostalAddress",
+      "category_id": "91638316-a0a0-4d58-a512-ab8660851ac0"
+    },
+    {
+      "id": "84745f99-a535-40c7-b827-b72824399498",
+      "name": "Branch Phone",
+      "type": "phone",
+      "category_id": "91638316-a0a0-4d58-a512-ab8660851ac0"
+    },
+    {
+      "id": "94577384-2091-44bd-b927-3db1cd0a68e7",
+      "name": "Number",
+      "type": "text",
+      "category_id": "33985cd1-d877-48fb-b0fe-4cac86dfbef8"
+    },
+    {
+      "id": "c6fa71cc-cf20-495c-b2dd-9cdbb388b1ae",
+      "name": "Expiration Date",
+      "type": "date",
+      "category_id": "33985cd1-d877-48fb-b0fe-4cac86dfbef8"
+    },
+    {
+      "id": "3ea168e5-f54c-4d71-ae68-59f392aae805",
+      "name": "Licence Class",
+      "type": "text",
+      "category_id": "33985cd1-d877-48fb-b0fe-4cac86dfbef8"
+    },
+    {
+      "id": "3287494b-47d3-4d62-a5ac-ab0bf4dba286",
+      "name": "Name",
+      "type": "text",
+      "category_id": "33985cd1-d877-48fb-b0fe-4cac86dfbef8"
+    },
+    {
+      "id": "2e24a5b2-bb15-4407-bbf0-8f4754a0efc2",
+      "name": "Address",
+      "type": "textPostalAddress",
+      "category_id": "33985cd1-d877-48fb-b0fe-4cac86dfbef8"
+    },
+    {
+      "id": "a64b4146-b9f3-4b10-ba87-b47a4f31852a",
+      "name": "City / Town",
+      "type": "text",
+      "category_id": "33985cd1-d877-48fb-b0fe-4cac86dfbef8"
+    },
+    {
+      "id": "4dc251f2-357f-400f-b835-11b5ab049a99",
+      "name": "State",
+      "type": "text",
+      "category_id": "33985cd1-d877-48fb-b0fe-4cac86dfbef8"
+    },
+    {
+      "id": "f67f8ee5-bb08-4313-8da5-62ba961f2c9a",
+      "name": "ZIP / Postal Code",
+      "type": "text",
+      "category_id": "33985cd1-d877-48fb-b0fe-4cac86dfbef8"
+    },
+    {
+      "id": "16d28373-5437-4f30-a0a3-4b1fef3f33ca",
+      "name": "Country",
+      "type": "text",
+      "category_id": "33985cd1-d877-48fb-b0fe-4cac86dfbef8"
+    },
+    {
+      "id": "ce95b252-2d14-432c-8301-2d3b486a355c",
+      "name": "Date of birth",
+      "type": "date",
+      "category_id": "33985cd1-d877-48fb-b0fe-4cac86dfbef8"
+    },
+    {
+      "id": "43555fad-675e-4d1d-8b02-2c458ddf7541",
+      "name": "Sex",
+      "type": "text",
+      "category_id": "33985cd1-d877-48fb-b0fe-4cac86dfbef8"
+    },
+    {
+      "id": "5cc861f4-fd7c-45e3-aba5-f08bcddf5268",
+      "name": "Height",
+      "type": "number",
+      "category_id": "33985cd1-d877-48fb-b0fe-4cac86dfbef8"
+    },
+    {
+      "id": "80f59b20-1b80-4c30-bdd6-1f535d473325",
+      "name": "Type",
+      "type": "text",
+      "category_id": "ea7ddbf8-f3b9-481a-ab44-d380206af83e"
+    },
+    {
+      "id": "ced74807-2dbc-46f0-af0d-910657555ef5",
+      "name": "Name",
+      "type": "text",
+      "category_id": "ea7ddbf8-f3b9-481a-ab44-d380206af83e"
+    },
+    {
+      "id": "03d54ca0-d0e3-4888-9700-a46f4b849900",
+      "name": "Country",
+      "type": "text",
+      "category_id": "ea7ddbf8-f3b9-481a-ab44-d380206af83e"
+    },
+    {
+      "id": "ff05a68b-6e81-46fd-9912-2b5866fb9ff4",
+      "name": "Number",
+      "type": "text",
+      "category_id": "ea7ddbf8-f3b9-481a-ab44-d380206af83e"
+    },
+    {
+      "id": "3724a465-05f0-41fc-b0b9-59c1bbdb9b0d",
+      "name": "Sex",
+      "type": "text",
+      "category_id": "ea7ddbf8-f3b9-481a-ab44-d380206af83e"
+    },
+    {
+      "id": "f8ab4b13-ab74-4807-8545-1b803d55f804",
+      "name": "Nationality",
+      "type": "text",
+      "category_id": "ea7ddbf8-f3b9-481a-ab44-d380206af83e"
+    },
+    {
+      "id": "26032d1f-aa34-4af6-bd3e-1076dc21999f",
+      "name": "Issuing Authority",
+      "type": "text",
+      "category_id": "ea7ddbf8-f3b9-481a-ab44-d380206af83e"
+    },
+    {
+      "id": "de5d7812-34f9-471c-a123-83305f642b3b",
+      "name": "Date of Birth",
+      "type": "date",
+      "category_id": "ea7ddbf8-f3b9-481a-ab44-d380206af83e"
+    },
+    {
+      "id": "cdcb6b6b-98ad-420b-988f-4206649e1a4b",
+      "name": "Issued Date",
+      "type": "date",
+      "category_id": "ea7ddbf8-f3b9-481a-ab44-d380206af83e"
+    },
+    {
+      "id": "77e81c12-df9d-4f8b-b377-bf6b2852d1dc",
+      "name": "Expiration Date",
+      "type": "date",
+      "category_id": "ea7ddbf8-f3b9-481a-ab44-d380206af83e"
+    },
+    {
+      "id": "eb968b03-03cd-41c9-880c-6334bc840732",
+      "name": "Organisation",
+      "type": "text",
+      "category_id": "6608c8fc-48fb-4f25-875d-7ced24407a91"
+    },
+    {
+      "id": "56c690bf-9a80-4331-ae0d-03e5eb1d71f9",
+      "name": "Membership Number",
+      "type": "text",
+      "category_id": "6608c8fc-48fb-4f25-875d-7ced24407a91"
+    },
+    {
+      "id": "2b654b39-154e-41eb-9096-a8e1c63e16fc",
+      "name": "Member Name",
+      "type": "text",
+      "category_id": "6608c8fc-48fb-4f25-875d-7ced24407a91"
+    },
+    {
+      "id": "30d14146-a539-4f40-bc1a-46e6ba667dc4",
+      "name": "Start Date",
+      "type": "date",
+      "category_id": "6608c8fc-48fb-4f25-875d-7ced24407a91"
+    },
+    {
+      "id": "3feb89df-671d-486a-a8ec-2eac17fcec3d",
+      "name": "Expiration Date",
+      "type": "date",
+      "category_id": "6608c8fc-48fb-4f25-875d-7ced24407a91"
+    },
+    {
+      "id": "79ddd286-5716-43cd-a032-4259d5f5737f",
+      "name": "Website",
+      "type": "textUri",
+      "category_id": "6608c8fc-48fb-4f25-875d-7ced24407a91"
+    },
+    {
+      "id": "efd0ec60-8e74-46ca-b86e-ad54cdbd447a",
+      "name": "Telephone",
+      "type": "phone",
+      "category_id": "6608c8fc-48fb-4f25-875d-7ced24407a91"
+    },
+    {
+      "id": "fdb4bf25-669e-4bdf-82fd-3cd43e87b8b0",
+      "name": "Password",
+      "type": "textPassword",
+      "category_id": "6608c8fc-48fb-4f25-875d-7ced24407a91"
+    },
+    {
+      "id": "9918eec9-dd0b-438f-91fb-65fa60269619",
+      "name": "SSID",
+      "type": "text",
+      "category_id": "6e0f6de9-2246-4ab0-826e-7919de9fb832"
+    },
+    {
+      "id": "a63c00b4-cfbc-4396-a7ab-6fa85ace0a71",
+      "name": "Password",
+      "type": "textPassword",
+      "category_id": "6e0f6de9-2246-4ab0-826e-7919de9fb832"
+    },
+    {
+      "id": "6b653667-527d-4f2e-a650-40559d6d92f7",
+      "name": "Connection Type",
+      "type": "text",
+      "category_id": "6e0f6de9-2246-4ab0-826e-7919de9fb832"
+    },
+    {
+      "id": "9d8156f3-506c-4264-a60a-301904ca057b",
+      "name": "Connection Mode",
+      "type": "text",
+      "category_id": "6e0f6de9-2246-4ab0-826e-7919de9fb832"
+    },
+    {
+      "id": "bf266f85-bd30-4bb7-a586-40034c26cf12",
+      "name": "Authentication",
+      "type": "text",
+      "category_id": "6e0f6de9-2246-4ab0-826e-7919de9fb832"
+    },
+    {
+      "id": "e9910fce-4472-4180-b973-9dc5b641eee9",
+      "name": "Encryption",
+      "type": "text",
+      "category_id": "6e0f6de9-2246-4ab0-826e-7919de9fb832"
+    },
+    {
+      "id": "59200d1d-4b84-4c4a-80af-f2432e2c0a66",
+      "name": "Use 802.1X",
+      "type": "text",
+      "category_id": "6e0f6de9-2246-4ab0-826e-7919de9fb832"
+    },
+    {
+      "id": "2eb4683a-078a-4efe-9236-a62bdd620c48",
+      "name": "FIPS Mode",
+      "type": "text",
+      "category_id": "6e0f6de9-2246-4ab0-826e-7919de9fb832"
+    },
+    {
+      "id": "c246764b-bfe9-4ae0-bf41-a9eba1375e01",
+      "name": "Key Type",
+      "type": "text",
+      "category_id": "6e0f6de9-2246-4ab0-826e-7919de9fb832"
+    },
+    {
+      "id": "e2878f85-bb25-48a9-9510-00fbfc72d1bb",
+      "name": "Protected",
+      "type": "text",
+      "category_id": "6e0f6de9-2246-4ab0-826e-7919de9fb832"
+    },
+    {
+      "id": "0259db1b-8f43-4ca3-8c2c-e71f4646fd8f",
+      "name": "Key Index",
+      "type": "text",
+      "category_id": "6e0f6de9-2246-4ab0-826e-7919de9fb832"
+    },
+    {
+      "id": "b5f5781e-fb59-4f01-b8e7-fc871300c909",
+      "name": "Username",
+      "type": "textPassword",
+      "category_id": "9c463363-d6a8-4851-af74-2eac5a52cfd6"
+    },
+    {
+      "id": "9be581b5-69a7-4340-8571-7c9a5dc94ff4",
+      "name": "Password",
+      "type": "textPassword",
+      "category_id": "9c463363-d6a8-4851-af74-2eac5a52cfd6"
+    },
+    {
+      "id": "75f8935b-b1be-4e26-bf62-e65762aa8fb4",
+      "name": "Server",
+      "type": "text",
+      "category_id": "9c463363-d6a8-4851-af74-2eac5a52cfd6"
+    },
+    {
+      "id": "b32469d4-be21-4476-b69f-fb43dd4a2fe0",
+      "name": "Port",
+      "type": "number",
+      "category_id": "9c463363-d6a8-4851-af74-2eac5a52cfd6"
+    },
+    {
+      "id": "7361fe8a-67a9-4cd4-98d3-4447837062c1",
+      "name": "Type",
+      "type": "text",
+      "category_id": "9c463363-d6a8-4851-af74-2eac5a52cfd6"
+    },
+    {
+      "id": "f2752443-ffdf-4bca-a84d-3b38ebec8d1b",
+      "name": "SMTP Server",
+      "type": "text",
+      "category_id": "9c463363-d6a8-4851-af74-2eac5a52cfd6"
+    },
+    {
+      "id": "99e2ae10-1e3f-4a44-a05f-16fe45cffdd6",
+      "name": "SMTP Port",
+      "type": "number",
+      "category_id": "9c463363-d6a8-4851-af74-2eac5a52cfd6"
+    },
+    {
+      "id": "e77a3c77-f77c-480c-917d-73e19ae4d25f",
+      "name": "Type",
+      "type": "text",
+      "category_id": "dcc9c0db-5126-456e-b887-94e88284d8e7"
+    },
+    {
+      "id": "c6ad7347-e7ba-4287-9689-aa9d68cd3225",
+      "name": "Hostname",
+      "type": "text",
+      "category_id": "dcc9c0db-5126-456e-b887-94e88284d8e7"
+    },
+    {
+      "id": "15bd24a1-36d5-4dec-8647-1ef49e563e36",
+      "name": "Port",
+      "type": "number",
+      "category_id": "dcc9c0db-5126-456e-b887-94e88284d8e7"
+    },
+    {
+      "id": "8c72fc91-6963-4360-9124-d9a348edd1fe",
+      "name": "Database",
+      "type": "text",
+      "category_id": "dcc9c0db-5126-456e-b887-94e88284d8e7"
+    },
+    {
+      "id": "bf0dde88-39c4-470f-b288-cdd77375ae3d",
+      "name": "Username",
+      "type": "textPassword",
+      "category_id": "dcc9c0db-5126-456e-b887-94e88284d8e7"
+    },
+    {
+      "id": "91e4e03d-e8fc-41f5-8c0a-50c26f00cba0",
+      "name": "Password",
+      "type": "textPassword",
+      "category_id": "dcc9c0db-5126-456e-b887-94e88284d8e7"
+    },
+    {
+      "id": "4655e9a3-ee10-49ed-917b-b61536c90bd1",
+      "name": "SID",
+      "type": "text",
+      "category_id": "dcc9c0db-5126-456e-b887-94e88284d8e7"
+    },
+    {
+      "id": "ed482f59-0202-4b03-9f8f-f7b3635af3b9",
+      "name": "Alias",
+      "type": "text",
+      "category_id": "dcc9c0db-5126-456e-b887-94e88284d8e7"
+    },
+    {
+      "id": "8a94ab77-a092-4fc3-add9-2156dbf6a5f2",
+      "name": "Hoatname",
+      "type": "text",
+      "category_id": "ae9b2b00-051c-4edc-9273-be73b293bef9"
+    },
+    {
+      "id": "3d76a286-df8a-4a01-bedd-c79c52a71798",
+      "name": "Username",
+      "type": "textPassword",
+      "category_id": "ae9b2b00-051c-4edc-9273-be73b293bef9"
+    },
+    {
+      "id": "cabc4394-9b1a-4809-8ebb-9410da761826",
+      "name": "Password",
+      "type": "textPassword",
+      "category_id": "ae9b2b00-051c-4edc-9273-be73b293bef9"
+    },
+    {
+      "id": "49528e3c-7ced-47ef-b08b-51aa611444bf",
+      "name": "Licence Key",
+      "type": "text",
+      "category_id": "e9c51a0b-c817-4a6e-8c49-e15043b315f7"
+    },
+    {
+      "id": "2acb7ba7-c5dc-4348-b80e-d274ba94e84a",
+      "name": "Licensee",
+      "type": "text",
+      "category_id": "e9c51a0b-c817-4a6e-8c49-e15043b315f7"
+    },
+    {
+      "id": "74e53edb-fc45-489a-a66d-5ae8a6d476b0",
+      "name": "Version",
+      "type": "text",
+      "category_id": "e9c51a0b-c817-4a6e-8c49-e15043b315f7"
+    },
+    {
+      "id": "6cda1809-4f89-4bfb-a407-337807a7cb22",
+      "name": "Publisher",
+      "type": "text",
+      "category_id": "e9c51a0b-c817-4a6e-8c49-e15043b315f7"
+    },
+    {
+      "id": "04eefa77-a59b-4f1c-b204-541ad7595ba0",
+      "name": "Support Email",
+      "type": "textEmailAddress",
+      "category_id": "e9c51a0b-c817-4a6e-8c49-e15043b315f7"
+    },
+    {
+      "id": "48b877ea-bcd2-4838-880b-40cd46d4049d",
+      "name": "Website",
+      "type": "textUri",
+      "category_id": "e9c51a0b-c817-4a6e-8c49-e15043b315f7"
+    },
+    {
+      "id": "57c158a1-f84e-4372-b3e3-3878e057ffdb",
+      "name": "Price",
+      "type": "number",
+      "category_id": "e9c51a0b-c817-4a6e-8c49-e15043b315f7"
+    },
+    {
+      "id": "67c2dc7e-9ef2-46c2-ab8f-afa8a9dda707",
+      "name": "Purchase Date",
+      "type": "date",
+      "category_id": "e9c51a0b-c817-4a6e-8c49-e15043b315f7"
+    },
+    {
+      "id": "03815381-195a-4389-8fdb-2f23f10637d1",
+      "name": "Order Number",
+      "type": "text",
+      "category_id": "e9c51a0b-c817-4a6e-8c49-e15043b315f7"
+    },
+    {
+      "id": "61489dd7-672a-4de7-a115-7a0803313e7c",
+      "name": "Number of Licences",
+      "type": "number",
+      "category_id": "e9c51a0b-c817-4a6e-8c49-e15043b315f7"
+    },
+    {
+      "id": "60f6cbe0-1249-4eac-8eec-48183529b4f4",
+      "name": "Order Total",
+      "type": "text",
+      "category_id": "e9c51a0b-c817-4a6e-8c49-e15043b315f7"
+    },
+    {
+      "id": "4d7d4c9d-3c76-412c-bba4-217d20ae1c65",
+      "name": "Bit Strength",
+      "type": "text",
+      "category_id": "c444eb37-e10d-47f8-b325-b394e36b1947"
+    },
+    {
+      "id": "dbf90645-b148-47cf-830b-5e01de6fa256",
+      "name": "Format",
+      "type": "text",
+      "category_id": "c444eb37-e10d-47f8-b325-b394e36b1947"
+    },
+    {
+      "id": "4527257a-88c4-41d5-81bf-2e11616b28be",
+      "name": "Passphrase",
+      "type": "text",
+      "category_id": "c444eb37-e10d-47f8-b325-b394e36b1947"
+    },
+    {
+      "id": "9fccf046-0a4f-45a1-b550-35ea7ad45f78",
+      "name": "Private Key",
+      "type": "text",
+      "category_id": "c444eb37-e10d-47f8-b325-b394e36b1947"
+    },
+    {
+      "id": "ece5c6dc-a76f-4a35-bca5-cc6c79c2aa25",
+      "name": "Public Key",
+      "type": "text",
+      "category_id": "c444eb37-e10d-47f8-b325-b394e36b1947"
+    },
+    {
+      "id": "f06b8d55-bfa8-4657-903e-243f77f5f160",
+      "name": "Hostname",
+      "type": "text",
+      "category_id": "c444eb37-e10d-47f8-b325-b394e36b1947"
+    },
+    {
+      "id": "b0723606-a399-4d44-aea3-3dae089d55aa",
+      "name": "Date",
+      "type": "date",
+      "category_id": "c444eb37-e10d-47f8-b325-b394e36b1947"
+    }
+  ],
+  "items": [],
+  "contents": []
+}

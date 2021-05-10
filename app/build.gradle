@@ -103,13 +103,13 @@ dependencies {
     // -- Database And Encryption --
 
     // SQLCipher
-    implementation "net.zetetic:android-database-sqlcipher:$sqlcipher_version@aar"
+    implementation "net.zetetic:android-database-sqlcipher:$sqlcipherVersion@aar"
 
     // KeyStore Management
-    implementation "com.github.leonardoxh:keystore-ultimate:$keystore_ultimate_version"
+    implementation "com.github.leonardoxh:keystore-ultimate:$keystoreUltimateVersion"
 
     // Restore & Backup Database
-    implementation "com.github.salehyarahmadi:RoomDatabaseBackupAndRestore:$room_backup_restore_version"
+    implementation "com.github.salehyarahmadi:RoomDatabaseBackupAndRestore:$roomBackupRestoreVersion"
 }
 
 kapt {

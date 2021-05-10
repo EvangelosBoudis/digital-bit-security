@@ -3,13 +3,7 @@ package com.nativeboys.password.manager.data.local
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.nativeboys.password.manager.data.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
-import java.util.*
-import javax.inject.Inject
-import javax.inject.Provider
 
 @Database(entities = [ThumbnailData::class, CategoryData::class, FieldData::class, ItemData::class, ContentData::class], version = 1)
 @TypeConverters(Converters::class)
@@ -21,25 +15,25 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun itemDao(): ItemDao
     abstract fun contentDao(): ContentDao
 
-    class Callback @Inject constructor(
-            private val database: Provider<AppDatabase>,
-            private val applicationScope: CoroutineScope
-        ) : RoomDatabase.Callback() {
+}
+
+/*    class Callback @Inject constructor(
+        private val database: Provider<AppDatabase>,
+        private val applicationScope: CoroutineScope
+    ) : RoomDatabase.Callback() {
 
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
             mockData()
         }
 
-        // TODO: Remove
         private fun mockData() {
             val categoryDao = database.get().categoryDao()
             val fieldDao = database.get().fieldDao()
             val thumbnailDao = database.get().thumbnailDao()
-            //val itemDao = database.get().itemDao()
-            //val contentDao = database.get().contentDao()
+            val itemDao = database.get().itemDao()
+            val contentDao = database.get().contentDao()
 
-            // Thumbnails
             val appleThumb = ThumbnailData(url = "https://imagens.canaltech.com.br/empresas/838.400.jpg")
             val adobeThumb = ThumbnailData(url = "https://2.img-dpreview.com/files/p/E~TS940x788~articles/2988339509/BlogHeader_150-1-1800x0-c-default_copy.jpeg")
             val behanceThumb = ThumbnailData(url = "https://dist.neo4j.com/wp-content/uploads/20180720064210/belogo-social-posts-default.png")
@@ -51,13 +45,11 @@ abstract class AppDatabase : RoomDatabase() {
             val euroBankThumb = ThumbnailData(url = "https://1000logos.net/wp-content/uploads/2020/04/Logo-Eurobank.jpg")
             val thumbnails = listOf(appleThumb, adobeThumb, behanceThumb, behanceThumb, dribbleThumb, facebookThumb, instagramThumb, youtubeThumb, modemThumb, euroBankThumb)
 
-            // Categories
             val accountCategory = CategoryData(name = "Accounts", thumbnailCode = "ACCOUNT", defaultCategory = false)
             val creditCategory = CategoryData(name = "Credit Cards", thumbnailCode = "CREDIT_CARD", defaultCategory = false)
             val networkCategory = CategoryData(name = "Networks", thumbnailCode = "NETWORK", defaultCategory = false)
             val categories = listOf(accountCategory, creditCategory, networkCategory)
 
-            // Fields
             val accountF1 = FieldData(name = "E-Mail", type = "textEmailAddress", categoryId = accountCategory.id)
             val accountF2 = FieldData(name = "Username", type = "text", categoryId = accountCategory.id)
             val accountF3 = FieldData(name = "Password", type = "textPassword", categoryId = accountCategory.id)
@@ -76,7 +68,6 @@ abstract class AppDatabase : RoomDatabase() {
             val networkF5 = FieldData(name = "DNS 2", type = "text", categoryId = networkCategory.id)
             val fields = listOf(accountF1, accountF2, accountF3, accountF4, accountF5, creditF1, creditF2, creditF3, creditF4, networkF1, networkF2, networkF3, networkF4, networkF5)
 
-/*            // Items
             val appleId = ItemData(name = "Apple ID", description = "Ritsa's account", notes = "This account is linked to iPad", tags = "Apple,iPad,Tablet,Ritsa",
                 thumbnailId = appleThumb.id, requiresPassword = true, favorite = true, categoryId = accountCategory.id)
             val adobe = ItemData(name = "Adobe", description = "ZeusTech account", notes = "This account handled by Fuk Sua", tags = "ZeusTech,Prototype,User Interface",
@@ -93,58 +84,48 @@ abstract class AppDatabase : RoomDatabase() {
                 thumbnailId = modemThumb.id, requiresPassword = false, favorite = true, categoryId = networkCategory.id)
             val euroBank = ItemData(name = "Eurobank", description = "Credit card details", notes = "", tags = "Eurobank,Payment,Money",
                 thumbnailId = euroBankThumb.id, requiresPassword = true, favorite = false, categoryId = creditCategory.id)
+            val items = listOf(appleId, adobe, behance, dribble, facebook, instagram, hzTest, euroBank)
 
-            val items = listOf(appleId, adobe, behance, dribble, facebook, instagram, hzTest, euroBank)*/
-
-/*            // ItemFields
             val appleF1 = ContentData(fieldId = accountF1.id, itemId = appleId.id, content = "ritsa.galanaki@apple.com")
             val appleF2 = ContentData(fieldId = accountF2.id, itemId = appleId.id, content = "RitsaGalanaki")
             val appleF3 = ContentData(fieldId = accountF3.id, itemId = appleId.id, content = "Yasir123%'/PzhL921")
             val appleF4 = ContentData(fieldId = accountF4.id, itemId = appleId.id, content = "6909004881")
             val appleF5 = ContentData(fieldId = accountF5.id, itemId = appleId.id, content = "When we met with Vaggelis")
-
             val adobeF1 = ContentData(fieldId = accountF1.id, itemId = adobe.id, content = "george.mulianakis@zeustech.com")
             val adobeF2 = ContentData(fieldId = accountF2.id, itemId = adobe.id, content = "GeorgeMulianakis")
             val adobeF3 = ContentData(fieldId = accountF3.id, itemId = adobe.id, content = "Yasir123%'/PzhL921")
             val adobeF4 = ContentData(fieldId = accountF4.id, itemId = adobe.id, content = "6909004882")
             val adobeF5 = ContentData(fieldId = accountF5.id, itemId = adobe.id, content = "")
-
             val behanceF1 = ContentData(fieldId = accountF1.id, itemId = behance.id, content = "boudis.family@gmail.com")
             val behanceF2 = ContentData(fieldId = accountF2.id, itemId = behance.id, content = "BoudisFamily")
             val behanceF3 = ContentData(fieldId = accountF3.id, itemId = behance.id, content = "Yasir123%'/PzhL921")
             val behanceF4 = ContentData(fieldId = accountF4.id, itemId = behance.id, content = "6909004880")
             val behanceF5 = ContentData(fieldId = accountF5.id, itemId = behance.id, content = "When we met with Ritsa")
-
             val dribbleF1 = ContentData(fieldId = accountF1.id, itemId = dribble.id, content = "v.boudis1995@gmail.com")
             val dribbleF2 = ContentData(fieldId = accountF2.id, itemId = dribble.id, content = "Vaggelis")
             val dribbleF3 = ContentData(fieldId = accountF3.id, itemId = dribble.id, content = "Yasir123%'/PzhL921")
             val dribbleF4 = ContentData(fieldId = accountF4.id, itemId = dribble.id, content = "6909004880")
             val dribbleF5 = ContentData(fieldId = accountF5.id, itemId = dribble.id, content = "When we met with Ritsa")
-
             val facebookF1 = ContentData(fieldId = accountF1.id, itemId = facebook.id, content = "vaggelis.boudis1995@gmail.com")
             val facebookF2 = ContentData(fieldId = accountF2.id, itemId = facebook.id, content = "VaggelisBoudis")
             val facebookF3 = ContentData(fieldId = accountF3.id, itemId = facebook.id, content = "Yasir123%'/PzhL921")
             val facebookF4 = ContentData(fieldId = accountF4.id, itemId = facebook.id, content = "6909004880")
             val facebookF5 = ContentData(fieldId = accountF5.id, itemId = facebook.id, content = "When we f*** with Ritsa")
-
             val instagramF1 = ContentData(fieldId = accountF1.id, itemId = instagram.id, content = "boudis.family@gmail.com")
             val instagramF2 = ContentData(fieldId = accountF2.id, itemId = instagram.id, content = "BoudisFamily")
             val instagramF3 = ContentData(fieldId = accountF3.id, itemId = instagram.id, content = "Yasir123%'/PzhL921")
             val instagramF4 = ContentData(fieldId = accountF4.id, itemId = instagram.id, content = "6909004880")
             val instagramF5 = ContentData(fieldId = accountF5.id, itemId = instagram.id, content = "When we f*** with Ritsa")
-
             val hzTestF1 = ContentData(fieldId = networkF1.id, itemId = hzTest.id, content = "172.16.1.111")
             val hzTestF2 = ContentData(fieldId = networkF2.id, itemId = hzTest.id, content = "172.16.1.1")
             val hzTestF3 = ContentData(fieldId = networkF3.id, itemId = hzTest.id, content = "24")
             val hzTestF4 = ContentData(fieldId = networkF4.id, itemId = hzTest.id, content = "172.16.1.20")
             val hzTestF5 = ContentData(fieldId = networkF5.id, itemId = hzTest.id, content = "8.8.4.4")
-
             val euroBankF1 = ContentData(fieldId = creditF1.id, itemId = euroBank.id, content = "JohnDoe")
             val euroBankF2 = ContentData(fieldId = creditF2.id, itemId = euroBank.id, content = "1234-5678-910-1213")
             val euroBankF3 = ContentData(fieldId = creditF3.id, itemId = euroBank.id, content = "10/20")
-            val euroBankF4 = ContentData(fieldId = creditF4.id, itemId = euroBank.id, content = "123")*/
+            val euroBankF4 = ContentData(fieldId = creditF4.id, itemId = euroBank.id, content = "123")
 
-/*
             val itemFields = listOf(
                 appleF1, appleF2, appleF3, appleF4, appleF5,
                 adobeF1, adobeF2, adobeF3, adobeF4, adobeF5,
@@ -155,17 +136,14 @@ abstract class AppDatabase : RoomDatabase() {
                 hzTestF1, hzTestF2, hzTestF3, hzTestF4, hzTestF5,
                 euroBankF1, euroBankF2, euroBankF3, euroBankF4
             )
-*/
 
             applicationScope.launch {
                 thumbnailDao.saveOrReplace(thumbnails)
                 categoryDao.save(categories)
                 fieldDao.save(fields)
-                //itemDao.save(items)
-                //contentDao.save(itemFields)
+                itemDao.save(items)
+                contentDao.save(itemFields)
             }
         }
 
-    }
-
-}
+    }*/

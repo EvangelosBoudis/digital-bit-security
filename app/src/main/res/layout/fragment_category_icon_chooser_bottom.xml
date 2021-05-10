@@ -65,6 +65,7 @@
                 android:fontFamily="@font/breeze_sans_regular"
                 android:hint="@string/search_category_icon_hint"
                 android:inputType="text"
+                android:imeOptions="actionSearch"
                 tools:ignore="Autofill" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

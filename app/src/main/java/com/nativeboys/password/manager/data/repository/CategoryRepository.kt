@@ -22,6 +22,8 @@ class CategoryRepository @Inject constructor(
     private val preferences: PreferencesManager
 ) {
 
+    suspend fun countAllCategories() = categoryDao.countAll()
+
     fun observeAllCategories() = categoryDao.observeAll()
 
     suspend fun findAllCategories() = categoryDao.findAll()

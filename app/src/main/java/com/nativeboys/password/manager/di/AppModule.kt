@@ -33,7 +33,7 @@ object AppModule {
     fun provideDatabase(
         app: Application,
         cipherStorage: CipherStorage,
-        callback: AppDatabase.Callback
+        // callback: AppDatabase.Callback
     ): AppDatabase {
 
         val storedDatabaseEncryptionKey = cipherStorage.decrypt(DATABASE_ENCRYPTION_KEY_ALIAS)
@@ -49,9 +49,9 @@ object AppModule {
 
         return Room.databaseBuilder(app, AppDatabase::class.java, DATABASE_NAME)
             .openHelperFactory(factory)
-            //.createFromAsset("database/pre_populate.db") -- PROBLEM--
+            // .createFromAsset("database/pre_populate.db") -- PROBLEM--
             .fallbackToDestructiveMigration() // Drop table then create new one
-            .addCallback(callback)
+            // .addCallback(callback)
             .build()
     }
 

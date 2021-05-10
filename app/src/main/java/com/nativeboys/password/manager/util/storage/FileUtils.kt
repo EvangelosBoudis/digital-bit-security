@@ -16,6 +16,7 @@ import android.util.Log
 import android.webkit.MimeTypeMap
 import java.io.File
 import java.io.FileFilter
+import java.io.IOException
 import java.text.DecimalFormat
 import java.util.*
 import kotlin.Comparator
@@ -430,6 +431,20 @@ object FileUtils {
                 DocumentsContract.getTreeDocumentId(treeUri)
             )
         return getPath(context, docUri)
+    }
+
+    @Throws(IOException::class)
+    fun copyFileFromAssetsToMainDirectory(
+        context: Context,
+        assetsDirectory: String,
+        fileName: String
+    ) {
+        val fileDirectory = context.externalCacheDir?.path + File.separator + fileName
+        File(fileDirectory).outputStream().use { cache ->
+            context.assets.open(assetsDirectory).use {
+                it.copyTo(cache)
+            }
+        }
     }
 
 }

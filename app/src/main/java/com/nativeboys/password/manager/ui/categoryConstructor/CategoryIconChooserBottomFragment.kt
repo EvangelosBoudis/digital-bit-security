@@ -3,6 +3,7 @@ package com.nativeboys.password.manager.ui.categoryConstructor
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -38,8 +39,9 @@ class CategoryIconChooserBottomFragment : BottomFragment(
             searchField.addTextChangedListener {
                 viewModel.updateUserCache(THUMBNAIL_SEARCH_KEY, it.toString())
             }
-            searchField.setOnFocusChangeListener { v, hasFocus ->
-                if (hasFocus) KeyboardManager().showKeyboard(v)
+            searchField.setOnEditorActionListener { v, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) KeyboardManager().hideKeyboard(v)
+                return@setOnEditorActionListener true
             }
         }
         viewModel.observeCategoriesIcons.observe(viewLifecycleOwner) {

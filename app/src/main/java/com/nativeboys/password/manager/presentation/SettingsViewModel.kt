@@ -20,13 +20,11 @@ class SettingsViewModel @ViewModelInject constructor(
         encryptionKey: String,
         callback: (Boolean, String) -> Unit
     ) {
-        // val exportPath = context.externalCacheDir?.path
-        // exportPath + File.separator + DATABASE_BACKUP
         FileUtils.getPath(context, uri)?.let { path ->
             Restore.Init()
                 .database(database)
                 .backupFilePath(path)
-                .secretKey(encryptionKey)
+                // .secretKey(encryptionKey)
                 .onWorkFinishListener { success, message ->
                     callback(success, message)
                 }
@@ -47,7 +45,7 @@ class SettingsViewModel @ViewModelInject constructor(
                 .database(database)
                 .path(path)
                 .fileName(DATABASE_BACKUP)
-                .secretKey(encryptionKey)
+                //.secretKey(encryptionKey)
                 .onWorkFinishListener { success, message ->
                     callback(success, if (success) path else message)
                 }

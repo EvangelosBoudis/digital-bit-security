@@ -30,9 +30,9 @@ buildscript {
         recyclerViewVersion = "1.2.0-rc01"
         testExtJunitVersion = "1.1.2"
 
-        sqlcipher_version = "4.4.3"
-        keystore_ultimate_version = "1.3.0"
-        room_backup_restore_version = "v1.0.1"
+        sqlcipherVersion = "4.4.3"
+        keystoreUltimateVersion = "1.3.0"
+        roomBackupRestoreVersion = "v1.0.1"
     }
 
     repositories {

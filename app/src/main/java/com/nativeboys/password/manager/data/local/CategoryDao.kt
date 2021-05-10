@@ -10,6 +10,9 @@ interface CategoryDao {
 
     // (Multiple) -> ORDER BY name ASC, date_modified DESC
 
+    @Query("SELECT COUNT (id) FROM categories")
+    suspend fun countAll(): Int
+
     @Query("SELECT * FROM categories WHERE id == :id")
     suspend fun findById(id: String): CategoryData
 

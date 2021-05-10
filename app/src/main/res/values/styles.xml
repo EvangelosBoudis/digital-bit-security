@@ -198,6 +198,12 @@
         <item name="layout_constraintDimensionRatio">1:1</item>
     </style>
 
+    <style name="Widget.App.Button.OutlinedButton.IconOnly.Big" parent="Widget.App.Button.OutlinedButton.IconOnly">
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="layout_constraintDimensionRatio">1:1</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.MyApp.Button.Circle" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>

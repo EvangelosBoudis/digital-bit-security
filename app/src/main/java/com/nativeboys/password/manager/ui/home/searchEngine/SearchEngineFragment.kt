@@ -3,6 +3,7 @@ package com.nativeboys.password.manager.ui.home.searchEngine
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,6 +16,7 @@ import com.nativeboys.password.manager.ui.adapters.searchItems.SearchItemsAdapte
 import com.nativeboys.password.manager.ui.home.HomeFragmentDirections
 import com.nativeboys.password.manager.util.parentNavController
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
+import com.zeustech.zeuskit.ui.other.KeyboardManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,6 +38,10 @@ class SearchEngineFragment : Fragment(
             itemsRecyclerView.adapter = searchItemsAdapter
             searchField.doAfterTextChanged { editable ->
                 editable?.let { viewModel.updateItemSearchKey(it.toString()) }
+            }
+            searchField.setOnEditorActionListener { v, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) KeyboardManager().hideKeyboard(v)
+                return@setOnEditorActionListener true
             }
         }
         searchItemsAdapter.adapterClickListener = this
