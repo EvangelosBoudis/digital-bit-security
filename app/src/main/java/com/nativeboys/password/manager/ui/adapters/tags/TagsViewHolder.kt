@@ -2,6 +2,7 @@ package com.nativeboys.password.manager.ui.adapters.tags
 
 import android.view.View
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.TagDto
@@ -16,7 +17,7 @@ class TagsViewHolder(itemView: View) : RecyclerViewHolder<TagDto>(itemView) {
         descriptionField.text = model.name
         Glide
             .with(itemView.context)
-            .load(R.drawable.tag_shape)
+            .load(ContextCompat.getDrawable(itemView.context, R.drawable.tag_shape)) // Work around for Glide - Theme support https://github.com/bumptech/glide/issues/3778
             .intoView(descriptionField)
     }
 

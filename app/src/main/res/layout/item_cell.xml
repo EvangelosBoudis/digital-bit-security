@@ -72,7 +72,7 @@
             app:layout_constraintStart_toStartOf="@id/name_field"
             app:layout_constraintEnd_toEndOf="@id/name_field"
             android:fontFamily="@font/breeze_sans_regular"
-            android:textColor="@color/lightGray"
+            android:textColor="@color/colorText"
             android:textSize="12sp" />
 
         <ImageView
@@ -84,7 +84,7 @@
             app:layout_constraintTop_toTopOf="@id/thumbnail_holder"
             app:layout_constraintBottom_toBottomOf="@id/thumbnail_holder"
             app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/lightGray"
+            app:tint="@color/colorText"
             tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,8 +21,11 @@ import com.nativeboys.password.manager.ui.adapters.itemsDto.ItemsDtoAdapter
 import com.nativeboys.password.manager.ui.confirmation.ConfirmationDialogListener
 import com.nativeboys.password.manager.ui.confirmation.ConfirmationFragment
 import com.nativeboys.password.manager.ui.home.HomeFragmentDirections
+import com.nativeboys.password.manager.util.CenterLayoutManager
 import com.zeustech.zeuskit.ui.other.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ItemsFragment : Fragment(
@@ -39,7 +43,7 @@ class ItemsFragment : Fragment(
         val binding = FragmentItemsBinding.bind(view)
         navController = Navigation.findNavController(view)
         binding.apply {
-            categoriesRecyclerView.layoutManager = LinearLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
+            categoriesRecyclerView.layoutManager = CenterLayoutManager(view.context, RecyclerView.HORIZONTAL, false)
             categoriesRecyclerView.adapter = categoriesAdapter
             itemsRecyclerView.layoutManager = LinearLayoutManager(view.context)
             itemsRecyclerView.adapter = itemsAdapter
@@ -80,8 +84,13 @@ class ItemsFragment : Fragment(
                 }
             }
         }
-        viewModel.categories.observe(viewLifecycleOwner) {
-            categoriesAdapter.submitList(it)
+        viewModel.categories.observe(viewLifecycleOwner) { categories ->
+            categoriesAdapter.submitList(categories)
+            val position = categories.indexOfFirst { it.selected }
+            lifecycleScope.launch {
+                delay(200)
+                if (position != -1) binding.categoriesRecyclerView.smoothScrollToPosition(position)
+            }
         }
         viewModel.itemsDto.observe(viewLifecycleOwner) { items ->
             itemsAdapter.submitList(items)

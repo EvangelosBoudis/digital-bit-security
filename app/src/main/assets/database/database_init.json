@@ -34,42 +34,42 @@
       "id": "055c1dfd-d9f2-4544-b6f2-414e27ea61a8",
       "name": "Payment Card",
       "thumbnail_code": "CREDIT_CARD",
-      "default_category": "0",
+      "default_category": "1",
       "date_modified": "1620640713957"
     },
     {
       "id": "91638316-a0a0-4d58-a512-ab8660851ac0",
       "name": "Bank Account",
       "thumbnail_code": "BANK",
-      "default_category": "0",
+      "default_category": "1",
       "date_modified": "1620641007269"
     },
     {
       "id": "33985cd1-d877-48fb-b0fe-4cac86dfbef8",
       "name": "Driver Licence",
       "thumbnail_code": "CAR",
-      "default_category": "0",
+      "default_category": "1",
       "date_modified": "1620641302696"
     },
     {
       "id": "ea7ddbf8-f3b9-481a-ab44-d380206af83e",
       "name": "Passport",
       "thumbnail_code": "PASSPORT",
-      "default_category": "0",
+      "default_category": "1",
       "date_modified": "1620641830505"
     },
     {
       "id": "6608c8fc-48fb-4f25-875d-7ced24407a91",
       "name": "Membership card",
       "thumbnail_code": "BARCODE",
-      "default_category": "0",
+      "default_category": "1",
       "date_modified": "1620641786899"
     },
     {
       "id": "6e0f6de9-2246-4ab0-826e-7919de9fb832",
       "name": "Wi-fi Password",
       "thumbnail_code": "WIFI",
-      "default_category": "0",
+      "default_category": "1",
       "date_modified": "1620642079650"
     },
     {
@@ -83,28 +83,28 @@
       "id": "dcc9c0db-5126-456e-b887-94e88284d8e7",
       "name": "Database",
       "thumbnail_code": "DATABASE",
-      "default_category": "0",
+      "default_category": "1",
       "date_modified": "1620642472380"
     },
     {
       "id": "ae9b2b00-051c-4edc-9273-be73b293bef9",
       "name": "Server",
       "thumbnail_code": "SERVER",
-      "default_category": "0",
+      "default_category": "1",
       "date_modified": "1620642588871"
     },
     {
       "id": "e9c51a0b-c817-4a6e-8c49-e15043b315f7",
       "name": "Software Licence",
       "thumbnail_code": "LAPTOP",
-      "default_category": "0",
+      "default_category": "1",
       "date_modified": "1620642829478"
     },
     {
       "id": "c444eb37-e10d-47f8-b325-b394e36b1947",
       "name": "SSH Key",
       "thumbnail_code": "SSH",
-      "default_category": "0",
+      "default_category": "1",
       "date_modified": "1620643080348"
     }
   ],

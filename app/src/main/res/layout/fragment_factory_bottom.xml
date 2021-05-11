@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="20dp"
-    android:background="@color/discordGray"
+    android:background="@color/colorPopupBackground"
     android:animateLayoutChanges="true"
     tools:context=".ui.itemConstructor.bottomFragment.FactoryBottomFragment">
 
@@ -79,7 +79,6 @@
         app:layout_constraintTop_toTopOf="@id/delete_btn"
         app:layout_constraintBottom_toBottomOf="@id/delete_btn"
         app:layout_constraintEnd_toEndOf="@id/field_container"
-        android:backgroundTint="@color/lightGray"
         android:text="@string/submit" />
 
     <TextView

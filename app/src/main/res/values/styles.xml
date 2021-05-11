@@ -1,10 +1,13 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="FragmentTheme">
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+    </style>
+
+    <style name="FragmentTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
         <item name="android:spinnerStyle">@style/Widget.App.Spinner</item>
         <item name="switchStyle">@style/Widget.App.Switch</item>
         <item name="checkboxStyle">@style/Widget.App.CheckBox</item>
@@ -75,7 +78,7 @@
         <item name="android:paddingStart">2.5dp</item>
         <item name="android:paddingEnd">2.5dp</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/lightGray</item>
+        <item name="android:textColor">@color/colorText</item>
         <item name="android:fontFamily">@font/breeze_sans_medium</item>
     </style>
 
@@ -83,7 +86,7 @@
 
     <style name="Widget.App.EditText" parent="Widget.AppCompat.EditText">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColorHint">@color/lightGray</item>
+        <item name="android:textColorHint">@color/colorText</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:fontFamily">@font/breeze_sans_regular</item>
         <item name="backgroundTint">@color/field_background_tint_color</item>
@@ -99,7 +102,7 @@
         <item name="android:layout_width">35dp</item>
         <item name="android:layout_height">35dp</item>
         <item name="android:padding">8dp</item>
-        <item name="tint">@color/lightGray</item>
+        <item name="tint">@color/colorText</item>
     </style>
 
     <!-- CheckBox -->
@@ -151,7 +154,7 @@
     <!-- BottomNavigationView -->
 
     <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
-        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:background">@color/colorBackground</item>
         <item name="itemIconTint">@color/menu_colors</item>
         <item name="itemTextColor">@color/menu_colors</item>
         <item name="itemTextAppearanceActive">@style/Widget.App.BottomNavigationView.Text</item>
@@ -168,7 +171,7 @@
     <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:textAppearance">@style/TextAppearance.App.Button</item>
         <item name="android:textColor">@color/white</item>
-        <item name="backgroundTint">@color/darkGray</item>
+        <item name="backgroundTint">@color/colorBtnBackground</item>
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
         <!--<item name="materialThemeOverlay">@style/ThemeOverlay.App.Button</item>-->
@@ -197,8 +200,9 @@
         <item name="android:insetBottom">0dp</item>
         <item name="android:paddingRight">0dp</item>
         <item name="android:paddingLeft">0dp</item>
-        <item name="backgroundTint">@color/darkGray</item>
+        <item name="backgroundTint">@color/colorBtnBackground</item>
         <item name="rippleColor">@color/rippleColor</item>
+        <item name="strokeColor">@color/colorBtnStroke</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Button.Circle</item>
     </style>
 
@@ -243,7 +247,7 @@
     <!-- Other -->
 
     <style name="HeaderContainer">
-        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:background">@color/colorBackground</item>
         <item name="android:paddingTop">15dp</item>
         <item name="android:paddingBottom">15dp</item>
         <item name="android:paddingStart">20dp</item>
@@ -260,7 +264,7 @@
     <style name="ViewLine" parent="">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">1dp</item>
-        <item name="android:background">@color/darkGray</item>
+        <item name="android:background">@color/colorBtnBackground</item>
     </style>
 
     <style name="ViewLine10m" parent="ViewLine">

@@ -1,8 +1,11 @@
 package com.nativeboys.password.manager.ui.adapters
 
+import android.graphics.Color
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.nativeboys.password.manager.R
@@ -28,7 +31,11 @@ open class SharedCategoriesViewHolder(itemView: View) : RecyclerViewHolder<Categ
 
         nameField.text = model.name
 
-        val draw = materialIconCodeToDrawable(itemView.context, model.thumbnailCode)
+        val draw = materialIconCodeToDrawable(
+            itemView.context,
+            model.thumbnailCode,
+            if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) Color.WHITE else Color.BLACK
+        )
         if (draw != null) {
             Glide.with(itemView.context)
                 .load(draw)
@@ -40,7 +47,7 @@ open class SharedCategoriesViewHolder(itemView: View) : RecyclerViewHolder<Categ
 
         Glide
             .with(itemView.context)
-            .load(R.drawable.stroke_shape)
+            .load(ContextCompat.getDrawable(itemView.context, R.drawable.stroke_shape))
             .intoView(thumbnailBackgroundHolder)
     }
 

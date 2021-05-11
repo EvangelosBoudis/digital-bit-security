@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         window.setFlags(
             WindowManager.LayoutParams.FLAG_SECURE,
             WindowManager.LayoutParams.FLAG_SECURE
-        ) // hide content of program from Android “Overview Screen”
+        ) // hide content of program from Android “Overview Screen” + Do not allow ScreenShots
         setContentView(R.layout.activity_main)
 
         viewModel.initIfRequired()

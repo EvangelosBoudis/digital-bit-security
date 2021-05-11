@@ -22,7 +22,7 @@ class CategoriesViewHolder(itemView: View) : SharedCategoriesViewHolder(itemView
             .with(itemView.context)
             .load(if (model.defaultCategory) R.drawable.ic_baseline_lock_24 else R.drawable.ic_baseline_delete_24)
             .into(trailingBtn)
-        trailingBtn.vectorTintResColor(if (model.defaultCategory) R.color.lightGray else R.color.red)
+        trailingBtn.vectorTintResColor(if (model.defaultCategory) R.color.colorText else R.color.red)
     }
 
 }

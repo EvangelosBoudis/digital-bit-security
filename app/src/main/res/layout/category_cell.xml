@@ -47,8 +47,9 @@
 
     <ImageView
         android:id="@+id/trailing_btn"
-        android:layout_width="28dp"
+        android:layout_width="36dp"
         android:layout_height="0dp"
+        android:padding="5.5dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toTopOf="@id/thumbnail_holder"
         app:layout_constraintBottom_toBottomOf="@id/thumbnail_holder"

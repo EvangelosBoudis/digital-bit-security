@@ -4,14 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/discordGray"
+    android:background="@color/colorPopupBackground"
     tools:context=".ui.categoryConstructor.CategoryTypeChooserBottomFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp">
+        android:paddingTop="20dp">
 
         <TextView
             android:id="@+id/headline_field"
@@ -61,10 +60,10 @@
             android:id="@+id/apply_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:backgroundTint="@color/lightGray"
             android:text="@string/apply"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

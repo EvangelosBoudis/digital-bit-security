@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00ecd7</color>
+    <color name="colorPrimary">#03DAC5</color>
     <color name="colorPrimaryDark">#121212</color>
-    <color name="colorAccent">#00ecd7</color>
+    <color name="colorAccent">#03DAC5</color>
 
-    <color name="darkCyan">#00d4c1</color>
-    <color name="darkerCyan">#213533</color>
+    <color name="colorBackground">#121212</color>
+    <color name="colorPopupBackground">#303136</color>
+    <color name="colorBtnBackground">#393b3c</color>
+    <color name="colorBtnStroke">#525355</color>
+    <color name="colorSelectedCategory">#8002ae9d</color>
+    <color name="colorText">#5d6466</color>
+
     <color name="red">#e84a5f</color>
     <color name="yellow">#fff115</color>
     <color name="rippleColor">#40ffffff</color>
 
-    <color name="discordGray">#303136</color>
-    <color name="lightGray">#5d6466</color>
-    <color name="darkGray">#393b3c</color>
-
     <color name="white">#fff</color>
     <color name="black">#000</color>
+
 </resources>

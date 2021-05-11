@@ -2,6 +2,7 @@ package com.nativeboys.password.manager.ui.adapters.categoriesIconSearch
 
 import android.graphics.Color
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -21,10 +22,16 @@ class CategoriesIconSearchViewHolder(
     private val thumbnailHolder = itemView.findViewById<MaterialIconView>(R.id.thumbnail_holder)
 
     override fun bind(model: UICategoryIcon) {
+        val iconColor =
+            when {
+                model.selected -> ContextCompat.getColor(itemView.context, R.color.colorPrimary)
+                AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES -> Color.WHITE
+                else -> Color.BLACK
+            }
         val draw = materialIconCodeToDrawable(
             itemView.context,
             model.thumbnailCode,
-            if (model.selected) ContextCompat.getColor(itemView.context, R.color.colorPrimary) else Color.WHITE,
+            iconColor,
             30
         )
         if (draw != null) {
@@ -37,7 +44,7 @@ class CategoriesIconSearchViewHolder(
         }
         Glide
             .with(itemView.context)
-            .load(R.drawable.stroke_shape)
+            .load(ContextCompat.getDrawable(itemView.context, R.drawable.stroke_shape))
             .intoView(thumbnailBackgroundHolder)
     }
 
