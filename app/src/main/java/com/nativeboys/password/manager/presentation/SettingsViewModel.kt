@@ -2,9 +2,9 @@ package com.nativeboys.password.manager.presentation
 
 import android.content.Context
 import android.net.Uri
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.nativeboys.password.manager.BuildConfig.DATABASE_BACKUP
 import com.nativeboys.password.manager.data.local.AppDatabase
@@ -22,7 +22,10 @@ class SettingsViewModel @ViewModelInject constructor(
     private val preferencesManager: PreferencesManager
 ): ViewModel() {
 
-    val darkThemeEnabled = preferencesManager.observeDarkTheme().asLiveData()
+    val darkThemeEnabled: Boolean
+        get() {
+            return AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
+        }
 
     fun enableDarkTheme(enabled: Boolean) = viewModelScope.launch(context = Dispatchers.IO) {
         preferencesManager.updateDarkTheme(enabled)

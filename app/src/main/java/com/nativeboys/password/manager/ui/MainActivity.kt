@@ -23,23 +23,27 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel.initIfRequired()
-        viewModel.darkThemeEnabled.observe(this) { enabled ->
-            val mode =
-                if (enabled) AppCompatDelegate.MODE_NIGHT_YES
-                else AppCompatDelegate.MODE_NIGHT_NO
-            AppCompatDelegate.setDefaultNightMode(mode)
+        viewModel.darkThemeMode.observe(this) { mode ->
+            if (mode != AppCompatDelegate.getDefaultNightMode()) {
+                AppCompatDelegate.setDefaultNightMode(mode)
+            }
         }
     }
 
 }
 
-/*TODO:
-*  1. Regular Expression Weak-Medium-Strong Password
-*  4. Master Password Constructor Fragment
-*  5. Master Password Fragment
-*  6. Password Generator Fragment
-*  7. Welcome Screen with basic Information about the app
-*  8. Settings (exit, theme, patreon link)*/
+/*
+* TODO:
+*  1. Settings Modify Pass, Bue me a coffee
+*  2. Secret Key dialog on import / export database + require master password
+*  3. Welcome Screen with basic Information about the app
+*  4. Interface Injection (Impl)
+*  5. Pass required on Item click
+*  6. Master Password Fragment
+*  7. Master Password Constructor Fragment
+*
+*  (maybe): Regular Expression Weak-Medium-Strong Password, Password Generator Fragment
+* */
 
 /*
 * Tutorials:

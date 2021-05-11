@@ -1,6 +1,7 @@
 package com.nativeboys.password.manager.presentation
 
 import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -13,6 +14,7 @@ import com.nativeboys.password.manager.util.storage.FileUtils
 import dagger.hilt.android.qualifiers.ApplicationContext
 import ir.androidexception.roomdatabasebackupandrestore.Restore
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -23,7 +25,12 @@ class MainActivityViewModel @ViewModelInject constructor(
     private val categoryRepository: CategoryRepository
 ): ViewModel() {
 
-    val darkThemeEnabled = preferencesManager.observeDarkTheme().asLiveData()
+    val darkThemeMode = preferencesManager
+        .observeDarkTheme()
+        .map { enabled ->
+            if (enabled) AppCompatDelegate.MODE_NIGHT_YES
+            else AppCompatDelegate.MODE_NIGHT_NO
+        }.asLiveData()
 
     fun initIfRequired() {
         viewModelScope.launch(context = Dispatchers.IO) {

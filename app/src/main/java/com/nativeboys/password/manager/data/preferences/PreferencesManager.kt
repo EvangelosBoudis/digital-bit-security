@@ -60,6 +60,8 @@ class PreferencesManager @Inject constructor(
 
     suspend fun updateDarkTheme(enabled: Boolean) = update(PreferencesKeys.DARK_THEME_ENABLED, enabled)
 
+    suspend fun isDarkThemeEnabled() = read(PreferencesKeys.DARK_THEME_ENABLED)
+
     private suspend fun <T> update(key: Preferences.Key<T>, value: T) {
         dataStore.edit { preferences ->
             preferences[key] = value

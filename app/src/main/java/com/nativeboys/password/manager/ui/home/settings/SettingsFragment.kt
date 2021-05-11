@@ -17,6 +17,8 @@ import com.nativeboys.password.manager.presentation.SettingsViewModel
 import com.nativeboys.password.manager.util.isPermissionGranted
 import com.zeustech.zeuskit.ui.views.BottomBar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListener {
@@ -73,21 +75,17 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /*
-        * TODO: theme change, modify master password, buy me a coffee
-        * */
         val binding = FragmentSettingsBinding.bind(view)
         binding.importDbBtn.setOnClickListener(this)
         binding.exportDbBtn.setOnClickListener(this)
 
+        binding.modeSwitch.isChecked = viewModel.darkThemeEnabled
         binding.modeSwitch.setOnCheckedChangeListener { _, isChecked ->
-            viewModel.enableDarkTheme(isChecked)
+            lifecycleScope.launch {
+                delay(350)
+                viewModel.enableDarkTheme(isChecked)
+            }
         }
-
-        viewModel.darkThemeEnabled.observe(viewLifecycleOwner) { enabled ->
-            binding.modeSwitch.isChecked = enabled
-        }
-
     }
 
     override fun onClick(v: View?) {
