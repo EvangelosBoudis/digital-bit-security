@@ -76,14 +76,16 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentSettingsBinding.bind(view)
-        binding.importDbBtn.setOnClickListener(this)
-        binding.exportDbBtn.setOnClickListener(this)
+        binding.apply {
+            importDbBtn.setOnClickListener(this@SettingsFragment)
+            exportDbBtn.setOnClickListener(this@SettingsFragment)
 
-        binding.modeSwitch.isChecked = viewModel.darkThemeEnabled
-        binding.modeSwitch.setOnCheckedChangeListener { _, isChecked ->
-            lifecycleScope.launch {
-                delay(350)
-                viewModel.enableDarkTheme(isChecked)
+            modeSwitch.isChecked = viewModel.darkThemeEnabled
+            modeSwitch.setOnCheckedChangeListener { _, isChecked ->
+                lifecycleScope.launch {
+                    delay(350)
+                    viewModel.enableDarkTheme(isChecked)
+                }
             }
         }
     }

@@ -1,6 +1,8 @@
 package com.nativeboys.password.manager.data
 
 import android.os.Parcelable
+import androidx.annotation.StringRes
+import com.nativeboys.password.manager.R
 import com.zeustech.zeuskit.ui.rv.ListAdapterItem
 import kotlinx.parcelize.Parcelize
 import java.util.*
@@ -136,5 +138,43 @@ data class UIField(
     override fun areItemsTheSame(model: UIField) = id == model.id
 
     override fun areContentsTheSame(model: UIField) = this == model
+
+}
+
+data class UIMasterPasswordRequirement(
+    @StringRes val descriptionResId: Int,
+    val accepted: Boolean
+) : ListAdapterItem<UIMasterPasswordRequirement> {
+
+    override fun areItemsTheSame(model: UIMasterPasswordRequirement) = descriptionResId == model.descriptionResId
+
+    override fun areContentsTheSame(model: UIMasterPasswordRequirement) = this == model
+
+}
+
+data class MasterPasswordRequirement(
+    val regularExpression: String,
+    @StringRes val descriptionResId: Int,
+) {
+
+    companion object {
+
+        private const val AT_LEAST_TREE_CAPITAL_LETTERS_IN_ANY_ORDER = "^(?=(.*[A-Z]){3,}).+$"
+        private const val AT_LEAST_ONE_LOWERCASE_LETTER_IN_ANY_ORDER = "^(?=(.*[a-z]){1,}).+$"
+        private const val AT_LEAST_TWO_DIGITS_IN_ANY_ORDER = "^(?=(.*[0-9]){2,}).+$" // "^(?=.*?[0-9]{2,}).+$"
+        private const val AT_LEAST_THREE_SPECIAL_CHARACTERS_IN_ANY_ORDER = "^(?=(.*[!#$%&()*+,-./:;<=>?@_{|}~^]){3,}).+$" // "^(?=.*?[#?!@$%^&*-]{3,}).+$"
+        private const val AT_LEAST_NINE_CHARACTERS = "^.{9,}$"
+        private const val NO_WHITESPACE = "^(?=\\S+$).+$"
+
+        val available = listOf(
+            MasterPasswordRequirement(AT_LEAST_TREE_CAPITAL_LETTERS_IN_ANY_ORDER, R.string.capital_letters),
+            MasterPasswordRequirement(AT_LEAST_ONE_LOWERCASE_LETTER_IN_ANY_ORDER, R.string.lowercase_letters),
+            MasterPasswordRequirement(AT_LEAST_TWO_DIGITS_IN_ANY_ORDER, R.string.digits),
+            MasterPasswordRequirement(AT_LEAST_THREE_SPECIAL_CHARACTERS_IN_ANY_ORDER, R.string.special_characters),
+            MasterPasswordRequirement(AT_LEAST_NINE_CHARACTERS, R.string.password_length),
+            MasterPasswordRequirement(NO_WHITESPACE, R.string.no_whitespace),
+        )
+
+    }
 
 }

@@ -34,13 +34,15 @@ class MainActivity : AppCompatActivity() {
 
 /*
 * TODO:
-*  1. Settings Modify Pass, Bue me a coffee
+*  1. Settings Modify Pass, Buy me a coffee
 *  2. Secret Key dialog on import / export database + require master password
 *  3. Welcome Screen with basic Information about the app
 *  4. Interface Injection (Impl)
 *  5. Pass required on Item click
 *  6. Master Password Fragment
 *  7. Master Password Constructor Fragment
+*  8. Tablet Restriction
+*  9. Remove ZeusKit
 *
 *  (maybe): Regular Expression Weak-Medium-Strong Password, Password Generator Fragment
 * */

@@ -59,4 +59,13 @@
     <string name="backup_imported">Backup imported successfully!</string>
     <string name="unsuccessful_import">Unsuccessful import</string>
     <string name="enable_dark_theme">Enable Dark Theme:&#160;</string>
+    <string name="set_up_password">Set up master password</string>
+    <string name="please_create">Please create a secure password including the following criteria below.</string>
+    <string name="capital_letters">3 capital letters</string>
+    <string name="lowercase_letters">1 lowercase letter</string>
+    <string name="digits">2 digits</string>
+    <string name="special_characters">3 special characters</string>
+    <string name="no_whitespace">No whitespace</string>
+    <string name="password_length">Length greater than 8</string>
+    <string name="register">Register</string>
 </resources>

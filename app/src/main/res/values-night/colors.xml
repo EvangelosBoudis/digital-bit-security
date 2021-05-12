@@ -6,8 +6,8 @@
 
     <color name="colorBackground">#121212</color>
     <color name="colorPopupBackground">#303136</color>
-    <color name="colorBtnBackground">#393b3c</color>
-    <color name="colorBtnStroke">#525355</color>
+    <color name="colorBtnBackground">#4c4e4f</color>
+    <color name="colorBtnStroke">#636466</color>
     <color name="colorSelectedCategory">#8002ae9d</color>
     <color name="colorText">#5d6466</color>
 
