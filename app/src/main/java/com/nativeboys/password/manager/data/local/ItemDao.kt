@@ -16,7 +16,7 @@ interface ItemDao {
     suspend fun findItemWithContentById(id: String): ItemWithContents
 
     @Query("""
-        SELECT mItems.id AS itemId, mItems.name AS itemName, mItems.description AS itemDescription, mItems.tags AS itemTags, mItems.favorite AS favoriteItem, mItems.category_id AS itemCategoryId, mItems.date_modified AS lastModificationDate, thumbnails.url AS thumbnailUrl
+        SELECT mItems.id AS itemId, mItems.name AS itemName, mItems.description AS itemDescription, mItems.tags AS itemTags, mItems.favorite AS favoriteItem, mItems.category_id AS itemCategoryId, mItems.date_modified AS lastModificationDate, thumbnails.url AS thumbnailUrl, mItems.requires_password AS requestPassword
         FROM (SELECT * FROM items WHERE items.id = :id) AS mItems
         LEFT JOIN thumbnails ON thumbnails.id = mItems.thumbnail_id
         """)
@@ -25,7 +25,7 @@ interface ItemDao {
     // Projection
     @Query(
         """
-        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.tags AS itemTags, items.favorite AS favoriteItem, items.category_id AS itemCategoryId, items.date_modified AS lastModificationDate, thumbnails.url AS thumbnailUrl 
+        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.tags AS itemTags, items.favorite AS favoriteItem, items.category_id AS itemCategoryId, items.date_modified AS lastModificationDate, thumbnails.url AS thumbnailUrl, items.requires_password AS requestPassword
         FROM items
         LEFT JOIN thumbnails ON thumbnails.id = items.thumbnail_id
         GROUP BY itemId
@@ -35,7 +35,7 @@ interface ItemDao {
 
     @Query(
         """
-        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.tags AS itemTags, items.favorite AS favoriteItem, items.category_id AS itemCategoryId, items.date_modified AS lastModificationDate, thumbnails.url AS thumbnailUrl
+        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.tags AS itemTags, items.favorite AS favoriteItem, items.category_id AS itemCategoryId, items.date_modified AS lastModificationDate, thumbnails.url AS thumbnailUrl, items.requires_password AS requestPassword
         FROM items
         LEFT JOIN thumbnails ON thumbnails.id = items.thumbnail_id
         GROUP BY itemId
@@ -46,7 +46,7 @@ interface ItemDao {
 
     @Query(
         """
-        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.tags AS itemTags, items.favorite AS favoriteItem, items.category_id AS itemCategoryId, items.date_modified AS lastModificationDate, thumbnails.url AS thumbnailUrl
+        SELECT items.id AS itemId, items.name AS itemName, items.description AS itemDescription, items.tags AS itemTags, items.favorite AS favoriteItem, items.category_id AS itemCategoryId, items.date_modified AS lastModificationDate, thumbnails.url AS thumbnailUrl, items.requires_password AS requestPassword
         FROM (SELECT * FROM items AS nested WHERE (nested.name LIKE '%' || :searchKey || '%' OR nested.tags LIKE '%' || :searchKey || '%')) AS items
         LEFT JOIN thumbnails ON thumbnails.id = items.thumbnail_id
         GROUP BY itemId

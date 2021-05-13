@@ -20,7 +20,7 @@ class CategoriesViewHolder(itemView: View) : SharedCategoriesViewHolder(itemView
         super.bind(model)
         Glide
             .with(itemView.context)
-            .load(if (model.defaultCategory) R.drawable.ic_baseline_lock_24 else R.drawable.ic_baseline_delete_24)
+            .load(if (model.defaultCategory) R.drawable.ic_baseline_lock_48 else R.drawable.ic_baseline_delete_24)
             .into(trailingBtn)
         trailingBtn.vectorTintResColor(if (model.defaultCategory) R.color.colorText else R.color.red)
     }

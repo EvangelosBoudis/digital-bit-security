@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zeustech.zeuskit.ui.views.FocusableConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:animateLayoutChanges="true"
+    android:background="@color/colorBackground"
+    tools:context=".ui.login.LoginFragment">
+
+    <ImageView
+        android:id="@+id/lock_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_baseline_lock_48"
+        app:tint="@color/colorAccent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/headline_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@id/lock_holder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/enter_your_password"
+        style="@style/Widget.App.TextView.Headline3"/>
+
+    <EditText
+        android:id="@+id/password_field"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/headline_field"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:inputType="textPassword"
+        android:imeOptions="actionGo"
+        style="@style/Widget.App.EditText.Padding"
+        tools:ignore="Autofill,LabelFor,TextFields" />
+
+    <TextView
+        android:id="@+id/wrong_pass_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/password_field"
+        app:layout_constraintEnd_toEndOf="@id/password_field"
+        android:text="@string/wrong_password"
+        android:textColor="@color/red"
+        style="@style/Widget.App.TextView"/>
+
+    <ImageView
+        android:id="@+id/show_hide_btn"
+        app:layout_constraintEnd_toEndOf="@id/password_field"
+        app:layout_constraintTop_toTopOf="@id/password_field"
+        android:src="@drawable/ic_outline_visibility_24"
+        style="@style/EditText.Drawable"
+        tools:ignore="ContentDescription" />
+
+    <Button
+        android:id="@+id/submit_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:iconTint="@color/white"
+        app:icon="@drawable/ic_baseline_arrow_forward_24"
+        style="@style/Widget.App.Button.OutlinedButton.IconOnly.Big" />
+
+</com.zeustech.zeuskit.ui.views.FocusableConstraintLayout>

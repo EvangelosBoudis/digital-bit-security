@@ -3,84 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_nav_graph"
-    app:startDestination="@id/passwordConstructorFragment">
+    app:startDestination="@id/registerFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.nativeboys.password.manager.ui.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_itemConstructorFragment"
-            app:destination="@id/itemConstructorFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_itemOverviewFragment"
-            app:destination="@id/itemOverviewFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_categoryChooseFragment"
-            app:destination="@id/categoryChooseFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_categoryConstructorFragment"
-            app:destination="@id/categoryConstructorFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/itemConstructorFragment"
-        android:name="com.nativeboys.password.manager.ui.itemConstructor.ItemConstructorFragment"
-        android:label="fragment_item_constructor"
-        tools:layout="@layout/fragment_item_constructor" >
-        <argument
-            android:name="ITEM_ID"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="CATEGORY_ID"
-            app:argType="string"
-            app:nullable="true" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/itemOverviewFragment"
-        android:name="com.nativeboys.password.manager.ui.itemOverview.ItemOverviewFragment"
-        android:label="fragment_item_overview"
-        tools:layout="@layout/fragment_item_overview" >
-        <argument
-            android:name="item_id"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_itemOverviewFragment_to_itemConstructorFragment"
-            app:popUpTo="@id/itemOverviewFragment"
-            app:popUpToInclusive="true"
-            app:destination="@id/itemConstructorFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/categoryChooseFragment"
-        android:name="com.nativeboys.password.manager.ui.categoryChooser.CategoryChooseFragment"
-        android:label="fragment_category_choose"
-        tools:layout="@layout/fragment_category_choose" >
-        <action
-            android:id="@+id/action_categoryChooseFragment_to_itemConstructorFragment"
-            app:popUpTo="@id/categoryChooseFragment"
-            app:popUpToInclusive="true"
-            app:destination="@id/itemConstructorFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/categoryConstructorFragment"
-        android:name="com.nativeboys.password.manager.ui.categoryConstructor.CategoryConstructorFragment"
-        android:label="fragment_category_constructor"
-        tools:layout="@layout/fragment_category_constructor" >
-        <argument
-            android:name="CATEGORY_ID"
-            app:argType="string"
-            app:nullable="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/passwordConstructorFragment"
-        android:name="com.nativeboys.password.manager.ui.passwordConstructor.PasswordConstructorFragment"
+        android:id="@+id/registerFragment"
+        android:name="com.nativeboys.password.manager.ui.register.RegisterFragment"
         android:label="fragment_password_constructor"
-        tools:layout="@layout/fragment_password_constructor" >
+        tools:layout="@layout/fragment_register" >
         <action
-            android:id="@+id/action_passwordConstructorFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_register_to_content"
+            app:popUpTo="@id/registerFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/contentFragment" />
+        <action
+            android:id="@+id/action_register_to_login"
+            app:popUpTo="@id/registerFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/loginFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.nativeboys.password.manager.ui.login.LoginFragment"
+        android:label="fragment_password_prompt"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_content"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/contentFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/contentFragment"
+        android:name="com.nativeboys.password.manager.ui.content.ContentFragment"
+        android:label="fragment_content"
+        tools:layout="@layout/fragment_content" />
 
 </navigation>

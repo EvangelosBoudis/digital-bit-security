@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.nativeboys.password.manager.ui.content.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_itemConstructor"
+            app:destination="@id/itemConstructorFragment" />
+        <action
+            android:id="@+id/action_home_to_itemOverview"
+            app:destination="@id/itemOverviewFragment" />
+        <action
+            android:id="@+id/action_home_to_categoryChoose"
+            app:destination="@id/categoryChooseFragment" />
+        <action
+            android:id="@+id/action_home_to_categoryConstructor"
+            app:destination="@id/categoryConstructorFragment" />
+        <action
+            android:id="@+id/action_home_to_login"
+            app:destination="@id/loginFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/itemConstructorFragment"
+        android:name="com.nativeboys.password.manager.ui.content.itemConstructor.ItemConstructorFragment"
+        android:label="fragment_item_constructor"
+        tools:layout="@layout/fragment_item_constructor" >
+        <argument
+            android:name="ITEM_ID"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="CATEGORY_ID"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/itemOverviewFragment"
+        android:name="com.nativeboys.password.manager.ui.content.itemOverview.ItemOverviewFragment"
+        android:label="fragment_item_overview"
+        tools:layout="@layout/fragment_item_overview" >
+        <argument
+            android:name="item_id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_itemOverview_to_itemConstructor"
+            app:popUpTo="@id/itemOverviewFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/itemConstructorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryChooseFragment"
+        android:name="com.nativeboys.password.manager.ui.content.categoryChooser.CategoryChooseFragment"
+        android:label="fragment_category_choose"
+        tools:layout="@layout/fragment_category_choose" >
+        <action
+            android:id="@+id/action_categoryChoose_to_itemConstructor"
+            app:popUpTo="@id/categoryChooseFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/itemConstructorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/categoryConstructorFragment"
+        android:name="com.nativeboys.password.manager.ui.content.categoryConstructor.CategoryConstructorFragment"
+        android:label="fragment_category_constructor"
+        tools:layout="@layout/fragment_category_constructor" >
+        <argument
+            android:name="CATEGORY_ID"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.nativeboys.password.manager.ui.login.LoginFragment"
+        android:label="fragment_password_prompt"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_itemOverview"
+            app:popUpTo="@id/loginFragment2"
+            app:popUpToInclusive="true"
+            app:destination="@id/itemOverviewFragment" />
+        <action
+            android:id="@+id/action_login_to_itemConstructor"
+            app:popUpTo="@id/loginFragment2"
+            app:popUpToInclusive="true"
+            app:destination="@id/itemConstructorFragment" />
+        <argument
+            android:name="DESTINATION"
+            app:argType="integer" />
+        <argument
+            android:name="DATA"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+</navigation>

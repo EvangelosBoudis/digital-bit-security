@@ -47,7 +47,11 @@ class PreferencesManager @Inject constructor(
     }
 
     fun observeDarkTheme() = observePreferences().map {
-        it[PreferencesKeys.DARK_THEME_ENABLED] ?: true
+        it[PreferencesKeys.DARK_THEME_ENABLED] ?: false
+    }
+
+    fun observeRequestPassword() = observePreferences().map {
+        it[PreferencesKeys.REQUEST_PASSWORD] ?: false
     }
 
     suspend fun updateItemsSortOrder(order: SortOrder) = update(PreferencesKeys.SORT_ORDER, order.name)
@@ -59,6 +63,8 @@ class PreferencesManager @Inject constructor(
     suspend fun updateItemSearchKey(searchKey: String) = update(PreferencesKeys.ITEM_SEARCH_KEY, searchKey)
 
     suspend fun updateDarkTheme(enabled: Boolean) = update(PreferencesKeys.DARK_THEME_ENABLED, enabled)
+
+    suspend fun updateRequestPassword(request: Boolean) = update(PreferencesKeys.REQUEST_PASSWORD, request)
 
     suspend fun isDarkThemeEnabled() = read(PreferencesKeys.DARK_THEME_ENABLED)
 
@@ -79,6 +85,7 @@ class PreferencesManager @Inject constructor(
         val SELECTED_CATEGORY_ID = preferencesKey<String>("selected_category_id")
         val ITEM_SEARCH_KEY = preferencesKey<String>("item_search_key")
         val DARK_THEME_ENABLED = preferencesKey<Boolean>("dark_theme_enabled")
+        val REQUEST_PASSWORD = preferencesKey<Boolean>("request_password")
     }
 
 }

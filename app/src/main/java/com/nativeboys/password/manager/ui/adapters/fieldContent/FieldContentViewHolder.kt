@@ -2,9 +2,6 @@ package com.nativeboys.password.manager.ui.adapters.fieldContent
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.text.method.HideReturnsTransformationMethod
-import android.text.method.PasswordTransformationMethod
-import android.text.method.TransformationMethod
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,6 +12,7 @@ import com.nativeboys.password.manager.data.FieldContentDto
 import com.nativeboys.password.manager.ui.adapters.EditTextChangeListener
 import com.nativeboys.password.manager.util.InputTypeItem
 import com.nativeboys.password.manager.util.findByCode
+import com.nativeboys.password.manager.util.togglePasswordTransformation
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 
 class FieldContentViewHolder(
@@ -43,10 +41,7 @@ class FieldContentViewHolder(
         }
         fieldBtn.setOnClickListener {
             if (hidden) { // Hide-Show Password
-                val hiddenState = contentField.transformationMethod is PasswordTransformationMethod
-                val updatedMethod: TransformationMethod = if (hiddenState) HideReturnsTransformationMethod.getInstance() else PasswordTransformationMethod.getInstance()
-                contentField.transformationMethod = updatedMethod
-                contentField.setSelection(contentField.length())
+                contentField.togglePasswordTransformation()
             } else { // Erase content
                 contentField.text = null
             }

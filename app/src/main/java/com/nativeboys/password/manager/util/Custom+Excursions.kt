@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable
 import android.os.Looper
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
-import android.text.method.TransformationMethod
 import android.view.View
 import android.widget.EditText
 import android.widget.RadioButton
@@ -61,6 +60,13 @@ fun EditText.togglePasswordTransformationMethod(revealText: String? = null, hide
     val hidden = transformationMethod is PasswordTransformationMethod
     transformationMethod = if (hidden) HideReturnsTransformationMethod.getInstance() else PasswordTransformationMethod.getInstance()
     setText(if (hidden) revealText else hideText)
+    setSelection(length())
+}
+
+fun EditText.togglePasswordTransformation() {
+    val hiddenState = transformationMethod is PasswordTransformationMethod
+    val updatedMethod = if (hiddenState) HideReturnsTransformationMethod.getInstance() else PasswordTransformationMethod.getInstance()
+    transformationMethod = updatedMethod
     setSelection(length())
 }
 

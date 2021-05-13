@@ -15,7 +15,8 @@ import com.zeustech.zeuskit.R
 
 open class BottomFragment(
     @LayoutRes private val contentLayoutId: Int,
-    private val heightPercentage: Float
+    private val heightPercentage: Float,
+    private val cancelable: Boolean
 ) : BottomSheetDialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -35,6 +36,11 @@ open class BottomFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(contentLayoutId, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        isCancelable = cancelable
+    }
 
     companion object {
 

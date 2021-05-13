@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".ui.home.searchEngine.SearchEngineFragment">
+    tools:context=".ui.content.home.searchEngine.SearchEngineFragment">
 
     <TextView
         android:id="@+id/headline_field"

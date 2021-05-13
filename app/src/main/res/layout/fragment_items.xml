@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".ui.home.items.ItemsFragment">
+    tools:context=".ui.content.home.items.ItemsFragment">
 
     <ImageView
         android:id="@+id/app_icon_holder"

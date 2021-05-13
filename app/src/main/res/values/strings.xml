@@ -68,4 +68,7 @@
     <string name="no_whitespace">No whitespace</string>
     <string name="password_length">Length greater than 8</string>
     <string name="register">Register</string>
+    <string name="enter_your_password">Enter your master password to continue</string>
+    <string name="wrong_password">Wrong password</string>
+    <string name="no_items">No item to display</string>
 </resources>

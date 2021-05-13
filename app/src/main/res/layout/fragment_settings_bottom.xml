@@ -8,7 +8,7 @@
     android:paddingTop="20dp"
     android:paddingStart="20dp"
     android:paddingEnd="20dp"
-    tools:context=".ui.home.items.SettingsBottomFragment">
+    tools:context=".ui.content.home.items.SettingsBottomFragment">
 
     <TextView
         android:id="@+id/headline_field"

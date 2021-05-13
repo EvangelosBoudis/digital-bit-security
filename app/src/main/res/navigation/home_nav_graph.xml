@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/itemsFragment"
-        android:name="com.nativeboys.password.manager.ui.home.items.ItemsFragment"
+        android:name="com.nativeboys.password.manager.ui.content.home.items.ItemsFragment"
         android:label="fragment_items"
         tools:layout="@layout/fragment_items" />
 
     <fragment
         android:id="@+id/searchEngineFragment"
-        android:name="com.nativeboys.password.manager.ui.home.searchEngine.SearchEngineFragment"
+        android:name="com.nativeboys.password.manager.ui.content.home.searchEngine.SearchEngineFragment"
         android:label="fragment_search_engine"
         tools:layout="@layout/fragment_search_engine" />
 
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.nativeboys.password.manager.ui.home.categories.CategoriesFragment"
+        android:name="com.nativeboys.password.manager.ui.content.home.categories.CategoriesFragment"
         android:label="fragment_categories"
         tools:layout="@layout/fragment_categories" />
 
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.nativeboys.password.manager.ui.home.settings.SettingsFragment"
+        android:name="com.nativeboys.password.manager.ui.content.home.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:padding="20dp"
-    tools:context=".ui.home.settings.SettingsFragment">
+    tools:context=".ui.content.home.settings.SettingsFragment">
 
     <TextView
         android:id="@+id/headline_field"

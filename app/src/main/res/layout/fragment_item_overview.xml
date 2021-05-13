@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:transitionGroup="true"
-    tools:context=".ui.itemOverview.ItemOverviewFragment">
+    tools:context=".ui.content.itemOverview.ItemOverviewFragment">
 
     <include android:id="@+id/header_container"
         layout="@layout/header_layout" />

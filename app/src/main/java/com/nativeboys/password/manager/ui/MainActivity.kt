@@ -1,10 +1,12 @@
 package com.nativeboys.password.manager.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.presentation.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,6 +16,8 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainActivityViewModel by viewModels()
 
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
@@ -21,7 +25,8 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_SECURE
         ) // hide content of program from Android “Overview Screen” + Do not allow ScreenShots
         setContentView(R.layout.activity_main)
-
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_activity_fragment) as NavHostFragment
+        navController = navHostFragment.navController
         viewModel.initIfRequired()
         viewModel.darkThemeMode.observe(this) { mode ->
             if (mode != AppCompatDelegate.getDefaultNightMode()) {
@@ -40,9 +45,10 @@ class MainActivity : AppCompatActivity() {
 *  4. Interface Injection (Impl)
 *  5. Pass required on Item click
 *  6. Master Password Fragment
-*  7. Master Password Constructor Fragment
-*  8. Tablet Restriction
-*  9. Remove ZeusKit
+*  7. Tablet Restriction
+*  8. Remove ZeusKit
+*  9. Code improvement
+*  10. Fast Login enable / disable via Settings (master password prompt)
 *
 *  (maybe): Regular Expression Weak-Medium-Strong Password, Password Generator Fragment
 * */

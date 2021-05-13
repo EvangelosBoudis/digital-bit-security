@@ -26,7 +26,8 @@ data class ItemDto(
     val favoriteItem: Boolean,
     val itemCategoryId: String,
     val lastModificationDate: Date,
-    val thumbnailUrl: String?
+    val thumbnailUrl: String?,
+    val requestPassword: Boolean
 ) : ListAdapterItem<ItemDto> {
 
     override fun areItemsTheSame(model: ItemDto) = itemId == model.itemId
