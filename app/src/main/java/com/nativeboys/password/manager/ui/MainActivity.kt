@@ -39,16 +39,10 @@ class MainActivity : AppCompatActivity() {
 
 /*
 * TODO:
-*  1. Settings Modify Pass, Buy me a coffee
+*  1. Settings Modify Pass, Fast Login enable / disable via Settings (master password prompt), Buy me a coffee
 *  2. Secret Key dialog on import / export database + require master password
 *  3. Welcome Screen with basic Information about the app
-*  4. Interface Injection (Impl)
-*  5. Pass required on Item click
-*  6. Master Password Fragment
-*  7. Tablet Restriction
-*  8. Remove ZeusKit
-*  9. Code improvement
-*  10. Fast Login enable / disable via Settings (master password prompt)
+*  4. Remove ZeusKit + Code improvement + Interface Injection (Impl) + replace Preference manager with userRepository/appRepository
 *
 *  (maybe): Regular Expression Weak-Medium-Strong Password, Password Generator Fragment
 * */
