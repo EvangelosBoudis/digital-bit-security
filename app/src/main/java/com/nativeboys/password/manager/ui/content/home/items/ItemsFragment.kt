@@ -64,25 +64,15 @@ class ItemsFragment : Fragment(
             override fun onClick(view: View, model: ItemDto, position: Int) {
                 when (view.id) {
                     R.id.visible_view -> {
-                        if (model.requestPassword) {
-                            parentNavController()?.apply {
-                                navigate(HomeFragmentDirections.actionHomeToLogin(2, model.itemId))
-                            }
-                        } else {
-                            parentNavController()?.apply {
-                                navigate(HomeFragmentDirections.actionHomeToItemOverview(model.itemId))
-                            }
+                        parentNavController()?.apply {
+                            if (model.requestPassword) navigate(HomeFragmentDirections.actionHomeToLogin(2, model.itemId))
+                            else navigate(HomeFragmentDirections.actionHomeToItemOverview(model.itemId))
                         }
                     }
                     R.id.edit_btn -> {
-                        if (model.requestPassword) {
-                            parentNavController()?.apply {
-                                navigate(HomeFragmentDirections.actionHomeToLogin(3, model.itemId))
-                            }
-                        } else {
-                            parentNavController()?.apply {
-                                navigate(HomeFragmentDirections.actionHomeToItemConstructor(model.itemId, null))
-                            }
+                        parentNavController()?.apply {
+                            if (model.requestPassword) navigate(HomeFragmentDirections.actionHomeToLogin(3, model.itemId))
+                            else navigate(HomeFragmentDirections.actionHomeToItemConstructor(model.itemId, null))
                         }
                     }
                     R.id.delete_btn -> {
@@ -104,6 +94,14 @@ class ItemsFragment : Fragment(
         }
         viewModel.itemsDto.observe(viewLifecycleOwner) { items ->
             itemsAdapter.submitList(items)
+        }
+        viewModel.emptyData.observe(viewLifecycleOwner) { empty ->
+            val visibility = if (empty) View.VISIBLE else View.GONE
+            lifecycleScope.launch {
+                delay(200)
+                binding.emptyDataField.visibility = visibility
+                binding.emptyDataHolder.visibility = visibility
+            }
         }
     }
 

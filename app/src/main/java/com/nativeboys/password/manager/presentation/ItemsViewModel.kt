@@ -2,10 +2,7 @@ package com.nativeboys.password.manager.presentation
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.nativeboys.password.manager.data.repository.CategoryRepository
 import com.nativeboys.password.manager.data.repository.ItemRepository
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +17,10 @@ class ItemsViewModel @ViewModelInject constructor(
     val categories = categoryRepository.observeAllCategoriesDto().asLiveData()
 
     val itemsDto = itemRepository.observeItemsDtoFilteredAndSorted().asLiveData()
+
+    val emptyData = itemsDto.map { items ->
+        items.isEmpty()
+    }
 
     fun setSelectedCategory(id: String) = viewModelScope.launch(context = Dispatchers.IO) {
         categoryRepository.updateSelectedCategoryId(id)

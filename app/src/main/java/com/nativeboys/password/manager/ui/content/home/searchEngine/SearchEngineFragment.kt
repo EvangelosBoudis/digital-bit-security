@@ -61,7 +61,8 @@ class SearchEngineFragment : Fragment(
 
     override fun onClick(view: View, model: ItemDto, position: Int) {
         parentNavController()?.apply {
-            navigate(HomeFragmentDirections.actionHomeToItemOverview(model.itemId))
+            if (model.requestPassword) navigate(HomeFragmentDirections.actionHomeToLogin(2, model.itemId))
+            else navigate(HomeFragmentDirections.actionHomeToItemOverview(model.itemId))
         }
     }
 
