@@ -42,41 +42,24 @@ class MainActivity : AppCompatActivity() {
 *  1. Settings Modify Pass, Fast Login enable / disable via Settings (master password prompt), Buy me a coffee
 *  2. Secret Key dialog on import / export database + require master password
 *  3. Welcome Screen with basic Information about the app
-*  4. Remove ZeusKit + Code improvement + Interface Injection (Impl) + replace Preference manager with userRepository/appRepository
+*  4. replace PreferenceManager & CipherStorage with userRepository/appRepository + requestPermission not in ViewModel!!! + Remove ZeusKit + Interface Injection (Impl) + Code improvement
 *
 *  (maybe): Regular Expression Weak-Medium-Strong Password, Password Generator Fragment
 * */
 
 /*
-* Tutorials:
-* Nice profile: https://github.com/jisungbin
-* https://github.com/sberoch/RickAndMorty-AndroidArchitectureSample/blob/master/app/src/main/java/com/example/rickandmorty/di/AppModule.kt
-* https://stackoverflow.com/questions/64831704/how-can-i-use-hilt-to-inject-retrofit-to-repository-which-is-injected-to-viewmo
-* https://stackoverflow.com/questions/63321751/android-dagger-hilt-do-we-need-scope-annotations-for-viewmodels
-* https://guides.codepath.com/android/handling-scrolls-with-coordinatorlayout
-*
-* Documentation:
-* https://developer.android.com/training/data-storage/room/relationships
-* https://developer.android.com/training/dependency-injection/hilt-android
-* https://developer.android.com/training/dependency-injection/dagger-basics
-* https://developer.android.com/codelabs/advanced-kotlin-coroutines#0
-* https://material.io/components/buttons/android#toggle-button
-*
-* Animations:
-* https://developer.android.com/guide/fragments/animate
-* https://codelabs.developers.google.com/codelabs/material-motion-android#4
-* https://medium.com/@j.c.moreirapinto/recyclerview-shared-transitions-in-android-navigation-architecture-component-16eb902b39ba
-*
-* */
-
-/*
   IconMaker: https://www.namecheap.com/logo-maker/app/editor
 
-* Dark-Light Theme:
-* https://www.raywenderlich.com/18348259-datastore-tutorial-for-android-getting-started
-*
-* DataStore Security with SQLChiper:
-* https://blog.stylingandroid.com/datastore-security/
+  Biometrics:
+  https://developer.android.com/codelabs/biometric-login#1
+  https://android-developers.googleblog.com/2019/10/one-biometric-api-over-all-android.html
+  https://developer.android.com/training/sign-in/biometric-auth
+
+  Account Manager for saving tokens:
+  https://developer.android.com/reference/android/accounts/AccountManager.html
+
+  DataStore Security with SQLCipher:
+  https://blog.stylingandroid.com/datastore-security/
 
   Encrypted Shared Preferences:
   https://developer.android.com/reference/kotlin/androidx/security/crypto/EncryptedSharedPreferences.html
@@ -84,15 +67,31 @@ class MainActivity : AppCompatActivity() {
   KeyStore usage ( blog entry 1 and blog entry 2):
   https://stackoverflow.com/questions/21987170/how-to-store-the-key-used-in-sqlcipher-for-android
 
-  Account Manager for saving tokens:
-  https://developer.android.com/reference/android/accounts/AccountManager.html
+  Import/Export:
+  https://github.com/rafi0101/Android-Room-Database-Backup
+  https://github.com/android/architecture-components-samples/issues/340
 
-Import/Export:
-https://github.com/rafi0101/Android-Room-Database-Backup
-https://github.com/android/architecture-components-samples/issues/340
+  Keystore Manager:
+  https://github.com/sauravpradhan/AndroidKeyStore
+  https://github.com/phanirajabhandari/android-keystore-example
 
-Keystore Manager:
-https://github.com/sauravpradhan/AndroidKeyStore
-https://github.com/phanirajabhandari/android-keystore-example
+  Documentation:
+  https://developer.android.com/training/data-storage/room/relationships
+  https://developer.android.com/training/dependency-injection/hilt-android
+  https://developer.android.com/training/dependency-injection/dagger-basics
+  https://developer.android.com/codelabs/advanced-kotlin-coroutines#0
+  https://material.io/components/buttons/android#toggle-button
+
+  Tutorials:
+  Nice profile: https://github.com/jisungbin
+  https://github.com/sberoch/RickAndMorty-AndroidArchitectureSample/blob/master/app/src/main/java/com/example/rickandmorty/di/AppModule.kt
+  https://stackoverflow.com/questions/64831704/how-can-i-use-hilt-to-inject-retrofit-to-repository-which-is-injected-to-viewmo
+  https://stackoverflow.com/questions/63321751/android-dagger-hilt-do-we-need-scope-annotations-for-viewmodels
+  https://guides.codepath.com/android/handling-scrolls-with-coordinatorlayout
+
+  Animations:
+  https://developer.android.com/guide/fragments/animate
+  https://codelabs.developers.google.com/codelabs/material-motion-android#4
+  https://medium.com/@j.c.moreirapinto/recyclerview-shared-transitions-in-android-navigation-architecture-component-16eb902b39ba
 
 * */

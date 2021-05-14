@@ -13,15 +13,4 @@ class CategoryChooseViewModel @ViewModelInject constructor(
         emit(categoryRepository.findAllCategories())
     }
 
-/*
-    val searchKey = MutableStateFlow("")
-    val sortOrder = MutableStateFlow(0)
-
-    private val categoriesFlow =
-        combine(searchKey, sortOrder) { key, order ->
-            Pair(key, order)
-        }.flatMapLatest { (key, order) ->
-            categoryRepository.findAllCategoriesByNameAsFlow(key, order)
-        }*/
-
 }

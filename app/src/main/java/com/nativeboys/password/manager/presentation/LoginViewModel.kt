@@ -7,11 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.github.leonardoxh.keystore.CipherStorage
 import com.nativeboys.password.manager.BuildConfig.USER_MASTER_PASSWORD
-import com.nativeboys.password.manager.data.preferences.PreferencesManager
 
 class LoginViewModel @ViewModelInject constructor(
     private val cipherStorage: CipherStorage,
-    private val preferencesManager: PreferencesManager,
     @Assisted private val state: SavedStateHandle
 ): ViewModel() {
 
@@ -20,10 +18,6 @@ class LoginViewModel @ViewModelInject constructor(
 
     fun requestPermission(masterPassword: String) = liveData {
         emit(cipherStorage.decrypt(USER_MASTER_PASSWORD) == masterPassword)
-    }
-
-    fun notifyPermissionGranted() = liveData {
-        emit(preferencesManager.updateRequestPassword(false))
     }
 
 }

@@ -68,7 +68,11 @@
     <string name="no_whitespace">No whitespace</string>
     <string name="password_length">Length greater than 8</string>
     <string name="register">Register</string>
-    <string name="enter_your_password">Enter your master password to continue</string>
+    <string name="enter_your_password">Please re-enter your master password to continue.</string>
     <string name="wrong_password">Wrong password</string>
     <string name="no_items">No item to display</string>
+    <string name="export">Export</string>
+    <string name="import_">Import</string>
+    <string name="backup_encryption_key">Backup Encryption Key</string>
+    <string name="master_password">Master Password</string>
 </resources>

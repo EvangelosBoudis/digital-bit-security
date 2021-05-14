@@ -4,8 +4,9 @@ import android.content.Context
 import android.net.Uri
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.github.leonardoxh.keystore.CipherStorage
+import com.nativeboys.password.manager.BuildConfig
 import com.nativeboys.password.manager.BuildConfig.DATABASE_BACKUP
 import com.nativeboys.password.manager.data.local.AppDatabase
 import com.nativeboys.password.manager.data.preferences.PreferencesManager
@@ -19,8 +20,13 @@ import kotlinx.coroutines.launch
 class SettingsViewModel @ViewModelInject constructor(
     @ApplicationContext private val context: Context,
     private val database: AppDatabase,
+    private val cipherStorage: CipherStorage,
     private val preferencesManager: PreferencesManager
 ): ViewModel() {
+
+    var importEncryptionKey: String? = null
+    var exportEncryptionKey: String? = null
+    val backupDatabase = MutableLiveData<Int?>(null)
 
     val darkThemeEnabled: Boolean
         get() {
@@ -31,43 +37,41 @@ class SettingsViewModel @ViewModelInject constructor(
         preferencesManager.updateDarkTheme(enabled)
     }
 
+    fun requestPermission(masterPassword: String) = liveData {
+        emit(cipherStorage.decrypt(BuildConfig.USER_MASTER_PASSWORD) == masterPassword)
+    }
+
     fun importDatabase(
         uri: Uri,
-        encryptionKey: String,
         callback: (Boolean, String) -> Unit
     ) {
-        FileUtils.getPath(context, uri)?.let { path ->
-            Restore.Init()
-                .database(database)
-                .backupFilePath(path)
-                // .secretKey(encryptionKey)
-                .onWorkFinishListener { success, message ->
-                    callback(success, message)
-                }
-                .execute()
-        } ?: kotlin.run {
-            callback(false, "Path not found")
-        }
+        val encryptionKey = importEncryptionKey ?: return callback(false, "Path not found")
+        val filePath = FileUtils.getPath(context, uri) ?: return callback(false, "Path not found")
+        Restore.Init()
+            .database(database)
+            .backupFilePath(filePath)
+            .secretKey(encryptionKey)
+            .onWorkFinishListener { success, message ->
+                callback(success, message)
+            }
+            .execute()
     }
 
     fun exportDatabase(
         uri: Uri,
-        encryptionKey: String,
         callback: (Boolean, String) -> Unit
-    )  {
-        FileUtils.treeUriToFilePath(context, uri)?.let { path ->
-            Backup.Init()
-                .database(database)
-                .path(path)
-                .fileName(DATABASE_BACKUP)
-                //.secretKey(encryptionKey)
-                .onWorkFinishListener { success, message ->
-                    callback(success, if (success) path else message)
-                }
-                .execute()
-        } ?: kotlin.run {
-            callback(false, "Path not found")
-        }
+    ) {
+        val encryptionKey = exportEncryptionKey ?: return callback(false, "Path not found")
+        val filePath = FileUtils.treeUriToFilePath(context, uri) ?: return callback(false, "Path not found")
+        Backup.Init()
+            .database(database)
+            .path(filePath)
+            .fileName(DATABASE_BACKUP)
+            .secretKey(encryptionKey)
+            .onWorkFinishListener { success, message ->
+                callback(success, if (success) filePath else message)
+            }
+            .execute()
     }
 
 }

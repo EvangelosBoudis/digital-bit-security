@@ -29,7 +29,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
         lifecycleScope.launchWhenResumed {
             val uri = result.data?.data
             if (result.resultCode == RESULT_OK && uri != null) {
-                viewModel.importDatabase(uri, "123") { success, _ ->
+                viewModel.importDatabase(uri) { success, _ ->
                     BottomBar(
                         requireView() as ViewGroup,
                         R.layout.bottom_cell,
@@ -47,7 +47,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
         lifecycleScope.launchWhenResumed {
             val uri = result.data?.data
             if (result.resultCode == RESULT_OK && uri != null) {
-                viewModel.exportDatabase(uri, "123") { success, message ->
+                viewModel.exportDatabase(uri) { success, message ->
                     BottomBar(
                         requireView() as ViewGroup,
                         R.layout.bottom_cell,
@@ -75,11 +75,13 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        /*val biometricManager = BiometricManager.from(requireContext())
+        val supportsBiometrics = biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK)
+        BiometricManager.BIOMETRIC_SUCCESS*/
         val binding = FragmentSettingsBinding.bind(view)
         binding.apply {
             importDbBtn.setOnClickListener(this@SettingsFragment)
             exportDbBtn.setOnClickListener(this@SettingsFragment)
-
             modeSwitch.isChecked = viewModel.darkThemeEnabled
             modeSwitch.setOnCheckedChangeListener { _, isChecked ->
                 lifecycleScope.launch {
@@ -88,25 +90,28 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
                 }
             }
         }
+        viewModel.backupDatabase.observe(viewLifecycleOwner) { type ->
+            if (type == null) return@observe
+            when (type) {
+                1 -> {
+                    if (isPermissionGranted(Manifest.permission.READ_EXTERNAL_STORAGE)) chooseFile()
+                    else readFilePermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+                }
+                2 -> {
+                    if (isPermissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) chooseDirectory()
+                    else writeFilePermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                }
+            }
+            viewModel.backupDatabase.value = null
+        }
     }
 
     override fun onClick(v: View?) {
         val view = v ?: return
-        when (view.id) {
-            R.id.import_db_btn -> {
-                if (isPermissionGranted(Manifest.permission.READ_EXTERNAL_STORAGE)) chooseFile()
-                else readFilePermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
-            }
-            R.id.export_db_btn -> {
-                if (isPermissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) chooseDirectory()
-                else writeFilePermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            }
-        }
-    }
-
-    private fun chooseDirectory() {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-        chooseDirectoryLauncher.launch(intent)
+        val type = if (view.id == R.id.import_db_btn) 1 else if (view.id == R.id.export_db_btn) 2 else return
+        BackupBottomFragment
+            .newInstance(type)
+            .show(childFragmentManager, BackupBottomFragment::class.java.simpleName)
     }
 
     private fun chooseFile() {
@@ -114,6 +119,11 @@ class SettingsFragment : Fragment(R.layout.fragment_settings), View.OnClickListe
             type = "text/plain"
         }
         chooseFileLauncher.launch(intent)
+    }
+
+    private fun chooseDirectory() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+        chooseDirectoryLauncher.launch(intent)
     }
 
 }
