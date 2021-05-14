@@ -13,7 +13,7 @@ import com.nativeboys.password.manager.ui.adapters.EditTextChangeListener
 import com.nativeboys.password.manager.util.InputTypeItem
 import com.nativeboys.password.manager.util.findByCode
 import com.nativeboys.password.manager.util.togglePasswordTransformation
-import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
+import com.nativeboys.uikit.rv.RecyclerViewHolder
 
 class FieldContentViewHolder(
     itemView: View,

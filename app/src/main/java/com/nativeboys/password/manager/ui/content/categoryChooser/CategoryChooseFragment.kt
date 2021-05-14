@@ -12,11 +12,12 @@ import com.nativeboys.password.manager.databinding.FragmentCategoryChooseBinding
 import com.nativeboys.password.manager.util.ZTransactionFragment
 import com.nativeboys.password.manager.presentation.CategoryChooseViewModel
 import com.nativeboys.password.manager.ui.adapters.categoriesChooser.CategoriesChooserAdapter
-import com.zeustech.zeuskit.ui.other.AdapterClickListener
+import com.nativeboys.uikit.rv.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CategoryChooseFragment : ZTransactionFragment(R.layout.fragment_category_choose), AdapterClickListener<CategoryData> {
+class CategoryChooseFragment : ZTransactionFragment(R.layout.fragment_category_choose),
+    AdapterClickListener<CategoryData> {
 
     private val viewModel: CategoryChooseViewModel by viewModels()
 

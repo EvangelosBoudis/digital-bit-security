@@ -20,9 +20,9 @@ import com.nativeboys.password.manager.ui.adapters.categoriesSelection.Categorie
 import com.nativeboys.password.manager.ui.adapters.itemsDto.ItemsDtoAdapter
 import com.nativeboys.password.manager.ui.content.confirmation.ConfirmationFragment
 import com.nativeboys.password.manager.ui.content.home.HomeFragmentDirections
-import com.nativeboys.password.manager.util.CenterLayoutManager
-import com.nativeboys.password.manager.util.FragmentDialogListener
-import com.zeustech.zeuskit.ui.other.AdapterClickListener
+import com.nativeboys.uikit.views.CenterLayoutManager
+import com.nativeboys.uikit.fragments.FragmentDialogListener
+import com.nativeboys.uikit.rv.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

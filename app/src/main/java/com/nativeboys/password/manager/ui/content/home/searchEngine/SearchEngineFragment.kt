@@ -15,8 +15,8 @@ import com.nativeboys.password.manager.presentation.SearchEngineViewModel
 import com.nativeboys.password.manager.ui.adapters.searchItems.SearchItemsAdapter
 import com.nativeboys.password.manager.ui.content.home.HomeFragmentDirections
 import com.nativeboys.password.manager.util.parentNavController
-import com.zeustech.zeuskit.ui.other.AdapterClickListener
-import com.zeustech.zeuskit.ui.other.KeyboardManager
+import com.nativeboys.uikit.rv.AdapterClickListener
+import com.nativeboys.uikit.other.KeyboardManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

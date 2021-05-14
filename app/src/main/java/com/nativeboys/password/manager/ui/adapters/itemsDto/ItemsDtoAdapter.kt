@@ -3,8 +3,8 @@ package com.nativeboys.password.manager.ui.adapters.itemsDto
 import android.view.View
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.ItemDto
-import com.zeustech.zeuskit.ui.rv.RecyclerListAdapter
-import com.zeustech.zeuskit.ui.swipeRevealLayout.ViewBinderHelper
+import com.nativeboys.uikit.rv.RecyclerListAdapter
+import com.nativeboys.uikit.swipeRevealLayout.ViewBinderHelper
 
 class ItemsDtoAdapter : RecyclerListAdapter<ItemDto, ItemsDtoViewHolder>() {
 

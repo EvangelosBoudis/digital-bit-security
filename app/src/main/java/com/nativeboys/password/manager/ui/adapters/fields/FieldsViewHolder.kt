@@ -10,7 +10,7 @@ import com.nativeboys.password.manager.data.FieldContentDto
 import com.nativeboys.password.manager.util.InputTypeItem
 import com.nativeboys.password.manager.util.findByCode
 import com.nativeboys.password.manager.util.togglePasswordTransformationMethod
-import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
+import com.nativeboys.uikit.rv.RecyclerViewHolder
 
 class FieldsViewHolder(itemView: View) : RecyclerViewHolder<FieldContentDto>(itemView) {
 

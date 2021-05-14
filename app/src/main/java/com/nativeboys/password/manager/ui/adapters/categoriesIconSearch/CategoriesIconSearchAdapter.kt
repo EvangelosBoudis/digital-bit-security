@@ -3,7 +3,7 @@ package com.nativeboys.password.manager.ui.adapters.categoriesIconSearch
 import android.view.View
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.UICategoryIcon
-import com.zeustech.zeuskit.ui.rv.RecyclerListAdapter
+import com.nativeboys.uikit.rv.RecyclerListAdapter
 
 class CategoriesIconSearchAdapter : RecyclerListAdapter<UICategoryIcon, CategoriesIconSearchViewHolder>() {
 

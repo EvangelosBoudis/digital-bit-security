@@ -16,9 +16,9 @@ import com.nativeboys.password.manager.presentation.CategoriesViewModel
 import com.nativeboys.password.manager.ui.adapters.categories.CategoriesAdapter
 import com.nativeboys.password.manager.ui.content.confirmation.ConfirmationFragment
 import com.nativeboys.password.manager.ui.content.home.HomeFragmentDirections
-import com.nativeboys.password.manager.util.FragmentDialogListener
+import com.nativeboys.uikit.fragments.FragmentDialogListener
 import com.nativeboys.password.manager.util.parentNavController
-import com.zeustech.zeuskit.ui.other.AdapterClickListener
+import com.nativeboys.uikit.rv.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

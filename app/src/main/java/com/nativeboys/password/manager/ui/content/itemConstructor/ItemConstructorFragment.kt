@@ -24,7 +24,7 @@ import com.nativeboys.password.manager.ui.adapters.FieldTextChangeListener
 import com.nativeboys.password.manager.ui.content.confirmation.ConfirmationFragment
 import com.nativeboys.password.manager.ui.content.itemConstructor.bottomFragment.TagFactoryBottomFragment
 import com.nativeboys.password.manager.ui.content.itemConstructor.bottomFragment.ThumbnailFactoryBottomFragment
-import com.zeustech.zeuskit.ui.other.AdapterClickListener
+import com.nativeboys.uikit.rv.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -2,7 +2,7 @@ package com.nativeboys.password.manager.data
 
 import android.os.Parcelable
 import androidx.room.*
-import com.zeustech.zeuskit.ui.rv.ListAdapterItem
+import com.nativeboys.uikit.rv.ListAdapterItem
 import kotlinx.parcelize.Parcelize
 import java.util.*
 

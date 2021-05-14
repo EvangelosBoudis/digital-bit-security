@@ -8,7 +8,7 @@ import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.databinding.FragmentBackupBottomBinding
 import com.nativeboys.password.manager.presentation.SettingsViewModel
 import com.nativeboys.password.manager.util.togglePasswordTransformation
-import com.zeustech.zeuskit.ui.fragments.BottomFragment
+import com.nativeboys.uikit.fragments.BottomFragment
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

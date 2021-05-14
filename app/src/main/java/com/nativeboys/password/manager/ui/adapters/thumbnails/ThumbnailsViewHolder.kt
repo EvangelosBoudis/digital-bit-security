@@ -7,7 +7,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.google.android.material.imageview.ShapeableImageView
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.ThumbnailDto
-import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
+import com.nativeboys.uikit.rv.RecyclerViewHolder
 
 class ThumbnailsViewHolder(itemView: View) : RecyclerViewHolder<ThumbnailDto>(itemView) {
 

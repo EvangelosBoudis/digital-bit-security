@@ -8,7 +8,7 @@ import android.widget.EditText
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.UIField
 import com.nativeboys.password.manager.ui.adapters.EditTextChangeListener
-import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
+import com.nativeboys.uikit.rv.RecyclerViewHolder
 
 class NewFieldsViewHolder(
     itemView: View,

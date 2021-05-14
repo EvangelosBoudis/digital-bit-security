@@ -4,8 +4,8 @@ import android.view.View
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.TagDto
 import com.nativeboys.password.manager.ui.adapters.AddViewHolder
-import com.zeustech.zeuskit.ui.rv.RecyclerListAdapter
-import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
+import com.nativeboys.uikit.rv.RecyclerListAdapter
+import com.nativeboys.uikit.rv.RecyclerViewHolder
 
 class TagsAdapter: RecyclerListAdapter<TagDto, RecyclerViewHolder<TagDto>>() {
 

@@ -8,7 +8,7 @@ import com.nativeboys.password.manager.data.preferences.SortOrder
 import com.nativeboys.password.manager.databinding.FragmentSettingsBottomBinding
 import com.nativeboys.password.manager.presentation.SettingsBottomViewModel
 import com.nativeboys.password.manager.util.checkedRadioButtonIndex
-import com.zeustech.zeuskit.ui.fragments.BottomFragment
+import com.nativeboys.uikit.fragments.BottomFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

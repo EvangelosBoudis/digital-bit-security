@@ -14,9 +14,9 @@ import com.nativeboys.password.manager.data.CategoryData
 import com.nativeboys.password.manager.util.intoMaterialIcon
 import com.nativeboys.password.manager.util.intoView
 import com.nativeboys.password.manager.util.materialIconCodeToDrawable
-import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
-import com.zeustech.zeuskit.ui.swipeRevealLayout.SwipeRevealLayout
-import com.zeustech.zeuskit.ui.swipeRevealLayout.ViewBinderHelper
+import com.nativeboys.uikit.rv.RecyclerViewHolder
+import com.nativeboys.uikit.swipeRevealLayout.SwipeRevealLayout
+import com.nativeboys.uikit.swipeRevealLayout.ViewBinderHelper
 import net.steamcrafted.materialiconlib.MaterialIconView
 
 class CategoriesViewHolder(

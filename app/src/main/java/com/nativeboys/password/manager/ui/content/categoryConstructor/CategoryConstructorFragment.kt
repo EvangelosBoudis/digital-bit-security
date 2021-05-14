@@ -23,7 +23,7 @@ import com.nativeboys.password.manager.ui.content.home.items.SettingsBottomFragm
 import com.nativeboys.password.manager.util.ZTransactionFragment
 import com.nativeboys.password.manager.util.intoMaterialIcon
 import com.nativeboys.password.manager.util.materialIconCodeToDrawable
-import com.zeustech.zeuskit.ui.other.AdapterClickListener
+import com.nativeboys.uikit.rv.AdapterClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

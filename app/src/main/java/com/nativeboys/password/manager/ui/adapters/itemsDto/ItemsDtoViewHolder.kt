@@ -12,9 +12,9 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.ItemDto
 import com.nativeboys.password.manager.util.intoView
-import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
-import com.zeustech.zeuskit.ui.swipeRevealLayout.SwipeRevealLayout
-import com.zeustech.zeuskit.ui.swipeRevealLayout.ViewBinderHelper
+import com.nativeboys.uikit.rv.RecyclerViewHolder
+import com.nativeboys.uikit.swipeRevealLayout.SwipeRevealLayout
+import com.nativeboys.uikit.swipeRevealLayout.ViewBinderHelper
 
 class ItemsDtoViewHolder(
     itemView: View,

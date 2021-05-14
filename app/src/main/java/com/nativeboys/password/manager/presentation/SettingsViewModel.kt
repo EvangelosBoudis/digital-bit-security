@@ -10,7 +10,7 @@ import com.nativeboys.password.manager.BuildConfig
 import com.nativeboys.password.manager.BuildConfig.DATABASE_BACKUP
 import com.nativeboys.password.manager.data.local.AppDatabase
 import com.nativeboys.password.manager.data.preferences.PreferencesManager
-import com.nativeboys.password.manager.util.storage.FileUtils
+import com.nativeboys.uikit.storage.FileUtils
 import dagger.hilt.android.qualifiers.ApplicationContext
 import ir.androidexception.roomdatabasebackupandrestore.Backup
 import ir.androidexception.roomdatabasebackupandrestore.Restore

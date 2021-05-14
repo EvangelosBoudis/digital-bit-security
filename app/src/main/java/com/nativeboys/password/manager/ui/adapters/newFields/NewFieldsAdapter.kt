@@ -6,8 +6,8 @@ import com.nativeboys.password.manager.data.UIField
 import com.nativeboys.password.manager.ui.adapters.AddViewHolder
 import com.nativeboys.password.manager.ui.adapters.EditTextChangeListener
 import com.nativeboys.password.manager.ui.adapters.FieldTextChangeListener
-import com.zeustech.zeuskit.ui.rv.RecyclerListAdapter
-import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
+import com.nativeboys.uikit.rv.RecyclerListAdapter
+import com.nativeboys.uikit.rv.RecyclerViewHolder
 
 class NewFieldsAdapter(
     private val fieldTextChangeListener: FieldTextChangeListener

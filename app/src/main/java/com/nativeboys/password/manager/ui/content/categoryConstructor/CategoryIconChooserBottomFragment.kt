@@ -15,9 +15,9 @@ import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel.Companion.THUMBNAIL_SEARCH_KEY
 import com.nativeboys.password.manager.ui.adapters.categoriesIconSearch.CategoriesIconSearchAdapter
 import com.nativeboys.password.manager.util.setTextAndFixCursor
-import com.zeustech.zeuskit.ui.fragments.BottomFragment
-import com.zeustech.zeuskit.ui.other.AdapterClickListener
-import com.zeustech.zeuskit.ui.other.KeyboardManager
+import com.nativeboys.uikit.fragments.BottomFragment
+import com.nativeboys.uikit.rv.AdapterClickListener
+import com.nativeboys.uikit.other.KeyboardManager
 
 class CategoryIconChooserBottomFragment : BottomFragment(
     R.layout.fragment_category_icon_chooser_bottom,

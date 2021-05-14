@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.DialogFragment
 import com.nativeboys.password.manager.R
-import com.nativeboys.password.manager.util.FragmentDialogListener
+import com.nativeboys.uikit.fragments.FragmentDialogListener
 
 class ConfirmationFragment : DialogFragment(), View.OnClickListener {
 

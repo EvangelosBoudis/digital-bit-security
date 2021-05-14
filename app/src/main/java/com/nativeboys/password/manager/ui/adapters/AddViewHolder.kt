@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.nativeboys.password.manager.R
-import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
+import com.nativeboys.uikit.rv.RecyclerViewHolder
 
 class AddViewHolder<T> (itemView: View) : RecyclerViewHolder<T>(itemView) {
 

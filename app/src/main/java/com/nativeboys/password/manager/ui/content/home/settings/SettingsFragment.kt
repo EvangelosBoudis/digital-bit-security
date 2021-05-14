@@ -15,7 +15,7 @@ import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.databinding.FragmentSettingsBinding
 import com.nativeboys.password.manager.presentation.SettingsViewModel
 import com.nativeboys.password.manager.util.isPermissionGranted
-import com.zeustech.zeuskit.ui.views.BottomBar
+import com.nativeboys.uikit.views.BottomBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

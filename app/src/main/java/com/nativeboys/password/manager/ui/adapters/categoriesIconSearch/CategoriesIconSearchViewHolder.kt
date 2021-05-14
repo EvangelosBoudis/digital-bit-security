@@ -11,7 +11,7 @@ import com.nativeboys.password.manager.data.UICategoryIcon
 import com.nativeboys.password.manager.util.intoMaterialIcon
 import com.nativeboys.password.manager.util.intoView
 import com.nativeboys.password.manager.util.materialIconCodeToDrawable
-import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
+import com.nativeboys.uikit.rv.RecyclerViewHolder
 import net.steamcrafted.materialiconlib.MaterialIconView
 
 class CategoriesIconSearchViewHolder(

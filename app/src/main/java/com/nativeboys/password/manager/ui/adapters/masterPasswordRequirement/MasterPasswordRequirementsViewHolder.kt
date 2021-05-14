@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.UIMasterPasswordRequirement
 import com.nativeboys.password.manager.util.intoView
-import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
+import com.nativeboys.uikit.rv.RecyclerViewHolder
 
 class MasterPasswordRequirementsViewHolder(
     itemView: View

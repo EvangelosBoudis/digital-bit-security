@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zeustech.zeuskit.ui.views.FocusableConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.nativeboys.uikit.views.FocusableConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -43,4 +43,4 @@
         app:icon="@drawable/ic_baseline_clear_24"
         style="@style/Widget.App.Button.OutlinedButton.IconOnly.Regular" />
 
-</com.zeustech.zeuskit.ui.views.FocusableConstraintLayout>
+</com.nativeboys.uikit.views.FocusableConstraintLayout>

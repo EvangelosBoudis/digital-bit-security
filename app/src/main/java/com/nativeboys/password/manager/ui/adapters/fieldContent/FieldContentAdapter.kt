@@ -5,7 +5,7 @@ import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.FieldContentDto
 import com.nativeboys.password.manager.ui.adapters.EditTextChangeListener
 import com.nativeboys.password.manager.ui.adapters.FieldTextChangeListener
-import com.zeustech.zeuskit.ui.rv.RecyclerListAdapter
+import com.nativeboys.uikit.rv.RecyclerListAdapter
 
 class FieldContentAdapter(
     private val fieldTextChangeListener: FieldTextChangeListener

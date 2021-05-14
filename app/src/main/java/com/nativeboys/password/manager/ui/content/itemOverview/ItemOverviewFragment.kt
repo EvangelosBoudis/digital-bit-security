@@ -19,13 +19,13 @@ import com.nativeboys.password.manager.data.Result
 import com.nativeboys.password.manager.databinding.FragmentItemOverviewBinding
 import com.nativeboys.password.manager.util.ZTransactionFragment
 import com.nativeboys.password.manager.ui.adapters.fields.FieldsAdapter
-import com.zeustech.zeuskit.ui.other.AdapterClickListener
-import com.zeustech.zeuskit.ui.views.BottomBar
+import com.nativeboys.uikit.rv.AdapterClickListener
+import com.nativeboys.uikit.views.BottomBar
 import dagger.hilt.android.AndroidEntryPoint
 import com.nativeboys.password.manager.util.copyToClipboard
 import com.nativeboys.password.manager.presentation.ItemOverviewViewModel
 import com.nativeboys.password.manager.ui.content.confirmation.ConfirmationFragment
-import com.nativeboys.password.manager.util.FragmentDialogListener
+import com.nativeboys.uikit.fragments.FragmentDialogListener
 
 @AndroidEntryPoint
 class ItemOverviewFragment : ZTransactionFragment(

@@ -20,7 +20,7 @@
         android:scrollbars="none"
         android:fillViewport="true">
 
-        <com.zeustech.zeuskit.ui.views.FocusableConstraintLayout
+        <com.nativeboys.uikit.views.FocusableConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Container">
@@ -135,7 +135,7 @@
 
             </RelativeLayout>
 
-        </com.zeustech.zeuskit.ui.views.FocusableConstraintLayout>
+        </com.nativeboys.uikit.views.FocusableConstraintLayout>
 
     </ScrollView>
 

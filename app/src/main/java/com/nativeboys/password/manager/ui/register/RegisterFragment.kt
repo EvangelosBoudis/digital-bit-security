@@ -16,7 +16,7 @@ import com.nativeboys.password.manager.presentation.RegisterViewModel
 import com.nativeboys.password.manager.ui.adapters.masterPasswordRequirement.MasterPasswordRequirementsAdapter
 import com.nativeboys.password.manager.util.togglePasswordTransformation
 import com.nativeboys.password.manager.util.wrapCells
-import com.zeustech.zeuskit.ui.other.KeyboardManager
+import com.nativeboys.uikit.other.KeyboardManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

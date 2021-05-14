@@ -8,7 +8,7 @@ import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.databinding.FragmentCategoryTypeChooserBottomBinding
 import com.nativeboys.password.manager.presentation.CategoryConstructorViewModel
 import com.nativeboys.password.manager.util.checkedRadioButtonIndex
-import com.zeustech.zeuskit.ui.fragments.BottomFragment
+import com.nativeboys.uikit.fragments.BottomFragment
 
 class CategoryTypeChooserBottomFragment : BottomFragment(
     R.layout.fragment_category_type_chooser_bottom,

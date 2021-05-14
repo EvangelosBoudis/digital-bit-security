@@ -3,7 +3,7 @@ package com.nativeboys.password.manager.ui.adapters.masterPasswordRequirement
 import android.view.View
 import com.nativeboys.password.manager.R
 import com.nativeboys.password.manager.data.UIMasterPasswordRequirement
-import com.zeustech.zeuskit.ui.rv.RecyclerListAdapter
+import com.nativeboys.uikit.rv.RecyclerListAdapter
 
 class MasterPasswordRequirementsAdapter : RecyclerListAdapter<UIMasterPasswordRequirement, MasterPasswordRequirementsViewHolder>() {
 

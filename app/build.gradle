@@ -50,7 +50,7 @@ android {
 dependencies {
     // Default dependencies
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation project(path: ':ZeusKit')
+    implementation project(path: ':UIKit')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     implementation "androidx.core:core-ktx:$ktxVersion"
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
@@ -103,8 +103,6 @@ dependencies {
 
     // Material Icons
     implementation "net.steamcrafted:materialiconlib:$materialIconsVersion"
-
-    // -- Database And Encryption --
 
     // SQLCipher
     implementation "net.zetetic:android-database-sqlcipher:$sqlcipherVersion@aar"
