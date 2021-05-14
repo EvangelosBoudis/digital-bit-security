@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.ui.adapters
+package com.nativeboys.password.manager.ui.adapters.categoriesChooser
 
 import android.graphics.Color
 import android.view.View
@@ -16,7 +16,7 @@ import com.nativeboys.password.manager.util.materialIconCodeToDrawable
 import com.zeustech.zeuskit.ui.rv.RecyclerViewHolder
 import net.steamcrafted.materialiconlib.MaterialIconView
 
-open class SharedCategoriesViewHolder(itemView: View) : RecyclerViewHolder<CategoryData>(itemView) {
+class CategoriesChooserAdapterViewHolder(itemView: View) : RecyclerViewHolder<CategoryData>(itemView) {
 
     private val container = itemView.findViewById<ConstraintLayout>(R.id.container)
     private val thumbnailBackgroundHolder = itemView.findViewById<View>(R.id.thumbnail_background_holder)

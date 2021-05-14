@@ -53,13 +53,16 @@ class CategoriesFragment : Fragment(
 
     override fun onClick(view: View, model: CategoryData, position: Int) {
         if (model.defaultCategory) return
-        if (view.id == R.id.trailing_btn) {
-            viewModel.setPendingCategoryToDelete(model.id)
-            ConfirmationFragment
-                .newInstance(R.layout.dialog_confirmation, getString(R.string.remove_category_confirmation), getString(R.string.remove_category_description))
-                .show(childFragmentManager, ConfirmationFragment::class.java.simpleName)
-        } else {
-            moveToCategoryFragment(model.id)
+        when (view.id) {
+            R.id.visible_view -> {
+                moveToCategoryFragment(model.id)
+            }
+            R.id.delete_btn -> {
+                viewModel.setPendingCategoryToDelete(model.id)
+                ConfirmationFragment
+                    .newInstance(R.layout.dialog_confirmation, getString(R.string.remove_category_confirmation), getString(R.string.remove_category_description))
+                    .show(childFragmentManager, ConfirmationFragment::class.java.simpleName)
+            }
         }
     }
 
