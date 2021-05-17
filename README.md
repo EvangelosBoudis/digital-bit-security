@@ -20,6 +20,11 @@ An simple image gallery app utilizing Unsplash API.
 
 <br/>
 
+## Screens
+List & Layouts             |  Widgets and building blocks| Animations | Theme
+:-------------------------:|:-------------------------: | :-------------------------: | :-------------------------:
+![](https://media.giphy.com/media/WOlo2cTDdjGkgdAJQK/giphy.gif)  |  ![](https://media.giphy.com/media/RkEyxCn43aX1MoIdcx/giphy.gif) | ![](https://media.giphy.com/media/pZfwwwOlKQtiyJFPr2/giphy.gif) | ![](https://media.giphy.com/media/kPt0nCCWAcahhJsJh6/giphy.gif)
+
 ## Features
 * Popular photos with pagination support
 * Quickly explore top categories like Cars, Mountains, Animals, Interior etc.
