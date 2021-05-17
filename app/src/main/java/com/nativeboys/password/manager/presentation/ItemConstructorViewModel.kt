@@ -4,9 +4,9 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.nativeboys.password.manager.data.*
-import com.nativeboys.password.manager.data.repository.FieldRepository
-import com.nativeboys.password.manager.data.repository.ItemRepository
-import com.nativeboys.password.manager.data.repository.ThumbnailRepository
+import com.nativeboys.password.manager.data.repositories.fields.FieldRepository
+import com.nativeboys.password.manager.data.repositories.items.ItemRepository
+import com.nativeboys.password.manager.data.repositories.thumbnails.ThumbnailRepository
 import com.nativeboys.password.manager.util.safeSet
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -131,7 +131,7 @@ class ItemConstructorViewModel @ViewModelInject constructor(
     }
 
     fun deleteThumbnail(thumbnail: ThumbnailDto) = liveData {
-        val count = itemRepository.getItemsCountWithThumbnailId(thumbnail.id)
+        val count = itemRepository.countAllItemsWithThumbnailId(thumbnail.id)
         val item = itemId?.let { itemRepository.findItemById(it) }
         val deletable = count == 0 || count == 1 && (item?.thumbnailId == thumbnail.id)
         if (deletable) {

@@ -21,6 +21,7 @@ import androidx.navigation.Navigation
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.github.leonardoxh.keystore.CipherStorage
 import com.google.android.flexbox.*
 import com.google.android.material.transition.MaterialSharedAxis
 import com.nativeboys.password.manager.R
@@ -43,6 +44,12 @@ fun <T> SavedStateHandle.safeSet(tag: String, value: T, scope: CoroutineScope) {
             this@safeSet[tag] = value
         }
     }
+}
+
+fun CipherStorage.encryptIfAliasNotExist(alias: String, key: String): CharArray {
+    val existingKey = decrypt(alias)
+    if (existingKey == null) encrypt(alias, key)
+    return (existingKey ?: key).toCharArray()
 }
 
 fun Fragment.isPermissionGranted(permission: String): Boolean {

@@ -4,7 +4,7 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.nativeboys.password.manager.data.Result
-import com.nativeboys.password.manager.data.repository.CategoryRepository
+import com.nativeboys.password.manager.data.repositories.category.CategoryRepository
 import java.lang.Exception
 
 class CategoriesViewModel @ViewModelInject constructor(

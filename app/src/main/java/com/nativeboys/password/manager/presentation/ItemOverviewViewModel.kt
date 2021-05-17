@@ -6,7 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.nativeboys.password.manager.data.Result
-import com.nativeboys.password.manager.data.repository.ItemRepository
+import com.nativeboys.password.manager.data.repositories.items.ItemRepository
 import java.lang.Exception
 
 class ItemOverviewViewModel @ViewModelInject constructor(

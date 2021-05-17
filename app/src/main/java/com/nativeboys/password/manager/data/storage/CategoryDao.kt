@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.data.local
+package com.nativeboys.password.manager.data.storage
 
 import androidx.room.*
 import com.nativeboys.password.manager.data.CategoryData
@@ -47,14 +47,5 @@ interface CategoryDao {
     @Transaction
     @Query("DELETE from categories WHERE id = :id")
     suspend fun deleteById(id: String)
-
-    //    @Query(
-//        """
-//            SELECT id AS entityId, COUNT(id) rowsCount
-//            FROM thumbnails
-//            WHERE thumbnails.id IN (:thumbnailIds)
-//            GROUP BY entityId
-//            """)
-//    suspend fun countByThumbnailId(thumbnailIds: List<String>): List<CountDto>
 
 }

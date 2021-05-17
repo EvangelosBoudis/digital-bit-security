@@ -1,4 +1,4 @@
-package com.nativeboys.password.manager.data.local
+package com.nativeboys.password.manager.data.storage
 
 import androidx.room.TypeConverter
 import java.util.*

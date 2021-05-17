@@ -5,11 +5,10 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.github.leonardoxh.keystore.CipherStorage
-import com.nativeboys.password.manager.BuildConfig.USER_MASTER_PASSWORD
+import com.nativeboys.password.manager.data.services.UserService
 
 class LoginViewModel @ViewModelInject constructor(
-    private val cipherStorage: CipherStorage,
+    private val userService: UserService,
     @Assisted private val state: SavedStateHandle
 ): ViewModel() {
 
@@ -17,7 +16,7 @@ class LoginViewModel @ViewModelInject constructor(
     val data: String? = state.get<String>("DATA")
 
     fun requestPermission(masterPassword: String) = liveData {
-        emit(cipherStorage.decrypt(USER_MASTER_PASSWORD) == masterPassword)
+        emit(userService.requestPermission(masterPassword))
     }
 
 }

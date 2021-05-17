@@ -1,8 +1,8 @@
-package com.nativeboys.password.manager.data.repository
+package com.nativeboys.password.manager.data.repositories.items
 
 import androidx.room.withTransaction
 import com.nativeboys.password.manager.data.*
-import com.nativeboys.password.manager.data.local.*
+import com.nativeboys.password.manager.data.storage.*
 import com.nativeboys.password.manager.data.preferences.ItemSettings
 import com.nativeboys.password.manager.data.preferences.PreferencesManager
 import com.nativeboys.password.manager.data.preferences.SortOrder
@@ -10,28 +10,52 @@ import com.nativeboys.password.manager.util.toComparable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import java.util.*
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class ItemRepository @Inject constructor(
-    private val database: AppDatabase,
+class ItemRepositoryImpl constructor(
+    private val db: AppDatabase,
     private val itemDao: ItemDao,
     private val fieldDao: FieldDao,
     private val contentDao: ContentDao,
     private val thumbnailDao: ThumbnailDao,
     private val preferences: PreferencesManager
-) {
+): ItemRepository {
 
-    //////////////////////////////////////////////////////////////////////////////////////////
-    /// SQLite
-    //////////////////////////////////////////////////////////////////////////////////////////
+    override suspend fun countAllItemsWithThumbnailId(thumbnailId: String): Int {
+        return itemDao.getCountWithThumbnailId(thumbnailId)
+    }
 
-    suspend fun findItemById(id: String) = itemDao.findById(id)
+    override suspend fun findItemById(id: String): ItemData {
+        return itemDao.findById(id)
+    }
 
-    suspend fun getItemsCountWithThumbnailId(thumbnailId: String) = itemDao.getCountWithThumbnailId(thumbnailId)
+    override suspend fun findItemFieldsContentById(id: String): ItemFieldsContentDto {
+        val item = itemDao.findById(id)
+        val thumbnailUrl = thumbnailDao.findById(item.thumbnailId).url
+        val fieldsContent = fieldDao.findAllDtoByCategoryIdAndItemId(item.categoryId, item.id)
+        return ItemFieldsContentDto(
+            item,
+            fieldsContent,
+            thumbnailUrl
+        )
+    }
 
-    fun observeItemsDtoFilteredAndSorted(): Flow<List<ItemDto>> {
+    override suspend fun findAllThumbnailsDto(selectedItemId: String, addDefault: Boolean): List<ThumbnailDto> {
+        val allItems = itemDao.findAll()
+        val selectedItem = allItems.firstOrNull { item ->
+            item.id == selectedItemId
+        }
+        val thumbnails = thumbnailDao.findAll()
+            .map { thumbnail ->
+                val deletable = allItems
+                    .filter { item -> item.thumbnailId == thumbnail.id }
+                    .size <= 1
+                ThumbnailDto(thumbnail, deletable, if (selectedItem?.thumbnailId == thumbnail.id) 2 else 1)
+            }.toMutableList()
+        if (addDefault) thumbnails.add(ThumbnailDto())
+        return thumbnails
+    }
+
+    override fun observeItemsDtoFilteredAndSorted(): Flow<List<ItemDto>> {
         return combine(
             itemDao.observeAllDto(),
             preferences.observeSelectedCategoryId(),
@@ -49,7 +73,7 @@ class ItemRepository @Inject constructor(
         }
     }
 
-    fun observeItemsFilteredBySearchKey(): Flow<List<ItemDto>> {
+    override fun observeItemsFilteredBySearchKey(): Flow<List<ItemDto>> {
         return combine(
             itemDao.observeAllDtoSortedByName(),
             preferences.observeItemSearchKey()
@@ -63,49 +87,26 @@ class ItemRepository @Inject constructor(
         }
     }
 
-    suspend fun findItemFieldsContentById(id: String): ItemFieldsContentDto {
-        val item = itemDao.findById(id)
-        val thumbnailUrl = thumbnailDao.findById(item.thumbnailId).url
-        val fieldsContent = fieldDao.findAllDtoByCategoryIdAndItemId(item.categoryId, item.id)
-        return ItemFieldsContentDto(
-            item,
-            fieldsContent,
-            thumbnailUrl
-        )
-    }
-
-    fun observeItemSettings() = combine(
+    override fun observeItemSettings(): Flow<ItemSettings> {
+        return combine(
             preferences.observeItemsSortOrder(),
             preferences.observeNonFavoritesVisibility())
         { sortOrder, nonFavoritesInvisible ->
             ItemSettings(sortOrder, nonFavoritesInvisible)
         }
+    }
 
-    suspend fun deleteItemById(id: String) = itemDao.deleteById(id)
+    override suspend fun deleteItemById(id: String) {
+        return itemDao.deleteById(id)
+    }
 
-    suspend fun toggleItemFavorite(itemId: String): Boolean {
+    override suspend fun toggleItemFavorite(itemId: String): Boolean {
         val favorite = !itemDao.findById(itemId).favorite
         itemDao.updateFavoriteItem(itemId, favorite)
         return favorite
     }
 
-    suspend fun findAllThumbnailsDto(selectedItemId: String, addDefault: Boolean = true): List<ThumbnailDto> {
-        val allItems = itemDao.findAll()
-        val selectedItem = allItems.firstOrNull { item ->
-            item.id == selectedItemId
-        }
-        val thumbnails = thumbnailDao.findAll()
-            .map { thumbnail ->
-            val deletable = allItems
-                .filter { item -> item.thumbnailId == thumbnail.id }
-                .size <= 1
-            ThumbnailDto(thumbnail, deletable, if (selectedItem?.thumbnailId == thumbnail.id) 2 else 1)
-        }.toMutableList()
-        if (addDefault) thumbnails.add(ThumbnailDto())
-        return thumbnails
-    }
-
-    suspend fun saveOrUpdateItem(
+    override suspend fun saveOrUpdateItem(
         id: String?,
         name: String,
         description: String,
@@ -132,7 +133,7 @@ class ItemRepository @Inject constructor(
             categoryId
         )
 
-        database.withTransaction {
+        db.withTransaction {
             if (id == null) itemDao.save(item) else itemDao.update(item)
             contentDao.deleteAllByItemId(itemId)
             contentDao.save(contents)
@@ -140,19 +141,21 @@ class ItemRepository @Inject constructor(
 
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////
-    /// Preference Data Store
-    //////////////////////////////////////////////////////////////////////////////////////////
+    override suspend fun updateItemSearchKey(searchKey: String) {
+        preferences.updateItemSearchKey(searchKey)
+    }
 
-    private suspend fun updateItemsSortOrder(order: SortOrder) = preferences.updateItemsSortOrder(order)
-
-    private suspend fun updateNonFavoriteItemsVisibility(hide: Boolean) = preferences.updateNonFavoriteItemsVisibility(hide)
-
-    suspend fun updateItemSearchKey(searchKey: String = "") = preferences.updateItemSearchKey(searchKey)
-
-    suspend fun updateSortOrderAndFavoritesVisibility(order: SortOrder, hide: Boolean) {
+    override suspend fun updateSortOrderAndFavoritesVisibility(order: SortOrder, hide: Boolean) {
         updateItemsSortOrder(order)
         updateNonFavoriteItemsVisibility(hide)
+    }
+
+    private suspend fun updateItemsSortOrder(order: SortOrder) {
+        preferences.updateItemsSortOrder(order)
+    }
+
+    private suspend fun updateNonFavoriteItemsVisibility(hide: Boolean) {
+        preferences.updateNonFavoriteItemsVisibility(hide)
     }
 
 }

@@ -6,7 +6,12 @@ import com.github.leonardoxh.keystore.CipherStorage
 import com.github.leonardoxh.keystore.CipherStorageFactory
 import com.nativeboys.password.manager.BuildConfig.DATABASE_ENCRYPTION_KEY_ALIAS
 import com.nativeboys.password.manager.BuildConfig.DATABASE_NAME
-import com.nativeboys.password.manager.data.local.AppDatabase
+import com.nativeboys.password.manager.data.storage.*
+import com.nativeboys.password.manager.data.preferences.PreferencesManager
+import com.nativeboys.password.manager.data.preferences.PreferencesManagerImpl
+import com.nativeboys.password.manager.data.services.UserService
+import com.nativeboys.password.manager.data.services.UserServiceImpl
+import com.nativeboys.password.manager.util.encryptIfAliasNotExist
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,54 +29,75 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCipherStorage(
-        app: Application
-    ) = CipherStorageFactory.newInstance(app)
+    fun provideCipherStorage(app: Application): CipherStorage {
+        return CipherStorageFactory.newInstance(app)
+    }
+
+    @Provides
+    @Singleton
+    fun providePreferencesManager(app: Application): PreferencesManager {
+        return PreferencesManagerImpl(app)
+    }
 
     @Provides
     @Singleton
     fun provideDatabase(
         app: Application,
-        cipherStorage: CipherStorage,
-        // callback: AppDatabase.Callback
+        cipherStorage: CipherStorage
     ): AppDatabase {
-
-        val storedDatabaseEncryptionKey = cipherStorage.decrypt(DATABASE_ENCRYPTION_KEY_ALIAS)
-        val newDatabaseEncryptionKey = UUID.randomUUID().toString()
-
-        if (storedDatabaseEncryptionKey == null) {
-            cipherStorage.encrypt(DATABASE_ENCRYPTION_KEY_ALIAS, newDatabaseEncryptionKey)
-        }
-
-        val databaseEncryptionKey = (storedDatabaseEncryptionKey ?: newDatabaseEncryptionKey).toCharArray()
-
-        val factory = SupportFactory(SQLiteDatabase.getBytes(databaseEncryptionKey))
-
+        val key = cipherStorage.encryptIfAliasNotExist(
+            DATABASE_ENCRYPTION_KEY_ALIAS,
+            UUID.randomUUID().toString()
+        )
         return Room.databaseBuilder(app, AppDatabase::class.java, DATABASE_NAME)
-            .openHelperFactory(factory)
-            // .createFromAsset("database/pre_populate.db") -- PROBLEM--
-            .fallbackToDestructiveMigration() // Drop table then create new one
-            // .addCallback(callback)
+            .openHelperFactory(SupportFactory(SQLiteDatabase.getBytes(key)))
+            .fallbackToDestructiveMigration()
             .build()
     }
 
-    @Provides
-    fun provideCategoryDao(db: AppDatabase) = db.categoryDao()
-    
-    @Provides
-    fun provideFieldDao(db: AppDatabase) = db.fieldDao()
-
-    @Provides
-    fun provideThumbnailDao(db: AppDatabase) = db.thumbnailDao()
-
-    @Provides
-    fun provideItemDao(db: AppDatabase) = db.itemDao()
-
-    @Provides
-    fun provideContentDao(db: AppDatabase) = db.contentDao()
-
-    @Provides
     @Singleton
+    @Provides
+    fun provideCategoryDao(db: AppDatabase): CategoryDao {
+        return db.categoryDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideFieldDao(db: AppDatabase): FieldDao {
+        return db.fieldDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideThumbnailDao(db: AppDatabase): ThumbnailDao {
+        return db.thumbnailDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideItemDao(db: AppDatabase): ItemDao {
+        return db.itemDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideContentDao(db: AppDatabase): ContentDao {
+        return db.contentDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideUserService(
+        db: AppDatabase,
+        cipherStorage: CipherStorage,
+        preferencesManager: PreferencesManager,
+        categoryDao: CategoryDao
+    ): UserService {
+        return UserServiceImpl(db, cipherStorage, preferencesManager, categoryDao)
+    }
+
+    @Singleton
+    @Provides
     fun provideApplicationScope() = CoroutineScope(SupervisorJob())
 
 }

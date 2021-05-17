@@ -3,7 +3,7 @@ package com.nativeboys.password.manager.presentation
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.nativeboys.password.manager.data.repository.CategoryRepository
+import com.nativeboys.password.manager.data.repositories.category.CategoryRepository
 
 class CategoryChooseViewModel @ViewModelInject constructor(
     private val categoryRepository: CategoryRepository

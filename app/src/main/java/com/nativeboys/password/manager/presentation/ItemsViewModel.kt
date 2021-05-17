@@ -3,8 +3,8 @@ package com.nativeboys.password.manager.presentation
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import com.nativeboys.password.manager.data.repository.CategoryRepository
-import com.nativeboys.password.manager.data.repository.ItemRepository
+import com.nativeboys.password.manager.data.repositories.category.CategoryRepository
+import com.nativeboys.password.manager.data.repositories.items.ItemRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

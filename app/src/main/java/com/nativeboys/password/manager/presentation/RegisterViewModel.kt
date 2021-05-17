@@ -2,16 +2,15 @@ package com.nativeboys.password.manager.presentation
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import com.github.leonardoxh.keystore.CipherStorage
-import com.nativeboys.password.manager.BuildConfig.USER_MASTER_PASSWORD
 import com.nativeboys.password.manager.data.MasterPasswordRequirement
 import com.nativeboys.password.manager.data.UIMasterPasswordRequirement
+import com.nativeboys.password.manager.data.services.UserService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 
 class RegisterViewModel @ViewModelInject constructor(
-    private val cipherStorage: CipherStorage
+    private val userService: UserService
 ): ViewModel() {
 
     val password = MutableStateFlow("")
@@ -32,11 +31,11 @@ class RegisterViewModel @ViewModelInject constructor(
     }
 
     fun register(masterPassword: String) = liveData(Dispatchers.IO) {
-        emit(cipherStorage.encrypt(USER_MASTER_PASSWORD, masterPassword))
+        emit(userService.registerUser(masterPassword))
     }
 
     fun isUserAlreadyRegistered() = liveData {
-        emit(cipherStorage.containsAlias(USER_MASTER_PASSWORD))
+        emit(userService.isUserAlreadyRegistered())
     }
 
 }

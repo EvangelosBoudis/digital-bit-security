@@ -4,7 +4,7 @@ import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.nativeboys.password.manager.data.*
-import com.nativeboys.password.manager.data.repository.CategoryRepository
+import com.nativeboys.password.manager.data.repositories.category.CategoryRepository
 import com.nativeboys.password.manager.util.allTypes
 import com.nativeboys.password.manager.util.safeSet
 import com.nativeboys.password.manager.util.toComparable
