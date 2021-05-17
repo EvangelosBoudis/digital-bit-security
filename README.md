@@ -1,40 +1,28 @@
-# Imagine App
-An simple image gallery app utilizing Unsplash API.
-
-![Tests](https://github.com/wajahatkarim3/Imagine/workflows/Tests/badge.svg)  [![codecov](https://codecov.io/gh/wajahatkarim3/Imagine/branch/main/graph/badge.svg?token=rYP14UIojU)](https://codecov.io/gh/wajahatkarim3/Imagine)
-
-<div align="center">
-  <sub>Built with ❤︎ by
-  <a href="https://twitter.com/WajahatKarim">Wajahat Karim</a> and
-  <a href="https://github.com/wajahatkarim3/Imagine/graphs/contributors">
-    contributors
-  </a>
-</div>
-<br/>
-
-<div align="center">
-  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_1.png" width="230px" />  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_2.png" width="230px" />  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_3.png" width="230px" /><br>
-  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_4.png" width="230px" />  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_5.png" width="230px" />  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_6.png" width="230px" /><br>
-  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_7.png" width="230px" />  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_8.png" width="230px" />  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_9.png" width="230px" /><br>
-</div>
-
-<br/>
+# DigitalBit Security
+An simple password manager app, that keeps your vault encrypted via SHA256 algorithm.
 
 ## Screens
-![](https://media.giphy.com/media/WOlo2cTDdjGkgdAJQK/giphy.gif)  |  ![](https://media.giphy.com/media/RkEyxCn43aX1MoIdcx/giphy.gif) | ![](https://media.giphy.com/media/pZfwwwOlKQtiyJFPr2/giphy.gif) | ![](https://media.giphy.com/media/kPt0nCCWAcahhJsJh6/giphy.gif)
+<div align="center">
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_1.png" width="230px" />  
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_2.png" width="230px" />  
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_3.png" width="230px" />
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_4.png" width="230px" />  
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_5.png" width="230px" />  
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_6.png" width="230px" />
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_7.png" width="230px" />  
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_8.png" width="230px" />  
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_9.png" width="230px" />
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_10.png" width="230px" />
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_11.png" width="230px" />
+</div>
 
 ## Features
-* Popular photos with pagination support
-* Quickly explore top categories like Cars, Mountains, Animals, Interior etc.
-* Search query with pagination support
-* Comes in both light and dark mode.
-
-## Architecture
-* Built with Modern Android Development practices
-* Utilized Usecase, Repository pattern for data
-* Includes unit tests for Use cases, Repository, ViewModels, API Service response.
-
-<img src="https://github.com/wajahatkarim3/Imagine/blob/main/screenshots/Imagine-UnitTests.PNG" width="500px" />
+* Easy vault management
+* Content encryption via SHA256 algorithm
+* Vault search via name or keywords
+* Export encrypted backup to specified directory
+* Import encrypted backup from specified directory
+* Dark mode support
 
 ## 📱 Download Demo on Android
 Download the [APK file from here](https://github.com/wajahatkarim3/Imagine/blob/main/Imagine-App.apk?raw=true) on your Android phone and enjoy the Demo App :)
@@ -55,15 +43,8 @@ Download the [APK file from here](https://github.com/wajahatkarim3/Imagine/blob/
 - [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - For writing Gradle build scripts using Kotlin.
 - [MockK](https://mockk.io) - For Mocking and Unit Testing
 
-## 👨 Developed By
+## Developed By
 
-<a href="https://twitter.com/WajahatKarim" target="_blank">
-  <img src="https://avatars1.githubusercontent.com/u/8867121?s=460&v=4" width="70" align="left">
-</a>
+**Evangelos Boudis**
 
-**Wajahat Karim**
-
-[![Twitter](https://img.shields.io/badge/-twitter-grey?logo=twitter)](https://twitter.com/WajahatKarim)
-[![Web](https://img.shields.io/badge/-web-grey?logo=appveyor)](https://wajahatkarim.com/)
-[![Medium](https://img.shields.io/badge/-medium-grey?logo=medium)](https://medium.com/@wajahatkarim3)
-[![Linkedin](https://img.shields.io/badge/-linkedin-grey?logo=linkedin)](https://www.linkedin.com/in/wajahatkarim/)
+[![Linkedin](https://img.shields.io/badge/-linkedin-grey?logo=linkedin)](https://www.linkedin.com/in/evangelos-boudis-673a72102/)
