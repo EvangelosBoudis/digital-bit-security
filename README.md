@@ -13,8 +13,9 @@ An simple image gallery app utilizing Unsplash API.
 <br/>
 
 <div align="center">
-  <img src="https://github.com/wajahatkarim3/Imagine/blob/main/screenshots/PopularPhotosDay.png" width="230px" />  <img src="https://github.com/wajahatkarim3/Imagine/blob/main/screenshots/PhotoDetailsDay.png" width="230px" />  <img src="https://github.com/wajahatkarim3/Imagine/blob/main/screenshots/SearchResultsDay.png" width="230px" /><br>
-  <img src="https://github.com/wajahatkarim3/Imagine/blob/main/screenshots/PopularPhotosNight.png" width="230px" />  <img src="https://github.com/wajahatkarim3/Imagine/blob/main/screenshots/PhotoDetailsNight.png" width="230px" />  <img src="https://github.com/wajahatkarim3/Imagine/blob/main/screenshots/SearchResultsNight.png" width="230px" />
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_1.png" width="230px" />  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_2.png" width="230px" />  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_3.png" width="230px" /><br>
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_4.png" width="230px" />  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_5.png" width="230px" />  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_6.png" width="230px" /><br>
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_7.png" width="230px" />  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_8.png" width="230px" />  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_9.png" width="230px" /><br>
 </div>
 
 <br/>
