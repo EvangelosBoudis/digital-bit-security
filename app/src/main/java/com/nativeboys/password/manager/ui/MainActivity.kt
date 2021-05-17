@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
 /*
 * TODO:
-*  1. Settings Modify Pass, Fast Login (master password prompt), Buy me a coffee
+*  1. Settings Modify Pass, Fast Login (master password prompt), Buy me a coffee, AutofillService, CloudStorage api
 *  2. Welcome Screen with basic Information about the app
 *
 *  (maybe): Regular Expression Weak-Medium-Strong Password, Password Generator Fragment
