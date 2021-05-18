@@ -1,20 +1,32 @@
+![](https://github.com/Vaggelis95/password-manager-android/blob/master/app/src/main/res/drawable-mdpi/cover.png)
+
 # DigitalBit Security
 An simple password manager app, that keeps your vault encrypted via SHA256 algorithm.
 
-## Screens
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
+![Language](https://img.shields.io/badge/language-Kotlin-orange.svg)
+
 <div align="center">
-  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_1.png" width="230px" />  
-  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_2.png" width="230px" />  
-  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_3.png" width="230px" />
-  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_4.png" width="230px" />  
-  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_5.png" width="230px" />  
-  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_6.png" width="230px" />
-  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_7.png" width="230px" />  
-  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_8.png" width="230px" />  
-  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_9.png" width="230px" />
-  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_10.png" width="230px" />
-  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/screenshots/sh_11.png" width="230px" />
+  <sub>Built with ❤︎ by
+  <a href="https://github.com/Vaggelis95">Evangelos Boudis</a>
 </div>
+<br/>
+
+## Screenshots
+<div align="center">
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/playStore/screenshots/sh_1.png" width="230px" />  
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/playStore/screenshots/sh_2.png" width="230px" />  
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/playStore/screenshots/sh_3.png" width="230px" />
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/playStore/screenshots/sh_4.png" width="230px" />  
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/playStore/screenshots/sh_5.png" width="230px" />  
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/playStore/screenshots/sh_6.png" width="230px" />
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/playStore/screenshots/sh_7.png" width="230px" />  
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/playStore/screenshots/sh_8.png" width="230px" />  
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/playStore/screenshots/sh_9.png" width="230px" />
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/playStore/screenshots/sh_10.png" width="230px" />
+  <img src="https://github.com/Vaggelis95/password-manager-android/blob/master/playStore/screenshots/sh_11.png" width="230px" />
+</div>
+<br/>
 
 ## Features
 1. - [x] Vault management
@@ -29,8 +41,9 @@ An simple password manager app, that keeps your vault encrypted via SHA256 algor
 10. - [ ] Paypal.me - Buy Me a Coffee etc.
 11. - [ ] Welcome screen with basic information about the app
 
+
 ## 📱 Download Demo on Android
-Download the [APK file from here](https://github.com/wajahatkarim3/Imagine/blob/main/Imagine-App.apk?raw=true) on your Android phone and enjoy the Demo App :)
+Download the [APK file from here](https://github.com/Vaggelis95/password-manager-android/blob/master/playStore/digital-bit-security.apk?raw=true) on your Android phone and enjoy the Demo App :)
 
 ## Built With 🛠
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
@@ -47,9 +60,3 @@ Download the [APK file from here](https://github.com/wajahatkarim3/Imagine/blob/
 - [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
 - [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - For writing Gradle build scripts using Kotlin.
 - [MockK](https://mockk.io) - For Mocking and Unit Testing
-
-## Developed By
-
-**Evangelos Boudis**
-
-[![Linkedin](https://img.shields.io/badge/-linkedin-grey?logo=linkedin)](https://www.linkedin.com/in/evangelos-boudis-673a72102/)
