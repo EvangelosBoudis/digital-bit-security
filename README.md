@@ -17,12 +17,14 @@ An simple password manager app, that keeps your vault encrypted via SHA256 algor
 </div>
 
 ## Features
-* Easy vault management
-* Content encryption via SHA256 algorithm
-* Vault search via name or keywords
-* Export encrypted backup to specified directory
-* Import encrypted backup from specified directory
-* Dark mode support
+1. - [x] Vault management
+2. - [x] Vault search via name or keywords
+3. - [x] Content encryption via SHA256 algorithm
+4. - [x] Export / Import encrypted backup to / from specified directory
+5. - [x] Dark mode support
+6. - [ ] Fast Login - Biometrics
+7. - [ ] AutofillService
+8. - [ ] Export / Import encrypted backup to / from cloud storage providers using API or SDK
 
 ## 📱 Download Demo on Android
 Download the [APK file from here](https://github.com/wajahatkarim3/Imagine/blob/main/Imagine-App.apk?raw=true) on your Android phone and enjoy the Demo App :)
