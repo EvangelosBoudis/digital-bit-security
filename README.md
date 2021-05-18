@@ -41,7 +41,6 @@ An simple password manager app for Android, that keeps your vault encrypted via 
 10. - [ ] Paypal.me - Buy Me a Coffee etc.
 11. - [ ] Welcome screen with basic information about the app
 
-
 ## 📱 Download Demo on Android
 Download the [APK file from here](https://github.com/Vaggelis95/password-manager-android/blob/master/playStore/digital-bit-security.apk?raw=true) on your Android phone and enjoy the Demo App :)
 
@@ -53,10 +52,13 @@ Download the [APK file from here](https://github.com/Vaggelis95/password-manager
   - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Data objects that notify views when the underlying database changes.
   - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes.
   - [ViewBinding](https://developer.android.com/topic/libraries/view-binding) - Generates a binding class for each XML layout file present in that module and allows you to more easily write code that interacts with views.
-- [Dependency Injection](https://developer.android.com/training/dependency-injection)
-  - [Hilt](https://dagger.dev/hilt) - Easier way to incorporate Dagger DI into Android apps. **This is in the [main branch](https://github.com/wajahatkarim3/Imagine)**.
-  - [Dagger2](https://dagger.dev/) - Standard library to incorporate Dagger dependency injection into an Android application. **This is in a separate [dagger branch](https://github.com/wajahatkarim3/Imagine/tree/dagger-branch).**
-- [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java.
+  - [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Data storage solution that allows you to store key-value pairs or typed objects with protocol buffers.
+- [Hilt](https://developer.android.com/training/dependency-injection/hilt-jetpack) - Dependency injection library for Android.
+- [Room](https://developer.android.com/topic/libraries/architecture/room) - SQLite object mapping library.
+- [Navigation Component](https://developer.android.com/guide/navigation) - Library to navigate across, into, and back out from the different pieces of content within your app.
 - [Material Components for Android](https://github.com/material-components/material-components-android) - Modular and customizable Material Design UI components for Android.
-- [Gradle Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - For writing Gradle build scripts using Kotlin.
-- [MockK](https://mockk.io) - For Mocking and Unit Testing
+- [Material Icon Library](https://github.com/code-mc/material-icon-lib) - A library containing over 2000 material vector icons.
+- [Glide](https://github.com/bumptech/glide) - Media management and image loading framework.
+- [SQLCipher for Android](https://github.com/sqlcipher/android-database-sqlcipher) - Extension to SQLite that provides transparent 256-bit AES encryption of database files.
+- [Android Room Database Backup](https://github.com/rafi0101/Android-Room-Database-Backup) - Tool to backup and restore your room database in Android.
+- [Keystore Ultimate](https://github.com/leonardoxh/keystore-ultimate) - Keystore manipulation in Android.
