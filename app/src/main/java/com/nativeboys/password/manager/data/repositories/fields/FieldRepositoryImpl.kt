@@ -2,8 +2,9 @@ package com.nativeboys.password.manager.data.repositories.fields
 
 import com.nativeboys.password.manager.data.FieldData
 import com.nativeboys.password.manager.data.storage.FieldDao
+import javax.inject.Inject
 
-class FieldRepositoryImpl constructor(
+class FieldRepositoryImpl @Inject constructor(
     private val fieldDao: FieldDao
 ): FieldRepository {
 

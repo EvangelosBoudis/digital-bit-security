@@ -10,8 +10,9 @@ import com.nativeboys.password.manager.util.toComparable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import java.util.*
+import javax.inject.Inject
 
-class ItemRepositoryImpl constructor(
+class ItemRepositoryImpl @Inject constructor(
     private val db: AppDatabase,
     private val itemDao: ItemDao,
     private val fieldDao: FieldDao,

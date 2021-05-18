@@ -9,15 +9,11 @@ import com.nativeboys.password.manager.BuildConfig.DATABASE_NAME
 import com.nativeboys.password.manager.data.storage.*
 import com.nativeboys.password.manager.data.preferences.PreferencesManager
 import com.nativeboys.password.manager.data.preferences.PreferencesManagerImpl
-import com.nativeboys.password.manager.data.services.UserService
-import com.nativeboys.password.manager.data.services.UserServiceImpl
 import com.nativeboys.password.manager.util.encryptIfAliasNotExist
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
 import java.util.*
@@ -85,19 +81,8 @@ object AppModule {
         return db.contentDao()
     }
 
-    @Singleton
+/*    @Singleton
     @Provides
-    fun provideUserService(
-        db: AppDatabase,
-        cipherStorage: CipherStorage,
-        preferencesManager: PreferencesManager,
-        categoryDao: CategoryDao
-    ): UserService {
-        return UserServiceImpl(db, cipherStorage, preferencesManager, categoryDao)
-    }
-
-    @Singleton
-    @Provides
-    fun provideApplicationScope() = CoroutineScope(SupervisorJob())
+    fun provideApplicationScope() = CoroutineScope(SupervisorJob())*/
 
 }

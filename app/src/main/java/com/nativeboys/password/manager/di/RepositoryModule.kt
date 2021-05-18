@@ -1,7 +1,5 @@
 package com.nativeboys.password.manager.di
 
-import com.nativeboys.password.manager.data.storage.*
-import com.nativeboys.password.manager.data.preferences.PreferencesManager
 import com.nativeboys.password.manager.data.repositories.category.CategoryRepository
 import com.nativeboys.password.manager.data.repositories.category.CategoryRepositoryImpl
 import com.nativeboys.password.manager.data.repositories.fields.FieldRepository
@@ -10,53 +8,38 @@ import com.nativeboys.password.manager.data.repositories.items.ItemRepository
 import com.nativeboys.password.manager.data.repositories.items.ItemRepositoryImpl
 import com.nativeboys.password.manager.data.repositories.thumbnails.ThumbnailRepository
 import com.nativeboys.password.manager.data.repositories.thumbnails.ThumbnailRepositoryImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class RepositoryModule {
+abstract class RepositoryModule {
 
+    @Binds
     @Singleton
-    @Provides
-    fun provideCategoryRepository(
-        db: AppDatabase,
-        categoryDao: CategoryDao,
-        fieldDao: FieldDao,
-        preferencesManager: PreferencesManager
-    ): CategoryRepository {
-        return CategoryRepositoryImpl(db, categoryDao, fieldDao, preferencesManager)
-    }
+    abstract fun bindCategoryRepository(
+        categoryRepositoryImpl: CategoryRepositoryImpl
+    ): CategoryRepository
 
+    @Binds
     @Singleton
-    @Provides
-    fun provideFieldRepository(fieldDao: FieldDao): FieldRepository {
-        return FieldRepositoryImpl(fieldDao)
-    }
+    abstract fun bindFieldRepository(
+        fieldRepositoryImpl: FieldRepositoryImpl
+    ): FieldRepository
 
+    @Binds
     @Singleton
-    @Provides
-    fun provideItemRepository(
-        db: AppDatabase,
-        itemDao: ItemDao,
-        fieldDao: FieldDao,
-        contentDao: ContentDao,
-        thumbnailDao: ThumbnailDao,
-        preferences: PreferencesManager
-    ): ItemRepository {
-        return ItemRepositoryImpl(db, itemDao, fieldDao, contentDao, thumbnailDao, preferences)
-    }
+    abstract fun bindItemRepository(
+        itemRepositoryImpl: ItemRepositoryImpl
+    ): ItemRepository
 
+    @Binds
     @Singleton
-    @Provides
-    fun provideThumbnailsRepository(
-        db: AppDatabase,
-        thumbnailDao: ThumbnailDao,
-    ): ThumbnailRepository {
-        return ThumbnailRepositoryImpl(db, thumbnailDao)
-    }
+    abstract fun bindThumbnailsRepository(
+        thumbnailRepositoryImpl: ThumbnailRepositoryImpl
+    ): ThumbnailRepository
 
 }

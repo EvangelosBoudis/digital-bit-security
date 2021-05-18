@@ -38,14 +38,6 @@ class MainActivity : AppCompatActivity() {
 }
 
 /*
-* TODO:
-*  1. Settings Modify Pass, Fast Login (master password prompt), Buy me a coffee, AutofillService, CloudStorage api
-*  2. Welcome Screen with basic Information about the app
-*
-*  (maybe): Regular Expression Weak-Medium-Strong Password, Password Generator Fragment
-* */
-
-/*
   IconMaker: https://www.namecheap.com/logo-maker/app/editor
 
   Biometrics:
@@ -64,14 +56,6 @@ class MainActivity : AppCompatActivity() {
 
   KeyStore usage ( blog entry 1 and blog entry 2):
   https://stackoverflow.com/questions/21987170/how-to-store-the-key-used-in-sqlcipher-for-android
-
-  Import/Export:
-  https://github.com/rafi0101/Android-Room-Database-Backup
-  https://github.com/android/architecture-components-samples/issues/340
-
-  Keystore Manager:
-  https://github.com/sauravpradhan/AndroidKeyStore
-  https://github.com/phanirajabhandari/android-keystore-example
 
   Documentation:
   https://developer.android.com/training/data-storage/room/relationships

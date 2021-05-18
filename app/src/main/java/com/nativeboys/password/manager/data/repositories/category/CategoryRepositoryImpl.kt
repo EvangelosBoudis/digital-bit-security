@@ -12,8 +12,9 @@ import com.nativeboys.password.manager.data.preferences.PreferencesManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import java.util.*
+import javax.inject.Inject
 
-class CategoryRepositoryImpl constructor(
+class CategoryRepositoryImpl @Inject constructor(
     private val db: AppDatabase,
     private val categoryDao: CategoryDao,
     private val fieldDao: FieldDao,

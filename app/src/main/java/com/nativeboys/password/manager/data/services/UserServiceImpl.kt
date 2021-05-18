@@ -14,8 +14,9 @@ import ir.androidexception.roomdatabasebackupandrestore.Restore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.io.File
+import javax.inject.Inject
 
-class UserServiceImpl constructor(
+class UserServiceImpl @Inject constructor(
     private val db: AppDatabase,
     private val cipherStorage: CipherStorage,
     private val preferencesManager: PreferencesManager,

@@ -5,8 +5,9 @@ import com.nativeboys.password.manager.data.ThumbnailData
 import com.nativeboys.password.manager.data.ThumbnailDto
 import com.nativeboys.password.manager.data.storage.AppDatabase
 import com.nativeboys.password.manager.data.storage.ThumbnailDao
+import javax.inject.Inject
 
-class ThumbnailRepositoryImpl constructor(
+class ThumbnailRepositoryImpl @Inject constructor(
     private val db: AppDatabase,
     private val thumbnailDao: ThumbnailDao
 ): ThumbnailRepository {
