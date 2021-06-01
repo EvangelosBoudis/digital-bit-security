@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity() {
 
 }
 
+// TODO: Handle Exceptions inside repositories
+
 /*
   IconMaker: https://www.namecheap.com/logo-maker/app/editor
 

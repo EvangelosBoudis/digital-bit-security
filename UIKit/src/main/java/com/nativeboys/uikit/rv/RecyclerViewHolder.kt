@@ -4,9 +4,9 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
-abstract class RecyclerViewHolder<T>(itemView: View) :
-
-    ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener {
+abstract class RecyclerViewHolder<T>(
+    itemView: View
+) : ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener {
 
     var clickListener: ViewHolderClickListener? = null
 
@@ -31,6 +31,5 @@ abstract class RecyclerViewHolder<T>(itemView: View) :
     }
 
     abstract fun bind(model: T)
-
 
 }
