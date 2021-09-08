@@ -1,15 +1,11 @@
 ![](https://github.com/Vaggelis95/password-manager-android/blob/master/app/src/main/res/drawable-mdpi/cover.png)
 
 # DigitalBit Security
-An simple password manager app for Android, that keeps your vault encrypted via SHA256 algorithm.
+A simple password manager app for Android, that keeps your vault encrypted via SHA256 algorithm.
 
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 ![Language](https://img.shields.io/badge/language-Kotlin-orange.svg)
 
-<div align="center">
-  <sub>Built with ❤︎ by
-  <a href="https://github.com/Vaggelis95">Evangelos Boudis</a>
-</div>
 <br/>
 
 ## Screenshots
